@@ -1,0 +1,56 @@
+.app-page__hero {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px 60px;
+  gap: 12px;
+}
+
+.app-page__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 4px 20px rgba(139, 92, 246, 0.3));
+}
+
+.app-page__title {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+}
+
+.app-page__tagline {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  max-width: 550px;
+}
+
+.app-page__desc {
+  font-size: 17px;
+  color: var(--text-tertiary);
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.app-page__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.app-page__req {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .app-page__title { font-size: 44px; }
+  .app-page__tagline { font-size: 18px; }
+  .app-page__hero { min-height: 60vh; padding: 100px 16px 40px; }
+}
