@@ -1,14 +1,12 @@
 import { AppCard } from "../components/AppCard";
+import { LogoTerminal } from "../components/Logo";
 import "./Home.css";
 
 export function Home() {
   return (
     <div className="home">
       <section className="home__hero">
-        <h1 className="home__title">Matt's Software</h1>
-        <p className="home__subtitle">
-          Open source apps that do what they say and nothing else.
-        </p>
+        <LogoTerminal />
       </section>
 
       <section className="section">

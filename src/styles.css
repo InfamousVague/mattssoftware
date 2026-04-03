@@ -137,6 +137,18 @@ a:hover { color: var(--accent); }
 }
 .nav__link:hover { color: var(--text-primary); }
 
+.nav__link--app {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav__app-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+}
+
 /* Footer */
 .footer {
   padding: 48px 24px;

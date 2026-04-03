@@ -1,0 +1,248 @@
+/* ============================================
+   Terminal Window with Matrix Rain
+   ============================================ */
+.terminal {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.terminal__rain {
+  position: absolute;
+  inset: -40px -60px;
+  width: calc(100% + 120px);
+  height: calc(100% + 80px);
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 0;
+  border-radius: 20px;
+}
+
+.terminal__window {
+  position: relative;
+  z-index: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(12, 10, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(139, 92, 246, 0.1);
+}
+
+.terminal__titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.terminal__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.terminal__dot--red { background: #ff5f56; }
+.terminal__dot--yellow { background: #ffbd2e; }
+.terminal__dot--green { background: #27c93f; }
+
+.terminal__titlebar-text {
+  margin-left: 8px;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.terminal__body {
+  padding: 20px 24px 24px;
+  font-family: "SF Mono", "Fira Code", "Cascadia Code", "JetBrains Mono", monospace;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.terminal__line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+}
+
+.terminal__prompt-char {
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.terminal__cmd {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.terminal__cursor {
+  display: inline-block;
+  width: 9px;
+  height: 20px;
+  background: var(--accent);
+  animation: cursor-blink 1s step-end infinite;
+  border-radius: 1px;
+  opacity: 0.9;
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 0.9; }
+  51%, 100% { opacity: 0; }
+}
+
+.terminal__line--output {
+  margin-top: 8px;
+}
+
+.terminal__output {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #ffffff 0%, var(--accent-text) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.terminal__line--version {
+  margin-top: 4px;
+}
+
+.terminal__meta {
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+/* ============================================
+   Option 2: Animated gradient shimmer
+   ============================================ */
+.logo--gradient {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  background: linear-gradient(
+    135deg,
+    #8b5cf6 0%,
+    #ec4899 25%,
+    #f59e0b 50%,
+    #06b6d4 75%,
+    #8b5cf6 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============================================
+   Option 3: Glitch effect
+   ============================================ */
+.logo--glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.logo__glitch-text {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.logo__glitch-text::before,
+.logo__glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+
+.logo__glitch-text::before {
+  color: #ff006e;
+  animation: glitch-shift-1 3s infinite linear alternate-reverse;
+  clip-path: inset(0 0 65% 0);
+  -webkit-text-fill-color: initial;
+}
+
+.logo__glitch-text::after {
+  color: #00d4ff;
+  animation: glitch-shift-2 3s infinite linear alternate-reverse;
+  clip-path: inset(65% 0 0 0);
+  -webkit-text-fill-color: initial;
+}
+
+@keyframes glitch-shift-1 {
+  0%, 90%, 100% { transform: translateX(0); }
+  92% { transform: translateX(-3px); }
+  94% { transform: translateX(3px); }
+  96% { transform: translateX(-2px); }
+  98% { transform: translateX(1px); }
+}
+
+@keyframes glitch-shift-2 {
+  0%, 90%, 100% { transform: translateX(0); }
+  91% { transform: translateX(2px); }
+  93% { transform: translateX(-3px); }
+  95% { transform: translateX(1px); }
+  97% { transform: translateX(-2px); }
+}
+
+/* ============================================
+   Option 4: Split — bold name + light "Software"
+   ============================================ */
+.logo--split {
+  font-size: 64px;
+  letter-spacing: -1.5px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.logo__word-bold {
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent) 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo__word-light {
+  font-weight: 300;
+  color: var(--text-tertiary);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 768px) {
+  .logo--terminal { font-size: 32px; }
+  .logo--gradient { font-size: 40px; }
+  .logo__glitch-text { font-size: 40px; }
+  .logo--split { font-size: 40px; gap: 10px; }
+}
+
+@media (max-width: 480px) {
+  .logo--terminal { font-size: 24px; }
+  .logo--gradient { font-size: 32px; }
+  .logo__glitch-text { font-size: 32px; }
+  .logo--split { font-size: 32px; flex-direction: column; gap: 0; text-align: center; }
+}

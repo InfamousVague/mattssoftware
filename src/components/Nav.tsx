@@ -7,8 +7,14 @@ export function Nav() {
         Matt's Software
       </Link>
       <div className="nav__links">
-        <Link to="/blip" className="nav__link">Blip</Link>
-        <Link to="/vyv" className="nav__link">Vyv</Link>
+        <Link to="/blip" className="nav__link nav__link--app">
+          <img src="/blip/app-icon.png" alt="" className="nav__app-icon" />
+          Blip
+        </Link>
+        <Link to="/vyv" className="nav__link nav__link--app">
+          <img src="/vyv/app-icon.png" alt="" className="nav__app-icon" />
+          Vyv
+        </Link>
         <a href="https://github.com/InfamousVague" className="nav__link" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </nav>

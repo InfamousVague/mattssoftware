@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ArrowRight, Download } from "lucide-react";
 import "./AppCard.css";
 
 interface AppCardProps {
@@ -28,9 +29,9 @@ export function AppCard({ name, tagline, description, icon, path, tags, download
         ))}
       </div>
       <div className="app-card__actions">
-        <Link to={path} className="btn btn--primary">Learn More</Link>
+        <Link to={path} className="btn btn--primary"><ArrowRight size={16} /> Learn More</Link>
         {downloadUrl && (
-          <a href={downloadUrl} className="btn btn--ghost">Download</a>
+          <a href={downloadUrl} className="btn btn--ghost"><Download size={16} /> Download</a>
         )}
       </div>
     </div>

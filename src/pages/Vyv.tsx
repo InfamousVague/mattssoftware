@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Download, ExternalLink } from "lucide-react";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
 import "./AppPage.css";
 
@@ -13,6 +14,7 @@ const FEATURES: FeatureSection[] = [
       "Keep display on or let it sleep while the system stays awake",
       "Runs entirely from the system tray — zero clutter",
     ],
+    image: "/vyv/screenshots/timer.png",
     imageAlt: "Vyv keep-awake timer interface",
   },
   {
@@ -25,6 +27,7 @@ const FEATURES: FeatureSection[] = [
       "Toggle independently from keep-awake",
       "Your secret is safe with us",
     ],
+    image: "/vyv/screenshots/jiggle.png",
     imageAlt: "Vyv mouse jiggle feature",
   },
   {
@@ -37,6 +40,7 @@ const FEATURES: FeatureSection[] = [
       "Lid-closed override for laptop users on macOS",
       "Lifetime stats track your total uptime with milestone celebrations",
     ],
+    image: "/vyv/screenshots/stats.png",
     imageAlt: "Vyv panic hotkey and safety features",
   },
 ];
@@ -63,14 +67,15 @@ export function VyvPage() {
   return (
     <div className="app-page">
       <section className="app-page__hero">
+        <img src="/vyv/app-icon.png" alt="Vyv" className="app-page__icon" />
         <h1 className="app-page__title">Vyv</h1>
         <p className="app-page__tagline">Like Caffeine, but open source and cross-platform.</p>
         <p className="app-page__desc">
           Keep your computer awake. Jiggle your mouse. Look busy. All from the system tray.
         </p>
         <div className="app-page__actions">
-          <a href={downloadUrl} className="btn btn--primary">Download</a>
-          <a href="https://github.com/InfamousVague/Vyv" className="btn btn--ghost" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download</a>
+          <a href="https://github.com/InfamousVague/Vyv" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
         <span className="app-page__req">macOS &middot; Windows &middot; Linux &middot; Free &amp; Open Source</span>
       </section>
@@ -80,8 +85,8 @@ export function VyvPage() {
       <section className="section" style={{ textAlign: "center" }}>
         <h2 className="section__title">Stay awake. Stay active. Stay employed.</h2>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32 }}>
-          <a href={downloadUrl} className="btn btn--primary">Download</a>
-          <a href="https://github.com/InfamousVague/Vyv" className="btn btn--ghost" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download</a>
+          <a href="https://github.com/InfamousVague/Vyv" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
       </section>
     </div>

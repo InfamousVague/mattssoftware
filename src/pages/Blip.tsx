@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Download, ExternalLink } from "lucide-react";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
 import "./AppPage.css";
 
@@ -101,8 +102,8 @@ export function BlipPage() {
           See exactly where your data goes, who's collecting it, and shut them down — all on a very pretty 3D map.
         </p>
         <div className="app-page__actions">
-          <a href={downloadUrl} className="btn btn--primary">Download for macOS</a>
-          <a href="https://github.com/InfamousVague/Blip" className="btn btn--ghost" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download for macOS</a>
+          <a href="https://github.com/InfamousVague/Blip" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
         <span className="app-page__req">Free &amp; Open Source</span>
       </section>
@@ -112,8 +113,8 @@ export function BlipPage() {
       <section className="section" style={{ textAlign: "center" }}>
         <h2 className="section__title">Ready to find out what your apps have been up to?</h2>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32 }}>
-          <a href={downloadUrl} className="btn btn--primary">Download for macOS</a>
-          <a href="https://github.com/InfamousVague/Blip" className="btn btn--ghost" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download for macOS</a>
+          <a href="https://github.com/InfamousVague/Blip" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
       </section>
     </div>

@@ -18,6 +18,19 @@
   -webkit-text-fill-color: transparent;
 }
 
+.home__logo-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.home__logo-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .home__subtitle {
   font-size: 20px;
   color: var(--text-tertiary);
