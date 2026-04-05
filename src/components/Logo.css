@@ -8,20 +8,8 @@
   margin: 0 auto;
 }
 
-.terminal__rain {
-  position: absolute;
-  inset: -40px -60px;
-  width: calc(100% + 120px);
-  height: calc(100% + 80px);
-  pointer-events: none;
-  opacity: 0.6;
-  z-index: 0;
-  border-radius: 20px;
-}
-
 .terminal__window {
   position: relative;
-  z-index: 1;
   border-radius: 12px;
   overflow: hidden;
   background: rgba(12, 10, 18, 0.85);
