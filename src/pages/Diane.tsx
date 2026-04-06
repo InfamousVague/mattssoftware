@@ -45,23 +45,27 @@ const FEATURES: FeatureSection[] = [
   },
 ];
 
-async function getDianeDownloadUrl(): Promise<string> {
+async function getDianeRelease() {
   try {
     const res = await fetch("https://api.github.com/repos/InfamousVague/Diane/releases/latest");
-    if (!res.ok) return "https://github.com/InfamousVague/Diane/releases/latest";
+    if (!res.ok) return { url: "https://github.com/InfamousVague/Diane/releases/latest", version: "" };
     const data = await res.json();
     const dmg = data.assets?.find((a: { name: string }) => a.name.endsWith(".dmg"));
-    return dmg?.browser_download_url || "https://github.com/InfamousVague/Diane/releases/latest";
+    return {
+      url: dmg?.browser_download_url || "https://github.com/InfamousVague/Diane/releases/latest",
+      version: data.tag_name || "",
+    };
   } catch {
-    return "https://github.com/InfamousVague/Diane/releases/latest";
+    return { url: "https://github.com/InfamousVague/Diane/releases/latest", version: "" };
   }
 }
 
 export function DianePage() {
   const [downloadUrl, setDownloadUrl] = useState("https://github.com/InfamousVague/Diane/releases/latest");
+  const [version, setVersion] = useState("");
 
   useEffect(() => {
-    getDianeDownloadUrl().then(setDownloadUrl);
+    getDianeRelease().then(({ url, version }) => { setDownloadUrl(url); setVersion(version); });
   }, []);
 
   return (
@@ -74,7 +78,7 @@ export function DianePage() {
           A retro voice recorder with live speech-to-text transcription, inspired by Special Agent Dale Cooper's cassette tape memos.
         </p>
         <div className="app-page__actions">
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download for macOS</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
           <a href="https://github.com/InfamousVague/Diane" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
         <span className="app-page__req">Free &amp; Open Source</span>
@@ -85,7 +89,7 @@ export function DianePage() {
       <section className="section" style={{ textAlign: "center" }}>
         <h2 className="section__title">Ready to start recording?</h2>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32 }}>
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download for macOS</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
           <a href="https://github.com/InfamousVague/Diane" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
       </section>

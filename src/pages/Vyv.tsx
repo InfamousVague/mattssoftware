@@ -45,23 +45,27 @@ const FEATURES: FeatureSection[] = [
   },
 ];
 
-async function getVyvDownloadUrl(): Promise<string> {
+async function getVyvRelease() {
   try {
     const res = await fetch("https://api.github.com/repos/InfamousVague/Vyv/releases/latest");
-    if (!res.ok) return "https://github.com/InfamousVague/Vyv/releases/latest";
+    if (!res.ok) return { url: "https://github.com/InfamousVague/Vyv/releases/latest", version: "" };
     const data = await res.json();
     const asset = data.assets?.[0];
-    return asset?.browser_download_url || "https://github.com/InfamousVague/Vyv/releases/latest";
+    return {
+      url: asset?.browser_download_url || "https://github.com/InfamousVague/Vyv/releases/latest",
+      version: data.tag_name || "",
+    };
   } catch {
-    return "https://github.com/InfamousVague/Vyv/releases/latest";
+    return { url: "https://github.com/InfamousVague/Vyv/releases/latest", version: "" };
   }
 }
 
 export function VyvPage() {
   const [downloadUrl, setDownloadUrl] = useState("https://github.com/InfamousVague/Vyv/releases/latest");
+  const [version, setVersion] = useState("");
 
   useEffect(() => {
-    getVyvDownloadUrl().then(setDownloadUrl);
+    getVyvRelease().then(({ url, version }) => { setDownloadUrl(url); setVersion(version); });
   }, []);
 
   return (
@@ -74,7 +78,7 @@ export function VyvPage() {
           Keep your computer awake. Jiggle your mouse. Look busy. All from the system tray.
         </p>
         <div className="app-page__actions">
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
           <a href="https://github.com/InfamousVague/Vyv" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
         <span className="app-page__req">macOS &middot; Windows &middot; Linux &middot; Free &amp; Open Source</span>
@@ -85,7 +89,7 @@ export function VyvPage() {
       <section className="section" style={{ textAlign: "center" }}>
         <h2 className="section__title">Stay awake. Stay active. Stay employed.</h2>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32 }}>
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
           <a href="https://github.com/InfamousVague/Vyv" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
       </section>

@@ -73,23 +73,27 @@ const FEATURES: FeatureSection[] = [
   },
 ];
 
-async function getBlipDownloadUrl(): Promise<string> {
+async function getBlipRelease() {
   try {
     const res = await fetch("https://api.github.com/repos/InfamousVague/Blip/releases/latest");
-    if (!res.ok) return "https://github.com/InfamousVague/Blip/releases/latest";
+    if (!res.ok) return { url: "https://github.com/InfamousVague/Blip/releases/latest", version: "" };
     const data = await res.json();
     const dmg = data.assets?.find((a: { name: string }) => a.name.endsWith(".dmg"));
-    return dmg?.browser_download_url || "https://github.com/InfamousVague/Blip/releases/latest";
+    return {
+      url: dmg?.browser_download_url || "https://github.com/InfamousVague/Blip/releases/latest",
+      version: data.tag_name || "",
+    };
   } catch {
-    return "https://github.com/InfamousVague/Blip/releases/latest";
+    return { url: "https://github.com/InfamousVague/Blip/releases/latest", version: "" };
   }
 }
 
 export function BlipPage() {
   const [downloadUrl, setDownloadUrl] = useState("https://github.com/InfamousVague/Blip/releases/latest");
+  const [version, setVersion] = useState("");
 
   useEffect(() => {
-    getBlipDownloadUrl().then(setDownloadUrl);
+    getBlipRelease().then(({ url, version }) => { setDownloadUrl(url); setVersion(version); });
   }, []);
 
   return (
@@ -102,7 +106,7 @@ export function BlipPage() {
           See exactly where your data goes, who's collecting it, and shut them down — all on a very pretty 3D map.
         </p>
         <div className="app-page__actions">
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download for macOS</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
           <a href="https://github.com/InfamousVague/Blip" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
         <span className="app-page__req">Free &amp; Open Source</span>
@@ -113,7 +117,7 @@ export function BlipPage() {
       <section className="section" style={{ textAlign: "center" }}>
         <h2 className="section__title">Ready to find out what your apps have been up to?</h2>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32 }}>
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download for macOS</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
           <a href="https://github.com/InfamousVague/Blip" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
       </section>

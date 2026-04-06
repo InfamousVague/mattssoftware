@@ -5,27 +5,36 @@ import "./Home.css";
 
 const FALLBACK = "https://github.com/InfamousVague";
 
-async function getLatestDmg(repo: string): Promise<string> {
+interface ReleaseInfo {
+  url: string;
+  version: string;
+}
+
+async function getLatestRelease(repo: string): Promise<ReleaseInfo> {
+  const fallback = { url: `${FALLBACK}/${repo}/releases/latest`, version: "" };
   try {
     const res = await fetch(`https://api.github.com/repos/InfamousVague/${repo}/releases/latest`);
-    if (!res.ok) return `${FALLBACK}/${repo}/releases/latest`;
+    if (!res.ok) return fallback;
     const data = await res.json();
     const dmg = data.assets?.find((a: { name: string }) => a.name.endsWith(".dmg"));
-    return dmg?.browser_download_url || `${FALLBACK}/${repo}/releases/latest`;
+    return {
+      url: dmg?.browser_download_url || fallback.url,
+      version: data.tag_name || "",
+    };
   } catch {
-    return `${FALLBACK}/${repo}/releases/latest`;
+    return fallback;
   }
 }
 
 export function Home() {
-  const [blipUrl, setBlipUrl] = useState(`${FALLBACK}/Blip/releases/latest`);
-  const [vyvUrl, setVyvUrl] = useState(`${FALLBACK}/Vyv/releases/latest`);
-  const [dianeUrl, setDianeUrl] = useState(`${FALLBACK}/Diane/releases/latest`);
+  const [blip, setBlip] = useState<ReleaseInfo>({ url: `${FALLBACK}/Blip/releases/latest`, version: "" });
+  const [vyv, setVyv] = useState<ReleaseInfo>({ url: `${FALLBACK}/Vyv/releases/latest`, version: "" });
+  const [diane, setDiane] = useState<ReleaseInfo>({ url: `${FALLBACK}/Diane/releases/latest`, version: "" });
 
   useEffect(() => {
-    getLatestDmg("Blip").then(setBlipUrl);
-    getLatestDmg("Vyv").then(setVyvUrl);
-    getLatestDmg("Diane").then(setDianeUrl);
+    getLatestRelease("Blip").then(setBlip);
+    getLatestRelease("Vyv").then(setVyv);
+    getLatestRelease("Diane").then(setDiane);
   }, []);
 
   return (
@@ -43,7 +52,8 @@ export function Home() {
             icon="/blip/app-icon.png"
             path="/blip"
             tags={["Network", "Firewall", "Privacy", "macOS"]}
-            downloadUrl={blipUrl}
+            downloadUrl={blip.url}
+            version={blip.version}
           />
           <AppCard
             name="Vyv"
@@ -52,7 +62,8 @@ export function Home() {
             icon="/vyv/app-icon.png"
             path="/vyv"
             tags={["Utility", "Cross-Platform", "Productivity"]}
-            downloadUrl={vyvUrl}
+            downloadUrl={vyv.url}
+            version={vyv.version}
           />
           <AppCard
             name="Diane"
@@ -61,7 +72,8 @@ export function Home() {
             icon="/diane/app-icon.png"
             path="/diane"
             tags={["Voice", "Transcription", "macOS"]}
-            downloadUrl={dianeUrl}
+            downloadUrl={diane.url}
+            version={diane.version}
           />
           <AppCard
             name="Base"
