@@ -44,7 +44,7 @@ const FEATURES: FeatureSection[] = [
   },
 ];
 
-const DOCS_URL = "https://github.com/InfamousVague/base";
+const DOCS_URL = "https://infamousvague.github.io/base/";
 
 export function BasePage() {
   return (
