@@ -1,8 +1,33 @@
+import { useEffect, useState } from "react";
 import { AppCard } from "../components/AppCard";
 import { LogoTerminal } from "../components/Logo";
 import "./Home.css";
 
+const FALLBACK = "https://github.com/InfamousVague";
+
+async function getLatestDmg(repo: string): Promise<string> {
+  try {
+    const res = await fetch(`https://api.github.com/repos/InfamousVague/${repo}/releases/latest`);
+    if (!res.ok) return `${FALLBACK}/${repo}/releases/latest`;
+    const data = await res.json();
+    const dmg = data.assets?.find((a: { name: string }) => a.name.endsWith(".dmg"));
+    return dmg?.browser_download_url || `${FALLBACK}/${repo}/releases/latest`;
+  } catch {
+    return `${FALLBACK}/${repo}/releases/latest`;
+  }
+}
+
 export function Home() {
+  const [blipUrl, setBlipUrl] = useState(`${FALLBACK}/Blip/releases/latest`);
+  const [vyvUrl, setVyvUrl] = useState(`${FALLBACK}/Vyv/releases/latest`);
+  const [dianeUrl, setDianeUrl] = useState(`${FALLBACK}/Diane/releases/latest`);
+
+  useEffect(() => {
+    getLatestDmg("Blip").then(setBlipUrl);
+    getLatestDmg("Vyv").then(setVyvUrl);
+    getLatestDmg("Diane").then(setDianeUrl);
+  }, []);
+
   return (
     <div className="home">
       <section className="home__hero">
@@ -18,16 +43,16 @@ export function Home() {
             icon="/blip/app-icon.png"
             path="/blip"
             tags={["Network", "Firewall", "Privacy", "macOS"]}
-            downloadUrl="https://github.com/InfamousVague/Blip/releases/latest"
+            downloadUrl={blipUrl}
           />
-<AppCard
+          <AppCard
             name="Vyv"
             tagline="Your computer wants to sleep. Vyv disagrees."
             description="Keep-awake utility that prevents your computer from sleeping. Timed sessions, mouse jiggle simulation, lid-closed override, and a panic hotkey for instant deactivation."
             icon="/vyv/app-icon.png"
             path="/vyv"
             tags={["Utility", "Cross-Platform", "Productivity"]}
-            downloadUrl="https://github.com/InfamousVague/Vyv/releases/latest"
+            downloadUrl={vyvUrl}
           />
           <AppCard
             name="Diane"
@@ -36,7 +61,7 @@ export function Home() {
             icon="/diane/app-icon.png"
             path="/diane"
             tags={["Voice", "Transcription", "macOS"]}
-            downloadUrl="https://github.com/InfamousVague/Diane/releases/latest"
+            downloadUrl={dianeUrl}
           />
         </div>
       </section>
