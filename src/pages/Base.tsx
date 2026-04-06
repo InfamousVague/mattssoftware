@@ -44,7 +44,7 @@ const FEATURES: FeatureSection[] = [
   },
 ];
 
-const DOCS_URL = "https://infamousvague.github.io/base/";
+const DOCS_URL = "https://mattssoftware.com/docs/foundations";
 
 export function BasePage() {
   return (
