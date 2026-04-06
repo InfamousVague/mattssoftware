@@ -57,7 +57,7 @@ export function Home() {
           <AppCard
             name="Diane"
             tagline="I'm holding in my hand a small tape recorder."
-            description="A retro voice recorder with live speech-to-text transcription, cassette tape library, and dictation mode. Inspired by Special Agent Dale Cooper."
+            description="A skeuomorphic retro voice recorder with live speech-to-text transcription, cassette tape library, and dictation mode. Inspired by Special Agent Dale Cooper."
             icon="/diane/app-icon.png"
             path="/diane"
             tags={["Voice", "Transcription", "macOS"]}
