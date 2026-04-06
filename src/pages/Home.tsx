@@ -63,6 +63,14 @@ export function Home() {
             tags={["Voice", "Transcription", "macOS"]}
             downloadUrl={dianeUrl}
           />
+          <AppCard
+            name="Base"
+            tagline="Universal design toolkit — monochrome, glassmorphism, platform-agnostic."
+            description="69 primitives, 8 design token categories, dark mode, and zero opinions about your stack. Clean, composable React components that work everywhere."
+            icon="/base/app-icon.png"
+            path="/base"
+            tags={["UI Kit", "React", "TypeScript", "Design System"]}
+          />
         </div>
       </section>
     </div>

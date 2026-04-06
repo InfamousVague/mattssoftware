@@ -19,6 +19,10 @@ export function Nav() {
           <img src="/diane/app-icon.png" alt="" className="nav__app-icon" />
           Diane
         </Link>
+        <Link to="/base" className="nav__link nav__link--app">
+          <img src="/base/app-icon.png" alt="" className="nav__app-icon" />
+          Base
+        </Link>
         <a href="https://github.com/InfamousVague" className="nav__link" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </nav>
