@@ -23,6 +23,10 @@ export function Nav() {
           <img src="/base/app-icon.png" alt="" className="nav__app-icon" />
           Base
         </Link>
+        <Link to="/stash" className="nav__link nav__link--app">
+          <img src="/stash/app-icon.png" alt="" className="nav__app-icon" />
+          Stash
+        </Link>
         <a href="https://github.com/InfamousVague" className="nav__link" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </nav>

@@ -6,6 +6,7 @@ import { BlipPage } from "./pages/Blip";
 import { VyvPage } from "./pages/Vyv";
 import { DianePage } from "./pages/Diane";
 import { BasePage } from "./pages/Base";
+import { StashPage } from "./pages/Stash";
 import "./styles.css";
 
 export function App() {
@@ -19,6 +20,7 @@ export function App() {
           <Route path="/vyv" element={<VyvPage />} />
           <Route path="/diane" element={<DianePage />} />
           <Route path="/base" element={<BasePage />} />
+          <Route path="/stash" element={<StashPage />} />
         </Routes>
       </main>
       <Footer />

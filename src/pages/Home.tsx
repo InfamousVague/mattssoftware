@@ -83,6 +83,15 @@ export function Home() {
             path="/base"
             tags={["UI Kit", "React", "TypeScript", "Design System"]}
           />
+          <AppCard
+            name="Stash"
+            tagline="Your .env files deserve a bodyguard."
+            description="Encrypted environment variable vault with profiles, team sharing via public-key crypto, a CLI, health monitoring, and an API directory. Never leak a secret again."
+            icon="/stash/app-icon.png"
+            path="/stash"
+            tags={["Security", "Developer Tools", "macOS", "Encryption"]}
+            downloadUrl="https://github.com/InfamousVague/Stash/releases/latest"
+          />
         </div>
       </section>
     </div>
