@@ -30,11 +30,13 @@ export function Home() {
   const [blip, setBlip] = useState<ReleaseInfo>({ url: `${FALLBACK}/Blip/releases/latest`, version: "" });
   const [vyv, setVyv] = useState<ReleaseInfo>({ url: `${FALLBACK}/Vyv/releases/latest`, version: "" });
   const [diane, setDiane] = useState<ReleaseInfo>({ url: `${FALLBACK}/Diane/releases/latest`, version: "" });
+  const [stash, setStash] = useState<ReleaseInfo>({ url: `${FALLBACK}/Stash/releases/latest`, version: "" });
 
   useEffect(() => {
     getLatestRelease("Blip").then(setBlip);
     getLatestRelease("Vyv").then(setVyv);
     getLatestRelease("Diane").then(setDiane);
+    getLatestRelease("Stash").then(setStash);
   }, []);
 
   return (
@@ -90,7 +92,8 @@ export function Home() {
             icon="/stash/app-icon.png"
             path="/stash"
             tags={["Security", "Developer Tools", "macOS", "Encryption"]}
-            downloadUrl="https://github.com/InfamousVague/Stash/releases/latest"
+            downloadUrl={stash.url}
+            version={stash.version}
           />
         </div>
       </section>

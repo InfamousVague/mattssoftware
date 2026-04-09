@@ -71,23 +71,28 @@ const FEATURES: FeatureSection[] = [
   },
 ];
 
-async function getStashDownloadUrl(): Promise<string> {
+async function getStashRelease(): Promise<{ url: string; version: string }> {
+  const fallback = { url: "https://github.com/InfamousVague/Stash/releases/latest", version: "" };
   try {
     const res = await fetch("https://api.github.com/repos/InfamousVague/Stash/releases/latest");
-    if (!res.ok) return "https://github.com/InfamousVague/Stash/releases/latest";
+    if (!res.ok) return fallback;
     const data = await res.json();
     const dmg = data.assets?.find((a: { name: string }) => a.name.endsWith(".dmg"));
-    return dmg?.browser_download_url || "https://github.com/InfamousVague/Stash/releases/latest";
+    return {
+      url: dmg?.browser_download_url || fallback.url,
+      version: data.tag_name || "",
+    };
   } catch {
-    return "https://github.com/InfamousVague/Stash/releases/latest";
+    return fallback;
   }
 }
 
 export function StashPage() {
   const [downloadUrl, setDownloadUrl] = useState("https://github.com/InfamousVague/Stash/releases/latest");
+  const [version, setVersion] = useState("");
 
   useEffect(() => {
-    getStashDownloadUrl().then(setDownloadUrl);
+    getStashRelease().then(({ url, version }) => { setDownloadUrl(url); setVersion(version); });
   }, []);
 
   return (
@@ -100,7 +105,7 @@ export function StashPage() {
           Encrypted vault for environment variables. Team sharing with public-key crypto. A CLI that actually works. Health monitoring that catches leaked secrets. All offline, all yours.
         </p>
         <div className="app-page__actions">
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download for macOS</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
           <a href="https://github.com/InfamousVague/Stash" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
         <span className="app-page__req">macOS &middot; Free &amp; Open Source</span>
@@ -111,7 +116,7 @@ export function StashPage() {
       <section className="section" style={{ textAlign: "center" }}>
         <h2 className="section__title">Ready to stop leaking secrets?</h2>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32 }}>
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download for macOS</a>
+          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
           <a href="https://github.com/InfamousVague/Stash" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
         </div>
       </section>
