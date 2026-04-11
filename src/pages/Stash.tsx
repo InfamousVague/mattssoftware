@@ -282,6 +282,43 @@ function Expandable({ title, children }: { title: string; children: React.ReactN
   );
 }
 
+// ── Sample keys for paste demo ──────────────────────────────
+
+const SAMPLE_KEYS = [
+  { label: "Stripe", prefix: "sk_test_", suffix: "4eC39HqLyjWDarjtT1zdp7dc" },
+  { label: "AWS", prefix: "AKIA", suffix: "IOSFODNN7EXAMPLE" },
+  { label: "GitHub", prefix: "ghp_", suffix: "xxFAKExx1234567890abcdefghijklmnopqr" },
+  { label: "Slack", prefix: "xoxb-", suffix: "fake-000000000-xxxxxxxxxxxx" },
+  { label: "SendGrid", prefix: "SG.", suffix: "fake_demo_key_for_testing_only" },
+  { label: "OpenAI", prefix: "sk-", suffix: "fake1234567890abcdefghijklmnopqrstuvwxyz" },
+];
+
+function SampleKeys() {
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const handleCopy = (key: typeof SAMPLE_KEYS[0]) => {
+    const value = key.prefix + key.suffix;
+    navigator.clipboard.writeText(value);
+    setCopied(key.label);
+    setTimeout(() => setCopied(null), 1500);
+  };
+
+  return (
+    <div className="stash-sample-keys">
+      <span className="stash-sample-keys__label">Try one — click to copy:</span>
+      {SAMPLE_KEYS.map((key) => (
+        <button
+          key={key.label}
+          className={`stash-sample-keys__key ${copied === key.label ? "stash-sample-keys__key--copied" : ""}`}
+          onClick={() => handleCopy(key)}
+        >
+          {copied === key.label ? "Copied!" : `${key.prefix}...`}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 // ── Download button (reusable) ───────────────────────────────
 
 function DownloadCTA({ url, version }: { url: string; version: string }) {
@@ -377,6 +414,7 @@ export function StashPage() {
       <section className="section">
         <h2 className="section__title">Smart enough to know what you just pasted</h2>
         <p className="section__subtitle">Stash detects API key formats automatically — no manual tagging needed.</p>
+        <SampleKeys />
         <PasteDetectionDemo />
       </section>
 
