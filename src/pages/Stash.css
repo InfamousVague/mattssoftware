@@ -10,12 +10,40 @@
   color: #fff;
 }
 
-/* ── Animated terminal ──────────────────────────────────── */
-.stash-hero-terminal {
-  max-width: 600px;
-  margin: -32px auto 0;
-  padding: 0 24px;
+/* ── CLI section with live terminal ─────────────────────── */
+.stash-cli-section__content {
+  display: flex;
+  align-items: center;
+  gap: 48px;
 }
+
+.stash-cli-section__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stash-cli-section__title {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.stash-cli-section__desc {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-tertiary);
+}
+
+.stash-cli-section__terminal {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Animated terminal ──────────────────────────────────── */
 
 .stash-terminal {
   border-radius: 12px;
@@ -636,6 +664,11 @@
     grid-template-columns: 1fr;
   }
 
+  .stash-cli-section__content {
+    flex-direction: column;
+    gap: 32px;
+  }
+
   .stash-arch {
     flex-wrap: wrap;
     gap: 8px;
@@ -653,10 +686,6 @@
 
   .stash-stats__value {
     font-size: 18px;
-  }
-
-  .stash-hero-terminal {
-    margin-top: -16px;
   }
 
   .stash-versus__columns {

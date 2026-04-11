@@ -47,19 +47,6 @@ const FEATURES: FeatureSection[] = [
     imageAlt: "Stash pull preview with per-key conflict resolution",
   },
   {
-    badge: "CLI",
-    title: "stash pull. stash push. stash switch. Done.",
-    description: "Full-featured CLI that lives in your terminal. Pull decrypted vars, push encrypted changes, switch profiles, diff environments, export to JSON/YAML/Docker/GitHub Actions, and run commands with injected env vars.",
-    bullets: [
-      "12 commands: pull, push, switch, list, init, status, diff, keys, add, remove, run, export",
-      "Export to JSON, YAML, Docker env-file, or GitHub Actions secret commands",
-      "stash run — inject env vars into any command without touching .env",
-      "One-click install from the desktop app to /usr/local/bin/stash",
-    ],
-    image: "/stash/screenshots/cli.png",
-    imageAlt: "Stash CLI in terminal",
-  },
-  {
     badge: "Key Health",
     title: "Your API key expired 3 months ago. We noticed.",
     description: "Automated health checks across all your projects. Stash flags stale keys, format issues, git exposure, duplicate values, overlapping key names, and approaching expiry dates.",
@@ -332,11 +319,6 @@ export function StashPage() {
         <span className="app-page__req">macOS &middot; Free &amp; Open Source</span>
       </section>
 
-      {/* Animated terminal below hero */}
-      <div className="stash-hero-terminal">
-        <AnimatedTerminal />
-      </div>
-
       {/* ── Stats bar ───────────────────────────────────── */}
       <section className="stash-stats">
         <div className="stash-stats__item">
@@ -367,6 +349,26 @@ export function StashPage() {
 
       {/* ── Feature sections ────────────────────────────── */}
       <FeatureShowcase features={FEATURES} />
+
+      {/* ── CLI section with live terminal ─────────────── */}
+      <section className="section stash-cli-section">
+        <div className="stash-cli-section__content">
+          <div className="stash-cli-section__text">
+            <span className="feature-hero__badge">CLI</span>
+            <h2 className="stash-cli-section__title">stash pull. stash push. stash switch. Done.</h2>
+            <p className="stash-cli-section__desc">Full-featured CLI that lives in your terminal. Pull decrypted vars, push encrypted changes, switch profiles, diff environments, export to JSON/YAML/Docker/GitHub Actions, and run commands with injected env vars.</p>
+            <div className="feature-hero__bullets">
+              <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>12 commands: pull, push, switch, list, init, status, diff, keys, add, remove, run, export</span></div>
+              <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>Export to JSON, YAML, Docker env-file, or GitHub Actions secret commands</span></div>
+              <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>stash run — inject env vars into any command without touching .env</span></div>
+              <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>One-click install from the desktop app to /usr/local/bin/stash</span></div>
+            </div>
+          </div>
+          <div className="stash-cli-section__terminal">
+            <AnimatedTerminal />
+          </div>
+        </div>
+      </section>
 
       {/* Inline CTA after features */}
       <DownloadCTA url={downloadUrl} version={version} />
