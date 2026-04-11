@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Download, ExternalLink, Shield, Users, Terminal, Activity, Import, GitMerge, Share2, Clock, ChevronDown, Lock, Key, Eye, EyeOff, Clipboard, Wifi } from "lucide-react";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
 import "./AppPage.css";
