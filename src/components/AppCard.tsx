@@ -7,17 +7,22 @@ interface AppCardProps {
   tagline: string;
   description: string;
   icon: string;
+  iconEmoji?: string;
   path: string;
   tags: string[];
   downloadUrl?: string;
   version?: string;
 }
 
-export function AppCard({ name, tagline, description, icon, path, tags, downloadUrl, version }: AppCardProps) {
+export function AppCard({ name, tagline, description, icon, iconEmoji, path, tags, downloadUrl, version }: AppCardProps) {
   return (
     <div className="app-card card">
       <div className="app-card__header">
-        <img src={icon} alt={name} className="app-card__icon" />
+        {iconEmoji ? (
+          <span className="app-card__icon app-card__icon--emoji">{iconEmoji}</span>
+        ) : (
+          <img src={icon} alt={name} className="app-card__icon" />
+        )}
         <div>
           <h3 className="app-card__name">{name}</h3>
           <span className="app-card__tagline">{tagline}</span>

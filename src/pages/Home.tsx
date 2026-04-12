@@ -95,6 +95,15 @@ export function Home() {
             downloadUrl={stash.url}
             version={stash.version}
           />
+          <AppCard
+            name="Tap"
+            tagline="The command remote for your infrastructure."
+            description="Run pre-configured SSH commands on remote servers from your Apple Watch. Works over cellular, supports Siri, and encrypts everything end-to-end."
+            icon=""
+            iconEmoji="⌚"
+            path="/tap"
+            tags={["watchOS", "SSH", "Rust", "Apple Watch", "Open Source"]}
+          />
         </div>
       </section>
     </div>

@@ -7,6 +7,7 @@ import { VyvPage } from "./pages/Vyv";
 import { DianePage } from "./pages/Diane";
 import { BasePage } from "./pages/Base";
 import { StashPage } from "./pages/Stash";
+import { TapPage } from "./pages/Tap";
 import "./styles.css";
 
 export function App() {
@@ -21,6 +22,7 @@ export function App() {
           <Route path="/diane" element={<DianePage />} />
           <Route path="/base" element={<BasePage />} />
           <Route path="/stash" element={<StashPage />} />
+          <Route path="/tap" element={<TapPage />} />
         </Routes>
       </main>
       <Footer />
