@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { Shield, Wifi, Terminal, Watch, Smartphone, Server, Lock, ChevronDown, ExternalLink, Monitor } from "lucide-react";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
+import {
+  WatchServerList,
+  PhoneDashboard,
+  WatchSuiteProgress,
+  WatchAlert,
+  WatchComplications,
+  MacMenuBar,
+  WatchSiri,
+} from "../components/WatchMockup";
 import "./AppPage.css";
 import "./Tap.css";
 
@@ -17,8 +26,8 @@ const FEATURES: FeatureSection[] = [
       "Confirmation view for dangerous commands",
       "Truncated output, scrollable with Digital Crown",
     ],
-    image: "/tap/watch-commands.png",
     imageAlt: "Tap watch app showing server commands",
+    renderVisual: <WatchServerList />,
   },
   {
     badge: "Companion",
@@ -30,8 +39,8 @@ const FEATURES: FeatureSection[] = [
       "Full interactive SSH terminal via WebView",
       "Generates QR code for instant watch pairing",
     ],
-    image: "/tap/companion-dashboard.png",
     imageAlt: "Tap companion app dashboard",
+    renderVisual: <PhoneDashboard />,
   },
   {
     badge: "Suites",
@@ -43,8 +52,8 @@ const FEATURES: FeatureSection[] = [
       "Suite progress streamed via WebSocket",
       "Perfect for deploy sequences and health check routines",
     ],
-    image: "/tap/suites-progress.png",
     imageAlt: "Tap suite execution progress on watch",
+    renderVisual: <WatchSuiteProgress />,
   },
   {
     badge: "Alerts",
@@ -56,8 +65,8 @@ const FEATURES: FeatureSection[] = [
       "Per-server notification toggle",
       "Haptic alert pattern on Apple Watch",
     ],
-    image: "/tap/alerts-notification.png",
     imageAlt: "Tap server down notification on watch",
+    renderVisual: <WatchAlert />,
   },
   {
     badge: "Complications",
@@ -70,8 +79,8 @@ const FEATURES: FeatureSection[] = [
       "Uptime: per-server uptime display",
       "Quick Commands: pinned commands at a glance",
     ],
-    image: "/tap/watch-commands.png",
     imageAlt: "Tap watch complications showing server metrics",
+    renderVisual: <WatchComplications />,
   },
   {
     badge: "macOS",
@@ -83,8 +92,8 @@ const FEATURES: FeatureSection[] = [
       "Server configuration import from JSON",
       "Apple Sign-In authentication",
     ],
-    image: "/tap/companion-dashboard.png",
     imageAlt: "Tap macOS app showing server dashboard",
+    renderVisual: <MacMenuBar />,
   },
   {
     badge: "Siri",
@@ -96,8 +105,8 @@ const FEATURES: FeatureSection[] = [
       "Confirmation dialog before execution",
       "Result reported via voice response",
     ],
-    image: "/tap/siri-dialog.png",
     imageAlt: "Siri running a Tap command",
+    renderVisual: <WatchSiri />,
   },
 ];
 

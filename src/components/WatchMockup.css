@@ -1,0 +1,779 @@
+/* ═══════════════════════════════════════════════════════════
+   Watch Mockup — realistic Apple Watch frame
+   ═══════════════════════════════════════════════════════════ */
+
+.watch-mockup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.watch-mockup__bezel {
+  position: relative;
+  width: 220px;
+  height: 264px;
+  background: linear-gradient(145deg, #2a2a2e 0%, #1a1a1e 50%, #222226 100%);
+  border-radius: 56px;
+  padding: 16px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 8px 40px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.watch-mockup__crown {
+  position: absolute;
+  right: -6px;
+  top: 65px;
+  width: 6px;
+  height: 28px;
+  background: linear-gradient(180deg, #3a3a3e, #2a2a2e);
+  border-radius: 0 3px 3px 0;
+  box-shadow: 1px 0 2px rgba(0,0,0,0.3);
+}
+
+.watch-mockup__button {
+  position: absolute;
+  right: -5px;
+  top: 110px;
+  width: 5px;
+  height: 14px;
+  background: linear-gradient(180deg, #3a3a3e, #2a2a2e);
+  border-radius: 0 2px 2px 0;
+}
+
+.watch-mockup__screen {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 42px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Phone Mockup
+   ═══════════════════════════════════════════════════════════ */
+
+.phone-mockup {
+  width: 260px;
+  background: linear-gradient(145deg, #2a2a2e 0%, #1a1a1e 50%, #222226 100%);
+  border-radius: 36px;
+  padding: 12px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 8px 40px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  position: relative;
+}
+
+.phone-mockup__notch {
+  width: 80px;
+  height: 22px;
+  background: #1a1a1e;
+  border-radius: 0 0 14px 14px;
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.phone-mockup__screen {
+  background: #000;
+  border-radius: 26px;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Mac Window Mockup
+   ═══════════════════════════════════════════════════════════ */
+
+.mac-mockup {
+  width: 380px;
+  background: #1a1a1e;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.mac-mockup__titlebar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.mac-mockup__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.mac-mockup__dot--red { background: #ff5f57; }
+.mac-mockup__dot--yellow { background: #febc2e; }
+.mac-mockup__dot--green { background: #28c840; }
+
+.mac-mockup__titlebar-text {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+  margin-right: 42px; /* offset for dots */
+}
+
+.mac-mockup__content {
+  min-height: 240px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Shared elements
+   ═══════════════════════════════════════════════════════════ */
+
+.wm-screen {
+  padding: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', sans-serif;
+  color: white;
+  height: 100%;
+}
+
+.wm-header {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.wm-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.wm-dot--green { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.4); }
+.wm-dot--red { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.4); }
+.wm-dot--tiny { width: 4px; height: 4px; }
+
+/* ═══════════════════════════════════════════════════════════
+   Watch: Server list
+   ═══════════════════════════════════════════════════════════ */
+
+.wm-list {
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wm-server-card {
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.wm-server-card--down {
+  border-color: rgba(239,68,68,0.2);
+  background: rgba(239,68,68,0.05);
+}
+
+.wm-server-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wm-server-name {
+  font-size: 11px;
+  font-weight: 600;
+  flex: 1;
+}
+
+.wm-latency {
+  font-size: 9px;
+  color: #22c55e;
+  font-family: 'SF Mono', monospace;
+  font-weight: 500;
+}
+.wm-latency--down {
+  color: #ef4444;
+}
+
+.wm-metrics {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+  justify-content: center;
+}
+
+.wm-gauge {
+  width: 42px;
+  height: 42px;
+}
+.wm-gauge svg {
+  width: 100%;
+  height: 100%;
+}
+
+.wm-uptime {
+  font-size: 8px;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  margin-top: 2px;
+  font-family: 'SF Mono', monospace;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Watch: Suite progress
+   ═══════════════════════════════════════════════════════════ */
+
+.wm-suite {
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wm-suite-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  padding: 3px 0;
+  font-family: 'SF Mono', monospace;
+}
+
+.wm-suite-icon {
+  width: 14px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.wm-suite-step--done { color: #22c55e; }
+.wm-suite-step--done .wm-suite-icon { color: #22c55e; }
+.wm-suite-step--running { color: #f59e0b; }
+.wm-suite-step--running .wm-suite-icon { color: #f59e0b; }
+.wm-suite-step--pending { color: rgba(255,255,255,0.25); }
+
+.wm-spin {
+  display: inline-block;
+  animation: wm-spin 1s linear infinite;
+}
+@keyframes wm-spin {
+  to { transform: rotate(360deg); }
+}
+
+.wm-suite-progress {
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.wm-suite-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #f59e0b);
+  border-radius: 2px;
+  transition: width 0.5s;
+}
+
+.wm-suite-status {
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Watch: Alert notification
+   ═══════════════════════════════════════════════════════════ */
+
+.wm-alert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 14px 14px;
+  gap: 4px;
+}
+
+.wm-alert-icon {
+  font-size: 28px;
+  color: #ef4444;
+  margin-bottom: 2px;
+}
+
+.wm-alert-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ef4444;
+}
+
+.wm-alert-server {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  font-family: 'SF Mono', monospace;
+  margin-bottom: 6px;
+}
+
+.wm-alert-detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.wm-alert-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+}
+
+.wm-alert-fail { color: #ef4444; }
+
+.wm-alert-actions {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.wm-alert-btn {
+  flex: 1;
+  text-align: center;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6);
+}
+
+.wm-alert-btn--primary {
+  background: rgba(239,68,68,0.2);
+  color: #ef4444;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Watch: Watch face with complications
+   ═══════════════════════════════════════════════════════════ */
+
+.wm-face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 14px;
+  gap: 2px;
+  height: 100%;
+}
+
+.wm-face-time {
+  font-size: 48px;
+  font-weight: 200;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: white;
+}
+
+.wm-face-date {
+  font-size: 10px;
+  font-weight: 600;
+  color: #f59e0b;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.wm-face-complications {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.wm-complication--circular {
+  width: 44px;
+  height: 44px;
+}
+
+.wm-complication-gauge {
+  width: 100%;
+  height: 100%;
+}
+
+.wm-complication--rect {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 5px 8px;
+}
+
+.wm-rect-header {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 8px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 3px;
+}
+
+.wm-rect-icon {
+  font-size: 7px;
+}
+
+.wm-rect-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 8px;
+}
+
+.wm-rect-row span:nth-child(2) {
+  flex: 1;
+  color: rgba(255,255,255,0.7);
+}
+
+.wm-rect-val {
+  font-family: 'SF Mono', monospace;
+  font-size: 7px;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Watch: Siri dialog
+   ═══════════════════════════════════════════════════════════ */
+
+.wm-siri {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px;
+  gap: 8px;
+  height: 100%;
+}
+
+.wm-siri-waves {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  height: 30px;
+}
+
+.wm-siri-wave {
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #22c55e, #3b82f6, #a855f7);
+  animation: wm-wave 1.2s ease-in-out infinite;
+}
+
+.wm-siri-wave:nth-child(1) { height: 12px; animation-delay: 0s; }
+.wm-siri-wave:nth-child(2) { height: 20px; animation-delay: 0.15s; }
+.wm-siri-wave:nth-child(3) { height: 14px; animation-delay: 0.3s; }
+
+@keyframes wm-wave {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.5); }
+}
+
+.wm-siri-text {
+  font-size: 10px;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+.wm-siri-response {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.wm-siri-app-badge {
+  font-size: 8px;
+  font-weight: 700;
+  color: #f59e0b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.wm-siri-result {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+}
+
+.wm-siri-check {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.wm-siri-detail {
+  font-size: 8px;
+  color: rgba(255,255,255,0.3);
+  font-family: 'SF Mono', monospace;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Phone: Dashboard
+   ═══════════════════════════════════════════════════════════ */
+
+.wm-phone-dash {
+  padding: 36px 14px 14px;
+}
+
+.wm-phone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.wm-phone-status {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.4);
+}
+
+.wm-phone-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.wm-phone-server {
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.wm-phone-server--down {
+  border-color: rgba(239,68,68,0.2);
+}
+
+.wm-phone-server-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.wm-phone-server-stats {
+  display: flex;
+  gap: 12px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 6px;
+}
+
+.wm-phone-bar {
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.wm-phone-bar-fill {
+  height: 100%;
+  background: #22c55e;
+  border-radius: 2px;
+}
+
+.wm-phone-bar-fill--warn {
+  background: #f59e0b;
+}
+
+.wm-phone-section {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 10px;
+}
+
+.wm-phone-section-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.wm-phone-activity {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  padding: 4px 0;
+  color: rgba(255,255,255,0.7);
+}
+
+.wm-phone-activity-icon {
+  color: #22c55e;
+  font-size: 10px;
+}
+
+.wm-phone-activity-time {
+  margin-left: auto;
+  font-size: 9px;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Mac: Window content
+   ═══════════════════════════════════════════════════════════ */
+
+.wm-mac {
+  display: flex;
+  min-height: 240px;
+}
+
+.wm-mac-sidebar {
+  width: 90px;
+  background: rgba(255,255,255,0.02);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  padding: 8px 0;
+  flex-shrink: 0;
+}
+
+.wm-mac-sidebar-item {
+  padding: 6px 12px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  cursor: default;
+}
+
+.wm-mac-sidebar-item--active {
+  color: #f59e0b;
+  background: rgba(245,158,11,0.08);
+}
+
+.wm-mac-main {
+  flex: 1;
+  padding: 10px 14px;
+}
+
+.wm-mac-server-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.wm-mac-server-row:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.wm-mac-server-row--down {
+  opacity: 0.6;
+}
+
+.wm-mac-sname {
+  font-weight: 600;
+  min-width: 60px;
+}
+
+.wm-mac-detail {
+  flex: 1;
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  font-family: 'SF Mono', monospace;
+}
+
+.wm-mac-ping {
+  font-size: 10px;
+  color: #22c55e;
+  font-family: 'SF Mono', monospace;
+  font-weight: 500;
+}
+
+.wm-mac-ping--down { color: #ef4444; }
+
+.wm-mac-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  margin: 8px 0;
+}
+
+.wm-mac-cmd-section {
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  padding: 0 8px;
+}
+
+.wm-mac-cmd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  border-radius: 4px;
+}
+
+.wm-mac-cmd:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.wm-mac-cmd-icon {
+  color: #f59e0b;
+  font-size: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .watch-mockup__bezel {
+    width: 190px;
+    height: 228px;
+    border-radius: 48px;
+    padding: 14px;
+  }
+  .watch-mockup__screen {
+    border-radius: 36px;
+  }
+  .phone-mockup { width: 230px; }
+  .mac-mockup { width: 320px; }
+}
+
+@media (max-width: 600px) {
+  .watch-mockup__bezel {
+    width: 170px;
+    height: 204px;
+    border-radius: 44px;
+    padding: 12px;
+  }
+  .watch-mockup__screen {
+    border-radius: 34px;
+  }
+  .phone-mockup { width: 220px; }
+  .mac-mockup { width: 280px; }
+}

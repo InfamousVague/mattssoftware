@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import "./FeatureShowcase.css";
 
 export interface FeatureSection {
@@ -8,6 +9,7 @@ export interface FeatureSection {
   image?: string;
   imageAlt: string;
   imageMaxHeight?: string;
+  renderVisual?: ReactNode;
 }
 
 function FeatureHero({ feature, index }: { feature: FeatureSection; index: number }) {
@@ -30,7 +32,9 @@ function FeatureHero({ feature, index }: { feature: FeatureSection; index: numbe
       </div>
       <div className="feature-hero__visual">
         <div className="feature-hero__glow" />
-        {feature.image ? (
+        {feature.renderVisual ? (
+          feature.renderVisual
+        ) : feature.image ? (
           <div className="feature-hero__frame">
             <img
               src={feature.image}
