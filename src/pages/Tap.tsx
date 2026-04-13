@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Shield, Wifi, Terminal, Watch, Smartphone, Server, Lock, ChevronDown, ExternalLink } from "lucide-react";
+import { Shield, Wifi, Terminal, Watch, Smartphone, Server, Lock, ChevronDown, ExternalLink, Monitor } from "lucide-react";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
 import "./AppPage.css";
 import "./Tap.css";
@@ -60,6 +60,33 @@ const FEATURES: FeatureSection[] = [
     imageAlt: "Tap server down notification on watch",
   },
   {
+    badge: "Complications",
+    title: "Glanceable server health on your watch face.",
+    description: "Five configurable complications that show live server metrics right on your watch face. Pick which server and metric to display. Data syncs automatically from the app.",
+    bullets: [
+      "Server Status: fleet-wide up/down count",
+      "Fleet Metrics: disk, memory, or CPU per server",
+      "Docker: running container counts",
+      "Uptime: per-server uptime display",
+      "Quick Commands: pinned commands at a glance",
+    ],
+    image: "/tap/watch-commands.png",
+    imageAlt: "Tap watch complications showing server metrics",
+  },
+  {
+    badge: "macOS",
+    title: "Full control from your menu bar.",
+    description: "Native macOS app for quick server access. Monitor your fleet, execute commands, and manage configurations without opening a browser. Sign in with Apple for seamless setup.",
+    bullets: [
+      "Menu bar presence for instant access",
+      "Full command execution with output display",
+      "Server configuration import from JSON",
+      "Apple Sign-In authentication",
+    ],
+    image: "/tap/companion-dashboard.png",
+    imageAlt: "Tap macOS app showing server dashboard",
+  },
+  {
     badge: "Siri",
     title: '"Hey Siri, Tap restart prod-api."',
     description: "Full App Intents integration. Run any command by voice. Check server status hands-free. Siri confirms the action and reports the result. Works from watch, phone, or CarPlay.",
@@ -112,7 +139,7 @@ export function TapPage() {
     <div className="app-page tap-page">
       {/* Hero */}
       <section className="tap-hero">
-        <div className="tap-hero__icon">⌚</div>
+        <img src="/tap/icon.png" alt="Tap" className="tap-hero__app-icon" />
         <h1 className="tap-hero__title">Tap</h1>
         <p className="tap-hero__tagline">The command remote for your infrastructure.</p>
         <p className="tap-hero__subtitle">
@@ -127,7 +154,7 @@ export function TapPage() {
           <span>Free & Open Source</span>
         </div>
         <div className="tap-hero__buttons">
-          <a href="https://github.com/mattssoftware/tap" className="btn btn--tap" target="_blank" rel="noopener">
+          <a href="https://github.com/InfamousVague/tap" className="btn btn--tap" target="_blank" rel="noopener">
             <ExternalLink size={18} /> GitHub
           </a>
           <a href="#features" className="btn btn--tap-outline">
@@ -208,6 +235,13 @@ export function TapPage() {
             <Server size={24} />
             <span>Relay</span>
           </div>
+          <div className="tap-arch__connector">
+            <span>HTTPS/TLS 1.3</span>
+          </div>
+          <div className="tap-arch__node tap-arch__node--mac">
+            <Monitor size={24} />
+            <span>macOS</span>
+          </div>
         </div>
       </section>
 
@@ -273,7 +307,11 @@ export function TapPage() {
         <div className="tap-tech__grid">
           <div className="tap-tech__item">
             <strong>Watch</strong>
-            <span>Swift + SwiftUI + WidgetKit</span>
+            <span>Swift + SwiftUI + WidgetKit + AppIntents</span>
+          </div>
+          <div className="tap-tech__item">
+            <strong>macOS</strong>
+            <span>Swift + SwiftUI + Menu Bar</span>
           </div>
           <div className="tap-tech__item">
             <strong>Companion</strong>
@@ -352,7 +390,7 @@ ping_interval_seconds = 30`}</pre>
         <h2>Your servers are waiting.</h2>
         <p>Free forever. Open source. No phone required.</p>
         <div className="tap-cta__buttons">
-          <a href="https://github.com/mattssoftware/tap" className="btn btn--tap" target="_blank" rel="noopener">
+          <a href="https://github.com/InfamousVague/tap" className="btn btn--tap" target="_blank" rel="noopener">
             <ExternalLink size={18} /> View on GitHub
           </a>
         </div>
