@@ -8,6 +8,9 @@ import { DianePage } from "./pages/Diane";
 import { BasePage } from "./pages/Base";
 import { StashPage } from "./pages/Stash";
 import { TapPage } from "./pages/Tap";
+import { TapPrivacyPage } from "./pages/TapPrivacy";
+import { TapTermsPage } from "./pages/TapTerms";
+import { TapEulaPage } from "./pages/TapEula";
 import "./styles.css";
 
 export function App() {
@@ -23,6 +26,9 @@ export function App() {
           <Route path="/base" element={<BasePage />} />
           <Route path="/stash" element={<StashPage />} />
           <Route path="/tap" element={<TapPage />} />
+          <Route path="/tap/privacy" element={<TapPrivacyPage />} />
+          <Route path="/tap/terms" element={<TapTermsPage />} />
+          <Route path="/tap/eula" element={<TapEulaPage />} />
         </Routes>
       </main>
       <Footer />
