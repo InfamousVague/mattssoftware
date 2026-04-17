@@ -11,10 +11,11 @@ interface AppCardProps {
   path: string;
   tags: string[];
   downloadUrl?: string;
+  appStoreUrl?: string;
   version?: string;
 }
 
-export function AppCard({ name, tagline, description, icon, iconEmoji, path, tags, downloadUrl, version }: AppCardProps) {
+export function AppCard({ name, tagline, description, icon, iconEmoji, path, tags, downloadUrl, appStoreUrl, version }: AppCardProps) {
   return (
     <div className="app-card card">
       <div className="app-card__header">
@@ -36,6 +37,9 @@ export function AppCard({ name, tagline, description, icon, iconEmoji, path, tag
       </div>
       <div className="app-card__actions">
         <Link to={path} className="btn btn--primary"><ArrowRight size={16} /> Learn More</Link>
+        {appStoreUrl && (
+          <a href={appStoreUrl} className="btn btn--appstore" target="_blank" rel="noopener"> App Store</a>
+        )}
         {downloadUrl && (
           <a href={downloadUrl} className="btn btn--ghost"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
         )}

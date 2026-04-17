@@ -164,7 +164,7 @@ export function TapPage() {
         </div>
         <div className="tap-hero__buttons">
           <a href="https://apps.apple.com/app/tap-command-runner/id6762214314" className="btn btn--tap-appstore" target="_blank" rel="noopener">
-            <Smartphone size={18} /> Download on the App Store
+             App Store
           </a>
           <a href="https://github.com/InfamousVague/tap" className="btn btn--tap" target="_blank" rel="noopener">
             <ExternalLink size={18} /> GitHub

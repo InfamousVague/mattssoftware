@@ -102,6 +102,7 @@ export function Home() {
             icon="/tap/icon.png"
             path="/tap"
             tags={["watchOS", "SSH", "Rust", "Apple Watch", "Open Source"]}
+            appStoreUrl="https://apps.apple.com/app/tap-command-runner/id6762214314"
           />
         </div>
       </section>
