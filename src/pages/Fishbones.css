@@ -1,0 +1,100 @@
+/* Fishbones landing page — reuses the shared `.app-page` hero / typography
+   and adds two small grids (capabilities + tech) plus a CTA wrapper. */
+
+.app-page__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.app-page__closing {
+  text-align: center;
+  padding-top: 48px;
+  padding-bottom: 80px;
+}
+
+.app-page__closing .app-page__desc {
+  max-width: 620px;
+  margin: 12px auto 0;
+}
+
+/* Capabilities: small tiles in a responsive grid. Each tile is a
+   one-liner with an icon + label + description. */
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.capability-card {
+  padding: 18px 18px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.capability-card:hover {
+  border-color: rgba(124, 193, 217, 0.3);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.capability-card__icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(124, 193, 217, 0.12);
+  color: #7cc1d9;
+  margin-bottom: 4px;
+}
+
+.capability-card__label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary, #fff);
+}
+
+.capability-card__desc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+}
+
+/* Tech stack grid — slightly heavier cards, two-column layout. */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.tech-card {
+  padding: 18px 20px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tech-card__label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #c79bff;
+  letter-spacing: 0.2px;
+}
+
+.tech-card__desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary, rgba(255, 255, 255, 0.72));
+}

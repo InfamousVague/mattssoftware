@@ -31,12 +31,16 @@ export function Home() {
   const [vyv, setVyv] = useState<ReleaseInfo>({ url: `${FALLBACK}/Vyv/releases/latest`, version: "" });
   const [diane, setDiane] = useState<ReleaseInfo>({ url: `${FALLBACK}/Diane/releases/latest`, version: "" });
   const [stash, setStash] = useState<ReleaseInfo>({ url: `${FALLBACK}/Stash/releases/latest`, version: "" });
+  const [fishbones, setFishbones] = useState<ReleaseInfo>({ url: `${FALLBACK}/Kata/releases/latest`, version: "" });
 
   useEffect(() => {
     getLatestRelease("Blip").then(setBlip);
     getLatestRelease("Vyv").then(setVyv);
     getLatestRelease("Diane").then(setDiane);
     getLatestRelease("Stash").then(setStash);
+    // Fishbones' GitHub repo is still named Kata (pre-rebrand); the
+    // release itself is tagged as Fishbones v*.
+    getLatestRelease("Kata").then(setFishbones);
   }, []);
 
   return (
@@ -103,6 +107,16 @@ export function Home() {
             path="/tap"
             tags={["watchOS", "SSH", "Rust", "Apple Watch", "Open Source"]}
             appStoreUrl="https://apps.apple.com/app/tap-command-runner/id6762214314"
+          />
+          <AppCard
+            name="Fishbones"
+            tagline="Turn any technical book into an interactive course."
+            description="Drop in a PDF and get a Codecademy-style course with AI-generated exercises, checkpoint quizzes, inline doc popovers, and a real workbench for JS, TS, Python, Rust, Go, and Swift."
+            icon="/fishbones/app-icon.png"
+            path="/fishbones"
+            tags={["Education", "AI", "macOS", "Tauri"]}
+            downloadUrl={fishbones.url}
+            version={fishbones.version}
           />
         </div>
       </section>
