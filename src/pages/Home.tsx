@@ -31,16 +31,14 @@ export function Home() {
   const [vyv, setVyv] = useState<ReleaseInfo>({ url: `${FALLBACK}/Vyv/releases/latest`, version: "" });
   const [diane, setDiane] = useState<ReleaseInfo>({ url: `${FALLBACK}/Diane/releases/latest`, version: "" });
   const [stash, setStash] = useState<ReleaseInfo>({ url: `${FALLBACK}/Stash/releases/latest`, version: "" });
-  const [fishbones, setFishbones] = useState<ReleaseInfo>({ url: `${FALLBACK}/Kata/releases/latest`, version: "" });
+  const [fishbones, setFishbones] = useState<ReleaseInfo>({ url: `${FALLBACK}/Fishbones/releases/latest`, version: "" });
 
   useEffect(() => {
     getLatestRelease("Blip").then(setBlip);
     getLatestRelease("Vyv").then(setVyv);
     getLatestRelease("Diane").then(setDiane);
     getLatestRelease("Stash").then(setStash);
-    // Fishbones' GitHub repo is still named Kata (pre-rebrand); the
-    // release itself is tagged as Fishbones v*.
-    getLatestRelease("Kata").then(setFishbones);
+    getLatestRelease("Fishbones").then(setFishbones);
   }, []);
 
   return (
@@ -100,6 +98,16 @@ export function Home() {
             version={stash.version}
           />
           <AppCard
+            name="Fishbones"
+            tagline="Turn any technical book into an interactive course."
+            description="Drop in a PDF or EPUB and Fishbones generates lessons, exercises, and hidden tests. Sixteen languages with one editor, a local AI tutor on your laptop, streak fire that survives weekends, and seventeen themes."
+            icon="/fishbones/app-icon.png"
+            path="/fishbones"
+            tags={["Learning", "Multi-language", "AI Tutor", "Local-first", "macOS", "Windows"]}
+            downloadUrl={fishbones.url}
+            version={fishbones.version}
+          />
+          <AppCard
             name="Tap"
             tagline="The command remote for your infrastructure."
             description="Run pre-configured SSH commands on remote servers from your Apple Watch. Works over cellular, supports Siri, and encrypts everything end-to-end."
@@ -107,16 +115,6 @@ export function Home() {
             path="/tap"
             tags={["watchOS", "SSH", "Rust", "Apple Watch", "Open Source"]}
             appStoreUrl="https://apps.apple.com/app/tap-command-runner/id6762214314"
-          />
-          <AppCard
-            name="Fishbones"
-            tagline="Turn any technical book into an interactive course."
-            description="Drop in a PDF and get a Codecademy-style course with AI-generated exercises, checkpoint quizzes, inline doc popovers, and a real workbench for JS, TS, Python, Rust, Go, and Swift."
-            icon="/fishbones/app-icon.png"
-            path="/fishbones"
-            tags={["Education", "AI", "macOS", "Tauri"]}
-            downloadUrl={fishbones.url}
-            version={fishbones.version}
           />
         </div>
       </section>

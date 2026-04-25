@@ -27,6 +27,10 @@ export function Nav() {
           <img src="/stash/app-icon.png" alt="" className="nav__app-icon" />
           Stash
         </Link>
+        <Link to="/fishbones" className="nav__link nav__link--app">
+          <img src="/fishbones/app-icon.png" alt="" className="nav__app-icon" />
+          Fishbones
+        </Link>
         <Link to="/tap" className="nav__link nav__link--app">
           <span className="nav__app-icon nav__app-icon--emoji">⌚</span>
           Tap

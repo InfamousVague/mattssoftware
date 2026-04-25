@@ -1,100 +1,635 @@
-/* Fishbones landing page — reuses the shared `.app-page` hero / typography
-   and adds two small grids (capabilities + tech) plus a CTA wrapper. */
+/* ============================================================
+   Fishbones landing page
+   ============================================================
+   Layered on top of AppPage.css's shared chrome. Adds:
+   - Custom .btn--fishbones accent (slate teal — picked from the
+     app's "Absent Contrast" theme so the brand feels of-a-piece
+     with the most distinctive theme in the picker).
+   - The 17-theme palette demo grid + IDE-mockup preview.
+   - Pipeline + lesson-run + Ava custom visuals injected via
+     FeatureShowcase's `renderVisual` slot.
+   - Stats / capabilities / comparison / tech grids.
+   ============================================================ */
 
-.app-page__cta {
+.fishbones-page {
+  --fb-accent: #228a96;       /* primary teal — pulled from Absent Contrast */
+  --fb-accent-deep: #1c7780;
+  --fb-accent-soft: rgba(34, 138, 150, 0.12);
+  --fb-mint: #99ffe4;          /* secondary — Vesper's strings colour */
+  --fb-peach: #ffc799;         /* tertiary — Vesper's accent */
+}
+
+/* Hero icon glow shifts from purple to teal so the page reads as
+   Fishbones-flavoured the moment you land on it. */
+.fishbones-hero__icon {
+  filter: drop-shadow(0 4px 30px rgba(34, 138, 150, 0.55));
+}
+
+.btn--fishbones {
+  background: var(--fb-accent);
+  color: #ffffff;
+  border-color: var(--fb-accent);
+}
+.btn--fishbones:hover {
+  background: var(--fb-accent-deep);
+  border-color: var(--fb-accent-deep);
+  color: #ffffff;
+}
+
+/* ----- Stats bar ----- */
+
+.fishbones-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  max-width: 920px;
+  margin: 0 auto 24px;
+  padding: 24px 16px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+}
+.fishbones-stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0 28px;
+  position: relative;
+}
+.fishbones-stats__divider {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+.fishbones-stats__value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--fb-accent);
+  font-variant-numeric: tabular-nums;
+}
+.fishbones-stats__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* ----- Theme picker (the marquee gimmick) -----
+   Two columns: a Mac-window IDE preview on the left that retints
+   per click, and a flowing list of theme chips on the right with
+   half-bg/half-accent swatches. */
+
+.fishbones-themes {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 32px;
+  max-width: 1080px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+@media (max-width: 900px) {
+  .fishbones-themes { grid-template-columns: 1fr; }
+}
+
+.fishbones-themes__preview {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.45);
+  transition: background 0.4s ease, border-color 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+.fishbones-themes__chrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.4s ease;
+}
+.fishbones-themes__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.fishbones-themes__chrome-label {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.6;
+  font-family: "SF Mono", ui-monospace, Menlo, monospace;
+  letter-spacing: 0.3px;
+}
+.fishbones-themes__statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.fishbones-code {
+  flex: 1;
+  padding: 18px 16px;
+  font-family: "SF Mono", ui-monospace, Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+.fishbones-code__line { white-space: nowrap; }
+.fishbones-code__line--indent { padding-left: 16px; }
+.fishbones-code__line--indent2 { padding-left: 32px; }
+.fishbones-code__fn { font-weight: 600; }
+
+.fishbones-themes__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.fishbones-themes__heading {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.4px;
+}
+.fishbones-themes__sub {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  margin: 0 0 8px;
+  min-height: 1.4em; /* prevent layout jump as blurb changes */
+}
+.fishbones-themes__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 6px;
+}
+.fishbones-themes__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px 6px 6px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.fishbones-themes__chip:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+.fishbones-themes__chip--active {
+  background: var(--fb-accent-soft);
+  border-color: var(--fb-accent);
+  color: var(--text-primary);
+}
+.fishbones-themes__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid;
+  flex-shrink: 0;
+}
+
+/* ----- Pipeline visual (Book → Claude → Course) ----- */
+
+.fishbones-pipeline {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 24px;
+  gap: 8px;
+  padding: 24px 20px;
+  width: 100%;
+  flex-wrap: wrap;
 }
-
-.app-page__closing {
+.fishbones-pipeline__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 132px;
+  padding: 18px 12px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   text-align: center;
-  padding-top: 48px;
-  padding-bottom: 80px;
+  color: var(--text-primary);
+}
+.fishbones-pipeline__node span {
+  font-size: 13px;
+  font-weight: 700;
+}
+.fishbones-pipeline__node small {
+  font-size: 10.5px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+.fishbones-pipeline__node--accent {
+  border-color: var(--fb-accent);
+  background: var(--fb-accent-soft);
+  color: #ffffff;
+}
+.fishbones-pipeline__node--accent svg { color: var(--fb-accent); }
+.fishbones-pipeline__arrow {
+  position: relative;
+  flex: 1;
+  min-width: 28px;
+  max-width: 64px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+.fishbones-pipeline__bead {
+  position: absolute;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  background: var(--fb-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--fb-accent);
+  animation: fishbones-bead 2.4s ease-in-out infinite;
+}
+.fishbones-pipeline__bead--delay { animation-delay: 1.2s; }
+@keyframes fishbones-bead {
+  0%   { left: 0;     opacity: 0; }
+  10%  {              opacity: 1; }
+  90%  {              opacity: 1; }
+  100% { left: calc(100% - 8px); opacity: 0; }
 }
 
-.app-page__closing .app-page__desc {
-  max-width: 620px;
-  margin: 12px auto 0;
-}
+/* ----- Languages chip cloud ----- */
 
-/* Capabilities: small tiles in a responsive grid. Each tile is a
-   one-liner with an icon + label + description. */
-.capabilities-grid {
+.fishbones-langs {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 14px;
-  margin-top: 32px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+  padding: 16px 0;
+  width: 100%;
+}
+.fishbones-langs__chip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.15s ease;
+}
+.fishbones-langs__chip:hover {
+  border-color: var(--fb-accent);
+}
+.fishbones-langs__name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.fishbones-langs__runs {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--fb-accent);
+  text-transform: uppercase;
 }
 
-.capability-card {
-  padding: 18px 18px 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
+/* ----- Lesson-run visual ----- */
+
+.fishbones-lessonrun {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 0;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0c0a12;
+  border: 1px solid var(--border);
+  font-family: "SF Mono", ui-monospace, Menlo, monospace;
+  font-size: 13px;
+}
+.fishbones-lessonrun__editor {
+  padding: 14px 16px;
+  background: #0c0a12;
+}
+.fishbones-lessonrun__row {
+  display: flex;
+  gap: 12px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.fishbones-lessonrun__lineno {
+  color: rgba(255, 255, 255, 0.25);
+  width: 20px;
+  text-align: right;
+  user-select: none;
+}
+.fishbones-lessonrun__kw { color: #c084fc; font-weight: 600; }
+.fishbones-lessonrun__op { color: rgba(255, 255, 255, 0.45); }
+.fishbones-lessonrun__num { color: var(--fb-peach); }
+
+.fishbones-lessonrun__console {
+  background: rgba(34, 138, 150, 0.06);
+  border-top: 1px solid rgba(34, 138, 150, 0.25);
+  padding: 12px 16px;
+}
+.fishbones-lessonrun__test {
+  display: block;
+  font-size: 12px;
+  line-height: 1.7;
+  font-weight: 600;
+}
+.fishbones-lessonrun__test--pass { color: var(--fb-mint); }
+.fishbones-lessonrun__summary {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+/* ----- Ava the tutor ----- */
+
+.fishbones-ava {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 24px 20px;
+}
+.fishbones-ava__stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  max-width: 480px;
+}
+.fishbones-ava__char {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fishbones-ava__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-top-color: var(--fb-accent);
+  animation: fishbones-ava-spin 1.6s linear infinite;
+}
+.fishbones-ava__logo {
+  width: 38px;
+  height: 38px;
+  background: var(--fb-accent);
+  -webkit-mask: url("/fishbones/app-icon.png") no-repeat center / contain;
+  mask: url("/fishbones/app-icon.png") no-repeat center / contain;
+  animation: fishbones-ava-pulse 2.4s ease-in-out infinite;
+}
+@keyframes fishbones-ava-spin { to { transform: rotate(360deg); } }
+@keyframes fishbones-ava-pulse {
+  0%, 100% { opacity: 0.95; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.92); }
+}
+.fishbones-ava__bubble {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  border-top-left-radius: 4px;
+  padding: 14px 16px 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.fishbones-ava__bubble p { margin: 0 0 6px; }
+.fishbones-ava__bubble strong { color: var(--text-primary); }
+.fishbones-ava__bubble-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+  padding: 3px 8px;
+  background: var(--fb-accent-soft);
+  border-radius: 999px;
+  color: var(--fb-accent);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+/* ----- Lesson-kinds row ----- */
+
+.fishbones-kinds {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.fishbones-kinds__card {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  padding: 18px 18px 16px;
 }
-
-.capability-card:hover {
-  border-color: rgba(124, 193, 217, 0.3);
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.capability-card__icon {
-  width: 36px;
-  height: 36px;
-  display: grid;
-  place-items: center;
-  border-radius: 8px;
-  background: rgba(124, 193, 217, 0.12);
-  color: #7cc1d9;
-  margin-bottom: 4px;
-}
-
-.capability-card__label {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text-primary, #fff);
-}
-
-.capability-card__desc {
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--text-secondary, rgba(255, 255, 255, 0.7));
-}
-
-/* Tech stack grid — slightly heavier cards, two-column layout. */
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 14px;
-  margin-top: 32px;
-}
-
-.tech-card {
-  padding: 18px 20px 20px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
+.fishbones-kinds__icon { color: var(--fb-accent); }
+.fishbones-kinds__head {
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-between;
   gap: 8px;
 }
-
-.tech-card__label {
-  font-size: 14px;
+.fishbones-kinds__label {
+  font-size: 16px;
   font-weight: 700;
-  color: #c79bff;
-  letter-spacing: 0.2px;
+  color: var(--text-primary);
+}
+.fishbones-kinds__xp {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--fb-accent);
+  letter-spacing: 0.3px;
+}
+.fishbones-kinds__desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
 }
 
-.tech-card__desc {
+/* ----- Capabilities grid (mirror of Stash's stash-caps) ----- */
+
+.fishbones-caps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.fishbones-caps__card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
+}
+.fishbones-caps__icon { color: var(--fb-accent); margin-bottom: 4px; }
+.fishbones-caps__label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.fishbones-caps__desc {
   font-size: 13px;
-  line-height: 1.6;
-  color: var(--text-secondary, rgba(255, 255, 255, 0.72));
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* ----- Inline CTA ----- */
+
+.fishbones-inline-cta {
+  display: flex;
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 24px;
+}
+
+/* ----- Comparisons (mirror of stash-versus, Fishbones-tinted) ----- */
+
+.fishbones-versus {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 16px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.fishbones-versus__card {
+  padding: 22px 22px 20px;
+}
+.fishbones-versus__header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.fishbones-versus__vs {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.fishbones-versus__competitor {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.fishbones-versus__verdict {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--fb-accent);
+  margin: 4px 0 14px;
+}
+.fishbones-versus__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.fishbones-versus__col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fishbones-versus__col-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.fishbones-versus__col-label--win { color: var(--fb-accent); }
+.fishbones-versus__col-label--they { color: var(--text-tertiary); }
+.fishbones-versus__point {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+.fishbones-versus__dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 7px;
+}
+.fishbones-versus__dot--win { background: var(--fb-mint); }
+.fishbones-versus__dot--neutral { background: rgba(255, 255, 255, 0.25); }
+
+/* ----- Tech stack chips ----- */
+
+.fishbones-tech {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.fishbones-tech__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 18px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.fishbones-tech__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.fishbones-tech__value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+/* ----- Final CTA ----- */
+
+.fishbones-cta {
+  text-align: center;
+}
+.fishbones-cta__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
 }

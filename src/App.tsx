@@ -7,11 +7,11 @@ import { VyvPage } from "./pages/Vyv";
 import { DianePage } from "./pages/Diane";
 import { BasePage } from "./pages/Base";
 import { StashPage } from "./pages/Stash";
+import { FishbonesPage } from "./pages/Fishbones";
 import { TapPage } from "./pages/Tap";
 import { TapPrivacyPage } from "./pages/TapPrivacy";
 import { TapTermsPage } from "./pages/TapTerms";
 import { TapEulaPage } from "./pages/TapEula";
-import { FishbonesPage } from "./pages/Fishbones";
 import "./styles.css";
 
 export function App() {
@@ -26,11 +26,11 @@ export function App() {
           <Route path="/diane" element={<DianePage />} />
           <Route path="/base" element={<BasePage />} />
           <Route path="/stash" element={<StashPage />} />
+          <Route path="/fishbones" element={<FishbonesPage />} />
           <Route path="/tap" element={<TapPage />} />
           <Route path="/tap/privacy" element={<TapPrivacyPage />} />
           <Route path="/tap/terms" element={<TapTermsPage />} />
           <Route path="/tap/eula" element={<TapEulaPage />} />
-          <Route path="/fishbones" element={<FishbonesPage />} />
         </Routes>
       </main>
       <Footer />
