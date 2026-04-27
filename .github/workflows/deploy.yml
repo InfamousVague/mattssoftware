@@ -138,6 +138,15 @@ jobs:
           restore-keys: |
             fishbones-build-
 
+      # ImageMagick (the `convert` / `magick` binaries) is what kata's
+      # extract-starter-courses.mjs uses to resize cover art — without
+      # it, the script silently skips covers and the deployed library
+      # falls back to language-tinted glyph tiles. Ubuntu-latest's
+      # default image doesn't include it.
+      - name: Install ImageMagick (for cover-art resize)
+        if: ${{ github.event.inputs.embed_fishbones != 'false' }}
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick
+
       - name: Build + embed Fishbones web variant
         if: ${{ github.event.inputs.embed_fishbones != 'false' }}
         env:
