@@ -75,7 +75,7 @@ jobs:
       # workspace and symlink it into the layout the file: dep
       # resolves to (/home/runner/work/Libs/base/). Same treatment
       # the kata CI workflow uses.
-      - name: Checkout @mattmattmattmatt/base (Fishbones file: dep)
+      - name: "Checkout @mattmattmattmatt/base (Fishbones file: dep)"
         if: ${{ github.event.inputs.embed_fishbones != 'false' }}
         uses: actions/checkout@v4
         with:
@@ -83,7 +83,7 @@ jobs:
           path: _base
           ref: main
 
-      - name: Symlink _base/ into Libs/base/ for the file: dep
+      - name: "Symlink _base/ into Libs/base/ for the file: dep"
         if: ${{ github.event.inputs.embed_fishbones != 'false' }}
         run: |
           mkdir -p /home/runner/work/Libs
