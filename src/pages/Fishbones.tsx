@@ -817,13 +817,17 @@ export function FishbonesPage() {
           </a>
           {/* Plain <a> (not the React-Router <Link>) so the browser
               does a full navigation out of the marketing SPA into the
-              embedded Fishbones web app at /fishbones/learn/. React
-              Router doesn't intercept because the target resolves to
-              a real file at dist/fishbones/learn/index.html (staged
-              by scripts/sync-fishbones-learn.mjs in CI, or the
-              coming-soon HTML when embed is skipped). */}
-          <a href="/fishbones/learn/" className="btn btn--ghost">
-            <PlayCircle size={16} /> Try in browser
+              standalone fishbones.academy course catalog. Cross-
+              domain by design — the new Fishbones product site is
+              the canonical home for browsing the curriculum, so we
+              push visitors there instead of into the embedded app's
+              empty welcome screen. Plain <a> (not React-Router
+              <Link>) because the target is a different origin. */}
+          <a
+            href="https://fishbones.academy/courses"
+            className="btn btn--ghost"
+          >
+            <PlayCircle size={16} /> Browse courses
           </a>
           <a
             href="https://github.com/InfamousVague/Fishbones"
