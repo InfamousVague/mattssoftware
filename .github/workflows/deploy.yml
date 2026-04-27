@@ -69,6 +69,28 @@ jobs:
           path: fishbones
           ref: main
 
+      # Fishbones depends on `@mattmattmattmatt/base` via a relative
+      # `file:../../Libs/base` path. The repo lives at
+      # github.com/InfamousVague/base; we check it out into the
+      # workspace and symlink it into the layout the file: dep
+      # resolves to (/home/runner/work/Libs/base/). Same treatment
+      # the kata CI workflow uses.
+      - name: Checkout @mattmattmattmatt/base (Fishbones file: dep)
+        if: ${{ github.event.inputs.embed_fishbones != 'false' }}
+        uses: actions/checkout@v4
+        with:
+          repository: InfamousVague/base
+          path: _base
+          ref: main
+
+      - name: Symlink _base/ into Libs/base/ for the file: dep
+        if: ${{ github.event.inputs.embed_fishbones != 'false' }}
+        run: |
+          mkdir -p /home/runner/work/Libs
+          ln -sfn "$GITHUB_WORKSPACE/_base" /home/runner/work/Libs/base
+          test -d /home/runner/work/Libs/base/primitives \
+            || (echo "Libs/base/primitives missing — symlink wiring is wrong"; exit 1)
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
