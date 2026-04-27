@@ -157,3 +157,40 @@ jobs:
           path: dist
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # Production deploy lives on the Vultr VPS (149.28.120.197),
+      # served by Caddy from /var/www/mattssoftware. GitHub Pages is
+      # the secondary mirror at infamousvague.github.io/mattssoftware/.
+      #
+      # ─── One-time setup required ────────────────────────────────
+      # gh secret set VPS_SSH_PASSWORD --repo InfamousVague/mattssoftware --body '<password>'
+      #
+      # When the secret is unset the rsync step short-circuits with a
+      # warning (forks, public-repo dry runs) so the workflow stays
+      # green for non-owners.
+      - name: Sync to VPS (Caddy host)
+        env:
+          VPS_HOST: 149.28.120.197
+          VPS_USER: root
+          VPS_PORT: "22"
+          VPS_TARGET_DIR: /var/www/mattssoftware
+          # sshpass reads password from $SSHPASS via the -e flag, so
+          # naming the env var SSHPASS keeps the invocation tidy and
+          # avoids leaking the password through the process command
+          # line.
+          SSHPASS: ${{ secrets.VPS_SSH_PASSWORD }}
+        run: |
+          if [ -z "${SSHPASS}" ]; then
+            echo "::warning::VPS_SSH_PASSWORD secret not set — skipping VPS sync. Site only updates on GitHub Pages mirror."
+            exit 0
+          fi
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq sshpass rsync
+          # --delete keeps the remote in lockstep with our dist/,
+          # including removing files the build dropped from a
+          # previous version.
+          sshpass -e rsync -a --delete \
+            -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 -p ${VPS_PORT}" \
+            dist/ \
+            "${VPS_USER}@${VPS_HOST}:${VPS_TARGET_DIR}/"
+          echo "Synced dist/ to ${VPS_USER}@${VPS_HOST}:${VPS_TARGET_DIR}/"
