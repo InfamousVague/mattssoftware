@@ -86,9 +86,14 @@ jobs:
       - name: "Symlink _base/ into Libs/base/ for the file: dep"
         if: ${{ github.event.inputs.embed_fishbones != 'false' }}
         run: |
-          mkdir -p /home/runner/work/Libs
-          ln -sfn "$GITHUB_WORKSPACE/_base" /home/runner/work/Libs/base
-          test -d /home/runner/work/Libs/base/primitives \
+          # Fishbones package.json declares file:../../Libs/base, resolved
+          # relative to fishbones/package.json. With fishbones checked out
+          # at $GITHUB_WORKSPACE/fishbones/, ../../Libs/base resolves to
+          # $GITHUB_WORKSPACE/Libs/base — NOT /home/runner/work/Libs/base.
+          # (That's the kata-CI layout where the repo IS the workspace.)
+          mkdir -p "$GITHUB_WORKSPACE/Libs"
+          ln -sfn "$GITHUB_WORKSPACE/_base" "$GITHUB_WORKSPACE/Libs/base"
+          test -d "$GITHUB_WORKSPACE/Libs/base/primitives" \
             || (echo "Libs/base/primitives missing — symlink wiring is wrong"; exit 1)
 
       - name: Setup Node
