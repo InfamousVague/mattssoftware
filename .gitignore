@@ -13,6 +13,18 @@ dist
 dist-ssr
 *.local
 
+# Fishbones web-app embed staging — produced by `npm run sync:fishbones`
+# (or the deploy workflow's checkout-then-build step) from the kata
+# repo's `dist-web/` output. The coming-soon index.html that ships in
+# the repo at public/fishbones/learn/index.html acts as the fallback
+# when the embed step is skipped; everything else is regenerated each
+# deploy and shouldn't be committed.
+public/fishbones/learn/assets/
+public/fishbones/learn/vendor/
+public/fishbones/learn/pyodide/
+public/fishbones/learn/starter-courses/
+public/fishbones/learn/fishbones.png
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

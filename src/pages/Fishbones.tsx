@@ -16,6 +16,7 @@ import {
   ShieldOff,
   Gauge,
   Layers,
+  PlayCircle,
 } from "lucide-react";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
 import "./AppPage.css";
@@ -813,6 +814,16 @@ export function FishbonesPage() {
         <div className="app-page__actions">
           <a href={downloadUrl} className="btn btn--fishbones">
             <Download size={16} /> Download{version ? ` ${version}` : ""}
+          </a>
+          {/* Plain <a> (not the React-Router <Link>) so the browser
+              does a full navigation out of the marketing SPA into the
+              embedded Fishbones web app at /fishbones/learn/. React
+              Router doesn't intercept because the target resolves to
+              a real file at dist/fishbones/learn/index.html (staged
+              by scripts/sync-fishbones-learn.mjs in CI, or the
+              coming-soon HTML when embed is skipped). */}
+          <a href="/fishbones/learn/" className="btn btn--ghost">
+            <PlayCircle size={16} /> Try in browser
           </a>
           <a
             href="https://github.com/InfamousVague/Fishbones"

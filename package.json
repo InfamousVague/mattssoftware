@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:embed": "npm run sync:fishbones && npm run build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync:fishbones": "node scripts/sync-fishbones-learn.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.7.0",

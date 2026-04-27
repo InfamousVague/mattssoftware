@@ -1,16 +1,51 @@
 name: Deploy Website
+
+# When this fires:
+#   - push to main          — normal flow, embeds Fishbones by default
+#   - schedule (nightly)    — picks up upstream Fishbones changes within
+#                             24h even if mattssoftware itself hasn't
+#                             been touched
+#   - repository_dispatch   — kata's notify-marketing workflow fires
+#                             this when its main pushes, so a Fishbones
+#                             commit redeploys the marketing site
+#                             within minutes
+#   - workflow_dispatch     — manual run-this-now button in the Actions
+#                             UI; the embed_fishbones input lets you
+#                             skip the kata build if it's broken
 on:
   push:
     branches: [main]
+  schedule:
+    # 04:17 UTC nightly — slightly off the hour to dodge GitHub's
+    # ":00" cron stampede that delays scheduled jobs by ~10-15min.
+    - cron: "17 4 * * *"
+  repository_dispatch:
+    types: [fishbones-updated]
   workflow_dispatch:
+    inputs:
+      embed_fishbones:
+        description: |
+          Build + embed the Fishbones web variant under /fishbones/learn/.
+          Default true: the deploy checks out Fishbones, runs the web
+          build, and stages dist-web/ under
+          public/fishbones/learn/. Flip to false to fall back to the
+          coming-soon landing page that ships in the repo (e.g. if
+          the upstream build is temporarily broken).
+        required: false
+        default: "true"
+        type: choice
+        options: ["true", "false"]
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Single in-flight pipeline per branch. New pushes cancel the prior
+# run rather than queueing — wastes less compute and avoids one
+# stale build clobbering a newer one.
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -20,12 +55,72 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout marketing site
+        uses: actions/checkout@v4
+
+      # Pull the upstream Fishbones repo for the web build. Public
+      # repo + GITHUB_TOKEN works without extra secrets. Skipped
+      # only when the manual dispatch explicitly opts out.
+      - name: Checkout Fishbones (web app source)
+        if: ${{ github.event.inputs.embed_fishbones != 'false' }}
+        uses: actions/checkout@v4
+        with:
+          repository: InfamousVague/Fishbones
+          path: fishbones
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm ci
-      - run: npm run build
+          # Cache mattssoftware's lockfile keyed on its
+          # package-lock.json so npm ci is near-instant on cache hit.
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install marketing site deps
+        run: npm ci
+
+      # Separate npm-cache step for the Fishbones checkout — the
+      # setup-node cache only covers one lockfile, and Fishbones'
+      # install is the slowest part of the pipeline (~45s cold,
+      # ~5s warm with cache).
+      - name: Cache Fishbones npm
+        if: ${{ github.event.inputs.embed_fishbones != 'false' }}
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: fishbones-npm-${{ hashFiles('fishbones/package-lock.json') }}
+          restore-keys: |
+            fishbones-npm-
+
+      - name: Cache Fishbones build artifacts
+        if: ${{ github.event.inputs.embed_fishbones != 'false' }}
+        uses: actions/cache@v4
+        with:
+          # vite-bundled vendor assets and the fetched node sidecar
+          # don't change between deploys unless the Fishbones lockfile
+          # does. Caching them shaves another ~30s off cold builds.
+          path: |
+            fishbones/src-tauri/resources/vendor
+            fishbones/src-tauri/.cache
+          key: fishbones-build-${{ hashFiles('fishbones/package-lock.json', 'fishbones/scripts/vendor-cdn-deps.mjs') }}
+          restore-keys: |
+            fishbones-build-
+
+      - name: Build + embed Fishbones web variant
+        if: ${{ github.event.inputs.embed_fishbones != 'false' }}
+        env:
+          FISHBONES_SRC: ${{ github.workspace }}/fishbones
+        run: |
+          cd fishbones
+          npm ci
+          cd ..
+          npm run sync:fishbones
+
+      - name: Build marketing site
+        run: npm run build
+
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
