@@ -4,21 +4,21 @@
 /// it as part of the marketing site's GitHub Pages deploy. Final
 /// URL: `mattssoftware.com/fishbones/learn/`.
 ///
-/// Looks for the kata source tree at:
+/// Looks for the Fishbones source tree at:
 ///   1. $FISHBONES_SRC (env override)
-///   2. ../../Apps/kata (typical local layout: /Development/{Apps,Web})
-///   3. ../kata, ../../kata (sibling fallbacks)
+///   2. ../../Apps/Fishbones (typical local layout: /Development/{Apps,Web})
+///   3. ../Fishbones, ../../Fishbones (sibling fallbacks)
 ///
 /// If found, runs `npm run build:web` over there and copies
 /// `dist-web/` here. If not found, leaves the existing
 /// `public/fishbones/learn/` in place (the coming-soon landing
-/// page) — the marketing site still builds fine without the kata
+/// page) — the marketing site still builds fine without the Fishbones
 /// checkout, just without the embedded app.
 ///
 /// Usage:
 ///   node scripts/sync-fishbones-learn.mjs           # build + stage
 ///   node scripts/sync-fishbones-learn.mjs --skip    # noop, fast exit
-///   FISHBONES_SRC=/path/to/kata node scripts/...    # custom path
+///   FISHBONES_SRC=/path/to/Fishbones node scripts/...    # custom path
 ///
 /// Run before `vite build` so the staged files are picked up.
 /// `npm run build:embed` chains both for you.
@@ -45,40 +45,40 @@ if (args.has("--skip")) {
   process.exit(0);
 }
 
-// Resolve the kata checkout. Env override is authoritative — if it's
+// Resolve the Fishbones checkout. Env override is authoritative — if it's
 // set, we use ONLY that path (and error if it's invalid) so a typoed
 // FISHBONES_SRC doesn't silently fall through to a stale sibling
 // checkout. Without the env var, we walk the conventional locations.
-let kataRoot;
+let fishbonesRoot;
 const envOverride = process.env.FISHBONES_SRC;
 if (envOverride) {
   if (existsSync(join(envOverride, "package.json"))) {
-    kataRoot = envOverride;
+    fishbonesRoot = envOverride;
   } else {
     console.error(
       `[sync-fishbones-learn] FISHBONES_SRC=${envOverride} doesn't look ` +
-        `like a kata checkout (no package.json found).`,
+        `like a Fishbones checkout (no package.json found).`,
     );
     process.exit(1);
   }
 } else {
   const candidates = [
-    resolve(SITE_ROOT, "..", "..", "Apps", "kata"),
-    resolve(SITE_ROOT, "..", "kata"),
-    resolve(SITE_ROOT, "..", "..", "kata"),
+    resolve(SITE_ROOT, "..", "..", "Apps", "Fishbones"),
+    resolve(SITE_ROOT, "..", "Fishbones"),
+    resolve(SITE_ROOT, "..", "..", "Fishbones"),
   ].filter((p) => existsSync(join(p, "package.json")));
-  kataRoot = candidates[0];
+  fishbonesRoot = candidates[0];
 }
 
-if (!kataRoot) {
+if (!fishbonesRoot) {
   console.warn(
-    "[sync-fishbones-learn] kata checkout not found at any of:",
+    "[sync-fishbones-learn] Fishbones checkout not found at any of:",
   );
   for (const path of [
     "$FISHBONES_SRC",
-    "../../Apps/kata",
-    "../kata",
-    "../../kata",
+    "../../Apps/Fishbones",
+    "../Fishbones",
+    "../../Fishbones",
   ]) {
     console.warn(`  - ${path}`);
   }
@@ -86,50 +86,50 @@ if (!kataRoot) {
     "[sync-fishbones-learn] keeping the coming-soon page at public/fishbones/learn/.",
   );
   console.warn(
-    "[sync-fishbones-learn] set FISHBONES_SRC=/path/to/kata to embed the real build.",
+    "[sync-fishbones-learn] set FISHBONES_SRC=/path/to/Fishbones to embed the real build.",
   );
   process.exit(0);
 }
 
-console.log(`[sync-fishbones-learn] using kata source at ${kataRoot}`);
+console.log(`[sync-fishbones-learn] using Fishbones source at ${fishbonesRoot}`);
 
 // Build the web variant. The `build:web` script also runs `vendor` +
 // `vendor:web` + `starter:web` so `public/vendor/` and
-// `public/starter-courses/` are staged inside kata before vite builds
+// `public/starter-courses/` are staged inside Fishbones before vite builds
 // it; the resulting `dist-web/` carries every vendored asset and the
 // curated browser-runnable starter packs.
-console.log("[sync-fishbones-learn] running `npm run build:web` in kata…");
+console.log("[sync-fishbones-learn] running `npm run build:web` in Fishbones…");
 try {
   execSync("npm run build:web", {
-    cwd: kataRoot,
+    cwd: fishbonesRoot,
     stdio: "inherit",
     env: process.env,
   });
 } catch (err) {
   console.error(
-    "[sync-fishbones-learn] kata build failed:",
+    "[sync-fishbones-learn] Fishbones build failed:",
     err instanceof Error ? err.message : err,
   );
   process.exit(1);
 }
 
-const kataDist = join(kataRoot, "dist-web");
-if (!existsSync(kataDist)) {
+const fishbonesDist = join(fishbonesRoot, "dist-web");
+if (!existsSync(fishbonesDist)) {
   console.error(
-    `[sync-fishbones-learn] expected kata dist-web/ at ${kataDist} but it's missing.`,
+    `[sync-fishbones-learn] expected Fishbones dist-web/ at ${fishbonesDist} but it's missing.`,
   );
   process.exit(1);
 }
 
 // Wipe the staging dir so a removed-from-source file doesn't ghost
 // around. The coming-soon `index.html` we ship in the repo is
-// regenerated by the kata build (its own `index.html` lands here).
+// regenerated by the Fishbones build (its own `index.html` lands here).
 console.log(
-  `[sync-fishbones-learn] copying ${kataDist} → ${LEARN_DEST} (replacing contents)`,
+  `[sync-fishbones-learn] copying ${fishbonesDist} → ${LEARN_DEST} (replacing contents)`,
 );
 await rm(LEARN_DEST, { recursive: true, force: true });
 await mkdir(LEARN_DEST, { recursive: true });
-await cp(kataDist, LEARN_DEST, { recursive: true });
+await cp(fishbonesDist, LEARN_DEST, { recursive: true });
 
 console.log(
   "[sync-fishbones-learn] done. Run `npm run build` to ship the embedded app at /fishbones/learn/.",

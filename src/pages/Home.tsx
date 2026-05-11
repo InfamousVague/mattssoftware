@@ -49,6 +49,29 @@ export function Home() {
 
       <section className="section">
         <div className="home__grid">
+          {/* Libre + Tap surface first — they're the most active /
+              externally-linked apps in the lineup right now (Libre
+              lives at libre.academy, Tap ships on the App Store).
+              The other tiles follow in their original order. */}
+          <AppCard
+            name="Libre"
+            tagline="Turn any technical book into an interactive course."
+            description="Drop in a PDF or EPUB and Libre generates lessons, exercises, and hidden tests. Sixteen languages with one editor, a local AI tutor on your laptop, streak fire that survives weekends, and seventeen themes."
+            icon="/libre/libre_icon.png"
+            path="https://libre.academy"
+            tags={["Learning", "Multi-language", "AI Tutor", "Local-first", "macOS", "Windows"]}
+            downloadUrl={fishbones.url}
+            version={fishbones.version}
+          />
+          <AppCard
+            name="Tap"
+            tagline="The command remote for your infrastructure."
+            description="Run pre-configured SSH commands on remote servers from your Apple Watch. Works over cellular, supports Siri, and encrypts everything end-to-end."
+            icon="/tap/icon.png"
+            path="/tap"
+            tags={["watchOS", "SSH", "Rust", "Apple Watch", "Open Source"]}
+            appStoreUrl="https://apps.apple.com/app/tap-command-runner/id6762214314"
+          />
           <AppCard
             name="Blip"
             tagline="Your computer has been talking behind your back."
@@ -96,25 +119,6 @@ export function Home() {
             tags={["Security", "Developer Tools", "macOS", "Encryption"]}
             downloadUrl={stash.url}
             version={stash.version}
-          />
-          <AppCard
-            name="Fishbones"
-            tagline="Turn any technical book into an interactive course."
-            description="Drop in a PDF or EPUB and Fishbones generates lessons, exercises, and hidden tests. Sixteen languages with one editor, a local AI tutor on your laptop, streak fire that survives weekends, and seventeen themes."
-            icon="/fishbones/app-icon.png"
-            path="/fishbones"
-            tags={["Learning", "Multi-language", "AI Tutor", "Local-first", "macOS", "Windows"]}
-            downloadUrl={fishbones.url}
-            version={fishbones.version}
-          />
-          <AppCard
-            name="Tap"
-            tagline="The command remote for your infrastructure."
-            description="Run pre-configured SSH commands on remote servers from your Apple Watch. Works over cellular, supports Siri, and encrypts everything end-to-end."
-            icon="/tap/icon.png"
-            path="/tap"
-            tags={["watchOS", "SSH", "Rust", "Apple Watch", "Open Source"]}
-            appStoreUrl="https://apps.apple.com/app/tap-command-runner/id6762214314"
           />
         </div>
       </section>

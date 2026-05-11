@@ -62,13 +62,13 @@ curl http://mattssoftware-test.149.28.120.197.nip.io/fishbones/learn/
 
 ## VPS access
 
-Same root password as the kata API + tap relay deploys:
+Same root password as the Fishbones API + tap relay deploys:
 
 ```
 VPS_HOST=149.28.120.197
 VPS_USER=root
 VPS_PORT=22
-VPS_PASSWORD=<see Apps/tap/.env or Apps/kata/api/.env>
+VPS_PASSWORD=<see Apps/tap/.env or Apps/Fishbones/api/.env>
 ```
 
 The deploy workflow reads it from a repo secret:
@@ -84,10 +84,11 @@ mattssoftware.com, www.mattssoftware.com {
     root * /var/www/mattssoftware
     encode zstd gzip
 
-    # Embedded Fishbones web app — kata's dist-web/ landed here. Real
-    # asset/vendor/starter-courses files served directly; deep paths
-    # fall back to the embed's own index.html so kata's React Router
-    # handles them without dropping through to the marketing SPA.
+    # Embedded Fishbones web app — Fishbones' dist-web/ landed here.
+    # Real asset/vendor/starter-courses files served directly; deep
+    # paths fall back to the embed's own index.html so Fishbones'
+    # React Router handles them without dropping through to the
+    # marketing SPA.
     @fbLearn path /fishbones/learn /fishbones/learn/*
     handle @fbLearn {
         try_files {path} /fishbones/learn/index.html
