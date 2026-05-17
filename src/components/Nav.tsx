@@ -32,6 +32,10 @@ export function Nav() {
           <img src="/vyv/app-icon.png" alt="" className="nav__app-icon" />
           Vyv
         </Link>
+        <Link to="/port" className="nav__link nav__link--app">
+          <img src="/port/app-icon.png" alt="" className="nav__app-icon" />
+          Port
+        </Link>
         <Link to="/diane" className="nav__link nav__link--app">
           <img src="/diane/app-icon.png" alt="" className="nav__app-icon" />
           Diane

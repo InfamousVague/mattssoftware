@@ -29,6 +29,7 @@ async function getLatestRelease(repo: string): Promise<ReleaseInfo> {
 export function Home() {
   const [blip, setBlip] = useState<ReleaseInfo>({ url: `${FALLBACK}/Blip/releases/latest`, version: "" });
   const [vyv, setVyv] = useState<ReleaseInfo>({ url: `${FALLBACK}/Vyv/releases/latest`, version: "" });
+  const [port, setPort] = useState<ReleaseInfo>({ url: `${FALLBACK}/Port/releases/latest`, version: "" });
   const [diane, setDiane] = useState<ReleaseInfo>({ url: `${FALLBACK}/Diane/releases/latest`, version: "" });
   const [stash, setStash] = useState<ReleaseInfo>({ url: `${FALLBACK}/Stash/releases/latest`, version: "" });
   const [fishbones, setFishbones] = useState<ReleaseInfo>({ url: `${FALLBACK}/Fishbones/releases/latest`, version: "" });
@@ -36,6 +37,7 @@ export function Home() {
   useEffect(() => {
     getLatestRelease("Blip").then(setBlip);
     getLatestRelease("Vyv").then(setVyv);
+    getLatestRelease("Port").then(setPort);
     getLatestRelease("Diane").then(setDiane);
     getLatestRelease("Stash").then(setStash);
     getLatestRelease("Fishbones").then(setFishbones);
@@ -91,6 +93,16 @@ export function Home() {
             tags={["Utility", "Cross-Platform", "Productivity"]}
             downloadUrl={vyv.url}
             version={vyv.version}
+          />
+          <AppCard
+            name="Port"
+            tagline="Every open port on your Mac, one click away."
+            description="A native menu-bar port manager: see what's listening, kill or pause the process, forward or NAT-PMP-map it, and watch active connections on a live map — click one to inspect it in Blip."
+            icon="/port/app-icon.png"
+            path="/port"
+            tags={["Network", "Utility", "macOS", "Menu Bar"]}
+            downloadUrl={port.url}
+            version={port.version}
           />
           <AppCard
             name="Diane"
