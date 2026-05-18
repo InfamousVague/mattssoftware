@@ -159,11 +159,18 @@ function detectService(val: string): string | null {
 async function getStashRelease(): Promise<{ url: string; version: string }> {
   const fallback = { url: "https://github.com/InfamousVague/Stash/releases/latest", version: "" };
   try {
-    const res = await fetch("https://api.github.com/repos/InfamousVague/Stash/releases/latest");
+    // Newest-first; skip stray/assetless releases (e.g. a tag with no CI
+    // build) so Download always lands on a real .dmg.
+    const res = await fetch("https://api.github.com/repos/InfamousVague/Stash/releases?per_page=20");
     if (!res.ok) return fallback;
-    const data = await res.json();
-    const dmg = data.assets?.find((a: { name: string }) => a.name.endsWith(".dmg"));
-    return { url: dmg?.browser_download_url || fallback.url, version: data.tag_name || "" };
+    const releases = await res.json();
+    if (!Array.isArray(releases)) return fallback;
+    for (const rel of releases) {
+      if (rel.draft) continue;
+      const dmg = rel.assets?.find((a: { name: string }) => a.name.endsWith(".dmg"));
+      if (dmg) return { url: dmg.browser_download_url, version: rel.tag_name || "" };
+    }
+    return fallback;
   } catch {
     return fallback;
   }

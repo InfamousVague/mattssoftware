@@ -20,18 +20,22 @@ async function getLatestRelease(repo: string): Promise<ReleaseInfo> {
     version: "",
   };
   try {
+    // Newest-first; first release that actually ships a .dmg wins, so a
+    // stray/assetless release (a tag with no CI build) can't break Download.
     const res = await fetch(
-      `https://api.github.com/repos/InfamousVague/${repo}/releases/latest`,
+      `https://api.github.com/repos/InfamousVague/${repo}/releases?per_page=20`,
     );
     if (!res.ok) return fallback;
-    const data = await res.json();
-    const dmg = data.assets?.find((a: { name: string }) =>
-      a.name.endsWith(".dmg"),
-    );
-    return {
-      url: dmg?.browser_download_url || fallback.url,
-      version: data.tag_name || "",
-    };
+    const releases = await res.json();
+    if (!Array.isArray(releases)) return fallback;
+    for (const rel of releases) {
+      if (rel.draft) continue;
+      const dmg = rel.assets?.find((a: { name: string }) =>
+        a.name.endsWith(".dmg"),
+      );
+      if (dmg) return { url: dmg.browser_download_url, version: rel.tag_name || "" };
+    }
+    return fallback;
   } catch {
     return fallback;
   }
