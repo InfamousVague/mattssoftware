@@ -17,6 +17,10 @@ const FEATURES: { title: string; body: string }[] = [
     title: "Alerts on change",
     body: "Snapshot diffing notifies you the moment a new persistence item appears or an existing one mutates. Click the alert to jump straight to it.",
   },
+  {
+    title: "Block what shouldn't be there",
+    body: "Inspect any item's plist or script, then block it — Sentry unloads it and sets it aside as .sentry-disabled so it can't run. Reversible in one click; system-level items prompt for admin.",
+  },
 ];
 
 async function getRelease() {
@@ -55,7 +59,8 @@ export function SentryPage() {
           A menu-bar auditor for macOS persistence. It enumerates LaunchAgents &amp;
           Daemons, login items, cron, and shell startup files, checks each target's
           code-signature and notarization, and alerts you the instant a new or
-          changed item appears. Read-only — it never modifies anything.
+          changed item appears — then lets you inspect, block, or restore it,
+          right from the menu bar.
         </p>
         <div className="app-page__actions">
           <a href={downloadUrl} className="btn btn--primary">
