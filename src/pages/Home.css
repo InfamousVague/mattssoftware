@@ -37,6 +37,95 @@
   line-height: 1.5;
 }
 
+/* ─── Launcher CTA (top of downloads) ────────────────────────── */
+
+.home__cta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  border-radius: 18px;
+  text-decoration: none;
+  color: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(134, 59, 255, 0.16) 0%,
+    rgba(134, 59, 255, 0.05) 100%
+  );
+  border: 1px solid rgba(134, 59, 255, 0.32);
+  transition:
+    transform 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease;
+}
+
+.home__cta:hover {
+  transform: translateY(-2px);
+  border-color: rgba(134, 59, 255, 0.55);
+  background: linear-gradient(
+    135deg,
+    rgba(134, 59, 255, 0.22) 0%,
+    rgba(134, 59, 255, 0.07) 100%
+  );
+}
+
+.home__cta-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(111, 40, 230, 0.35);
+}
+
+.home__cta-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.home__cta-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-text, #b58cff);
+  margin-bottom: 6px;
+}
+
+.home__cta-title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0 0 6px;
+  color: var(--text-primary);
+}
+
+.home__cta-sub {
+  font-size: 15px;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 520px;
+}
+
+.home__cta-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  background: #863bff;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.home__cta:hover .home__cta-btn {
+  background: #9a5cff;
+}
+
 .home__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -47,4 +136,10 @@
   .home__title { font-size: 36px; }
   .home__subtitle { font-size: 16px; }
   .home__grid { grid-template-columns: 1fr; }
+  .home__cta {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  .home__cta-sub { max-width: none; }
 }

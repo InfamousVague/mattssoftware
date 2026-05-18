@@ -1,0 +1,352 @@
+/* Launcher-replica chrome for the website home. Mirrors the
+   mattssoftware-launcher App.css (ms-* classes, Base design tokens)
+   so the site Home looks exactly like the launcher. Everything is
+   scoped under .ms-app so the marketing sub-pages (own palette in
+   styles.css) are untouched. Tokens come from vendored base-tokens.css. */
+
+.ms-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Web-only banner: install the launcher (sits above everything) ─ */
+
+.ms-webbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-6);
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+  flex-shrink: 0;
+}
+
+.ms-webbar__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.ms-webbar__text {
+  font-size: var(--text-sm-size);
+  font-weight: var(--weight-medium);
+  min-width: 0;
+}
+
+.ms-webbar__text b {
+  font-weight: var(--weight-bold);
+}
+
+.ms-webbar__cta {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: var(--text-sm-size);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ms-webbar__cta:hover {
+  opacity: 0.9;
+}
+
+/* ─── Title bar ──────────────────────────────────────────────── */
+
+.ms-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: 0 var(--sp-6);
+  height: 60px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-primary);
+}
+
+.ms-brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
+}
+
+.ms-brand__name {
+  font-size: var(--text-lg-size);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.015em;
+}
+
+.ms-brand__sub {
+  font-size: var(--text-xs-size);
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ms-titlebar__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+}
+
+.ms-search-input {
+  width: 260px;
+  max-width: 50vw;
+  appearance: none;
+  font: inherit;
+  font-size: var(--text-sm-size);
+  color: var(--color-text-primary);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-full);
+  padding: 8px 14px;
+  outline: none;
+}
+
+.ms-search-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.ms-search-input:focus-visible {
+  border-color: var(--color-accent);
+}
+
+/* ─── Category filters ───────────────────────────────────────── */
+
+.ms-filters {
+  display: flex;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-6);
+  flex-shrink: 0;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.ms-filter {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font: inherit;
+  font-size: var(--text-sm-size);
+  font-weight: var(--weight-medium);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.ms-filter:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.ms-filter--active,
+.ms-filter--active:hover {
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+/* ─── Main + grid ────────────────────────────────────────────── */
+
+.ms-main {
+  flex: 1;
+  min-height: 0;
+  padding: var(--sp-6);
+}
+
+.ms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--sp-4);
+  max-width: 1200px;
+  margin: 0 auto;
+  grid-auto-rows: 1fr;
+}
+
+.ms-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  min-height: 50vh;
+  color: var(--color-text-tertiary);
+  font-size: var(--text-sm-size);
+}
+
+/* ─── Chips ──────────────────────────────────────────────────── */
+
+.ms-chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-xs-size);
+  font-weight: var(--weight-medium);
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.ms-chip--info {
+  background: var(--color-info-subtle);
+  color: var(--color-info-bold, var(--color-text-primary));
+  border-color: transparent;
+}
+
+/* ─── App card ───────────────────────────────────────────────── */
+
+.ms-card-wrap {
+  border-radius: var(--radius-lg);
+  height: 100%;
+  display: flex;
+}
+
+.ms-card-outlined {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.ms-card-outlined:hover {
+  border-color: var(--color-border-default, var(--color-accent));
+  box-shadow: var(--shadow-sm);
+}
+
+.ms-card {
+  flex: 1;
+  display: flex;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
+}
+
+.ms-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+}
+
+.ms-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.ms-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+
+.ms-card__name {
+  margin: 0;
+  font-size: var(--text-lg-size);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.01em;
+}
+
+.ms-card__tagline {
+  margin: 0;
+  font-size: var(--text-sm-size);
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ms-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-top: auto;
+  padding-top: var(--sp-3);
+}
+
+.ms-card__cat {
+  font-size: var(--text-xs-size);
+  color: var(--color-text-tertiary);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+}
+
+.ms-card__actions {
+  display: flex;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+}
+
+/* ─── Buttons (View / Download), token-styled like Base ──────── */
+
+.ms-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: inherit;
+  font-size: var(--text-sm-size);
+  font-weight: var(--weight-medium);
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition: background var(--transition-fast), border-color var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.ms-btn--primary {
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+.ms-btn--primary:hover {
+  opacity: 0.9;
+}
+
+.ms-btn--ghost {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-border-subtle);
+}
+
+.ms-btn--ghost:hover {
+  background: var(--color-bg-primary);
+  border-color: var(--color-text-tertiary);
+}
+
+@media (max-width: 560px) {
+  .ms-search-input { width: 150px; }
+  .ms-grid { grid-template-columns: 1fr; }
+}

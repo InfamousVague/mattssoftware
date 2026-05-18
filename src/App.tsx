@@ -26,8 +26,11 @@ import "./styles.css";
 /// on this site, but that has graduated to its own host at
 /// libre.academy. If a future product wants to embed at a path on
 /// mattssoftware.com again, add that prefix here.
-function shouldHideChrome(_pathname: string): boolean {
-  return false;
+/// The home ("/") is now the launcher replica — its own self-contained
+/// surface with its own titlebar, so the marketing Nav/Footer are
+/// hidden there. Every marketing sub-page keeps the Nav/Footer chrome.
+function shouldHideChrome(pathname: string): boolean {
+  return pathname === "/";
 }
 
 /// Hard-redirect to libre.academy. The product formerly known as
