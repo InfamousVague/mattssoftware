@@ -225,6 +225,9 @@
   flex: 1;
   display: flex;
   min-width: 0;
+  /* Belt-and-suspenders: content can never visually spill past the
+     rounded border even mid-wrap. */
+  overflow: hidden;
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-lg);
@@ -289,7 +292,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Two action buttons (View + Download) can exceed a narrow card's
+     width — wrap the actions onto their own line instead of breaking
+     out of the card. */
+  flex-wrap: wrap;
   gap: var(--sp-2);
+  row-gap: var(--sp-2);
   margin-top: auto;
   padding-top: var(--sp-3);
 }
@@ -299,12 +307,17 @@
   color: var(--color-text-tertiary);
   font-weight: var(--weight-medium);
   white-space: nowrap;
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ms-card__actions {
   display: flex;
   gap: var(--sp-2);
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 /* ─── Buttons (View / Download), token-styled like Base ──────── */
@@ -316,7 +329,7 @@
   font: inherit;
   font-size: var(--text-sm-size);
   font-weight: var(--weight-medium);
-  padding: 6px 14px;
+  padding: 6px 12px;
   border-radius: var(--radius-md);
   cursor: pointer;
   text-decoration: none;
