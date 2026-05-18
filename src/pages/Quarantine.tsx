@@ -2,26 +2,26 @@ import { useEffect, useState } from "react";
 import { Download, ExternalLink } from "lucide-react";
 import "./AppPage.css";
 
-const REPO = "https://github.com/InfamousVague/Port";
+const REPO = "https://github.com/InfamousVague/Quarantine";
 
 const FEATURES: { title: string; body: string }[] = [
   {
-    title: "Every open port, live",
-    body: "A menu-bar list of every listening TCP/UDP port with the process and PID behind it, refreshing every second. Kill it, pause it (SIGSTOP/SIGCONT), or leave it.",
+    title: "Origin & quarantine",
+    body: "See exactly where a file came from via its com.apple.quarantine attribute — the agent that downloaded it and the source URL.",
   },
   {
-    title: "Forward & map",
-    body: "Proxy any local port to another with a built-in TCP forwarder, expose it across your LAN, and punch it through your router with native NAT-PMP — no config.",
+    title: "Gatekeeper & hash",
+    body: "Codesign / Gatekeeper assessment plus a SHA-256 for every new file that lands in ~/Downloads.",
   },
   {
-    title: "Connections on a map → Blip",
-    body: "Active connections plotted on a live map by where they actually go. Click any endpoint to open it in Blip for deep inspection (or grab Blip if you don't have it).",
+    title: "Optional VirusTotal",
+    body: "Add an API key and Quarantine surfaces a reputation verdict inline, so you can vet a download before you ever open it.",
   },
 ];
 
-async function getPortRelease() {
+async function getRelease() {
   try {
-    const res = await fetch("https://api.github.com/repos/InfamousVague/Port/releases/latest");
+    const res = await fetch("https://api.github.com/repos/InfamousVague/Quarantine/releases/latest");
     if (!res.ok) return { url: `${REPO}/releases/latest`, version: "" };
     const data = await res.json();
     const asset = data.assets?.[0];
@@ -34,12 +34,12 @@ async function getPortRelease() {
   }
 }
 
-export function PortPage() {
+export function QuarantinePage() {
   const [downloadUrl, setDownloadUrl] = useState(`${REPO}/releases/latest`);
   const [version, setVersion] = useState("");
 
   useEffect(() => {
-    getPortRelease().then(({ url, version }) => {
+    getRelease().then(({ url, version }) => {
       setDownloadUrl(url);
       setVersion(version);
     });
@@ -48,13 +48,14 @@ export function PortPage() {
   return (
     <div className="app-page">
       <section className="app-page__hero">
-        <img src="/port/app-icon.png" alt="Port" className="app-page__icon" />
-        <h1 className="app-page__title">Port</h1>
-        <p className="app-page__tagline">Every open port on your Mac, one click away.</p>
+        <img src="/quarantine/app-icon.png" alt="Quarantine" className="app-page__icon" />
+        <h1 className="app-page__title">Quarantine</h1>
+        <p className="app-page__tagline">Trust, but verify every download.</p>
         <p className="app-page__desc">
-          A tiny native menu-bar port manager. See what's listening, kill or pause the
-          process, forward or NAT-PMP-map it, and watch active connections on a live
-          map — click one to inspect it in Blip.
+          A menu-bar inspector for ~/Downloads. For every new file it surfaces the
+          quarantine origin URL, Gatekeeper/codesign status, SHA-256, and an
+          optional VirusTotal verdict — then notifies you so you can vet it before
+          you open it.
         </p>
         <div className="app-page__actions">
           <a href={downloadUrl} className="btn btn--primary">
@@ -71,7 +72,7 @@ export function PortPage() {
 
       <section className="section">
         <h2 className="section__title" style={{ textAlign: "center" }}>
-          See it. Kill it. Forward it.
+          Know what just landed in Downloads.
         </h2>
         <div className="app-page__features">
           {FEATURES.map((f) => (

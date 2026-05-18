@@ -30,6 +30,9 @@ export function Home() {
   const [blip, setBlip] = useState<ReleaseInfo>({ url: `${FALLBACK}/Blip/releases/latest`, version: "" });
   const [vyv, setVyv] = useState<ReleaseInfo>({ url: `${FALLBACK}/Vyv/releases/latest`, version: "" });
   const [port, setPort] = useState<ReleaseInfo>({ url: `${FALLBACK}/Port/releases/latest`, version: "" });
+  const [sentry, setSentry] = useState<ReleaseInfo>({ url: `${FALLBACK}/Sentry/releases/latest`, version: "" });
+  const [peephole, setPeephole] = useState<ReleaseInfo>({ url: `${FALLBACK}/Peephole/releases/latest`, version: "" });
+  const [quarantine, setQuarantine] = useState<ReleaseInfo>({ url: `${FALLBACK}/Quarantine/releases/latest`, version: "" });
   const [diane, setDiane] = useState<ReleaseInfo>({ url: `${FALLBACK}/Diane/releases/latest`, version: "" });
   const [stash, setStash] = useState<ReleaseInfo>({ url: `${FALLBACK}/Stash/releases/latest`, version: "" });
   const [fishbones, setFishbones] = useState<ReleaseInfo>({ url: `${FALLBACK}/Fishbones/releases/latest`, version: "" });
@@ -38,6 +41,9 @@ export function Home() {
     getLatestRelease("Blip").then(setBlip);
     getLatestRelease("Vyv").then(setVyv);
     getLatestRelease("Port").then(setPort);
+    getLatestRelease("Sentry").then(setSentry);
+    getLatestRelease("Peephole").then(setPeephole);
+    getLatestRelease("Quarantine").then(setQuarantine);
     getLatestRelease("Diane").then(setDiane);
     getLatestRelease("Stash").then(setStash);
     getLatestRelease("Fishbones").then(setFishbones);
@@ -103,6 +109,36 @@ export function Home() {
             tags={["Network", "Utility", "macOS", "Menu Bar"]}
             downloadUrl={port.url}
             version={port.version}
+          />
+          <AppCard
+            name="Sentry"
+            tagline="Know the moment something digs in."
+            description="A menu-bar auditor for macOS persistence — LaunchAgents, login items, cron, and shell startup files — with signature checks and alerts when something new or changed appears. Read-only."
+            icon="/sentry/app-icon.png"
+            path="/sentry"
+            tags={["Security", "Persistence", "macOS", "Menu Bar"]}
+            downloadUrl={sentry.url}
+            version={sentry.version}
+          />
+          <AppCard
+            name="Peephole"
+            tagline="See who's watching."
+            description="A menu-bar sentinel for your camera and microphone: which apps are using them right now, a history of access, and a notification the moment something turns them on."
+            icon="/peephole/app-icon.png"
+            path="/peephole"
+            tags={["Security", "Privacy", "macOS", "Menu Bar"]}
+            downloadUrl={peephole.url}
+            version={peephole.version}
+          />
+          <AppCard
+            name="Quarantine"
+            tagline="Trust, but verify every download."
+            description="A menu-bar inspector for ~/Downloads: quarantine origin, Gatekeeper/codesign status, SHA-256, and an optional VirusTotal verdict for every new file, with a notification to vet it."
+            icon="/quarantine/app-icon.png"
+            path="/quarantine"
+            tags={["Security", "Privacy", "macOS", "Menu Bar"]}
+            downloadUrl={quarantine.url}
+            version={quarantine.version}
           />
           <AppCard
             name="Diane"

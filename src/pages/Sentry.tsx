@@ -2,26 +2,26 @@ import { useEffect, useState } from "react";
 import { Download, ExternalLink } from "lucide-react";
 import "./AppPage.css";
 
-const REPO = "https://github.com/InfamousVague/Port";
+const REPO = "https://github.com/InfamousVague/Sentry";
 
 const FEATURES: { title: string; body: string }[] = [
   {
-    title: "Every open port, live",
-    body: "A menu-bar list of every listening TCP/UDP port with the process and PID behind it, refreshing every second. Kill it, pause it (SIGSTOP/SIGCONT), or leave it.",
+    title: "Every persistence vector",
+    body: "LaunchAgents & Daemons, login items, cron, and shell startup files — every place something can dig in to survive a reboot, in one menu-bar list.",
   },
   {
-    title: "Forward & map",
-    body: "Proxy any local port to another with a built-in TCP forwarder, expose it across your LAN, and punch it through your router with native NAT-PMP — no config.",
+    title: "Signature-aware",
+    body: "Each target binary is classified notarized / signed / unsigned via spctl and codesign, so an unsigned launch agent stands out instantly.",
   },
   {
-    title: "Connections on a map → Blip",
-    body: "Active connections plotted on a live map by where they actually go. Click any endpoint to open it in Blip for deep inspection (or grab Blip if you don't have it).",
+    title: "Alerts on change",
+    body: "Snapshot diffing notifies you the moment a new persistence item appears or an existing one mutates. Click the alert to jump straight to it.",
   },
 ];
 
-async function getPortRelease() {
+async function getRelease() {
   try {
-    const res = await fetch("https://api.github.com/repos/InfamousVague/Port/releases/latest");
+    const res = await fetch("https://api.github.com/repos/InfamousVague/Sentry/releases/latest");
     if (!res.ok) return { url: `${REPO}/releases/latest`, version: "" };
     const data = await res.json();
     const asset = data.assets?.[0];
@@ -34,12 +34,12 @@ async function getPortRelease() {
   }
 }
 
-export function PortPage() {
+export function SentryPage() {
   const [downloadUrl, setDownloadUrl] = useState(`${REPO}/releases/latest`);
   const [version, setVersion] = useState("");
 
   useEffect(() => {
-    getPortRelease().then(({ url, version }) => {
+    getRelease().then(({ url, version }) => {
       setDownloadUrl(url);
       setVersion(version);
     });
@@ -48,13 +48,14 @@ export function PortPage() {
   return (
     <div className="app-page">
       <section className="app-page__hero">
-        <img src="/port/app-icon.png" alt="Port" className="app-page__icon" />
-        <h1 className="app-page__title">Port</h1>
-        <p className="app-page__tagline">Every open port on your Mac, one click away.</p>
+        <img src="/sentry/app-icon.png" alt="Sentry" className="app-page__icon" />
+        <h1 className="app-page__title">Sentry</h1>
+        <p className="app-page__tagline">Know the moment something digs in.</p>
         <p className="app-page__desc">
-          A tiny native menu-bar port manager. See what's listening, kill or pause the
-          process, forward or NAT-PMP-map it, and watch active connections on a live
-          map — click one to inspect it in Blip.
+          A menu-bar auditor for macOS persistence. It enumerates LaunchAgents &amp;
+          Daemons, login items, cron, and shell startup files, checks each target's
+          code-signature and notarization, and alerts you the instant a new or
+          changed item appears. Read-only — it never modifies anything.
         </p>
         <div className="app-page__actions">
           <a href={downloadUrl} className="btn btn--primary">
@@ -71,7 +72,7 @@ export function PortPage() {
 
       <section className="section">
         <h2 className="section__title" style={{ textAlign: "center" }}>
-          See it. Kill it. Forward it.
+          Watch the places malware hides.
         </h2>
         <div className="app-page__features">
           {FEATURES.map((f) => (

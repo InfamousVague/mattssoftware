@@ -2,26 +2,26 @@ import { useEffect, useState } from "react";
 import { Download, ExternalLink } from "lucide-react";
 import "./AppPage.css";
 
-const REPO = "https://github.com/InfamousVague/Port";
+const REPO = "https://github.com/InfamousVague/Peephole";
 
 const FEATURES: { title: string; body: string }[] = [
   {
-    title: "Every open port, live",
-    body: "A menu-bar list of every listening TCP/UDP port with the process and PID behind it, refreshing every second. Kill it, pause it (SIGSTOP/SIGCONT), or leave it.",
+    title: "Live camera & mic status",
+    body: "The menu-bar glyph flips the instant the camera or microphone goes active, so you always know when something is recording.",
   },
   {
-    title: "Forward & map",
-    body: "Proxy any local port to another with a built-in TCP forwarder, expose it across your LAN, and punch it through your router with native NAT-PMP — no config.",
+    title: "Access history",
+    body: "A running log of which app used the camera or mic and when — scroll back through the day's activity.",
   },
   {
-    title: "Connections on a map → Blip",
-    body: "Active connections plotted on a live map by where they actually go. Click any endpoint to open it in Blip for deep inspection (or grab Blip if you don't have it).",
+    title: "Notifications",
+    body: "Get alerted the moment an app starts using the camera or microphone. No special entitlements, no kernel extensions.",
   },
 ];
 
-async function getPortRelease() {
+async function getRelease() {
   try {
-    const res = await fetch("https://api.github.com/repos/InfamousVague/Port/releases/latest");
+    const res = await fetch("https://api.github.com/repos/InfamousVague/Peephole/releases/latest");
     if (!res.ok) return { url: `${REPO}/releases/latest`, version: "" };
     const data = await res.json();
     const asset = data.assets?.[0];
@@ -34,12 +34,12 @@ async function getPortRelease() {
   }
 }
 
-export function PortPage() {
+export function PeepholePage() {
   const [downloadUrl, setDownloadUrl] = useState(`${REPO}/releases/latest`);
   const [version, setVersion] = useState("");
 
   useEffect(() => {
-    getPortRelease().then(({ url, version }) => {
+    getRelease().then(({ url, version }) => {
       setDownloadUrl(url);
       setVersion(version);
     });
@@ -48,13 +48,14 @@ export function PortPage() {
   return (
     <div className="app-page">
       <section className="app-page__hero">
-        <img src="/port/app-icon.png" alt="Port" className="app-page__icon" />
-        <h1 className="app-page__title">Port</h1>
-        <p className="app-page__tagline">Every open port on your Mac, one click away.</p>
+        <img src="/peephole/app-icon.png" alt="Peephole" className="app-page__icon" />
+        <h1 className="app-page__title">Peephole</h1>
+        <p className="app-page__tagline">See who's watching.</p>
         <p className="app-page__desc">
-          A tiny native menu-bar port manager. See what's listening, kill or pause the
-          process, forward or NAT-PMP-map it, and watch active connections on a live
-          map — click one to inspect it in Blip.
+          A menu-bar sentinel for your camera and microphone. Peephole shows which
+          apps are using them right now, keeps a history of access, and notifies
+          you when something turns them on — no special entitlements, no kernel
+          extensions.
         </p>
         <div className="app-page__actions">
           <a href={downloadUrl} className="btn btn--primary">
@@ -71,7 +72,7 @@ export function PortPage() {
 
       <section className="section">
         <h2 className="section__title" style={{ textAlign: "center" }}>
-          See it. Kill it. Forward it.
+          Nothing records without you knowing.
         </h2>
         <div className="app-page__features">
           {FEATURES.map((f) => (
