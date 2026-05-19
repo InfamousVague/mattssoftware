@@ -196,6 +196,19 @@ export const CATALOG: readonly CatalogApp[] = [
     url: "https://github.com/InfamousVague",
     view: "/base",
   },
+  {
+    id: "fetch",
+    name: "Fetch",
+    tagline: "A native torrent client for legal content.",
+    description:
+      "Menu-bar BitTorrent client (libtorrent) for legal media: Internet Archive, official Linux/BSD ISOs, Academic Torrents, public-domain/CC packs — plus your own Torznab/RSS sources. Add a magnet, import a .torrent, watch downloads & seeding.",
+    category: "Utilities",
+    icon: "/fetch/app-icon.png",
+    tags: ["Menu Bar", "Torrents", "Downloads", "macOS"],
+    channel: "github",
+    githubRepo: "Fetch",
+    view: "/fetch",
+  },
 ];
 
 export const CATEGORIES: readonly Category[] = [

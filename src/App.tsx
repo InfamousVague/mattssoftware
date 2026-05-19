@@ -6,6 +6,7 @@ import { Home } from "./pages/Home";
 import { BlipPage } from "./pages/Blip";
 import { VyvPage } from "./pages/Vyv";
 import { PortPage } from "./pages/Port";
+import { FetchPage } from "./pages/Fetch";
 import { SentryPage } from "./pages/Sentry";
 import { PeepholePage } from "./pages/Peephole";
 import { QuarantinePage } from "./pages/Quarantine";
@@ -68,6 +69,7 @@ export function App() {
           <Route path="/blip" element={<BlipPage />} />
           <Route path="/vyv" element={<VyvPage />} />
           <Route path="/port" element={<PortPage />} />
+          <Route path="/fetch" element={<FetchPage />} />
           <Route path="/sentry" element={<SentryPage />} />
           <Route path="/peephole" element={<PeepholePage />} />
           <Route path="/quarantine" element={<QuarantinePage />} />
