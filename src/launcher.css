@@ -77,6 +77,22 @@
   background: var(--color-bg-primary);
 }
 
+.ms-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-width: 0;
+}
+
+/* The `>|M` mark is a wide white-on-transparent glyph (shows white
+   on the dark titlebar) — keep its aspect, don't clip it. */
+.ms-brand__mark {
+  height: 22px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
 .ms-brand__text {
   display: flex;
   flex-direction: column;

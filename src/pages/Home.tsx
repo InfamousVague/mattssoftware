@@ -164,11 +164,18 @@ export function Home() {
       </div>
 
       <header className="ms-titlebar">
-        <div className="ms-brand__text">
-          <span className="ms-brand__name">MattsSoftware</span>
-          <span className="ms-brand__sub">
-            Every app I've built, in one place
-          </span>
+        <div className="ms-brand">
+          <img
+            className="ms-brand__mark"
+            src="/brandmark.png"
+            alt="MattsSoftware"
+          />
+          <div className="ms-brand__text">
+            <span className="ms-brand__name">MattsSoftware</span>
+            <span className="ms-brand__sub">
+              Every app I've built, in one place
+            </span>
+          </div>
         </div>
         <div className="ms-titlebar__tools">
           <input
