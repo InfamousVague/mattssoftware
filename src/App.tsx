@@ -9,6 +9,7 @@ import { PortPage } from "./pages/Port";
 import { FetchPage } from "./pages/Fetch";
 import { SentryPage } from "./pages/Sentry";
 import { PeepholePage } from "./pages/Peephole";
+import { StickyKeysPage } from "./pages/StickyKeys";
 import { QuarantinePage } from "./pages/Quarantine";
 import { DianePage } from "./pages/Diane";
 import { BasePage } from "./pages/Base";
@@ -72,6 +73,7 @@ export function App() {
           <Route path="/fetch" element={<FetchPage />} />
           <Route path="/sentry" element={<SentryPage />} />
           <Route path="/peephole" element={<PeepholePage />} />
+          <Route path="/stickykeys" element={<StickyKeysPage />} />
           <Route path="/quarantine" element={<QuarantinePage />} />
           <Route path="/diane" element={<DianePage />} />
           <Route path="/base" element={<BasePage />} />

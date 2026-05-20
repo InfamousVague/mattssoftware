@@ -117,6 +117,19 @@ export const CATALOG: readonly CatalogApp[] = [
     view: "/peephole",
   },
   {
+    id: "stickykeys",
+    name: "StickyKeys",
+    tagline: "Lock the keyboard so a cleaning cloth can't fire shortcuts.",
+    description:
+      "A menu-bar keyboard lock for cleaning. Click to swallow every key, modifier, and media key system-wide; a frosted full-screen overlay covers each display, the mouse stays live to unlock, and a safety auto-unlock means you can never get trapped.",
+    category: "Utilities",
+    icon: "/stickykeys/app-icon.png",
+    tags: ["Menu Bar", "Utility", "Accessibility", "macOS"],
+    channel: "github",
+    githubRepo: "StickyKeys",
+    view: "/stickykeys",
+  },
+  {
     id: "quarantine",
     name: "Quarantine",
     tagline: "Trust, but verify every download.",

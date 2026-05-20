@@ -44,6 +44,10 @@ export function Nav() {
           <img src="/peephole/app-icon.png" alt="" className="nav__app-icon" />
           Peephole
         </Link>
+        <Link to="/stickykeys" className="nav__link nav__link--app">
+          <img src="/stickykeys/app-icon.png" alt="" className="nav__app-icon" />
+          StickyKeys
+        </Link>
         <Link to="/quarantine" className="nav__link nav__link--app">
           <img src="/quarantine/app-icon.png" alt="" className="nav__app-icon" />
           Quarantine
