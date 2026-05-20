@@ -1,107 +1,177 @@
-/* Feature Showcase — alternating hero sections with screenshots */
+/* ============================================================
+ * FeatureShowcase — alternating playful 3D blocks
+ *
+ * Each block is a cream sub-pad (lighter than the hero pad,
+ * smaller drop-shadow) with the per-app accent burning through
+ * as a soft spotlight behind the screenshot. The text column has
+ * an eyebrow chip in the app's accent gradient, a big Cabinet
+ * Grotesk display title, and bullet dots in the app accent.
+ *
+ * Lives between the hero pad and the suite carousel — visually
+ * it should read as "the hero kept going, in card form".
+ * ============================================================ */
 
 .feature-showcase {
-  padding: 0 24px;
-  max-width: 1200px;
+  /* Stack of blocks with breathing room. Outer padding kept tight
+     so the cream pads can extend almost to the page edge. */
+  padding: 24px 16px 8px;
+  max-width: 1240px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
+/* ── A single feature block ─────────────────────────────── */
+
 .feature-hero {
-  display: flex;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
   align-items: center;
-  gap: 64px;
-  padding: 100px 0;
-  min-height: 500px;
+  gap: 48px;
+  padding: 56px 56px;
+  border-radius: 32px;
+  /* The block IS a tray — cream tone, soft inner highlight,
+     per-app accent glow burning through from below. */
+  background:
+    var(--app-spotlight, radial-gradient(60% 60% at 50% 40%, rgba(255, 178, 122, 0.18), transparent 65%)),
+    linear-gradient(180deg, rgba(246, 239, 228, 0.96), rgba(235, 226, 210, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -40px 80px -40px rgba(0, 0, 0, 0.16),
+    0 40px 100px -50px var(--app-glow, rgba(224, 144, 96, 0.32));
+  /* Defeat the body's white text colour inside the pad. */
+  color: #15101e;
+  isolation: isolate;
 }
 
 .feature-hero--reverse {
-  flex-direction: row-reverse;
+  /* Flip the columns so left/right artwork alternates as you scroll. */
+  direction: rtl;
+}
+.feature-hero--reverse > * {
+  direction: ltr;
 }
 
-/* Text side */
+/* ── Text column ────────────────────────────────────────── */
+
 .feature-hero__text {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  min-width: 300px;
+  gap: 14px;
+  /* Color is inherited from .feature-hero — don't set a universal
+     selector here (specificity-trap, same bug we hit on the hero). */
 }
 
 .feature-hero__badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  width: fit-content;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: var(--blip-purple-text);
-  background: var(--blip-purple-subtle);
-  padding: 4px 12px;
-  border-radius: 20px;
-  width: fit-content;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  color: color-mix(in oklab, var(--app-to) 70%, #15101e);
+  background: color-mix(in oklab, var(--app-from) 22%, white);
+  border: 1px solid color-mix(in oklab, var(--app-to) 35%, white);
 }
 
 .feature-hero__title {
-  font-size: 40px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.6vw, 44px);
   font-weight: 800;
-  line-height: 1.1;
-  color: var(--blip-text-primary);
-  letter-spacing: -0.5px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #15101e;
+  max-width: 460px;
 }
 
 .feature-hero__desc {
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.65;
-  color: var(--blip-text-secondary);
-  max-width: 460px;
+  color: #15101e;
+  max-width: 480px;
 }
 
 .feature-hero__bullets {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .feature-hero__bullet {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  font-size: 14px;
-  color: var(--blip-text-tertiary);
-  line-height: 1.5;
+  gap: 12px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #1d1726;
 }
 
 .feature-hero__bullet-dot {
-  width: 6px;
-  height: 6px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: var(--blip-purple-solid);
+  background: linear-gradient(135deg, var(--app-from, #ffb27a), var(--app-to, #e09060));
   flex-shrink: 0;
   margin-top: 7px;
+  box-shadow: 0 2px 6px -2px var(--app-glow, rgba(224, 144, 96, 0.45));
 }
 
-/* Screenshot side */
+/* ── Screenshot column ──────────────────────────────────── */
+
 .feature-hero__visual {
-  flex: 1.3;
   position: relative;
-  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
 }
 
+/* Soft accent spotlight behind the screenshot — same per-app
+   gradient as the hero, but smaller. */
+.feature-hero__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--app-from, #ffb27a) 28%, transparent) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(20px);
+}
+
+/* The screenshot itself sits in a playful 3D-like frame:
+   chunky rounded corners, soft top-light, two-layer drop shadow,
+   subtle inner stroke. */
 .feature-hero__frame {
   position: relative;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #1a1725;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.4),
-    0 0 80px rgba(139, 92, 246, 0.08);
+    0 30px 60px -20px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   display: inline-block;
+  max-width: 100%;
+  transform: rotate(-0.5deg);
+  transition: transform .25s ease;
+}
+.feature-hero:nth-child(even) .feature-hero__frame {
+  transform: rotate(0.5deg);
+}
+.feature-hero__frame:hover {
+  transform: rotate(0deg);
 }
 
 .feature-hero__frame img {
@@ -110,77 +180,62 @@
   display: block;
 }
 
-/* Placeholder when no image */
+/* Placeholder used when an image is missing. Cream-toned so it
+   matches the surrounding pad even when there's no screenshot. */
 .feature-hero__placeholder {
   width: 100%;
   aspect-ratio: 16 / 10;
-  border-radius: 16px;
-  background: linear-gradient(135deg, var(--blip-bg-secondary) 0%, var(--blip-bg-elevated) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(246, 239, 228, 0.5) 100%);
+  border: 1px dashed rgba(29, 23, 38, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--blip-text-tertiary);
+  color: rgba(29, 23, 38, 0.55);
   font-size: 14px;
   font-weight: 500;
+  font-family: var(--font-mono);
 }
 
-/* Glow behind screenshot */
-.feature-hero__glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: -1;
-}
+/* The old `<div className="feature-divider" />` lines between
+   blocks aren't needed any more — each block is a card with its
+   own breathing room. Hide them defensively. */
+.feature-divider { display: none; }
 
-/* Divider between sections */
-.feature-divider {
-  width: 60px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.06);
-  margin: 0 auto;
-}
+/* ── Responsive ─────────────────────────────────────────── */
 
-/* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .feature-hero {
-    flex-direction: column !important;
-    gap: 40px;
-    padding: 64px 0;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 32px 28px;
     text-align: center;
-    align-items: center;
   }
-
+  .feature-hero--reverse,
+  .feature-hero--reverse > * {
+    direction: ltr;
+  }
   .feature-hero__text {
     align-items: center;
   }
-
-  .feature-hero__desc {
-    max-width: 100%;
-  }
-
-  .feature-hero__title {
-    font-size: 30px;
-  }
-
+  .feature-hero__title { font-size: 28px; }
+  .feature-hero__desc { max-width: 100%; }
   .feature-hero__bullets {
     align-items: flex-start;
     text-align: left;
+    width: 100%;
+    max-width: 460px;
+  }
+  .feature-hero__frame {
+    transform: rotate(0deg) !important;
   }
 }
 
-@media (max-width: 600px) {
-  .feature-hero__title {
-    font-size: 26px;
+@media (max-width: 560px) {
+  .feature-showcase { padding: 12px 8px 4px; }
+  .feature-hero {
+    padding: 24px 18px;
+    border-radius: 22px;
   }
-
-  .feature-hero__desc {
-    font-size: 15px;
-  }
+  .feature-hero__title { font-size: 24px; }
 }

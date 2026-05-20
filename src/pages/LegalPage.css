@@ -1,3 +1,38 @@
+/* Legal page header — dark-theme block at the top of each Tap legal
+   page (Privacy, Terms, EULA). Used to share `.app-page__*` classes,
+   but that overlap polluted the global stylesheet (the old rules
+   coloured `.app-page__desc` with white-at-40%-alpha, which then
+   bled into the rebranded cream-pad app pages). Scoping these
+   styles under their own `.legal-header__*` namespace keeps the
+   per-app hero treatment unaffected. */
+
+.legal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 120px 24px 40px;
+  gap: 8px;
+}
+
+.legal-header__title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+}
+
+.legal-header__tagline {
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.legal-header__date {
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+
 .legal {
   max-width: 720px;
   margin: 0 auto;

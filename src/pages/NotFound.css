@@ -1,0 +1,89 @@
+/* 404 page — same playful-3D treatment as the app pages. The
+   ribbon snake illustration floats centrally over a soft cream
+   pad; "lost but cheerful" copy beneath. */
+
+.notfound {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 96px 24px 64px;
+  overflow: hidden;
+}
+
+.notfound__bg {
+  position: absolute;
+  inset: 24px;
+  border-radius: 36px;
+  background:
+    radial-gradient(60% 60% at 50% 40%, rgba(255, 126, 179, 0.18), transparent 65%),
+    linear-gradient(180deg, rgba(246, 239, 228, 0.96), rgba(235, 226, 210, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -40px 80px -40px rgba(0, 0, 0, 0.18),
+    0 60px 140px -60px rgba(255, 126, 179, 0.34);
+  z-index: -1;
+}
+
+.notfound__art {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  filter:
+    drop-shadow(0 50px 60px rgba(0, 0, 0, 0.18))
+    drop-shadow(0 80px 90px rgba(255, 126, 179, 0.3));
+  animation: notfound-bob 6s ease-in-out infinite;
+  margin-bottom: 4px;
+}
+
+@keyframes notfound-bob {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-10px) rotate(1deg); }
+}
+
+.notfound__code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  background: rgba(29, 23, 38, 0.08);
+  color: var(--text-on-cream-dim);
+}
+
+.notfound__title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--text-on-cream);
+}
+
+.notfound__sub {
+  font-size: 16px;
+  color: var(--text-on-cream-dim);
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.notfound__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.notfound .btn--ghost {
+  background: rgba(29, 23, 38, 0.06);
+  color: var(--text-on-cream);
+  border-color: rgba(29, 23, 38, 0.14);
+}
+.notfound .btn--ghost:hover {
+  background: rgba(29, 23, 38, 0.1);
+  color: var(--text-on-cream);
+}

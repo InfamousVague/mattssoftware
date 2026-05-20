@@ -1,0 +1,232 @@
+/* ============================================================
+ * Nav (2026 rebrand)
+ *
+ * Compact topbar: brand on the left, then a right-cluster of
+ * (Apps ▾ dropdown, Launcher CTA, GitHub icon, Tip popover).
+ * Replaces the previous flat row of 13 per-app links that
+ * overflowed at most viewport widths.
+ * ============================================================ */
+
+.nav__brand-mark {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── "Apps ▾" trigger ──────────────────────────────────── */
+
+.nav__apps {
+  position: relative;
+}
+
+.nav__apps-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.nav__apps-trigger:hover,
+.nav__apps-trigger:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+  outline: none;
+}
+.nav__apps-trigger--open {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.nav__apps-trigger--open .nav__apps-chev {
+  transform: rotate(180deg);
+}
+.nav__apps-chev {
+  transition: transform .15s ease;
+}
+
+/* ── Dropdown panel ────────────────────────────────────── */
+
+.nav__apps-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: min(680px, calc(100vw - 32px));
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(20, 16, 30, 0.96);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(22px);
+  z-index: 200;
+  animation: nav-pop .14s ease-out;
+}
+
+@keyframes nav-pop {
+  from { transform: translateY(-4px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.nav__apps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+}
+
+.nav__apps-item {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: background .12s ease;
+}
+.nav__apps-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav__apps-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.nav__apps-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.nav__apps-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.nav__apps-tagline {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.nav__apps-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 10px;
+  padding: 12px 8px 4px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+/* Both nav CTAs (the dropdown-footer "Get the launcher" and the
+   top-row "Launcher" pill) are HARD-CODED to the Espresso mocha
+   gradient. The launcher is a fixed brand product; it shouldn't
+   re-tint to whichever per-app page the user is currently on, so
+   we don't read `--app-from/--app-to` here. */
+
+.nav__apps-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffb27a, #e09060);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  box-shadow: 0 6px 16px -6px rgba(224, 144, 96, 0.46);
+  transition: filter .15s ease, transform .15s ease;
+}
+.nav__apps-cta:hover {
+  color: white;
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+/* ── Launcher CTA pill ─────────────────────────────────── */
+
+.nav__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffb27a, #e09060);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  box-shadow:
+    0 6px 16px -6px rgba(224, 144, 96, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: filter .15s ease, transform .15s ease;
+}
+.nav__cta:hover {
+  color: white;
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+/* ── GitHub icon ───────────────────────────────────────── */
+
+.nav__icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.nav__icon-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  /* Drop the launcher pill text below ~720px — the icon link
+     in the dropdown footer still carries the action. */
+  .nav__cta { display: none; }
+}
+
+@media (max-width: 540px) {
+  .nav__right { gap: 8px; }
+  .nav__apps-panel { width: calc(100vw - 24px); right: -8px; }
+  .nav__apps-grid { grid-template-columns: 1fr; }
+}

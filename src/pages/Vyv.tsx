@@ -1,98 +1,33 @@
-import { useEffect, useState } from "react";
-import { Download, ExternalLink } from "lucide-react";
-import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
-import "./AppPage.css";
+import { AppPage } from "../components/AppPage";
 
-const FEATURES: FeatureSection[] = [
+const FEATURES = [
   {
-    badge: "Keep Awake",
-    title: "Your computer wants to sleep. Vyv disagrees.",
-    description: "One click and your machine stays awake. Timed sessions from 5 minutes to 8 hours, or just leave it on forever. No more presentations interrupted by screensavers.",
-    bullets: [
-      "Preset timers: 5 min, 15 min, 30 min, 1 hour, 2 hours, 4 hours, 8 hours",
-      "Indefinite mode for when you mean business",
-      "Keep display on or let it sleep while the system stays awake",
-      "Runs entirely from the system tray — zero clutter",
-    ],
-    image: "/vyv/screenshots/timer.png",
-    imageAlt: "Vyv keep-awake timer interface",
+    title: "Keep awake, on a timer or forever",
+    body: "Preset timers from 5 minutes to 8 hours, or indefinite mode for when you mean business. Keep the display on or let it sleep while the system stays awake.",
   },
   {
-    badge: "Mouse Jiggle",
     title: "Fool your status indicator",
-    description: "Slack says you're away. Teams says you're idle. Your boss is asking questions. Vyv's mouse jiggle moves the cursor just enough to keep you looking active. We don't judge.",
-    bullets: [
-      "Sub-pixel mouse movement — invisible but effective",
-      "Defeats idle detection in Slack, Teams, Zoom, and more",
-      "Toggle independently from keep-awake",
-      "Your secret is safe with us",
-    ],
-    image: "/vyv/screenshots/jiggle.png",
-    imageAlt: "Vyv mouse jiggle feature",
+    body: "Sub-pixel mouse jiggle — invisible but enough to defeat idle detection in Slack, Teams, Zoom, and any app that watches for inactivity.",
   },
   {
-    badge: "Safety",
     title: "Panic button included",
-    description: "Ctrl+Shift+Escape instantly kills everything. Display wakes, jiggle stops, timers cancel. For when your boss walks in or you actually need to sleep.",
-    bullets: [
-      "Global hotkey works from any app",
-      "Instant deactivation — no menus, no clicks",
-      "Lid-closed override for laptop users on macOS",
-      "Lifetime stats track your total uptime with milestone celebrations",
-    ],
-    image: "/vyv/screenshots/stats.png",
-    imageAlt: "Vyv panic hotkey and safety features",
+    body: "Ctrl+Shift+Escape instantly kills everything: display wakes, jiggle stops, timers cancel. Lid-closed override for laptops. Lifetime stats track your total uptime.",
   },
 ];
 
-async function getVyvRelease() {
-  try {
-    const res = await fetch("https://api.github.com/repos/InfamousVague/Vyv/releases/latest");
-    if (!res.ok) return { url: "https://github.com/InfamousVague/Vyv/releases/latest", version: "" };
-    const data = await res.json();
-    const asset = data.assets?.[0];
-    return {
-      url: asset?.browser_download_url || "https://github.com/InfamousVague/Vyv/releases/latest",
-      version: data.tag_name || "",
-    };
-  } catch {
-    return { url: "https://github.com/InfamousVague/Vyv/releases/latest", version: "" };
-  }
-}
-
 export function VyvPage() {
-  const [downloadUrl, setDownloadUrl] = useState("https://github.com/InfamousVague/Vyv/releases/latest");
-  const [version, setVersion] = useState("");
-
-  useEffect(() => {
-    getVyvRelease().then(({ url, version }) => { setDownloadUrl(url); setVersion(version); });
-  }, []);
-
   return (
-    <div className="app-page">
-      <section className="app-page__hero">
-        <img src="/vyv/app-icon.png" alt="Vyv" className="app-page__icon" />
-        <h1 className="app-page__title">Vyv</h1>
-        <p className="app-page__tagline">Like Caffeine, but open source and cross-platform.</p>
-        <p className="app-page__desc">
-          Keep your computer awake. Jiggle your mouse. Look busy. All from the system tray.
-        </p>
-        <div className="app-page__actions">
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
-          <a href="https://github.com/InfamousVague/Vyv" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
-        </div>
-        <span className="app-page__req">macOS &middot; Windows &middot; Linux &middot; Free &amp; Open Source</span>
-      </section>
-
-      <FeatureShowcase features={FEATURES} />
-
-      <section className="section" style={{ textAlign: "center" }}>
-        <h2 className="section__title">Stay awake. Stay active. Stay employed.</h2>
-        <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32 }}>
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
-          <a href="https://github.com/InfamousVague/Vyv" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
-        </div>
-      </section>
-    </div>
+    <AppPage
+      themeId="espresso"
+      title="Espresso"
+      tagline="Refuse to sleep."
+      description="Keep-awake utility for the system tray: timed sessions or indefinite mode, sub-pixel mouse-jiggle to defeat idle detection, and a global panic hotkey to drop everything instantly. Lid-closed override and lifetime uptime stats included."
+      heroImage="/espresso/hero.png"
+      icon="/espresso/app-icon.png"
+      requirements="macOS  ·  Windows  ·  Linux  ·  Free & Open Source"
+      features={FEATURES}
+      featuresHeading="Stay awake. Stay active. Stay employed."
+      cta={{ kind: "github", repo: "Espresso" }}
+    />
   );
 }

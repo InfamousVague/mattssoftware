@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import "./AppPage.css";
 import "./LegalPage.css";
 
 export function TapPrivacyPage() {
   return (
-    <div className="app-page">
-      <section className="app-page__hero" style={{ minHeight: "40vh", paddingBottom: 0 }}>
-        <h1 className="app-page__title" style={{ fontSize: 48 }}>Privacy Policy</h1>
-        <p className="app-page__tagline">Tap — SSH Command Relay</p>
-        <p className="app-page__desc">Effective date: April 14, 2026</p>
+    <div>
+      <section className="legal-header">
+        <h1 className="legal-header__title">Privacy Policy</h1>
+        <p className="legal-header__tagline">Tap — SSH Command Relay</p>
+        <p className="legal-header__date">Effective date: April 14, 2026</p>
       </section>
 
       <section className="legal">

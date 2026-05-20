@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Download, ExternalLink, Shield, Users, Terminal, Activity, Import, GitMerge, Share2, Clock, ChevronDown, Lock, Key, Eye, EyeOff, Clipboard, Wifi } from "lucide-react";
+import { AppPage } from "../components/AppPage";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
-import "./AppPage.css";
 import "./Stash.css";
 
 // ── Feature sections (alternating hero layout) ───────────────
@@ -71,6 +71,21 @@ const FEATURES: FeatureSection[] = [
     ],
     image: "/stash/screenshots/directory.png",
     imageAlt: "Stash API directory with service listings",
+  },
+];
+
+const HERO_FEATURES = [
+  {
+    title: "An encrypted vault, per project",
+    body: "AES-256-GCM with Argon2id key derivation, Touch ID unlock on macOS, profiles for dev/staging/prod. Import existing .env files or seed new ones from framework templates.",
+  },
+  {
+    title: "Team sharing via public-key crypto",
+    body: "X25519 keys generated per teammate. Push encrypts your .env for every member, pull decrypts only what's yours. The .stash.lock file is git-safe — commit it.",
+  },
+  {
+    title: "Health, sharing, and a real CLI",
+    body: "Health monitoring flags stale, expired, or git-exposed keys. A 12-command CLI runs everywhere. 600+ APIs in the directory so you stop Googling 'what's it called'.",
   },
 ];
 
@@ -159,8 +174,6 @@ function detectService(val: string): string | null {
 async function getStashRelease(): Promise<{ url: string; version: string }> {
   const fallback = { url: "https://github.com/InfamousVague/Stash/releases/latest", version: "" };
   try {
-    // Newest-first; skip stray/assetless releases (e.g. a tag with no CI
-    // build) so Download always lands on a real .dmg.
     const res = await fetch("https://api.github.com/repos/InfamousVague/Stash/releases?per_page=20");
     if (!res.ok) return fallback;
     const releases = await res.json();
@@ -232,21 +245,10 @@ function PasteDetectionDemo() {
     <div className="stash-paste-demo">
       <div className="stash-paste-demo__header">Try it — paste an API key</div>
       <div className="stash-paste-demo__row">
-        <input
-          className="stash-paste-demo__key"
-          value={demoKey}
-          onChange={(e) => setDemoKey(e.target.value)}
-          placeholder="KEY"
-        />
+        <input className="stash-paste-demo__key" value={demoKey} onChange={(e) => setDemoKey(e.target.value)} placeholder="KEY" />
         <span className="stash-paste-demo__eq">=</span>
         <div className="stash-paste-demo__value-wrap">
-          <input
-            className="stash-paste-demo__value"
-            type={visible ? "text" : "password"}
-            value={demoValue}
-            onChange={(e) => handleValueChange(e.target.value)}
-            placeholder="sk_live_... or AKIA... or ghp_..."
-          />
+          <input className="stash-paste-demo__value" type={visible ? "text" : "password"} value={demoValue} onChange={(e) => handleValueChange(e.target.value)} placeholder="sk_live_... or AKIA... or ghp_..." />
           <button className="stash-paste-demo__toggle" onClick={() => setVisible(!visible)} aria-label="Toggle visibility">
             {visible ? <EyeOff size={14} /> : <Eye size={14} />}
           </button>
@@ -314,11 +316,7 @@ function SampleKeys() {
     <div className="stash-sample-keys">
       <span className="stash-sample-keys__label">Try one — click to copy:</span>
       {SAMPLE_KEYS.map((key) => (
-        <button
-          key={key.label}
-          className={`stash-sample-keys__key ${copied === key.label ? "stash-sample-keys__key--copied" : ""}`}
-          onClick={() => handleCopy(key)}
-        >
+        <button key={key.label} className={`stash-sample-keys__key ${copied === key.label ? "stash-sample-keys__key--copied" : ""}`} onClick={() => handleCopy(key)}>
           {copied === key.label ? "Copied!" : `${key.prefix}...`}
         </button>
       ))}
@@ -326,17 +324,13 @@ function SampleKeys() {
   );
 }
 
-// ── Download button (reusable) ───────────────────────────────
-
 function DownloadCTA({ url, version }: { url: string; version: string }) {
   return (
     <div className="stash-inline-cta">
-      <a href={url} className="btn btn--stash"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
+      <a href={url} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
     </div>
   );
 }
-
-// ── Page ─────────────────────────────────────────────────────
 
 export function StashPage() {
   const [downloadUrl, setDownloadUrl] = useState("https://github.com/InfamousVague/Stash/releases/latest");
@@ -347,277 +341,224 @@ export function StashPage() {
   }, []);
 
   return (
-    <div className="app-page stash-page">
-      {/* ── Hero ────────────────────────────────────────── */}
-      <section className="app-page__hero">
-        <img src="/stash/app-icon.png" alt="Stash" className="app-page__icon" />
-        <h1 className="app-page__title">Stash</h1>
-        <p className="app-page__tagline">Your .env files deserve a bodyguard.</p>
-        <p className="app-page__desc">
-          Encrypted vault for environment variables. Team sharing with public-key crypto. A CLI that actually works. Health monitoring that catches leaked secrets. All offline, all yours.
-        </p>
-        <div className="app-page__actions">
-          <a href={downloadUrl} className="btn btn--stash"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
-          <a href="https://github.com/InfamousVague/Stash" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
-        </div>
-        <span className="app-page__req">macOS &middot; Free &amp; Open Source</span>
-      </section>
+    <AppPage
+      themeId="stash"
+      title="Stash"
+      // No dedicated Stash hero illustration was generated — fall back
+      // to a centered playful-3D app icon until a /stash/hero.png exists.
+      heroImage="/stash/app-icon.png"
+      icon="/stash/app-icon.png"
+      tagline="Lock your .env."
+      description="Encrypted vault for environment variables. Team sharing with public-key crypto. A CLI that actually works. Health monitoring that catches leaked secrets. All offline, all yours."
+      requirements="macOS  ·  Free & Open Source"
+      features={HERO_FEATURES}
+      featuresHeading="Three problems Stash solves on day one."
+      cta={{ kind: "github", repo: "Stash" }}
+    >
+      <div className="stash-extra">
+        {/* ── Stats bar ───────────────────────────────────── */}
+        <section className="stash-stats">
+          <div className="stash-stats__item"><span className="stash-stats__value">AES-256</span><span className="stash-stats__label">Encryption</span></div>
+          <div className="stash-stats__divider" />
+          <div className="stash-stats__item"><span className="stash-stats__value">X25519</span><span className="stash-stats__label">Key Exchange</span></div>
+          <div className="stash-stats__divider" />
+          <div className="stash-stats__item"><span className="stash-stats__value">600+</span><span className="stash-stats__label">API Services</span></div>
+          <div className="stash-stats__divider" />
+          <div className="stash-stats__item"><span className="stash-stats__value">15</span><span className="stash-stats__label">Languages</span></div>
+          <div className="stash-stats__divider" />
+          <div className="stash-stats__item"><span className="stash-stats__value">12</span><span className="stash-stats__label">CLI Commands</span></div>
+        </section>
 
-      {/* ── Stats bar ───────────────────────────────────── */}
-      <section className="stash-stats">
-        <div className="stash-stats__item">
-          <span className="stash-stats__value">AES-256</span>
-          <span className="stash-stats__label">Encryption</span>
-        </div>
-        <div className="stash-stats__divider" />
-        <div className="stash-stats__item">
-          <span className="stash-stats__value">X25519</span>
-          <span className="stash-stats__label">Key Exchange</span>
-        </div>
-        <div className="stash-stats__divider" />
-        <div className="stash-stats__item">
-          <span className="stash-stats__value">600+</span>
-          <span className="stash-stats__label">API Services</span>
-        </div>
-        <div className="stash-stats__divider" />
-        <div className="stash-stats__item">
-          <span className="stash-stats__value">15</span>
-          <span className="stash-stats__label">Languages</span>
-        </div>
-        <div className="stash-stats__divider" />
-        <div className="stash-stats__item">
-          <span className="stash-stats__value">12</span>
-          <span className="stash-stats__label">CLI Commands</span>
-        </div>
-      </section>
+        <FeatureShowcase features={FEATURES} />
 
-      {/* ── Feature sections ────────────────────────────── */}
-      <FeatureShowcase features={FEATURES} />
-
-      {/* ── CLI section with live terminal ─────────────── */}
-      <section className="section stash-cli-section">
-        <div className="stash-cli-section__content">
-          <div className="stash-cli-section__text">
-            <span className="feature-hero__badge">CLI</span>
-            <h2 className="stash-cli-section__title">stash pull. stash push. stash switch. Done.</h2>
-            <p className="stash-cli-section__desc">Full-featured CLI that lives in your terminal. Pull decrypted vars, push encrypted changes, switch profiles, diff environments, export to JSON/YAML/Docker/GitHub Actions, and run commands with injected env vars.</p>
-            <div className="feature-hero__bullets">
-              <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>12 commands: pull, push, switch, list, init, status, diff, keys, add, remove, run, export</span></div>
-              <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>Export to JSON, YAML, Docker env-file, or GitHub Actions secret commands</span></div>
-              <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>stash run — inject env vars into any command without touching .env</span></div>
-              <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>One-click install from the desktop app to /usr/local/bin/stash</span></div>
-            </div>
-          </div>
-          <div className="stash-cli-section__terminal">
-            <AnimatedTerminal />
-          </div>
-        </div>
-      </section>
-
-      {/* Inline CTA after features */}
-      <DownloadCTA url={downloadUrl} version={version} />
-
-      {/* ── Interactive paste demo ──────────────────────── */}
-      <section className="section">
-        <h2 className="section__title">Smart enough to know what you just pasted</h2>
-        <p className="section__subtitle">Stash detects API key formats automatically — no manual tagging needed.</p>
-        <SampleKeys />
-        <PasteDetectionDemo />
-      </section>
-
-      {/* ── Capabilities grid ───────────────────────────── */}
-      <section className="section">
-        <h2 className="section__title">And that's not all</h2>
-        <p className="section__subtitle">Every tool you need for a bulletproof .env workflow.</p>
-        <div className="stash-caps">
-          {CAPABILITIES.map((cap) => (
-            <div key={cap.label} className="stash-caps__card card">
-              <cap.icon size={20} className="stash-caps__icon" />
-              <span className="stash-caps__label">{cap.label}</span>
-              <span className="stash-caps__desc">{cap.desc}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Side-by-side comparisons ────────────────────── */}
-      <section className="section">
-        <h2 className="section__title">How Stash compares</h2>
-        <p className="section__subtitle">Most teams use one of these. None of them do everything.</p>
-        <div className="stash-versus">
-          {COMPARISONS.map((card) => (
-            <div key={card.competitor} className="stash-versus__card card">
-              <div className="stash-versus__header">
-                <span className="stash-versus__vs">Stash vs</span>
-                <span className="stash-versus__competitor">{card.competitor}</span>
-              </div>
-              <p className="stash-versus__verdict">{card.verdict}</p>
-              <div className="stash-versus__columns">
-                <div className="stash-versus__col">
-                  <span className="stash-versus__col-label stash-versus__col-label--stash">Stash wins</span>
-                  {card.stashWins.map((w, i) => (
-                    <div key={i} className="stash-versus__point stash-versus__point--win">
-                      <span className="stash-versus__dot stash-versus__dot--green" />
-                      <span>{w}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="stash-versus__col">
-                  <span className="stash-versus__col-label stash-versus__col-label--they">They win</span>
-                  {card.theyWin.map((w, i) => (
-                    <div key={i} className="stash-versus__point stash-versus__point--lose">
-                      <span className="stash-versus__dot stash-versus__dot--neutral" />
-                      <span>{w}</span>
-                    </div>
-                  ))}
-                </div>
+        <section className="section stash-cli-section">
+          <div className="stash-cli-section__content">
+            <div className="stash-cli-section__text">
+              <span className="feature-hero__badge">CLI</span>
+              <h2 className="stash-cli-section__title">stash pull. stash push. stash switch. Done.</h2>
+              <p className="stash-cli-section__desc">Full-featured CLI that lives in your terminal. Pull decrypted vars, push encrypted changes, switch profiles, diff environments, export to JSON/YAML/Docker/GitHub Actions, and run commands with injected env vars.</p>
+              <div className="feature-hero__bullets">
+                <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>12 commands: pull, push, switch, list, init, status, diff, keys, add, remove, run, export</span></div>
+                <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>Export to JSON, YAML, Docker env-file, or GitHub Actions secret commands</span></div>
+                <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>stash run — inject env vars into any command without touching .env</span></div>
+                <div className="feature-hero__bullet"><span className="feature-hero__bullet-dot" /><span>One-click install from the desktop app to /usr/local/bin/stash</span></div>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+            <div className="stash-cli-section__terminal"><AnimatedTerminal /></div>
+          </div>
+        </section>
 
-      {/* Inline CTA after comparisons */}
-      <DownloadCTA url={downloadUrl} version={version} />
+        <DownloadCTA url={downloadUrl} version={version} />
 
-      {/* ── Security architecture ───────────────────────── */}
-      <section className="section">
-        <h2 className="section__title">Security architecture</h2>
-        <p className="section__subtitle">Every layer is designed so your secrets stay yours.</p>
-        <div className="stash-security">
-          <div className="stash-security__card card">
-            <Shield size={24} className="stash-security__icon" />
-            <h3 className="stash-security__title">Vault Encryption</h3>
-            <p className="stash-security__desc">AES-256-GCM with a master key derived via Argon2id. Each vault is independently encrypted. Touch ID unlocks via the macOS Secure Enclave.</p>
-          </div>
-          <div className="stash-security__card card">
-            <Users size={24} className="stash-security__icon" />
-            <h3 className="stash-security__title">Team Crypto</h3>
-            <p className="stash-security__desc">X25519 ECDH key agreement generates a shared secret per teammate. Each member's .env is encrypted with their own derived key. Private keys never leave the machine.</p>
-          </div>
-          <div className="stash-security__card card">
-            <Terminal size={24} className="stash-security__icon" />
-            <h3 className="stash-security__title">Lock File</h3>
-            <p className="stash-security__desc">.stash.lock v2 stores per-profile encrypted blobs and public key metadata. Safe to commit — it's ciphertext, not secrets. Pull preview lets you review before merging.</p>
-          </div>
-          <div className="stash-security__card card">
-            <Activity size={24} className="stash-security__icon" />
-            <h3 className="stash-security__title">Runtime Safety</h3>
-            <p className="stash-security__desc">Session files locked to 0600 permissions. No telemetry, no analytics, no network calls except OTA update checks. Everything runs locally on your machine.</p>
-          </div>
-        </div>
+        <section className="section">
+          <h2 className="section__title">Smart enough to know what you just pasted</h2>
+          <p className="section__subtitle">Stash detects API key formats automatically — no manual tagging needed.</p>
+          <SampleKeys />
+          <PasteDetectionDemo />
+        </section>
 
-        {/* Architecture flow diagram */}
-        <div className="stash-arch">
-          <div className="stash-arch__step">
-            <div className="stash-arch__node">.env files</div>
-            <div className="stash-arch__label">Plaintext on disk</div>
+        <section className="section">
+          <h2 className="section__title">And that's not all</h2>
+          <p className="section__subtitle">Every tool you need for a bulletproof .env workflow.</p>
+          <div className="stash-caps">
+            {CAPABILITIES.map((cap) => (
+              <div key={cap.label} className="stash-caps__card card">
+                <cap.icon size={20} className="stash-caps__icon" />
+                <span className="stash-caps__label">{cap.label}</span>
+                <span className="stash-caps__desc">{cap.desc}</span>
+              </div>
+            ))}
           </div>
-          <div className="stash-arch__arrow">&rarr;</div>
-          <div className="stash-arch__step">
-            <div className="stash-arch__node stash-arch__node--accent">Stash Vault</div>
-            <div className="stash-arch__label">AES-256-GCM + Argon2id</div>
-          </div>
-          <div className="stash-arch__arrow">&rarr;</div>
-          <div className="stash-arch__step">
-            <div className="stash-arch__node">.stash.lock</div>
-            <div className="stash-arch__label">Per-member X25519</div>
-          </div>
-          <div className="stash-arch__arrow">&rarr;</div>
-          <div className="stash-arch__step">
-            <div className="stash-arch__node">Git</div>
-            <div className="stash-arch__label">Safe to commit</div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── Use cases ───────────────────────────────────── */}
-      <section className="section">
-        <h2 className="section__title">Built for how teams actually work</h2>
-        <p className="section__subtitle">Real workflows, not hypothetical ones.</p>
-        <div className="stash-usecases">
-          <div className="stash-usecases__card card">
-            <h3 className="stash-usecases__title">Onboarding a new developer</h3>
-            <p className="stash-usecases__desc">They install Stash, generate a keypair, and share their public key. You add them on the People page, push the lock file, and they pull — every .env they need is decrypted on their machine. No Slack DMs, no shared passwords, no "ask Jake for the Stripe key."</p>
+        <section className="section">
+          <h2 className="section__title">How Stash compares</h2>
+          <p className="section__subtitle">Most teams use one of these. None of them do everything.</p>
+          <div className="stash-versus">
+            {COMPARISONS.map((card) => (
+              <div key={card.competitor} className="stash-versus__card card">
+                <div className="stash-versus__header">
+                  <span className="stash-versus__vs">Stash vs</span>
+                  <span className="stash-versus__competitor">{card.competitor}</span>
+                </div>
+                <p className="stash-versus__verdict">{card.verdict}</p>
+                <div className="stash-versus__columns">
+                  <div className="stash-versus__col">
+                    <span className="stash-versus__col-label stash-versus__col-label--stash">Stash wins</span>
+                    {card.stashWins.map((w, i) => (
+                      <div key={i} className="stash-versus__point stash-versus__point--win">
+                        <span className="stash-versus__dot stash-versus__dot--green" />
+                        <span>{w}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="stash-versus__col">
+                    <span className="stash-versus__col-label stash-versus__col-label--they">They win</span>
+                    {card.theyWin.map((w, i) => (
+                      <div key={i} className="stash-versus__point stash-versus__point--lose">
+                        <span className="stash-versus__dot stash-versus__dot--neutral" />
+                        <span>{w}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="stash-usecases__card card">
-            <h3 className="stash-usecases__title">Rotating a compromised key</h3>
-            <p className="stash-usecases__desc">Update the key in Stash, push the lock file. Every teammate pulls the change and the health monitor stops flagging it. The changelog shows exactly when it was rotated and by whom. The old value is preserved in history if you need to roll back.</p>
-          </div>
-          <div className="stash-usecases__card card">
-            <h3 className="stash-usecases__title">Setting up a new microservice</h3>
-            <p className="stash-usecases__desc">Scan your filesystem to import the .env. Stash auto-detects the framework, matches API keys to the 600+ service directory, and validates formats. Enable sharing with the wizard — identity, members, and encryption in three clicks.</p>
-          </div>
-          <div className="stash-usecases__card card">
-            <h3 className="stash-usecases__title">Auditing secrets across 20 projects</h3>
-            <p className="stash-usecases__desc">Open the Health page: stale keys, exposed .env files in git, format violations, and approaching expiry dates — all in one dashboard. Export .env.example files so contributors know what's needed without seeing values.</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── Tech stack + details (expandable) ───────────── */}
-      <section className="section">
-        <h2 className="section__title">Under the hood</h2>
-        <p className="section__subtitle">Native performance, modern tooling, zero Electron.</p>
-        <div className="stash-tech">
-          <div className="stash-tech__item"><span className="stash-tech__label">Frontend</span><span className="stash-tech__value">React 19 + TypeScript + Vite</span></div>
-          <div className="stash-tech__item"><span className="stash-tech__label">Backend</span><span className="stash-tech__value">Rust (Tauri 2)</span></div>
-          <div className="stash-tech__item"><span className="stash-tech__label">Encryption</span><span className="stash-tech__value">AES-256-GCM + Argon2id + X25519</span></div>
-          <div className="stash-tech__item"><span className="stash-tech__label">Biometrics</span><span className="stash-tech__value">macOS Keychain / Secure Enclave</span></div>
-          <div className="stash-tech__item"><span className="stash-tech__label">Sync</span><span className="stash-tech__value">Git-native via .stash.lock</span></div>
-          <div className="stash-tech__item"><span className="stash-tech__label">Bundle</span><span className="stash-tech__value">~8 MB (vs ~200 MB Electron)</span></div>
-          <div className="stash-tech__item"><span className="stash-tech__label">i18n</span><span className="stash-tech__value">15 languages</span></div>
-          <div className="stash-tech__item"><span className="stash-tech__label">Updates</span><span className="stash-tech__value">Signed OTA with in-app progress</span></div>
-        </div>
+        <DownloadCTA url={downloadUrl} version={version} />
 
-        <div className="stash-expandables">
-          <Expandable title="Deep links & protocol handlers">
-            <div className="stash-expandable-table">
-              <div className="stash-expandable-table__row"><code>stash://add-contact?name=...&key=...</code><span>Add a teammate by public key</span></div>
-              <div className="stash-expandable-table__row"><code>stash://import-var?key=...&enc=...&from=...</code><span>Import an encrypted variable</span></div>
-              <div className="stash-expandable-table__row"><code>stash://import-key?service=...&envKey=...</code><span>Import an API key from a link</span></div>
+        <section className="section">
+          <h2 className="section__title">Security architecture</h2>
+          <p className="section__subtitle">Every layer is designed so your secrets stay yours.</p>
+          <div className="stash-security">
+            <div className="stash-security__card card">
+              <Shield size={24} className="stash-security__icon" />
+              <h3 className="stash-security__title">Vault Encryption</h3>
+              <p className="stash-security__desc">AES-256-GCM with a master key derived via Argon2id. Each vault is independently encrypted. Touch ID unlocks via the macOS Secure Enclave.</p>
             </div>
-          </Expandable>
-          <Expandable title="CLI command reference">
-            <div className="stash-expandable-table">
-              <div className="stash-expandable-table__row"><code>stash pull</code><span>Decrypt .stash.lock into .env files</span></div>
-              <div className="stash-expandable-table__row"><code>stash push</code><span>Encrypt .env files into .stash.lock</span></div>
-              <div className="stash-expandable-table__row"><code>stash switch &lt;profile&gt;</code><span>Switch active profile</span></div>
-              <div className="stash-expandable-table__row"><code>stash run -- &lt;cmd&gt;</code><span>Run with injected env vars</span></div>
-              <div className="stash-expandable-table__row"><code>stash diff</code><span>Compare profiles side by side</span></div>
-              <div className="stash-expandable-table__row"><code>stash export</code><span>Export to JSON, YAML, Docker, GitHub Actions</span></div>
-              <div className="stash-expandable-table__row"><code>stash status</code><span>Show sync status</span></div>
-              <div className="stash-expandable-table__row"><code>stash keys</code><span>List all keys in current profile</span></div>
-              <div className="stash-expandable-table__row"><code>stash add &lt;key&gt; &lt;value&gt;</code><span>Add or update a variable</span></div>
-              <div className="stash-expandable-table__row"><code>stash remove &lt;key&gt;</code><span>Remove a variable</span></div>
-              <div className="stash-expandable-table__row"><code>stash init</code><span>Initialize .stash.lock</span></div>
-              <div className="stash-expandable-table__row"><code>stash list</code><span>List all projects</span></div>
+            <div className="stash-security__card card">
+              <Users size={24} className="stash-security__icon" />
+              <h3 className="stash-security__title">Team Crypto</h3>
+              <p className="stash-security__desc">X25519 ECDH key agreement generates a shared secret per teammate. Each member's .env is encrypted with their own derived key. Private keys never leave the machine.</p>
             </div>
-          </Expandable>
-          <Expandable title="Supported API key formats">
-            <div className="stash-expandable-table">
-              <div className="stash-expandable-table__row"><code>AKIA...</code><span>AWS Access Key</span></div>
-              <div className="stash-expandable-table__row"><code>sk_live_ / sk_test_</code><span>Stripe Secret Key</span></div>
-              <div className="stash-expandable-table__row"><code>ghp_ / gho_ / ghs_</code><span>GitHub Personal Access Token</span></div>
-              <div className="stash-expandable-table__row"><code>xoxb- / xoxp-</code><span>Slack Bot / User Token</span></div>
-              <div className="stash-expandable-table__row"><code>SG.</code><span>SendGrid API Key</span></div>
-              <div className="stash-expandable-table__row"><code>AIza</code><span>Google Cloud API Key</span></div>
-              <div className="stash-expandable-table__row"><code>sk-</code><span>OpenAI API Key</span></div>
-              <div className="stash-expandable-table__row"><code>sq0atp- / sq0csp-</code><span>Square Access Token</span></div>
+            <div className="stash-security__card card">
+              <Terminal size={24} className="stash-security__icon" />
+              <h3 className="stash-security__title">Lock File</h3>
+              <p className="stash-security__desc">.stash.lock v2 stores per-profile encrypted blobs and public key metadata. Safe to commit — it's ciphertext, not secrets. Pull preview lets you review before merging.</p>
             </div>
-          </Expandable>
-        </div>
-      </section>
+            <div className="stash-security__card card">
+              <Activity size={24} className="stash-security__icon" />
+              <h3 className="stash-security__title">Runtime Safety</h3>
+              <p className="stash-security__desc">Session files locked to 0600 permissions. No telemetry, no analytics, no network calls except OTA update checks. Everything runs locally on your machine.</p>
+            </div>
+          </div>
 
-      {/* ── CTA ─────────────────────────────────────────── */}
-      <section className="section stash-cta">
-        <h2 className="section__title">Ready to stop leaking secrets?</h2>
-        <p className="section__subtitle">Free, open source, and built for people who ship.</p>
-        <div className="stash-cta__actions">
-          <a href={downloadUrl} className="btn btn--stash"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
-          <a href="https://github.com/InfamousVague/Stash" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
-        </div>
-      </section>
-    </div>
+          <div className="stash-arch">
+            <div className="stash-arch__step"><div className="stash-arch__node">.env files</div><div className="stash-arch__label">Plaintext on disk</div></div>
+            <div className="stash-arch__arrow">&rarr;</div>
+            <div className="stash-arch__step"><div className="stash-arch__node stash-arch__node--accent">Stash Vault</div><div className="stash-arch__label">AES-256-GCM + Argon2id</div></div>
+            <div className="stash-arch__arrow">&rarr;</div>
+            <div className="stash-arch__step"><div className="stash-arch__node">.stash.lock</div><div className="stash-arch__label">Per-member X25519</div></div>
+            <div className="stash-arch__arrow">&rarr;</div>
+            <div className="stash-arch__step"><div className="stash-arch__node">Git</div><div className="stash-arch__label">Safe to commit</div></div>
+          </div>
+        </section>
+
+        <section className="section">
+          <h2 className="section__title">Built for how teams actually work</h2>
+          <p className="section__subtitle">Real workflows, not hypothetical ones.</p>
+          <div className="stash-usecases">
+            <div className="stash-usecases__card card"><h3 className="stash-usecases__title">Onboarding a new developer</h3><p className="stash-usecases__desc">They install Stash, generate a keypair, and share their public key. You add them on the People page, push the lock file, and they pull — every .env they need is decrypted on their machine. No Slack DMs, no shared passwords, no "ask Jake for the Stripe key."</p></div>
+            <div className="stash-usecases__card card"><h3 className="stash-usecases__title">Rotating a compromised key</h3><p className="stash-usecases__desc">Update the key in Stash, push the lock file. Every teammate pulls the change and the health monitor stops flagging it. The changelog shows exactly when it was rotated and by whom. The old value is preserved in history if you need to roll back.</p></div>
+            <div className="stash-usecases__card card"><h3 className="stash-usecases__title">Setting up a new microservice</h3><p className="stash-usecases__desc">Scan your filesystem to import the .env. Stash auto-detects the framework, matches API keys to the 600+ service directory, and validates formats. Enable sharing with the wizard — identity, members, and encryption in three clicks.</p></div>
+            <div className="stash-usecases__card card"><h3 className="stash-usecases__title">Auditing secrets across 20 projects</h3><p className="stash-usecases__desc">Open the Health page: stale keys, exposed .env files in git, format violations, and approaching expiry dates — all in one dashboard. Export .env.example files so contributors know what's needed without seeing values.</p></div>
+          </div>
+        </section>
+
+        <section className="section">
+          <h2 className="section__title">Under the hood</h2>
+          <p className="section__subtitle">Native performance, modern tooling, zero Electron.</p>
+          <div className="stash-tech">
+            <div className="stash-tech__item"><span className="stash-tech__label">Frontend</span><span className="stash-tech__value">React 19 + TypeScript + Vite</span></div>
+            <div className="stash-tech__item"><span className="stash-tech__label">Backend</span><span className="stash-tech__value">Rust (Tauri 2)</span></div>
+            <div className="stash-tech__item"><span className="stash-tech__label">Encryption</span><span className="stash-tech__value">AES-256-GCM + Argon2id + X25519</span></div>
+            <div className="stash-tech__item"><span className="stash-tech__label">Biometrics</span><span className="stash-tech__value">macOS Keychain / Secure Enclave</span></div>
+            <div className="stash-tech__item"><span className="stash-tech__label">Sync</span><span className="stash-tech__value">Git-native via .stash.lock</span></div>
+            <div className="stash-tech__item"><span className="stash-tech__label">Bundle</span><span className="stash-tech__value">~8 MB (vs ~200 MB Electron)</span></div>
+            <div className="stash-tech__item"><span className="stash-tech__label">i18n</span><span className="stash-tech__value">15 languages</span></div>
+            <div className="stash-tech__item"><span className="stash-tech__label">Updates</span><span className="stash-tech__value">Signed OTA with in-app progress</span></div>
+          </div>
+
+          <div className="stash-expandables">
+            <Expandable title="Deep links & protocol handlers">
+              <div className="stash-expandable-table">
+                <div className="stash-expandable-table__row"><code>stash://add-contact?name=...&key=...</code><span>Add a teammate by public key</span></div>
+                <div className="stash-expandable-table__row"><code>stash://import-var?key=...&enc=...&from=...</code><span>Import an encrypted variable</span></div>
+                <div className="stash-expandable-table__row"><code>stash://import-key?service=...&envKey=...</code><span>Import an API key from a link</span></div>
+              </div>
+            </Expandable>
+            <Expandable title="CLI command reference">
+              <div className="stash-expandable-table">
+                <div className="stash-expandable-table__row"><code>stash pull</code><span>Decrypt .stash.lock into .env files</span></div>
+                <div className="stash-expandable-table__row"><code>stash push</code><span>Encrypt .env files into .stash.lock</span></div>
+                <div className="stash-expandable-table__row"><code>stash switch &lt;profile&gt;</code><span>Switch active profile</span></div>
+                <div className="stash-expandable-table__row"><code>stash run -- &lt;cmd&gt;</code><span>Run with injected env vars</span></div>
+                <div className="stash-expandable-table__row"><code>stash diff</code><span>Compare profiles side by side</span></div>
+                <div className="stash-expandable-table__row"><code>stash export</code><span>Export to JSON, YAML, Docker, GitHub Actions</span></div>
+                <div className="stash-expandable-table__row"><code>stash status</code><span>Show sync status</span></div>
+                <div className="stash-expandable-table__row"><code>stash keys</code><span>List all keys in current profile</span></div>
+                <div className="stash-expandable-table__row"><code>stash add &lt;key&gt; &lt;value&gt;</code><span>Add or update a variable</span></div>
+                <div className="stash-expandable-table__row"><code>stash remove &lt;key&gt;</code><span>Remove a variable</span></div>
+                <div className="stash-expandable-table__row"><code>stash init</code><span>Initialize .stash.lock</span></div>
+                <div className="stash-expandable-table__row"><code>stash list</code><span>List all projects</span></div>
+              </div>
+            </Expandable>
+            <Expandable title="Supported API key formats">
+              <div className="stash-expandable-table">
+                <div className="stash-expandable-table__row"><code>AKIA...</code><span>AWS Access Key</span></div>
+                <div className="stash-expandable-table__row"><code>sk_live_ / sk_test_</code><span>Stripe Secret Key</span></div>
+                <div className="stash-expandable-table__row"><code>ghp_ / gho_ / ghs_</code><span>GitHub Personal Access Token</span></div>
+                <div className="stash-expandable-table__row"><code>xoxb- / xoxp-</code><span>Slack Bot / User Token</span></div>
+                <div className="stash-expandable-table__row"><code>SG.</code><span>SendGrid API Key</span></div>
+                <div className="stash-expandable-table__row"><code>AIza</code><span>Google Cloud API Key</span></div>
+                <div className="stash-expandable-table__row"><code>sk-</code><span>OpenAI API Key</span></div>
+                <div className="stash-expandable-table__row"><code>sq0atp- / sq0csp-</code><span>Square Access Token</span></div>
+              </div>
+            </Expandable>
+          </div>
+        </section>
+
+        <section className="section stash-cta">
+          <h2 className="section__title">Ready to stop leaking secrets?</h2>
+          <p className="section__subtitle">Free, open source, and built for people who ship.</p>
+          <div className="stash-cta__actions">
+            <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
+            <a href="https://github.com/InfamousVague/Stash" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
+          </div>
+        </section>
+      </div>
+    </AppPage>
   );
 }

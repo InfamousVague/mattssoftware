@@ -1,18 +1,65 @@
-/* Matt's Software — Global Styles */
+/* ============================================================
+ * Matt's Software — Global Styles (2026 rebrand)
+ *
+ * Vibe: macpaw.com / panic.com but with the playful-3D icon
+ * language we've built. Cream/peach background washes behind
+ * the heroes, dark base everywhere else, big display type in
+ * Cabinet Grotesk, a single saturated per-app accent gradient
+ * each page picks up via --app-from/--app-to.
+ * ============================================================ */
+
+/* Fonts: Cabinet Grotesk (display) from Fontshare, Inter (UI)
+   and JetBrains Mono (code) from Google Fonts. */
+@import url("https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
 
 :root {
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-  --font-mono: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+  /* ---- Type ---- */
+  --font-display: "Cabinet Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", "Cascadia Code", monospace;
+
+  /* ---- Surfaces ---- */
   --bg-primary: #0c0a12;
   --bg-secondary: #13111a;
   --bg-elevated: #1a1725;
-  --text-primary: rgba(255, 255, 255, 0.95);
-  --text-secondary: rgba(255, 255, 255, 0.65);
-  --text-tertiary: rgba(255, 255, 255, 0.4);
-  --accent: #8b5cf6;
-  --accent-text: #a78bfa;
-  --accent-subtle: rgba(139, 92, 246, 0.12);
-  --border: rgba(255, 255, 255, 0.06);
+  --bg-cream: #f6efe4;    /* warm shelf wash behind heroes */
+  --bg-cream-dim: #ebe2d2;
+
+  /* ---- Text ---- */
+  --text-primary: rgba(255, 255, 255, 0.96);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.46);
+  --text-on-cream: #1d1726;
+  --text-on-cream-dim: rgba(29, 23, 38, 0.62);
+
+  /* ---- Default accent — Espresso/mocha caramel (overridden per-app
+   *      on the .app-page root). Used for marketing-page links, the
+   *      Tip popover, ghost-button hover, etc. */
+  --accent: #e09060;
+  --accent-text: #ffb27a;
+  --accent-subtle: rgba(224, 144, 96, 0.14);
+
+  /* ---- Default per-app gradient (overridden by per-page CSS vars).
+   *      Espresso peach → caramel — matches the home palette and
+   *      the brand "warm" key colour. */
+  --app-from: #ffb27a;
+  --app-to: #e09060;
+  --app-glow: rgba(224, 144, 96, 0.32);
+
+  /* ---- Border ---- */
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  /* ---- Radii ---- */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-pill: 999px;
+
+  /* ---- Shadow tokens ---- */
+  --shadow-pop: 0 30px 90px -30px rgba(0, 0, 0, 0.55);
+  --shadow-card: 0 12px 40px -12px rgba(0, 0, 0, 0.45);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,91 +71,148 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
-  line-height: 1.5;
+  line-height: 1.55;
+  /* Soft ambient glow tied to the current per-app accent — barely
+     visible on dark, blooms when you navigate to a vibrant app. */
+  background-image:
+    radial-gradient(1200px 700px at 10% -10%, color-mix(in oklab, var(--app-from) 14%, transparent), transparent 60%),
+    radial-gradient(900px 600px at 110% 10%, color-mix(in oklab, var(--app-to) 12%, transparent), transparent 65%);
+  background-attachment: fixed;
 }
 
-a { color: var(--accent-text); text-decoration: none; }
+a { color: var(--accent-text); text-decoration: none; transition: color .15s ease; }
 a:hover { color: var(--accent); }
 
-/* Shared section layout */
+/* Headings use the display face — tight tracking like macpaw/panic */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================
+ * Layout helpers
+ * ============================================================ */
+
 .section {
-  padding: 80px 24px;
+  padding: 96px 24px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+.section--narrow { max-width: 880px; }
+
 .section__title {
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 800;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   letter-spacing: -0.5px;
 }
 
 .section__subtitle {
-  font-size: 17px;
+  font-size: 18px;
   text-align: center;
   color: var(--text-tertiary);
-  margin-bottom: 56px;
-  max-width: 550px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 56px;
+  max-width: 560px;
 }
 
-/* Shared button styles */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: color-mix(in oklab, var(--app-from) 18%, transparent);
+  border: 1px solid color-mix(in oklab, var(--app-to) 30%, transparent);
+  color: color-mix(in oklab, var(--app-from) 55%, white);
+}
+
+/* ============================================================
+ * Buttons — premium pill style with subtle inner highlight,
+ * primary uses the per-app gradient.
+ * ============================================================ */
+
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 28px;
-  border-radius: 12px;
+  padding: 13px 26px;
+  border-radius: var(--r-pill);
   font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 600;
-  border: none;
+  border: 0;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
   text-decoration: none;
+  white-space: nowrap;
 }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
 
 .btn--primary {
-  background: var(--accent);
   color: white;
+  background: linear-gradient(135deg, var(--app-from), var(--app-to));
+  box-shadow:
+    0 10px 24px -8px var(--app-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
-.btn--primary:hover { background: #9b6ff7; color: white; }
+.btn--primary:hover {
+  color: white;
+  box-shadow:
+    0 16px 36px -8px var(--app-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  filter: brightness(1.06);
+}
 
 .btn--ghost {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text-secondary);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
+  backdrop-filter: blur(10px);
 }
 .btn--ghost:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-primary); }
 
-/* Frosted card */
+.btn--lg { padding: 16px 32px; font-size: 16px; }
+.btn--sm { padding: 9px 18px; font-size: 13px; }
+
+/* ============================================================
+ * Card
+ * ============================================================ */
+
 .card {
   padding: 24px;
-  border-radius: 16px;
+  border-radius: var(--r-md);
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
-  transition: all 0.2s ease;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
 }
-.card:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); }
+.card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-strong);
+}
 
-/* Nav */
+/* ============================================================
+ * Nav (top fixed)
+ * ============================================================ */
+
 .nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 56px;
+  top: 0; left: 0; right: 0;
+  height: 60px;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
-  background: rgba(12, 10, 18, 0.7);
-  backdrop-filter: blur(20px);
+  padding: 0 28px;
+  background: rgba(12, 10, 18, 0.72);
+  backdrop-filter: blur(22px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -116,16 +220,18 @@ a:hover { color: var(--accent); }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 16px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
   color: var(--text-primary);
   text-decoration: none;
+  letter-spacing: -0.01em;
 }
 
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 
 .nav__link {
@@ -133,7 +239,7 @@ a:hover { color: var(--accent); }
   font-weight: 500;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: color .15s ease;
 }
 .nav__link:hover { color: var(--text-primary); }
 
@@ -149,20 +255,84 @@ a:hover { color: var(--accent); }
   border-radius: 5px;
 }
 
-/* Footer */
+.nav__app-icon--emoji {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* When there are many app links, let the row scroll on narrow viewports
+   rather than wrap into chaos. */
+@media (max-width: 1080px) {
+  .nav__links {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav__links::-webkit-scrollbar { display: none; }
+}
+
+/* ============================================================
+ * Footer — taller, with the sleeping-cat mascot.
+ * ============================================================ */
+
 .footer {
-  padding: 48px 24px;
-  text-align: center;
+  padding: 96px 24px 56px;
   border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
 }
 
-.footer__text {
-  font-size: 13px;
+.footer__mascot {
+  display: block;
+  margin: 0 auto 20px;
+  width: 132px;
+  height: auto;
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.55));
+  /* No bob — sleeping cat stays still on every page, consistent
+     with the home mascot. */
+}
+
+.footer__line {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.footer__sub {
+  font-size: 14px;
   color: var(--text-tertiary);
+  text-align: center;
+  margin-top: 8px;
 }
 
-/* Responsive */
+.footer__links {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 28px;
+  font-size: 13px;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* ============================================================
+ * Responsive
+ * ============================================================ */
+
 @media (max-width: 768px) {
-  .section { padding: 56px 16px; }
-  .section__title { font-size: 28px; }
+  .section { padding: 64px 16px; }
+  .section__title { font-size: 30px; }
+  .nav { padding: 0 16px; }
+  .nav__links { gap: 14px; }
 }

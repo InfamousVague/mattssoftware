@@ -1,9 +1,22 @@
-import { useEffect, useState } from "react";
-import { Download, ExternalLink } from "lucide-react";
+import { AppPage } from "../components/AppPage";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
-import "./AppPage.css";
 
-const FEATURES: FeatureSection[] = [
+const FEATURES = [
+  {
+    title: "Live 3D map of every connection",
+    body: "Every app's traffic plotted on a globe, arcs colored by service. 200 connections, 700+ real submarine cables, particles showing direction. The internet you've been ignoring, made visible.",
+  },
+  {
+    title: "Bouncer for your bandwidth",
+    body: "Every app needs permission, no exceptions. Strict mode blocks everything until you say otherwise. Per-app bandwidth bars expose the data hogs. One-click kill switch.",
+  },
+  {
+    title: "200k trackers blocked before they connect",
+    body: "DNS blocklists nuke ad and tracker domains on sight; real-time query log surfaces every lookup; tracker leaderboard names the worst offenders.",
+  },
+];
+
+const SHOWCASE: FeatureSection[] = [
   {
     badge: "Network Map",
     title: "200 connections. Zero of them asked permission.",
@@ -73,54 +86,21 @@ const FEATURES: FeatureSection[] = [
   },
 ];
 
-async function getBlipRelease() {
-  try {
-    const res = await fetch("https://api.github.com/repos/InfamousVague/Blip/releases/latest");
-    if (!res.ok) return { url: "https://github.com/InfamousVague/Blip/releases/latest", version: "" };
-    const data = await res.json();
-    const dmg = data.assets?.find((a: { name: string }) => a.name.endsWith(".dmg"));
-    return {
-      url: dmg?.browser_download_url || "https://github.com/InfamousVague/Blip/releases/latest",
-      version: data.tag_name || "",
-    };
-  } catch {
-    return { url: "https://github.com/InfamousVague/Blip/releases/latest", version: "" };
-  }
-}
-
 export function BlipPage() {
-  const [downloadUrl, setDownloadUrl] = useState("https://github.com/InfamousVague/Blip/releases/latest");
-  const [version, setVersion] = useState("");
-
-  useEffect(() => {
-    getBlipRelease().then(({ url, version }) => { setDownloadUrl(url); setVersion(version); });
-  }, []);
-
   return (
-    <div className="app-page">
-      <section className="app-page__hero">
-        <img src="/blip/app-icon.png" alt="Blip" className="app-page__icon" />
-        <h1 className="app-page__title">Blip</h1>
-        <p className="app-page__tagline">Your computer has been talking behind your back.</p>
-        <p className="app-page__desc">
-          See exactly where your data goes, who's collecting it, and shut them down — all on a very pretty 3D map.
-        </p>
-        <div className="app-page__actions">
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
-          <a href="https://github.com/InfamousVague/Blip" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
-        </div>
-        <span className="app-page__req">Free &amp; Open Source</span>
-      </section>
-
-      <FeatureShowcase features={FEATURES} />
-
-      <section className="section" style={{ textAlign: "center" }}>
-        <h2 className="section__title">Ready to find out what your apps have been up to?</h2>
-        <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32 }}>
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
-          <a href="https://github.com/InfamousVague/Blip" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
-        </div>
-      </section>
-    </div>
+    <AppPage
+      themeId="blip"
+      title="Blip"
+      tagline="See what's leaving."
+      description="See exactly where your data goes, who's collecting it, and shut them down — all on a very pretty 3D map."
+      heroImage="/blip/hero.png"
+      icon="/blip/app-icon.png"
+      requirements="Free & Open Source"
+      features={FEATURES}
+      featuresHeading="A map. A bouncer. A wall."
+      cta={{ kind: "github", repo: "Blip" }}
+    >
+      <FeatureShowcase features={SHOWCASE} />
+    </AppPage>
   );
 }

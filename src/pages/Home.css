@@ -1,145 +1,378 @@
-.home__hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 80px 24px 24px;
+/* ============================================================
+ * Home page (2026 rebrand) — playful hero strip on top, the
+ * launcher-replica grid in the middle, mascot strip at the
+ * bottom. The launcher grid keeps its existing .ms-* styling
+ * from launcher.css.
+ * ============================================================ */
+
+.home-root {
+  /* The home page picks up Espresso's warm caramel/peach gradient —
+     it matches the wooden-desk hero illustration's lighting and ties
+     the whole landing surface to a single warm key colour. */
+  --app-from: #ffb27a;
+  --app-to: #e09060;
+  --app-glow: rgba(224, 144, 96, 0.32);
 }
 
-.home__title {
-  font-size: 56px;
-  font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 16px;
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-text) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* ── Hero ───────────────────────────────────────────────── */
+
+.home-hero {
+  position: relative;
+  /* Extra padding-bottom so the cream pad's soft glow has room to
+     fade naturally. NO overflow:hidden — that was hard-clipping
+     the gradient halo under the pad. */
+  padding: 28px 24px 100px;
+  color: #15101e;
 }
 
-.home__logo-options {
-  display: flex;
-  flex-direction: column;
+.home-hero__bg {
+  position: absolute;
+  inset: 16px;
+  border-radius: 32px;
+  background:
+    radial-gradient(60% 60% at 30% 40%, rgba(255, 126, 179, 0.22), transparent 65%),
+    radial-gradient(60% 60% at 78% 60%, rgba(180, 140, 255, 0.22), transparent 65%),
+    linear-gradient(180deg, rgba(246, 239, 228, 0.96), rgba(235, 226, 210, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -60px 100px -60px rgba(0, 0, 0, 0.16),
+    0 60px 140px -60px rgba(180, 140, 255, 0.34);
+  z-index: -1;
+}
+
+.home-hero__inner {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
   align-items: center;
   gap: 48px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 32px 16px;
 }
 
-.home__logo-divider {
-  width: 40px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.home__subtitle {
-  font-size: 20px;
-  color: var(--text-tertiary);
-  max-width: 500px;
-  line-height: 1.5;
-}
-
-/* ─── Launcher CTA (top of downloads) ────────────────────────── */
-
-.home__cta {
+.home-hero__art {
   display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 24px 28px;
-  margin-bottom: 24px;
-  border-radius: 18px;
-  text-decoration: none;
-  color: inherit;
-  background: linear-gradient(
-    135deg,
-    rgba(134, 59, 255, 0.16) 0%,
-    rgba(134, 59, 255, 0.05) 100%
-  );
-  border: 1px solid rgba(134, 59, 255, 0.32);
-  transition:
-    transform 0.16s ease,
-    border-color 0.16s ease,
-    background 0.16s ease;
+  justify-content: center;
 }
 
-.home__cta:hover {
-  transform: translateY(-2px);
-  border-color: rgba(134, 59, 255, 0.55);
-  background: linear-gradient(
-    135deg,
-    rgba(134, 59, 255, 0.22) 0%,
-    rgba(134, 59, 255, 0.07) 100%
-  );
+/* Sized so the desk diorama is the dominant element. No bob. */
+.home-hero__img {
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  filter:
+    drop-shadow(0 50px 60px rgba(0, 0, 0, 0.16))
+    drop-shadow(0 80px 100px var(--app-glow));
 }
 
-.home__cta-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 16px;
-  flex-shrink: 0;
-  box-shadow: 0 8px 20px rgba(111, 40, 230, 0.35);
+.home-hero__text {
+  color: #15101e;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  /* No `* { color: inherit }` rule — that universal selector beat
+     per-element overrides via specificity and made the desc text
+     render almost-white on the cream pad. Each text element below
+     sets its own dark colour explicitly. */
 }
 
-.home__cta-text {
-  flex: 1;
-  min-width: 0;
-}
-
-.home__cta-eyebrow {
+.home-hero__eyebrow {
   display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent-text, #b58cff);
-  margin-bottom: 6px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: color-mix(in oklab, var(--app-from) 22%, white);
+  color: #5e3417;
+  border: 1px solid color-mix(in oklab, var(--app-to) 40%, white);
 }
 
-.home__cta-title {
-  font-size: 24px;
+.home-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 6vw, 76px);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: #15101e;
+  max-width: 560px;
+}
+
+.home-hero__sub {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #15101e;
+  max-width: 480px;
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.home-hero .btn--ghost {
+  background: rgba(29, 23, 38, 0.06);
+  color: var(--text-on-cream);
+  border-color: rgba(29, 23, 38, 0.14);
+}
+.home-hero .btn--ghost:hover {
+  background: rgba(29, 23, 38, 0.1);
+  color: var(--text-on-cream);
+}
+
+.home-hero__req {
+  font-size: 12px;
+  color: #4a3f5e;
+  margin-top: 4px;
+}
+
+/* ── Launcher-replica wrapper ───────────────────────────── */
+
+/* The launcher card sits on its own "shelf" — a warm halo
+   behind it so it reads as a physical device on a wooden surface
+   rather than a floating dark rectangle. The launcher itself
+   intentionally keeps its dark `.ms-*` styling (so it looks like
+   the real menu-bar launcher), but the surrounding wash is the
+   same Espresso family as the rest of the home. */
+.home-launcher-shell {
+  position: relative;
+  padding: 32px 24px 96px;
+  isolation: isolate;
+}
+
+.home-launcher-shell::before {
+  /* Warm halo + soft cream pad peeking out from behind the card.
+     Wider + shorter than the card so it reads as a shelf, not a
+     frame. */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: min(1320px, calc(100% - 16px));
+  height: calc(100% - 80px);
+  transform: translateX(-50%);
+  border-radius: 40px;
+  background:
+    radial-gradient(80% 60% at 50% 100%, color-mix(in oklab, var(--app-from) 22%, transparent), transparent 70%),
+    linear-gradient(180deg, rgba(246, 239, 228, 0.06), rgba(246, 239, 228, 0.02));
+  box-shadow:
+    0 80px 160px -60px var(--app-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.home-launcher {
+  scroll-margin-top: 24px;
+  /* Lift the launcher card off the shelf so it reads as a real
+     piece of hardware sitting on the warm surface. */
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow:
+    0 60px 120px -40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px var(--border-strong);
+}
+
+/* ── "How it works" ─────────────────────────────────────── */
+
+.home-how {
+  text-align: center;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Soft divider blob decoration that anchors the section between
+   the launcher-shelf and the mascot. The blob asset sits behind
+   the heading, way faded, so it just hints at "this is a new
+   chapter" without dominating. */
+.home-how::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 120px;
+  background-image: url("/_brand/divider-blob.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.45;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.home-how .eyebrow {
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, color-mix(in oklab, var(--app-from) 22%, transparent), color-mix(in oklab, var(--app-to) 22%, transparent));
+  color: color-mix(in oklab, var(--app-from) 55%, white);
+  border-color: color-mix(in oklab, var(--app-to) 35%, transparent);
+}
+
+.home-how__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 1080px;
+  margin: 56px auto 0;
+}
+
+.home-how__step {
+  position: relative;
+  text-align: left;
+  padding: 36px 28px 28px;
+  border-radius: 22px;
+  background:
+    radial-gradient(80% 80% at 0% 0%, color-mix(in oklab, var(--app-from) 16%, transparent) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  border: 1px solid var(--border-strong);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 18px 40px -22px rgba(0, 0, 0, 0.55);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  overflow: hidden;
+}
+.home-how__step:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in oklab, var(--app-to) 25%, var(--border-strong));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 28px 56px -22px var(--app-glow);
+}
+
+.home-how__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--app-from), var(--app-to));
+  color: white;
+  margin-bottom: 18px;
+  box-shadow:
+    0 8px 18px -6px var(--app-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.home-how__step h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
   font-weight: 800;
-  letter-spacing: -0.5px;
-  margin: 0 0 6px;
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.home-how__step p {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ── Mascot strip ───────────────────────────────────────── */
+
+.home-mascot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  padding: 96px 24px 56px;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Sparkle wash drifting behind the cat — fades out at the edges
+   so it doesn't compete with the next section's content. */
+.home-mascot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/_brand/sparkles.png");
+  background-size: 120% auto;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.home-mascot__img {
+  width: 180px;
+  height: auto;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.55));
+  /* The cat is asleep — no bob. Bobbing made him look like he was
+     bouncing, which fights the "passed out next to the speakers"
+     read we want here. The shelf-hero and per-app heroes still bob. */
+  margin-bottom: 4px;
+}
+
+.home-mascot__line {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  max-width: 720px;
+}
+
+.home-mascot__sub {
+  font-size: 16px;
+  color: var(--text-tertiary);
+  max-width: 540px;
+  line-height: 1.6;
+}
+
+.home-mascot__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 11px 22px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-strong);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background .2s ease;
+}
+.home-mascot__cta:hover {
+  background: rgba(255, 255, 255, 0.1);
   color: var(--text-primary);
 }
 
-.home__cta-sub {
-  font-size: 15px;
-  color: var(--text-tertiary);
-  line-height: 1.5;
-  margin: 0;
-  max-width: 520px;
-}
+/* ── Responsive ─────────────────────────────────────────── */
 
-.home__cta-btn {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 22px;
-  border-radius: 999px;
-  font-size: 15px;
-  font-weight: 600;
-  background: #863bff;
-  color: #ffffff;
-  white-space: nowrap;
-}
-
-.home__cta:hover .home__cta-btn {
-  background: #9a5cff;
-}
-
-.home__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-@media (max-width: 768px) {
-  .home__title { font-size: 36px; }
-  .home__subtitle { font-size: 16px; }
-  .home__grid { grid-template-columns: 1fr; }
-  .home__cta {
-    flex-direction: column;
+@media (max-width: 900px) {
+  .home-hero__inner {
+    grid-template-columns: 1fr;
     text-align: center;
-    gap: 16px;
+    gap: 28px;
+    padding: 32px 12px;
   }
-  .home__cta-sub { max-width: none; }
+  .home-hero__text { align-items: center; }
+  .home-hero__eyebrow { align-self: center; }
+  .home-hero__sub { margin-left: auto; margin-right: auto; }
+  .home-hero__actions { justify-content: center; }
+  .home-hero__img { max-width: 360px; }
+  .home-hero__bg { inset: 8px; border-radius: 24px; }
+  .home-launcher {
+    margin: 0 8px 48px;
+    border-radius: 20px;
+  }
 }

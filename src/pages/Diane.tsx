@@ -1,9 +1,22 @@
-import { useEffect, useState } from "react";
-import { Download, ExternalLink } from "lucide-react";
+import { AppPage } from "../components/AppPage";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
-import "./AppPage.css";
 
-const FEATURES: FeatureSection[] = [
+const FEATURES = [
+  {
+    title: "A skeuomorphic cassette recorder",
+    body: "A floating sidebar with a photorealistic recorder: animated reels, VU meters, and physical button controls. Press record and talk — global hotkeys let you record from any app.",
+  },
+  {
+    title: "Live transcription, on-device",
+    body: "Apple's SFSpeechRecognizer transcribes as you speak — no cloud, no API keys. Click any word in the transcript to jump to that moment in the recording.",
+  },
+  {
+    title: "A shoebox full of cassettes",
+    body: "Every recording is saved as a colored cassette tape with its audio and transcript. Scroll through your collection, load any one, play back anytime.",
+  },
+];
+
+const SHOWCASE: FeatureSection[] = [
   {
     badge: "Voice Recorder",
     title: "A skeuomorphic cassette recorder for your desktop",
@@ -45,54 +58,21 @@ const FEATURES: FeatureSection[] = [
   },
 ];
 
-async function getDianeRelease() {
-  try {
-    const res = await fetch("https://api.github.com/repos/InfamousVague/Diane/releases/latest");
-    if (!res.ok) return { url: "https://github.com/InfamousVague/Diane/releases/latest", version: "" };
-    const data = await res.json();
-    const dmg = data.assets?.find((a: { name: string }) => a.name.endsWith(".dmg"));
-    return {
-      url: dmg?.browser_download_url || "https://github.com/InfamousVague/Diane/releases/latest",
-      version: data.tag_name || "",
-    };
-  } catch {
-    return { url: "https://github.com/InfamousVague/Diane/releases/latest", version: "" };
-  }
-}
-
 export function DianePage() {
-  const [downloadUrl, setDownloadUrl] = useState("https://github.com/InfamousVague/Diane/releases/latest");
-  const [version, setVersion] = useState("");
-
-  useEffect(() => {
-    getDianeRelease().then(({ url, version }) => { setDownloadUrl(url); setVersion(version); });
-  }, []);
-
   return (
-    <div className="app-page">
-      <section className="app-page__hero">
-        <img src="/diane/app-icon.png" alt="Diane" className="app-page__icon" />
-        <h1 className="app-page__title">Diane</h1>
-        <p className="app-page__tagline">I'm holding in my hand a small tape recorder.</p>
-        <p className="app-page__desc">
-          A retro voice recorder with live speech-to-text transcription, inspired by Special Agent Dale Cooper's cassette tape memos.
-        </p>
-        <div className="app-page__actions">
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
-          <a href="https://github.com/InfamousVague/Diane" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
-        </div>
-        <span className="app-page__req">Free &amp; Open Source</span>
-      </section>
-
-      <FeatureShowcase features={FEATURES} />
-
-      <section className="section" style={{ textAlign: "center" }}>
-        <h2 className="section__title">Ready to start recording?</h2>
-        <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32 }}>
-          <a href={downloadUrl} className="btn btn--primary"><Download size={16} /> Download{version ? ` ${version}` : ""}</a>
-          <a href="https://github.com/InfamousVague/Diane" className="btn btn--ghost" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> View on GitHub</a>
-        </div>
-      </section>
-    </div>
+    <AppPage
+      themeId="diane"
+      title="Diane"
+      tagline="Press record. Talk."
+      description="A retro voice recorder with live speech-to-text transcription, a cassette-tape library, and dictation mode. Inspired by Special Agent Dale Cooper's tape memos."
+      heroImage="/diane/hero.png"
+      icon="/diane/app-icon.png"
+      requirements="Free & Open Source"
+      features={FEATURES}
+      featuresHeading="Press record. Talk. Walk."
+      cta={{ kind: "github", repo: "Diane" }}
+    >
+      <FeatureShowcase features={SHOWCASE} />
+    </AppPage>
   );
 }

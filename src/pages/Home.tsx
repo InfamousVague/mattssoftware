@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { Download, ArrowRight, ArrowDown } from "lucide-react";
 import { CATALOG, CATEGORIES, type CatalogApp } from "../data/catalog";
 import "../launcher.css";
+import "./Home.css";
 
 const LAUNCHER_RELEASE =
   "https://github.com/InfamousVague/MattsSoftware-Launcher/releases/latest";
@@ -11,17 +13,12 @@ interface ReleaseInfo {
   version: string;
 }
 
-/// Latest release .dmg for an InfamousVague repo (same lookup the
-/// launcher's backend does), with a graceful fallback to the
-/// releases page if the API is unavailable / rate-limited.
 async function getLatestRelease(repo: string): Promise<ReleaseInfo> {
   const fallback = {
     url: `https://github.com/InfamousVague/${repo}/releases/latest`,
     version: "",
   };
   try {
-    // Newest-first; first release that actually ships a .dmg wins, so a
-    // stray/assetless release (a tag with no CI build) can't break Download.
     const res = await fetch(
       `https://api.github.com/repos/InfamousVague/${repo}/releases?per_page=20`,
     );
@@ -50,24 +47,14 @@ function ActionButton({
 }) {
   if (app.channel === "appstore") {
     return (
-      <a
-        className="ms-btn ms-btn--primary"
-        href={app.url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a className="ms-btn ms-btn--primary" href={app.url} target="_blank" rel="noopener noreferrer">
         App Store
       </a>
     );
   }
   if (app.channel === "library") {
     return (
-      <a
-        className="ms-btn ms-btn--primary"
-        href={app.url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a className="ms-btn ms-btn--primary" href={app.url} target="_blank" rel="noopener noreferrer">
         Source
       </a>
     );
@@ -85,12 +72,7 @@ function ActionButton({
 function ViewButton({ app }: { app: CatalogApp }) {
   if (app.viewExternal) {
     return (
-      <a
-        className="ms-btn ms-btn--ghost"
-        href={app.view}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a className="ms-btn ms-btn--ghost" href={app.view} target="_blank" rel="noopener noreferrer">
         View
       </a>
     );
@@ -107,13 +89,20 @@ function ChannelChip({ app }: { app: CatalogApp }) {
     return <span className="ms-chip ms-chip--info">App Store</span>;
   if (app.channel === "library")
     return <span className="ms-chip">Library</span>;
-  return <span className="ms-chip">macOS</span>;
+  // GitHub-distributed apps: render the platform list. Apps that
+  // explicitly ship to macOS + Windows + Linux (Espresso, Libre)
+  // collapse to a friendly "Cross-platform" pill; everything else
+  // shows just "macOS".
+  const platforms = app.platforms ?? ["macOS"];
+  const label = platforms.length > 1 ? "Cross-platform" : platforms[0];
+  return <span className="ms-chip">{label}</span>;
 }
 
 export function Home() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("All");
   const [releases, setReleases] = useState<Record<string, ReleaseInfo>>({});
+  const [launcher, setLauncher] = useState<ReleaseInfo>({ url: LAUNCHER_RELEASE, version: "" });
 
   useEffect(() => {
     let alive = true;
@@ -124,9 +113,11 @@ export function Home() {
     ).then((pairs) => {
       if (alive) setReleases(Object.fromEntries(pairs));
     });
-    return () => {
-      alive = false;
-    };
+    // The launcher is a separate repo (MattsSoftware-Launcher).
+    getLatestRelease("MattsSoftware-Launcher").then((info) => {
+      if (alive) setLauncher(info);
+    });
+    return () => { alive = false; };
   }, []);
 
   const filtered = useMemo(() => {
@@ -144,105 +135,217 @@ export function Home() {
   }, [query, category]);
 
   return (
-    <div className="ms-app">
-      {/* Web-only: nudge visitors to the native launcher (the
-          launcher itself never shows this). */}
-      <div className="ms-webbar">
-        <img className="ms-webbar__icon" src="/launcher-icon.png" alt="" />
-        <span className="ms-webbar__text">
-          <b>Get everything in one app.</b> The MattsSoftware launcher
-          installs and auto-updates every app below.
-        </span>
-        <a
-          className="ms-webbar__cta"
-          href={LAUNCHER_RELEASE}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Download the launcher
-        </a>
-      </div>
-
-      <header className="ms-titlebar">
-        <div className="ms-brand">
-          <img
-            className="ms-brand__mark"
-            src="/brandmark.png"
-            alt="MattsSoftware"
-          />
-          <div className="ms-brand__text">
-            <span className="ms-brand__name">MattsSoftware</span>
-            <span className="ms-brand__sub">
-              Every app I've built, in one place
-            </span>
+    <div className="home-root">
+      {/* ============================================================
+       * Playful hero — cream shelf illustration on the left, big
+       * Cabinet-Grotesk headline on the right, two CTAs. This is
+       * the visual that says "this is a curated little shop of apps".
+       * ============================================================ */}
+      <section className="home-hero">
+        <div className="home-hero__bg" aria-hidden />
+        <div className="home-hero__inner">
+          <div className="home-hero__art">
+            <img
+              src="/_brand/home-hero-desk.png"
+              alt="A wooden desk diorama: brass lamp, sailboat, espresso cup, shield, brass safe, ECG card, butler bust, ribbon snake, and the MattsSoftware squircle in the back — a tiny model of every app on the site"
+              className="home-hero__img"
+            />
+          </div>
+          <div className="home-hero__text">
+            <span className="home-hero__eyebrow">Matt's Software</span>
+            <h1 className="home-hero__title">
+              Tiny apps that earn their keep.
+            </h1>
+            <p className="home-hero__sub">
+              A small, curated shop of {CATALOG.length}+ free macOS apps.
+              One launcher installs them all and keeps them up to date —
+              or grab any one on its own.
+            </p>
+            <div className="home-hero__actions">
+              <a className="btn btn--primary btn--lg" href={launcher.url}>
+                <Download size={16} />
+                Download the launcher{launcher.version ? ` ${launcher.version}` : ""}
+              </a>
+              <a className="btn btn--ghost btn--lg" href="#suite">
+                Browse the suite <ArrowDown size={16} />
+              </a>
+            </div>
+            <p className="home-hero__req">
+              macOS 14+  ·  Apple Silicon  ·  Free  ·  Developer ID signed
+            </p>
           </div>
         </div>
-        <div className="ms-titlebar__tools">
-          <input
-            className="ms-search-input"
-            type="search"
-            placeholder="Search apps…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            aria-label="Search apps"
-          />
-        </div>
-      </header>
+      </section>
 
-      <nav className="ms-filters" aria-label="Categories">
-        {["All", ...CATEGORIES].map((c) => (
-          <button
-            key={c}
-            type="button"
-            className={"ms-filter" + (category === c ? " ms-filter--active" : "")}
-            onClick={() => setCategory(c)}
-          >
-            {c}
-          </button>
-        ))}
-      </nav>
-
-      <main className="ms-main">
-        {filtered.length === 0 ? (
-          <div className="ms-empty">
-            <p>No apps match “{query}”.</p>
+      {/* ============================================================
+       * Launcher-replica strip — the real grid the launcher shows,
+       * here on the web so visitors can browse without installing
+       * anything. Anchored at #suite so the hero CTA scrolls here.
+       *
+       * Wrapped in `home-launcher-shell` so a warm cream "shelf"
+       * halo can sit BEHIND the dark launcher card (Home.css adds
+       * the shelf via the wrapper's ::before). The launcher card
+       * itself keeps its dark `.ms-*` look because that's the real
+       * menu-bar launcher's appearance.
+       * ============================================================ */}
+      <div className="home-launcher-shell">
+      <div id="suite" className="ms-app home-launcher">
+        <header className="ms-titlebar">
+          <div className="ms-brand">
+            <img
+              className="ms-brand__mark"
+              src="/brandmark.png"
+              alt="MattsSoftware"
+            />
+            <div className="ms-brand__text">
+              <span className="ms-brand__name">MattsSoftware</span>
+              <span className="ms-brand__sub">
+                Every app I've built, in one place
+              </span>
+            </div>
           </div>
-        ) : (
-          <div className="ms-grid">
-            {filtered.map((app) => (
-              <div className="ms-card-wrap" key={app.id}>
-                <div className="ms-card-outlined">
-                  <div className="ms-card">
-                    <img
-                      className="ms-card__icon"
-                      src={app.icon}
-                      alt=""
-                      draggable={false}
-                    />
-                    <div className="ms-card__body">
-                      <div className="ms-card__head">
-                        <h3 className="ms-card__name">{app.name}</h3>
-                        <ChannelChip app={app} />
-                      </div>
-                      <p className="ms-card__tagline">{app.tagline}</p>
-                      <div className="ms-card__foot">
-                        <span className="ms-card__cat">{app.category}</span>
-                        <span className="ms-card__actions">
-                          <ViewButton app={app} />
-                          <ActionButton
-                            app={app}
-                            release={releases[app.id]}
-                          />
-                        </span>
+          <div className="ms-titlebar__tools">
+            <input
+              className="ms-search-input"
+              type="search"
+              placeholder="Search apps…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              aria-label="Search apps"
+            />
+          </div>
+        </header>
+
+        <nav className="ms-filters" aria-label="Categories">
+          {["All", ...CATEGORIES].map((c) => (
+            <button
+              key={c}
+              type="button"
+              className={"ms-filter" + (category === c ? " ms-filter--active" : "")}
+              onClick={() => setCategory(c)}
+            >
+              {c}
+            </button>
+          ))}
+        </nav>
+
+        <main className="ms-main">
+          {filtered.length === 0 ? (
+            <div className="ms-empty">
+              {/* Empty state — the ribbon snake from 404 is reused
+                  here until a dedicated empty-shelf illustration
+                  lands (see REBRAND-ASSET-PROMPTS.md, Tier 1). */}
+              <img
+                src="/_brand/404-lost-snake.png"
+                alt=""
+                className="ms-empty__art"
+              />
+              <p className="ms-empty__line">
+                Nothing here matches <strong>"{query}"</strong>.
+              </p>
+              <p className="ms-empty__sub">
+                Try a different word, or clear the search to see everything.
+              </p>
+              <button
+                type="button"
+                className="ms-btn ms-btn--ghost"
+                onClick={() => {
+                  setQuery("");
+                  setCategory("All");
+                }}
+              >
+                Clear search
+              </button>
+            </div>
+          ) : (
+            <div className="ms-grid">
+              {filtered.map((app) => (
+                <div className="ms-card-wrap" key={app.id}>
+                  <div className="ms-card-outlined">
+                    <div className="ms-card">
+                      <img
+                        className="ms-card__icon"
+                        src={app.icon}
+                        alt=""
+                        draggable={false}
+                      />
+                      <div className="ms-card__body">
+                        <div className="ms-card__head">
+                          <h3 className="ms-card__name">{app.name}</h3>
+                          <ChannelChip app={app} />
+                        </div>
+                        <p className="ms-card__tagline">{app.tagline}</p>
+                        <div className="ms-card__foot">
+                          <span className="ms-card__cat">{app.category}</span>
+                          <span className="ms-card__actions">
+                            <ViewButton app={app} />
+                            <ActionButton
+                              app={app}
+                              release={releases[app.id]}
+                            />
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          )}
+        </main>
+      </div>
+      </div>
+
+      {/* ============================================================
+       * "How it works" — three-step reassurance under the grid.
+       * ============================================================ */}
+      <section className="section home-how">
+        <span className="eyebrow">How it works</span>
+        <h2 className="section__title">One launcher. {CATALOG.length} apps. No store account.</h2>
+        <div className="home-how__steps">
+          <div className="home-how__step">
+            <span className="home-how__num">1</span>
+            <h3>Install the launcher</h3>
+            <p>A 6 MB native macOS app. Signed, notarized, no telemetry. It's the host every other app folds into.</p>
           </div>
-        )}
-      </main>
+          <div className="home-how__step">
+            <span className="home-how__num">2</span>
+            <h3>Pick what you need</h3>
+            <p>Browse the suite, install only the ones you want. Each app is a separate signed .dmg from GitHub — no marketplace lock-in.</p>
+          </div>
+          <div className="home-how__step">
+            <span className="home-how__num">3</span>
+            <h3>One launcher, every app</h3>
+            <p>All your installed apps fold into the launcher, with auto-updates. Or run any of them standalone — your choice.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+       * Mascot strip — the cat naps next to a desk that has the
+       * music turned up. Copy reflects the actual personality: not
+       * a quiet artisan, an extrovert pounding keys to loud music.
+       * ============================================================ */}
+      <section className="home-mascot">
+        <img
+          src="/_brand/cat-mascot.png"
+          alt="A white iridescent cat curled around a blueprint and a coffee mug — somehow sleeping through the music"
+          className="home-mascot__img"
+        />
+        <h2 className="home-mascot__line">Built loud. Shipped fast. Always free.</h2>
+        <p className="home-mascot__sub">
+          A one person shop! Every app is open source, signed, notarized,
+          and free. No ads, no telemetry, no upsells.
+        </p>
+        <a
+          className="home-mascot__cta"
+          href="https://github.com/InfamousVague"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          See it all on GitHub <ArrowRight size={14} />
+        </a>
+      </section>
     </div>
   );
 }

@@ -27,6 +27,11 @@ export interface CatalogApp {
   icon: string;
   tags: string[];
   channel: Channel;
+  /// Platforms the app actually ships on. Drives the platform chip
+  /// shown on the launcher-replica home grid. Defaults to ["macOS"]
+  /// when omitted — set explicitly for cross-platform apps so the
+  /// chip can say "Cross-platform" instead of mis-labelling them.
+  platforms?: string[];
   /// Bare repo under github.com/InfamousVague (github channel only).
   githubRepo?: string;
   /// App Store / source URL (appstore + library channels).
@@ -59,8 +64,9 @@ export const CATALOG: readonly CatalogApp[] = [
       "Keep-awake utility that prevents your computer from sleeping. Timed sessions, mouse-jiggle simulation, lid-closed override, and a panic hotkey for instant deactivation.",
     category: "Utilities",
     icon: "/espresso/app-icon.png",
-    tags: ["Utility", "Menu Bar", "Productivity", "macOS"],
+    tags: ["Utility", "Menu Bar", "Productivity", "macOS", "Windows", "Linux"],
     channel: "github",
+    platforms: ["macOS", "Windows", "Linux"],
     githubRepo: "Espresso",
     view: "/vyv",
   },
@@ -166,8 +172,7 @@ export const CATALOG: readonly CatalogApp[] = [
     tags: ["Menu Bar", "Disk", "Developer Tools", "macOS"],
     channel: "github",
     githubRepo: "Alfred",
-    view: "https://github.com/InfamousVague/Alfred",
-    viewExternal: true,
+    view: "/alfred",
   },
   {
     id: "stats",
@@ -190,8 +195,9 @@ export const CATALOG: readonly CatalogApp[] = [
       "Drop in a PDF or EPUB and Libre generates lessons, exercises, and hidden tests. Sixteen languages with one editor, a local AI tutor on your laptop, streak fire that survives weekends, and seventeen themes.",
     category: "Learning",
     icon: "/libre/libre_icon.png",
-    tags: ["Learning", "Multi-language", "AI Tutor", "Local-first", "macOS"],
+    tags: ["Learning", "Multi-language", "AI Tutor", "Local-first", "macOS", "Windows", "Linux"],
     channel: "github",
+    platforms: ["macOS", "Windows", "Linux"],
     githubRepo: "Libre",
     view: "https://libre.academy",
     viewExternal: true,
@@ -221,19 +227,6 @@ export const CATALOG: readonly CatalogApp[] = [
     channel: "library",
     url: "https://github.com/InfamousVague",
     view: "/base",
-  },
-  {
-    id: "fetch",
-    name: "Fetch",
-    tagline: "A native torrent client for legal content.",
-    description:
-      "Menu-bar BitTorrent client (libtorrent) for legal media: Internet Archive, official Linux/BSD ISOs, Academic Torrents, public-domain/CC packs — plus your own Torznab/RSS sources. Add a magnet, import a .torrent, watch downloads & seeding.",
-    category: "Utilities",
-    icon: "/fetch/app-icon.png",
-    tags: ["Menu Bar", "Torrents", "Downloads", "macOS"],
-    channel: "github",
-    githubRepo: "Fetch",
-    view: "/fetch",
   },
 ];
 

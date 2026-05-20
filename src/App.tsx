@@ -6,12 +6,12 @@ import { Home } from "./pages/Home";
 import { BlipPage } from "./pages/Blip";
 import { VyvPage } from "./pages/Vyv";
 import { PortPage } from "./pages/Port";
-import { FetchPage } from "./pages/Fetch";
 import { SentryPage } from "./pages/Sentry";
 import { PeepholePage } from "./pages/Peephole";
 import { StickyKeysPage } from "./pages/StickyKeys";
 import { QuarantinePage } from "./pages/Quarantine";
 import { DianePage } from "./pages/Diane";
+import { AlfredPage } from "./pages/Alfred";
 import { BasePage } from "./pages/Base";
 import { StashPage } from "./pages/Stash";
 import { StatsPage } from "./pages/Stats";
@@ -19,6 +19,7 @@ import { TapPage } from "./pages/Tap";
 import { TapPrivacyPage } from "./pages/TapPrivacy";
 import { TapTermsPage } from "./pages/TapTerms";
 import { TapEulaPage } from "./pages/TapEula";
+import { NotFound } from "./pages/NotFound";
 import "./styles.css";
 
 /// Routes where the marketing chrome (Nav + Footer) should be hidden
@@ -71,12 +72,12 @@ export function App() {
           <Route path="/blip" element={<BlipPage />} />
           <Route path="/vyv" element={<VyvPage />} />
           <Route path="/port" element={<PortPage />} />
-          <Route path="/fetch" element={<FetchPage />} />
           <Route path="/sentry" element={<SentryPage />} />
           <Route path="/peephole" element={<PeepholePage />} />
           <Route path="/stickykeys" element={<StickyKeysPage />} />
           <Route path="/quarantine" element={<QuarantinePage />} />
           <Route path="/diane" element={<DianePage />} />
+          <Route path="/alfred" element={<AlfredPage />} />
           <Route path="/base" element={<BasePage />} />
           <Route path="/stash" element={<StashPage />} />
           <Route path="/stats" element={<StatsPage />} />
@@ -86,6 +87,8 @@ export function App() {
           <Route path="/tap/privacy" element={<TapPrivacyPage />} />
           <Route path="/tap/terms" element={<TapTermsPage />} />
           <Route path="/tap/eula" element={<TapEulaPage />} />
+          {/* Catch-all 404 — playful ribbon-snake illustration. */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </ChromeShell>
     </BrowserRouter>
