@@ -38,48 +38,28 @@ async function getLatestRelease(repo: string): Promise<ReleaseInfo> {
   }
 }
 
-function ActionButton({
-  app,
-  release,
-}: {
-  app: CatalogApp;
-  release?: ReleaseInfo;
-}) {
-  if (app.channel === "appstore") {
-    return (
-      <a className="ms-btn ms-btn--primary" href={app.url} target="_blank" rel="noopener noreferrer">
-        App Store
-      </a>
-    );
-  }
-  if (app.channel === "library") {
-    return (
-      <a className="ms-btn ms-btn--primary" href={app.url} target="_blank" rel="noopener noreferrer">
-        Source
-      </a>
-    );
-  }
-  const href =
-    release?.url ??
-    `https://github.com/InfamousVague/${app.githubRepo}/releases/latest`;
-  return (
-    <a className="ms-btn ms-btn--primary" href={href}>
-      Download{release?.version ? ` ${release.version}` : ""}
-    </a>
-  );
-}
-
-function ViewButton({ app }: { app: CatalogApp }) {
+/// Whole-card link. Each launcher grid card is wholly clickable — the
+/// in-card "View" / "Download" buttons used to live here but they
+/// crowded the icon and forced a hover-target choice. Now the entire
+/// card is the View target; standalone Download lives on each app's
+/// own marketing page. Routes internally for marketing pages, opens
+/// in a new tab for external destinations (like libre.academy).
+function CardLink({ app, children }: { app: CatalogApp; children: React.ReactNode }) {
   if (app.viewExternal) {
     return (
-      <a className="ms-btn ms-btn--ghost" href={app.view} target="_blank" rel="noopener noreferrer">
-        View
+      <a
+        href={app.view}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="ms-card-wrap"
+      >
+        {children}
       </a>
     );
   }
   return (
-    <Link className="ms-btn ms-btn--ghost" to={app.view}>
-      View
+    <Link to={app.view} className="ms-card-wrap">
+      {children}
     </Link>
   );
 }
@@ -101,19 +81,14 @@ function ChannelChip({ app }: { app: CatalogApp }) {
 export function Home() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("All");
-  const [releases, setReleases] = useState<Record<string, ReleaseInfo>>({});
   const [launcher, setLauncher] = useState<ReleaseInfo>({ url: LAUNCHER_RELEASE, version: "" });
 
   useEffect(() => {
     let alive = true;
-    Promise.all(
-      CATALOG.filter((a) => a.channel === "github" && a.githubRepo).map(
-        async (a) => [a.id, await getLatestRelease(a.githubRepo!)] as const,
-      ),
-    ).then((pairs) => {
-      if (alive) setReleases(Object.fromEntries(pairs));
-    });
-    // The launcher is a separate repo (MattsSoftware-Launcher).
+    // Just the launcher's release info — per-app release lookups were
+    // here for the now-removed in-card Download button; without that
+    // button there's no reason to hit the GitHub API 13 times on every
+    // home page visit.
     getLatestRelease("MattsSoftware-Launcher").then((info) => {
       if (alive) setLauncher(info);
     });
@@ -157,7 +132,7 @@ export function Home() {
               Tiny apps that earn their keep.
             </h1>
             <p className="home-hero__sub">
-              A small, curated shop of {CATALOG.length}+ free macOS apps.
+              A small, curated shop of {CATALOG.length}+ tiny, free apps.
               One launcher installs them all and keeps them up to date —
               or grab any one on its own.
             </p>
@@ -171,7 +146,11 @@ export function Home() {
               </a>
             </div>
             <p className="home-hero__req">
-              macOS 14+  ·  Apple Silicon  ·  Free  ·  Developer ID signed
+              {/* Honest about the current launcher target without
+                  committing the brand to macOS — once the launcher
+                  itself ships to Windows / Linux this line drops the
+                  qualifier. */}
+              Free  ·  Open source  ·  macOS today, more soon
             </p>
           </div>
         </div>
@@ -260,7 +239,7 @@ export function Home() {
           ) : (
             <div className="ms-grid">
               {filtered.map((app) => (
-                <div className="ms-card-wrap" key={app.id}>
+                <CardLink app={app} key={app.id}>
                   <div className="ms-card-outlined">
                     <div className="ms-card">
                       <img
@@ -275,20 +254,11 @@ export function Home() {
                           <ChannelChip app={app} />
                         </div>
                         <p className="ms-card__tagline">{app.tagline}</p>
-                        <div className="ms-card__foot">
-                          <span className="ms-card__cat">{app.category}</span>
-                          <span className="ms-card__actions">
-                            <ViewButton app={app} />
-                            <ActionButton
-                              app={app}
-                              release={releases[app.id]}
-                            />
-                          </span>
-                        </div>
+                        <span className="ms-card__cat">{app.category}</span>
                       </div>
                     </div>
                   </div>
-                </div>
+                </CardLink>
               ))}
             </div>
           )}
@@ -306,7 +276,7 @@ export function Home() {
           <div className="home-how__step">
             <span className="home-how__num">1</span>
             <h3>Install the launcher</h3>
-            <p>A 6 MB native macOS app. Signed, notarized, no telemetry. It's the host every other app folds into.</p>
+            <p>A tiny 6 MB native app. Signed, notarized, no telemetry. It's the host every other app folds into.</p>
           </div>
           <div className="home-how__step">
             <span className="home-how__num">2</span>

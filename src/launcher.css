@@ -254,10 +254,25 @@
 
 /* ─── App card ───────────────────────────────────────────────── */
 
+/* The wrap is now the clickable link (CardLink in Home.tsx). It
+   needs to be the focus/hover target, not the inner outlined div. */
 .ms-card-wrap {
   border-radius: var(--radius-lg);
   height: 100%;
   display: flex;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--transition-fast);
+}
+.ms-card-wrap:hover,
+.ms-card-wrap:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+.ms-card-wrap:hover .ms-card-outlined,
+.ms-card-wrap:focus-visible .ms-card-outlined {
+  border-color: var(--color-border-default, var(--color-accent));
+  box-shadow: var(--shadow-md, var(--shadow-sm));
 }
 
 .ms-card-outlined {
@@ -273,25 +288,26 @@
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.ms-card-outlined:hover {
-  border-color: var(--color-border-default, var(--color-accent));
-  box-shadow: var(--shadow-sm);
-}
-
 .ms-card {
   flex: 1;
   display: flex;
   gap: var(--sp-4);
   padding: var(--sp-4);
+  align-items: center;
 }
 
+/* Icons used to be 64px; bumped to 96px now that the card is whole-
+   card clickable and the foot row of buttons is gone. The icon is
+   the visual hero of each card. */
 .ms-card__icon {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-lg);
+  width: 96px;
+  height: 96px;
+  border-radius: 22px;
   flex-shrink: 0;
   object-fit: cover;
-  box-shadow: var(--shadow-sm);
+  box-shadow:
+    0 8px 20px -6px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .ms-card__body {
@@ -327,36 +343,21 @@
   overflow: hidden;
 }
 
-.ms-card__foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* Two action buttons (View + Download) can exceed a narrow card's
-     width — wrap the actions onto their own line instead of breaking
-     out of the card. */
-  flex-wrap: wrap;
-  gap: var(--sp-2);
-  row-gap: var(--sp-2);
-  margin-top: auto;
-  padding-top: var(--sp-3);
-}
+/* The in-card actions row was removed — each whole card is now a
+   single Link/anchor, and Download lives on the per-app marketing
+   page instead. Category caption sits on its own under the
+   tagline. */
 
 .ms-card__cat {
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 4px;
   font-size: var(--text-xs-size);
   color: var(--color-text-tertiary);
   font-weight: var(--weight-medium);
   white-space: nowrap;
-  flex: 0 1 auto;
-  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.ms-card__actions {
-  display: flex;
-  gap: var(--sp-2);
-  flex-shrink: 0;
-  margin-left: auto;
 }
 
 /* ─── Buttons (View / Download), token-styled like Base ──────── */

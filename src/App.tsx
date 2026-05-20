@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
+import { ScrollToTop } from "./components/ScrollToTop";
 import { Home } from "./pages/Home";
 import { BlipPage } from "./pages/Blip";
 import { VyvPage } from "./pages/Vyv";
@@ -66,6 +67,7 @@ function ChromeShell({ children }: { children: React.ReactNode }) {
 export function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <ChromeShell>
         <Routes>
           <Route path="/" element={<Home />} />

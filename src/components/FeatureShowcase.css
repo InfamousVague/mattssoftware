@@ -149,52 +149,57 @@
   filter: blur(20px);
 }
 
-/* The screenshot itself sits in a playful 3D-like frame:
-   chunky rounded corners, soft top-light, two-layer drop shadow,
-   subtle inner stroke. */
+/* The screenshot sits inside the playful-3D screen chrome
+   illustration (`screen.png`, our window-frame asset). The PNG
+   already has its own tilt, rounded corners, traffic-light dots,
+   and drop shadow baked in — so the CSS just provides positioning
+   for the screenshot inside the dark panel area.
+   The padding values match the chrome inset of `window-frame.png`:
+   ~12% top (for the title-bar with dots), ~6% sides, ~7% bottom. */
 .feature-hero__frame {
   position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #1a1725;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow:
-    0 30px 60px -20px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(0, 0, 0, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  display: inline-block;
-  max-width: 100%;
-  transform: rotate(-0.5deg);
-  transition: transform .25s ease;
-}
-.feature-hero:nth-child(even) .feature-hero__frame {
-  transform: rotate(0.5deg);
-}
-.feature-hero__frame:hover {
-  transform: rotate(0deg);
+  width: 100%;
+  max-width: 580px;
+  aspect-ratio: 4 / 2.4;
+  padding: 11% 6% 7% 5.5%;
+  background-image: url("/_brand/window-frame.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  /* Keep the PNG's own drop-shadow + tilt; no extra rotate. */
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.45));
+  box-sizing: border-box;
 }
 
 .feature-hero__frame img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 4px;
 }
 
-/* Placeholder used when an image is missing. Cream-toned so it
-   matches the surrounding pad even when there's no screenshot. */
+/* Placeholder used when an image is missing — same screen chrome
+   but with a "coming soon" message inside the dark panel area. */
 .feature-hero__placeholder {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(246, 239, 228, 0.5) 100%);
-  border: 1px dashed rgba(29, 23, 38, 0.18);
+  max-width: 580px;
+  aspect-ratio: 4 / 2.4;
+  padding: 11% 6% 7% 5.5%;
+  background-image: url("/_brand/window-frame.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.45));
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(29, 23, 38, 0.55);
-  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
   font-weight: 500;
   font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* The old `<div className="feature-divider" />` lines between

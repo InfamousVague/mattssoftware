@@ -20,10 +20,7 @@ export function QuarantinePage() {
     <AppPage
       themeId="quarantine"
       title="Quarantine"
-      // No dedicated hero illustration was generated — fall back to the
-      // playful-3D app icon (zoomed and centered) until a hero scene
-      // exists in /public/quarantine/hero.png.
-      heroImage="/quarantine/app-icon.png"
+      heroImage="/quarantine/hero.png"
       icon="/quarantine/app-icon.png"
       tagline="Vet every download."
       description="A menu-bar inspector for ~/Downloads. For every new file it surfaces the quarantine origin URL, Gatekeeper/codesign status, SHA-256, and an optional VirusTotal verdict — then notifies you so you can vet it before you open it."
