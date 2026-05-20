@@ -170,6 +170,19 @@ export const CATALOG: readonly CatalogApp[] = [
     viewExternal: true,
   },
   {
+    id: "stats",
+    name: "Stats",
+    tagline: "Every system signal at a glance — in your menu bar.",
+    description:
+      "A native menu-bar system monitor. Live CPU per-core, memory pressure, disk read/write, network up/down, and sensor readings — plus optional compact widgets that ride along in the status bar and history sparklines for every signal, so you can spot a spike without opening Activity Monitor.",
+    category: "Utilities",
+    icon: "/stats/app-icon.png",
+    tags: ["Menu Bar", "System Monitor", "Utility", "macOS"],
+    channel: "github",
+    githubRepo: "Stats",
+    view: "/stats",
+  },
+  {
     id: "fishbones",
     name: "Libre",
     tagline: "Turn any technical book into an interactive course.",

@@ -64,6 +64,10 @@ export function Nav() {
           <img src="/stash/app-icon.png" alt="" className="nav__app-icon" />
           Stash
         </Link>
+        <Link to="/stats" className="nav__link nav__link--app">
+          <img src="/stats/app-icon.png" alt="" className="nav__app-icon" />
+          Stats
+        </Link>
         <a href="https://github.com/InfamousVague" className="nav__link" target="_blank" rel="noopener noreferrer">GitHub</a>
         {/* Tip jar — same component as the Libre desktop app's */}
         {/* TipDropdown, ported as a shared web file. Sits at the */}
