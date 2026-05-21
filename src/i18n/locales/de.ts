@@ -134,6 +134,34 @@ export const de: Translation = {
           body: "Strg+Umschalt+Esc beendet alles sofort: Display wacht auf, Wackeln stoppt, Timer werden gelöscht. Override bei geschlossenem Deckel für Laptops. Lebenslange Statistiken verfolgen deine Gesamtbetriebszeit.",
         },
       ],
+      showcase: [
+        {
+          badge: "Wach bleiben",
+          title: "Dein Computer will schlafen. Espresso widerspricht.",
+          description:
+            "Ein kleiner Shot in deiner Menüleiste, der den Schlaftimer blockiert, das Display anlässt (oder nicht — du entscheidest) und die Maus subpixelweise bewegt, damit Inaktivitäts-Detektoren auf dem falschen Fuß bleiben.",
+          bullets: [
+            "Blockiert Systemschlaf, Bildschirmschlaf oder beides — pro Session",
+            "Subpixel-Mauswackeln täuscht Slack, Teams, Zoom",
+            "Override für geschlossenen Deckel hält alles am Laufen",
+            "Lifetime-Statistik zeigt, wie viel Schlaf du gestohlen hast",
+          ],
+          imageAlt: "3D-Espressotasse beschützt einen schläfrigen Laptop",
+        },
+        {
+          badge: "Auf der Uhr",
+          title: "Sessions auf Zeit, oder bis du aufgibst",
+          description:
+            "Wähle ein Preset (5 min, 30 min, 2 h, 8 h) oder unbegrenzt. Der globale Panik-Hotkey schaltet sofort alles aus — Display schläft, Wackeln stoppt, Timer wird abgebrochen.",
+          bullets: [
+            "Voreingestellte Timer von 5 Minuten bis 8 Stunden, plus unbegrenzt",
+            "Ctrl+Shift+Escape Panik global — alles aus, sofort",
+            "Countdown sichtbar in der Menüleiste",
+            "Auto-Ende bei Sperren oder Schließen des Deckels (konfigurierbar)",
+          ],
+          imageAlt: "3D-Sanduhr aus Chrom mit warmem orangem Sand und einem roten Panik-Knopf daneben",
+        },
+      ],
     },
 
     stickykeys: {
@@ -157,6 +185,34 @@ export const de: Translation = {
         {
           title: "Nur mit Maus entsperren, nie eingeschlossen",
           body: "Entsperre über die Overlay-Schaltfläche oder das Menüleisten-Symbol, und eine Sicherheits-Auto-Entsperrung greift egal was passiert, damit du nie steckenbleibst.",
+        },
+      ],
+      showcase: [
+        {
+          badge: "Verriegeln",
+          title: "Ein Klick, die Tastatur verstummt",
+          description:
+            "Ein systemweiter Keyboard-Tap verschluckt jede Taste, jeden Modifier, jede Media-Taste — damit ein Mikrofasertuch nicht versehentlich einen Shortcut auslöst, eine Mail versendet oder Logic mitten in der Aufnahme beendet. Ein mattes Overlay deckt jeden Monitor ab, damit klar ist: gesperrt.",
+          bullets: [
+            "System-Tastatur-Tap — jede Taste, jeder Modifier, jede Media-Taste",
+            "Matte Overlay über jeden Monitor mit Countdown",
+            "Maus bleibt aktiv, damit du nach dem Putzen entsperren kannst",
+            "Lebt in der Menüleiste — ein Klick rein, ein Klick raus",
+          ],
+          imageAlt: "3D-Tastatur unter einer matten Lavendel-Glaskuppel mit einem Vorhängeschloss",
+        },
+        {
+          badge: "Sicherer Ausgang",
+          title: "Du kannst nicht gefangen sein",
+          description:
+            "Eine Sicherheits-Auto-Entsperrung feuert komplett unabhängig — auch wenn das Overlay versagt, auch wenn die Menüleiste hängt. Die Entsperrfläche hört auf die Maus, die Menüleiste und einen harten Timer.",
+          bullets: [
+            "Auto-Unlock-Timer garantiert, dass du nie steckenbleibst",
+            "Drei unabhängige Entsperrpfade: Overlay, Menüleiste, Timer",
+            "Maximale Sperrdauer konfigurierbar (Standard: 1 min)",
+            "Paranoid entworfen — versagt offen, nie geschlossen",
+          ],
+          imageAlt: "3D-Drehknopf aus Chrom mit lavendelfarbenem Zeiger und einem schwebenden Schlüssel über einem offenen Schloss",
         },
       ],
     },
@@ -184,6 +240,34 @@ export const de: Translation = {
           body: "Der jüngste Verlauf wird für jedes Signal grafisch dargestellt, sodass ein Spike oder ein außer Kontrolle geratener Prozess offensichtlich ist, ohne die Aktivitätsanzeige durchwühlen zu müssen.",
         },
       ],
+      showcase: [
+        {
+          badge: "Alle Signale",
+          title: "Jede Anzeige deiner Maschine auf einen Blick",
+          description:
+            "CPU pro Kern, Memory-Pressure (mit dem Wired-/Komprimiert-/App-/Cache-Breakdown), Disk Read & Write, Netzwerk Up & Down, Sensorwerte — Stats liest jedes Signal, das macOS hergibt, und heftet sie alle an deine Menüleiste.",
+          bullets: [
+            "CPU-Auslastung pro Kern und Top-Prozessliste",
+            "Memory-Pressure mit vollem Residenz-Breakdown",
+            "Disk-I/O, Netzwerk-Durchsatz und Sensor-Temperaturen",
+            "Beliebige Auswahl als kompakte Menüleisten-Widgets anpinnen",
+          ],
+          imageAlt: "3D-Gruppe schwebender Chrom-und-Pink-Messgeräte und ein kleiner Chip-Sensor",
+        },
+        {
+          badge: "Rückblick",
+          title: "Sparklines, keine Tabellen",
+          description:
+            "Die jüngste History wird für jedes Signal grafisch dargestellt, sodass ein durchgedrehter Prozess oder ein Hitzespitze auf einen Blick erkennbar ist — ohne den Activity Monitor zu öffnen und auf eine Wiederholung zu warten.",
+          bullets: [
+            "Live-Sparkline-History für jedes Messgerät",
+            "Konfigurierbares History-Fenster — letzte Minute, Stunde oder Tag",
+            "Erkenne einen Spike nachträglich statt ihn live zu jagen",
+            "Tippe auf eine Sparkline, um den Top-Prozess in dem Moment zu sehen",
+          ],
+          imageAlt: "3D-glänzendes pinkes Sparkline-Band mit einer Chromkugel an der Spitze",
+        },
+      ],
     },
 
     port: {
@@ -209,6 +293,34 @@ export const de: Translation = {
           body: "Aktive Verbindungen auf einer Live-Karte aufgezeichnet, wohin sie wirklich gehen. Klicke einen beliebigen Endpunkt an, um ihn in Blip für eine tiefe Inspektion zu öffnen (oder hol dir Blip, wenn du es nicht hast).",
         },
       ],
+      showcase: [
+        {
+          badge: "Hafen",
+          title: "Jeder offene Port, einen Klick entfernt",
+          description:
+            "Ein lebendiges Menüleisten-Manifest jedes lauschenden TCP/UDP-Ports — der Prozess dahinter, die PID, das Protokoll. Töten, pausieren (SIGSTOP/SIGCONT), oder einfach im Auge behalten.",
+          bullets: [
+            "Aktualisiert sich jede Sekunde — was lauscht, jetzt gerade",
+            "Töte, pausiere oder setze den Prozess fort, ohne die Menüleiste zu verlassen",
+            "Bekannte-Ports-Bibliothek benennt gängige Dienste auf den ersten Blick",
+            "Benachrichtigt dich, sobald ein neuer Port aufgeht",
+          ],
+          imageAlt: "3D-Miniaturhafen mit Schlepper, Frachtkahn und Segelboot an einem kleinen Anleger",
+        },
+        {
+          badge: "Signal",
+          title: "Weiterleiten, freigeben oder den Router durchstoßen",
+          description:
+            "Der eingebaute TCP-Forwarder proxyt jeden lokalen Port auf einen anderen. Natives NAT-PMP mappt ihn automatisch durch deinen Router. Beobachte aktive Verbindungen auf einer Karte — klicke einen Endpoint, um ihn in Blip zu inspizieren.",
+          bullets: [
+            "TCP-Forwarder auf Network.framework gebaut — null Abhängigkeiten",
+            "Natives NAT-PMP (RFC 6886) Router-Mapping ohne Config",
+            "Gib einen Port mit einem Toggle in deinem LAN frei",
+            "Aktive Verbindungen auf einer Karte; per Klick an Blip übergeben",
+          ],
+          imageAlt: "3D-Miniaturleuchtturm, der ein kleines blaues Datenpaket mit seinem Strahl signalisiert",
+        },
+      ],
     },
 
     alfred: {
@@ -232,6 +344,34 @@ export const de: Translation = {
         {
           title: "Aus der Menüleiste",
           body: "Lebt als winzige Menüleisten-App. Scanne, wann immer du willst, schau, wie viel du zurückgewonnen hast, oder lass es als einmaliges Aufräumwerkzeug für die nächste SSD-Warnung liegen.",
+        },
+      ],
+      showcase: [
+        {
+          badge: "Zu Diensten",
+          title: "Vom Größten zum Kleinsten, höflich, unerbittlich",
+          description:
+            "Ein Diener in der Menüleiste, der genau weiß, welche Ordner sicher entbehrlich sind. node_modules, Cargo target/, Xcode DerivedData, Homebrew-Caches, Yarn-Caches — Alfred findet sie, wiegt sie und präsentiert sie auf einem silbernen Tablett.",
+          bullets: [
+            "Scannt jeden gängigen Dev-Cruft-Ordner deiner Projekte",
+            "Nach Größe sortiert, damit die Gewinne offensichtlich sind",
+            "Skip-Regeln pro Ordner, damit deine Lieblinge unangetastet bleiben",
+            "Lebt in der Menüleiste — scanne, wenn dir danach ist",
+          ],
+          imageAlt: "3D-Miniaturdiener mit grüner Schärpe präsentiert ein silbernes Tablett mit Dev-Cruft",
+        },
+        {
+          badge: "Sicher by Design",
+          title: "Hol die Gigabytes zurück, behalte den Code",
+          description:
+            "Alfred berührt nur regenerierbare Ordner — Caches, Build-Artefakte, Abhängigkeitsbäume — niemals deinen Quellcode. Alles wandert in den Papierkorb, also ist ein Fehler einen Klick vom Rückgängigmachen entfernt.",
+          bullets: [
+            "Berührt nur regenerierbare Ordner — Code ist immer sicher",
+            "Dateien gehen in den Papierkorb, nicht nach /dev/null",
+            "Ein Klick stellt alles wieder her, wenn du es dir anders überlegst",
+            "Laufende Summe zeigt, wie viel du zurückgewonnen hast",
+          ],
+          imageAlt: "3D-SSD mit grünem LED-Ring und kleinen Junk-Paketen, die wegschweben",
         },
       ],
     },
@@ -417,6 +557,34 @@ export const de: Translation = {
           body: "Werde im Moment alarmiert, in dem eine App beginnt, die Kamera oder das Mikrofon zu verwenden. Keine speziellen Berechtigungen, keine Kernel-Erweiterungen.",
         },
       ],
+      showcase: [
+        {
+          badge: "Augen & Ohren",
+          title: "Wisse den Moment, in dem dich etwas beobachtet",
+          description:
+            "Das Peephole-Glyph in der Menüleiste kippt in dem Moment, in dem Kamera oder Mikrofon aktiv werden. Tippe drauf und du siehst genau, welche App sie angeschaltet hat — und du entscheidest, ob das so sein sollte.",
+          bullets: [
+            "Live-Status für Kamera und Mikrofon, immer sichtbar",
+            "Glyph kippt in dem Moment, in dem der Zugriff beginnt oder endet",
+            "Tippe, um die verantwortliche App und ihr geöffnetes Gerät zu sehen",
+            "Keine speziellen Rechte, keine Kernel-Extensions — reiner Userspace",
+          ],
+          imageAlt: "3D-Chrom-Webcam mit leuchtendem mintgrünen Schlitz-Auge und einem Chrom-Mikrofon daneben",
+        },
+        {
+          badge: "Belege",
+          title: "Ein Log jedes Zugriffs, mit Benachrichtigung wenn's drauf ankommt",
+          description:
+            "Scrolle durch die Tagesaktivität von Kamera und Mikrofon — wer sie benutzt hat, wann, wie lange. Optionale Benachrichtigungen feuern in dem Moment, in dem der Zugriff beginnt, damit eine Überraschungs-Aktivierung nie unbemerkt bleibt.",
+          bullets: [
+            "Per-App-History mit Zeitstempeln und Dauer",
+            "Benachrichtigung bei jedem neuen Zugriff (Toggle pro Gerät)",
+            "Filtere nach App, Gerät oder Zeitfenster",
+            "History überlebt Neustarts — nichts entwischt",
+          ],
+          imageAlt: "3D-Chrom-Türspion-Scheibe mit leuchtender Mint-Iris und einem Stapel Verlaufskarten dahinter",
+        },
+      ],
     },
 
     quarantine: {
@@ -442,6 +610,34 @@ export const de: Translation = {
           body: "Füge einen API-Schlüssel hinzu und Quarantine zeigt ein Reputationsurteil inline an, damit du einen Download prüfen kannst, bevor du ihn überhaupt öffnest.",
         },
       ],
+      showcase: [
+        {
+          badge: "Isolierkammer",
+          title: "Jeder neue Download, isoliert bis du grünes Licht gibst",
+          description:
+            "In dem Moment, in dem eine Datei in ~/Downloads landet, holt Quarantine sie auf den Inspektionstisch. Du siehst genau, woher sie kommt — Agent, Quell-URL, Quarantäne-Attribut — bevor du irgendwo doppelt geklickt hast.",
+          bullets: [
+            "Beobachtet ~/Downloads in Echtzeit via FSEvents",
+            "Liest com.apple.quarantine: die App, die geladen hat, und die Quell-URL",
+            "Benachrichtigt dich bei jeder neuen Ankunft",
+            "Eine Zeile pro Datei — die ganze Warteschlange auf einen Blick",
+          ],
+          imageAlt: "3D-Glas-Isolierkapsel mit einem schwebenden Paket darin und genehmigten/abgelehnten Paketen drumherum",
+        },
+        {
+          badge: "Inspizieren",
+          title: "Signatur, Hash und ein Urteil",
+          description:
+            "Für jede Datei zeigt Quarantine die Gatekeeper-Bewertung, den Codesign-Status und den SHA-256. Wirf einen VirusTotal-API-Key rein und das Reputations-Urteil erscheint inline — prüfe, bevor du öffnest.",
+          bullets: [
+            "spctl-Bewertung + codesign --display in einer einzigen Zeile",
+            "SHA-256 bei der Ankunft berechnet — bereit zum Copy-Paste",
+            "Optionales VirusTotal-Urteil inline (BYO API Key)",
+            "Im Finder zeigen oder direkt aus dem Menü in den Papierkorb",
+          ],
+          imageAlt: "3D-Chrom-Lupe über einem cremefarbenen Ordner mit einem goldenen Siegel daneben",
+        },
+      ],
     },
 
     sentry: {
@@ -465,6 +661,34 @@ export const de: Translation = {
         {
           title: "Alarme bei Änderung, blockiere, was nicht da sein sollte",
           body: "Snapshot-Vergleich benachrichtigt dich in dem Moment, in dem ein neues Persistenzelement erscheint oder sich ändert. Inspiziere die plist oder das Skript, dann blockiere es — Sentry entlädt es und legt es als .sentry-disabled beiseite. Mit einem Klick reversibel.",
+        },
+      ],
+      showcase: [
+        {
+          badge: "Wachturm",
+          title: "Jede dunkle Ecke, beleuchtet",
+          description:
+            "LaunchAgents & Daemons, Login-Items, cron und Shell-rc-Dateien — Sentry hält eine Laterne über jeden Ort, an dem sich etwas leise einnisten könnte. Eine Menüleisten-Liste, signaturgeprüft, bereit zur Inspektion.",
+          bullets: [
+            "Listet jeden macOS-Persistenz-Vektor in einem Panel",
+            "Jedes Ziel klassifiziert als notarisiert / signiert / unsigniert via spctl + codesign",
+            "Öffne plist oder Script direkt aus der Zeile",
+            "Lebt in der Menüleiste — kein Fenster oben halten",
+          ],
+          imageAlt: "3D-Chromlaterne mit leuchtendem violettem Kristall und Auge-Anhängern",
+        },
+        {
+          badge: "Manifest",
+          title: "Bemerke den Moment, in dem etwas Neues auftaucht",
+          description:
+            "Sentry macht einen Snapshot deines Persistenz-Zustands und diff't ihn. In dem Moment, in dem ein neuer Agent, Login-Item oder rc-File-Change landet, wirst du benachrichtigt — mit einem Ein-Klick-Block, voll umkehrbar.",
+          bullets: [
+            "Snapshot-Diff fängt jedes neue oder veränderte Persistenz-Item",
+            "Blockieren entlädt das Item und legt es als .sentry-disabled beiseite",
+            "Mit einem Klick wiederherstellen — nichts Destruktives passiert deinem System",
+            "Benachrichtigung tippt dir vor dem nächsten Neustart auf die Schulter",
+          ],
+          imageAlt: "3D-Schriftrolle mit violetten Wachssiegeln auf einem Chrom-Pult, mit einer Chrom-Alarmglocke",
         },
       ],
     },

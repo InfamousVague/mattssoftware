@@ -133,6 +133,34 @@ export const pt: Translation = {
           body: "Ctrl+Shift+Esc encerra tudo na hora: tela acorda, mexida para, cronômetros cancelam. Sobrescrita com tampa fechada para notebooks. Estatísticas vitalícias rastreiam seu tempo ativo total.",
         },
       ],
+      showcase: [
+        {
+          badge: "Fique acordado",
+          title: "Seu computador quer dormir. Espresso discorda.",
+          description:
+            "Uma pequena dose montada na sua barra de menu que bloqueia o timer de suspensão, mantém a tela acesa (ou não — você decide) e mexe o mouse sub-pixel por sub-pixel para que os detectores de inatividade continuem enganados.",
+          bullets: [
+            "Bloqueia suspensão de sistema, de tela ou ambas — por sessão",
+            "Mexida sub-pixel do mouse engana Slack, Teams, Zoom",
+            "Override de tampa fechada mantém tudo rodando, laptop fechado",
+            "Estatísticas vitalícias — quanto sono você roubou",
+          ],
+          imageAlt: "Xícara de espresso 3D protegendo um laptop sonolento",
+        },
+        {
+          badge: "No relógio",
+          title: "Sessões cronometradas, ou até você desistir",
+          description:
+            "Escolha um preset (5 min, 30 min, 2 h, 8 h) ou rode indefinido. O atalho global de pânico desliga tudo na hora — a tela dorme, a mexida para, os timers cancelam.",
+          bullets: [
+            "Timers de 5 minutos a 8 horas, mais o modo indefinido",
+            "Ctrl+Shift+Escape pânico global — tudo desligado, instantaneamente",
+            "Contagem regressiva visível na barra de menu",
+            "Auto-fim ao bloquear ou fechar a tampa (configurável)",
+          ],
+          imageAlt: "Ampulheta cromada 3D com areia laranja quente e um botão de pânico vermelho ao lado",
+        },
+      ],
     },
 
     stickykeys: {
@@ -156,6 +184,34 @@ export const pt: Translation = {
         {
           title: "Destravar só com mouse, nunca preso",
           body: "Destrave pelo botão do overlay ou pelo ícone na barra de menus, e um destravamento automático de segurança dispara não importa o quê para você nunca ficar travado.",
+        },
+      ],
+      showcase: [
+        {
+          badge: "Trancar tudo",
+          title: "Um clique e o teclado se cala",
+          description:
+            "Uma captura de teclado no nível do sistema engole cada tecla, modificador e tecla de mídia — assim um pano de limpeza não dispara um atalho, envia um e-mail ou fecha o Logic no meio da gravação. Uma sobreposição fosca cobre cada monitor, deixando claro à primeira vista.",
+          bullets: [
+            "Captura de teclado do sistema — cada tecla, modificador, mídia",
+            "Sobreposição fosca em cada monitor com contagem regressiva visível",
+            "O mouse continua vivo para desbloquear quando você terminar",
+            "Vive na barra de menu — um clique para dentro, um para fora",
+          ],
+          imageAlt: "Teclado 3D sob um domo de vidro lavanda fosco com um cadeado",
+        },
+        {
+          badge: "Saída segura",
+          title: "Você não pode ficar preso",
+          description:
+            "Um desbloqueio de segurança dispara aconteça o que acontecer — mesmo se a sobreposição falhar, mesmo se a barra de menu travar. A superfície de desbloqueio escuta o mouse, a barra de menu e um timer duro.",
+          bullets: [
+            "Timer de auto-desbloqueio garante que você nunca fica preso",
+            "Três caminhos independentes de desbloqueio: sobreposição, barra, timer",
+            "Duração máxima de bloqueio configurável (1 min padrão)",
+            "Desenhado paranoico — falha aberto, nunca fechado",
+          ],
+          imageAlt: "Mostrador cromado 3D com ponteiro lavanda e uma chave flutuando sobre um cadeado aberto",
         },
       ],
     },
@@ -183,6 +239,34 @@ export const pt: Translation = {
           body: "O histórico recente é plotado para cada sinal, então um pico ou processo descontrolado é óbvio sem revirar o Monitor de Atividade.",
         },
       ],
+      showcase: [
+        {
+          badge: "Todos os sinais",
+          title: "Cada indicador da sua máquina, em uma olhada",
+          description:
+            "CPU por núcleo, pressão de memória (com a divisão wired / comprimida / app / cache), leitura e escrita de disco, rede subindo e descendo, leituras de sensores — Stats lê cada sinal que o macOS expõe e prende todos à sua barra de menu.",
+          bullets: [
+            "Uso de CPU por núcleo e lista de top processos",
+            "Pressão de memória com a divisão completa de residência",
+            "I/O de disco, throughput de rede e temperaturas de sensores",
+            "Fixe qualquer subconjunto como widgets compactos na barra",
+          ],
+          imageAlt: "Grupo 3D de indicadores cromados e rosados flutuantes e um pequeno sensor de chip",
+        },
+        {
+          badge: "Olhando para trás",
+          title: "Sparklines, não planilhas",
+          description:
+            "O histórico recente é graficado para cada sinal, então um processo descontrolado ou um pico térmico fica óbvio à primeira vista — sem precisar abrir o Monitor de Atividade e esperar repetir.",
+          bullets: [
+            "Histórico sparkline em tempo real para cada indicador",
+            "Janela de histórico configurável — último minuto, hora ou dia",
+            "Detecte um pico retroativamente em vez de caçá-lo ao vivo",
+            "Toque uma sparkline para ver o processo top daquele momento",
+          ],
+          imageAlt: "Fita sparkline 3D rosa brilhante com uma esfera cromada no topo",
+        },
+      ],
     },
 
     port: {
@@ -208,6 +292,34 @@ export const pt: Translation = {
           body: "Conexões ativas plotadas num mapa ao vivo por onde realmente vão. Clique em qualquer endpoint para abri-lo no Blip para inspeção profunda (ou pegue o Blip se não tiver).",
         },
       ],
+      showcase: [
+        {
+          badge: "Porto",
+          title: "Cada porta aberta, a um clique",
+          description:
+            "Um manifesto vivo na barra de menu de cada porta TCP/UDP escutando — o processo por trás, o PID, o protocolo. Mate, pause (SIGSTOP/SIGCONT), ou apenas observe.",
+          bullets: [
+            "Atualiza a cada segundo — o que está escutando, agora",
+            "Mate, pause ou retome o processo sem sair da barra de menu",
+            "A biblioteca de portas conhecidas nomeia serviços comuns na hora",
+            "Notifica no instante em que uma porta nova abre",
+          ],
+          imageAlt: "Porto 3D em miniatura com rebocador, barcaça e veleiro atracados num pequeno cais",
+        },
+        {
+          badge: "Sinal",
+          title: "Encaminhe, exponha ou atravesse o roteador",
+          description:
+            "O forwarder TCP embutido faz proxy de qualquer porta local para outra. NAT-PMP nativo mapeia automaticamente pelo seu roteador. Veja as conexões ativas num mapa — clique num endpoint para inspecioná-lo no Blip.",
+          bullets: [
+            "Forwarder TCP construído sobre Network.framework — zero dependências",
+            "Mapeamento NAT-PMP nativo (RFC 6886) sem configuração",
+            "Exponha uma porta na sua LAN com um único toggle",
+            "Conexões ativas plotadas no mapa; passe ao Blip com um clique",
+          ],
+          imageAlt: "Farol 3D em miniatura sinalizando um pequeno pacote de dados azul com seu feixe",
+        },
+      ],
     },
 
     alfred: {
@@ -231,6 +343,34 @@ export const pt: Translation = {
         {
           title: "Da barra de menus",
           body: "Vive como um pequeno app na barra de menus. Escaneie quando quiser, dê uma olhada em quanto recuperou ou deixe como uma ferramenta de limpeza pontual para o próximo alerta de SSD cheio.",
+        },
+      ],
+      showcase: [
+        {
+          badge: "Ao seu dispor",
+          title: "Do maior para o menor, educado, implacável",
+          description:
+            "Um mordomo na barra de menu que sabe exatamente quais pastas são seguras para liberar. node_modules, Cargo target/, Xcode DerivedData, caches do Homebrew, caches do Yarn — Alfred os encontra, pesa e apresenta numa bandeja de prata.",
+          bullets: [
+            "Escaneia cada pasta comum de lixo de dev nos seus projetos",
+            "Ordenado do maior para o menor para que as vitórias sejam óbvias",
+            "Regras de exclusão por pasta para que suas favoritas continuem",
+            "Vive na barra de menu — escaneie quando bem entender",
+          ],
+          imageAlt: "Mordomo 3D em miniatura com faixa verde apresentando uma bandeja de prata com lixo de dev",
+        },
+        {
+          badge: "Seguro por design",
+          title: "Recupere os gigabytes, mantenha o código",
+          description:
+            "Alfred só toca em pastas regeneráveis — caches, artefatos de build, árvores de dependência — nunca seu código fonte. Tudo vai para o Lixo, então um erro está a um clique de ser desfeito.",
+          bullets: [
+            "Toca apenas em pastas regeneráveis — o código está sempre seguro",
+            "Arquivos vão para o Lixo, não para /dev/null",
+            "Um clique restaura qualquer coisa que você mudar de ideia",
+            "Total acumulado mostra quanto você recuperou",
+          ],
+          imageAlt: "SSD 3D com um anel LED verde e pequenos pacotes de lixo se afastando",
         },
       ],
     },
@@ -416,6 +556,34 @@ export const pt: Translation = {
           body: "Receba um alerta no momento em que um app começa a usar a câmera ou o microfone. Sem permissões especiais, sem extensões de kernel.",
         },
       ],
+      showcase: [
+        {
+          badge: "Olhos & ouvidos",
+          title: "Saiba no segundo em que algo começa a observar",
+          description:
+            "O glifo do Peephole na barra de menu vira no instante em que a câmera ou o microfone esquentam. Toque nele e você vê exatamente qual app os ligou — e decide se aquilo deveria ter acontecido.",
+          bullets: [
+            "Status ao vivo de câmera e microfone, sempre visível",
+            "O glifo vira no instante em que o acesso começa ou termina",
+            "Toque para ver o app responsável e seu dispositivo aberto",
+            "Sem permissões especiais, sem extensões de kernel — puro userspace",
+          ],
+          imageAlt: "Webcam cromada 3D com olho-fenda turquesa brilhante e um microfone cromado ao lado",
+        },
+        {
+          badge: "Comprovantes",
+          title: "Um registro vivo de cada acesso, com notificação quando importa",
+          description:
+            "Volte pelo dia de atividade da câmera e do microfone — quem os usou, quando, por quanto tempo. Notificações opcionais disparam no instante em que o acesso começa, então uma ativação surpresa nunca passa despercebida.",
+          bullets: [
+            "Histórico por app com timestamps e duração",
+            "Notificação em cada novo acesso (toggle por dispositivo)",
+            "Filtre por app, dispositivo ou janela de tempo",
+            "O histórico persiste entre reinícios — nada escapa",
+          ],
+          imageAlt: "Disco de olho-mágico 3D cromado com uma íris turquesa brilhante e uma pilha de cartões de histórico atrás",
+        },
+      ],
     },
 
     quarantine: {
@@ -441,6 +609,34 @@ export const pt: Translation = {
           body: "Adicione uma chave de API e Quarantine mostra um veredito de reputação na linha, para você examinar um download antes mesmo de abrir.",
         },
       ],
+      showcase: [
+        {
+          badge: "Câmara de retenção",
+          title: "Cada novo download, isolado até você dar o aval",
+          description:
+            "No instante em que um arquivo aterrissa em ~/Downloads, o Quarantine o leva para a mesa de inspeção. Você vê exatamente de onde veio — agente, URL de origem, atributo de quarentena — antes de ter dado duplo clique em qualquer coisa.",
+          bullets: [
+            "Observa ~/Downloads em tempo real via FSEvents",
+            "Lê com.apple.quarantine: o app que baixou e a URL de origem",
+            "Notifica você a cada nova chegada",
+            "Uma linha por arquivo — a fila inteira em uma olhada",
+          ],
+          imageAlt: "Cápsula de isolamento de vidro 3D com um pacote suspenso dentro e pacotes aprovados/rejeitados em volta",
+        },
+        {
+          badge: "Inspecionar",
+          title: "Assinatura, hash e veredito",
+          description:
+            "Para cada arquivo, o Quarantine mostra a avaliação do Gatekeeper, o status do codesign e o SHA-256. Coloque uma chave de API do VirusTotal e o veredito de reputação aparece inline — confira antes de abrir.",
+          bullets: [
+            "Avaliação spctl + codesign --display em uma única linha",
+            "SHA-256 calculado na chegada — pronto para copiar e colar",
+            "Veredito VirusTotal opcional inline (BYO API key)",
+            "Revele no Finder ou jogue no Lixo direto pelo menu",
+          ],
+          imageAlt: "Lupa cromada 3D sobre uma pasta creme com um selo dourado ao lado",
+        },
+      ],
     },
 
     sentry: {
@@ -464,6 +660,34 @@ export const pt: Translation = {
         {
           title: "Alertas em mudança, bloqueie o que não devia estar lá",
           body: "Diff de snapshots notifica no instante em que um novo item de persistência aparece ou muda. Inspecione o plist ou script, depois bloqueie — Sentry descarrega e o coloca de lado como .sentry-disabled. Reversível em um clique.",
+        },
+      ],
+      showcase: [
+        {
+          badge: "Torre de vigia",
+          title: "Cada canto escuro, iluminado",
+          description:
+            "LaunchAgents & Daemons, itens de login, cron e arquivos de inicialização do shell — o Sentry mantém uma lanterna sobre cada lugar onde algo poderia silenciosamente se enraizar. Uma lista na barra de menu, com assinatura verificada, pronta para inspecionar.",
+          bullets: [
+            "Enumera cada vetor de persistência do macOS num único painel",
+            "Cada alvo classificado notarizado / assinado / sem assinatura via spctl + codesign",
+            "Abra o plist ou script direto da linha",
+            "Vive na barra de menu — sem janela para manter no topo",
+          ],
+          imageAlt: "Lanterna 3D cromada com um cristal violeta brilhante e amuletos de olho",
+        },
+        {
+          badge: "Manifesto",
+          title: "Note o instante em que algo novo aparece",
+          description:
+            "O Sentry tira um snapshot do seu estado de persistência e tira o diff. No instante em que um novo agente, item de login ou mudança de rc aterrissa, você é notificado — com um bloqueio de um clique, totalmente reversível.",
+          bullets: [
+            "O diff de snapshot captura cada item de persistência novo ou alterado",
+            "Bloquear descarrega o item e o deixa de lado como .sentry-disabled",
+            "Restaure com um clique — nada destrutivo acontece com seu sistema",
+            "A notificação dá um tapinha no seu ombro antes do próximo reinício",
+          ],
+          imageAlt: "Pergaminho 3D com selos de cera violetas sobre uma estante cromada, com um sino de alarme cromado",
         },
       ],
     },
