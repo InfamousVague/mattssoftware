@@ -1,0 +1,141 @@
+/* Globe-icon dropdown that lives in the nav row alongside Apps / Launcher
+   / GitHub / Tip. Mirrors `.nav__apps-trigger` visual contract so the
+   row stays cohesive — same padding, border, hover lift, focus ring. */
+
+.lang-selector {
+  position: relative;
+  display: inline-flex;
+}
+
+.lang-selector__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
+  font: 500 12px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", system-ui, sans-serif;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+.lang-selector__trigger:hover,
+.lang-selector__trigger:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  outline: none;
+}
+
+.lang-selector__trigger--open {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.lang-selector__code {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.lang-selector__chev {
+  transition: transform 160ms ease;
+  opacity: 0.7;
+}
+
+.lang-selector__trigger--open .lang-selector__chev {
+  transform: rotate(180deg);
+}
+
+.lang-selector__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  padding: 6px;
+  background: rgba(15, 15, 20, 0.96);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lang-selector__item {
+  display: grid;
+  grid-template-columns: 36px 1fr 18px;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  font: 500 13px/1.2 -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", system-ui, sans-serif;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.lang-selector__item:hover,
+.lang-selector__item:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  outline: none;
+}
+
+.lang-selector__item--active {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.lang-selector__item-code {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+}
+
+.lang-selector__item--active .lang-selector__item-code {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.lang-selector__item-name {
+  font-weight: 500;
+}
+
+.lang-selector__item-check {
+  justify-self: end;
+  opacity: 0.85;
+}
+
+/* When the nav stacks on narrow screens, hide the menu's name column to
+   keep the popover tight. */
+@media (max-width: 480px) {
+  .lang-selector__menu {
+    min-width: 160px;
+  }
+  .lang-selector__item {
+    grid-template-columns: 32px 1fr 18px;
+    font-size: 12px;
+  }
+}

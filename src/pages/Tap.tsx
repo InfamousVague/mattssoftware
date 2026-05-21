@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { Shield, Wifi, Terminal, Watch, Smartphone, Server, Lock, ChevronDown, ExternalLink, Monitor } from "lucide-react";
+import {
+  Shield,
+  Wifi,
+  Terminal,
+  Watch,
+  Smartphone,
+  Server,
+  Lock,
+  ChevronDown,
+  ExternalLink,
+  Monitor,
+} from "lucide-react";
 import { AppPage } from "../components/AppPage";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
 import {
@@ -11,85 +22,69 @@ import {
   MacMenuBar,
   WatchSiri,
 } from "../components/WatchMockup";
+import { useLanguage } from "../i18n/context";
 import "./Tap.css";
 
-// ── Hero-grid features (the 3 cards beneath the playful hero) ──
-
-const HERO_FEATURES = [
-  {
-    title: "A real watch app, not a notification shim",
-    body: "Native watchOS server list with live status dots, pinned commands via the Action Button, confirmation for dangerous commands, and Digital-Crown-scrollable output. Cellular-ready — no phone required.",
-  },
-  {
-    title: "Companion + Mac, in lockstep",
-    body: "Full iPhone, iPad, and Mac Catalyst apps. Add servers, configure commands and command suites, view history, manage SSH keys. Everything syncs to the watch in real time.",
-  },
-  {
-    title: "Suites, alerts, Siri, complications",
-    body: "Bundle commands into one-tap suites. 30-second health pings and APNs alerts when something dies. Five watch-face complications. \"Hey Siri, Tap restart prod-api.\"",
-  },
+// Watch mockups are rendered in the same order as the translation's
+// `showcase` array — keep these in sync if reordering.
+const SHOWCASE_VISUALS = [
+  <WatchServerList />,
+  <PhoneDashboard />,
+  <WatchSuiteProgress />,
+  <WatchAlert />,
+  <WatchComplications />,
+  <MacMenuBar />,
+  <WatchSiri />,
 ];
 
-// ── The deep-dive feature showcase preserved from the old page ──
+// Templates — the bullet lists stay as English commands ("Check disk",
+// "Restart container", etc.) since they're literal SSH command names
+// users would type. Only category labels are translated.
+const TEMPLATE_LISTS = {
+  system: ["Check disk", "Check memory", "CPU load", "Top processes", "Uptime"],
+  docker: ["List containers", "Restart container", "Container logs", "Docker stats"],
+  systemd: ["Restart service", "Service status", "View logs", "Stop service"],
+  deploy: ["Git pull", "PM2 restart", "PM2 status", "Current commit"],
+  nginx: ["Test config", "Reload", "Access log", "Error log"],
+  network: ["Port check", "Connection count", "DNS lookup"],
+};
 
-const FEATURES: FeatureSection[] = [
-  { badge: "Watch App", title: "Restart prod from your wrist.", description: "Native watchOS app with server list, command execution, and haptic feedback. Tap a command, confirm, done. Real output scrollable with the Digital Crown. Works over cellular — no phone needed.", bullets: ["Server list with live status dots (green/red)", "Pinned commands for quick access via Action Button", "Confirmation view for dangerous commands", "Truncated output, scrollable with Digital Crown"], imageAlt: "Tap watch app showing server commands", renderVisual: <WatchServerList /> },
-  { badge: "Companion", title: "Configure everything from your phone.", description: "Full management app for iPhone, iPad, and Mac Catalyst. Add servers, configure commands, manage SSH keys, view history, and set up command suites. Everything syncs to your watch instantly.", bullets: ["Dashboard with server health grid and activity feed", "Visual command editor with template library", "Full interactive SSH terminal via WebView", "Generates QR code for instant watch pairing"], imageAlt: "Tap companion app dashboard", renderVisual: <PhoneDashboard /> },
-  { badge: "Suites", title: "Run 5 commands with one tap.", description: "Group related commands into suites for one-tap deployment workflows. Each step shows pass/fail in real time. Configure whether to continue on failure or stop immediately.", bullets: ["Ordered step execution with progress tracking", "Per-step continue-on-fail toggle", "Suite progress streamed via WebSocket", "Perfect for deploy sequences and health check routines"], imageAlt: "Tap suite execution progress on watch", renderVisual: <WatchSuiteProgress /> },
-  { badge: "Alerts", title: "Know before your users do.", description: "Background health pings every 30 seconds. When a server goes down, you get an immediate push notification on your watch and phone. Per-server toggle so you only get alerts for what matters.", bullets: ["30-second health ping loop with latency tracking", "APNs push to watch + phone on status change", "Per-server notification toggle", "Haptic alert pattern on Apple Watch"], imageAlt: "Tap server down notification on watch", renderVisual: <WatchAlert /> },
-  { badge: "Complications", title: "Glanceable server health on your watch face.", description: "Five configurable complications that show live server metrics right on your watch face. Pick which server and metric to display. Data syncs automatically from the app.", bullets: ["Server Status: fleet-wide up/down count", "Fleet Metrics: disk, memory, or CPU per server", "Docker: running container counts", "Uptime: per-server uptime display", "Quick Commands: pinned commands at a glance"], imageAlt: "Tap watch complications showing server metrics", renderVisual: <WatchComplications /> },
-  { badge: "macOS", title: "Full control from your menu bar.", description: "Native macOS app for quick server access. Monitor your fleet, execute commands, and manage configurations without opening a browser. Sign in with Apple for seamless setup.", bullets: ["Menu bar presence for instant access", "Full command execution with output display", "Server configuration import from JSON", "Apple Sign-In authentication"], imageAlt: "Tap macOS app showing server dashboard", renderVisual: <MacMenuBar /> },
-  { badge: "Siri", title: '"Hey Siri, Tap restart prod-api."', description: "Full App Intents integration. Run any command by voice. Check server status hands-free. Siri confirms the action and reports the result. Works from watch, phone, or CarPlay.", bullets: ["Natural language: 'Tap restart nginx on prod'", "Server status check: 'Check my servers on Tap'", "Confirmation dialog before execution", "Result reported via voice response"], imageAlt: "Siri running a Tap command", renderVisual: <WatchSiri /> },
-];
-
-const STATS = [
-  { value: "< 3s", label: "Time to run" },
-  { value: "Cellular", label: "No phone needed" },
-  { value: "AES-256", label: "Key encryption" },
-  { value: "MIT", label: "Open source" },
-];
-
-const TEMPLATE_CATEGORIES = [
-  { name: "System", templates: ["Check disk", "Check memory", "CPU load", "Top processes", "Uptime"] },
-  { name: "Docker", templates: ["List containers", "Restart container", "Container logs", "Docker stats"] },
-  { name: "Systemd", templates: ["Restart service", "Service status", "View logs", "Stop service"] },
-  { name: "Deploy", templates: ["Git pull", "PM2 restart", "PM2 status", "Current commit"] },
-  { name: "Nginx", templates: ["Test config", "Reload", "Access log", "Error log"] },
-  { name: "Network", templates: ["Port check", "Connection count", "DNS lookup"] },
-];
-
-const USE_CASES = [
-  { emoji: "🐕", text: "Restart a crashed service from the dog park" },
-  { emoji: "📊", text: "Run a health check during a meeting" },
-  { emoji: "🏋️", text: "Deploy from the gym" },
-  { emoji: "🛏️", text: "Check disk space from bed" },
-  { emoji: "🚗", text: "Check server status from the car (Siri)" },
-  { emoji: "✈️", text: "Queue commands before takeoff, execute on landing" },
-];
+const USE_CASE_EMOJI = ["🐕", "📊", "🏋️", "🛏️", "🚗", "✈️"];
 
 export function TapPage() {
+  const { t } = useLanguage();
+  const a = t.apps.tap;
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  const showcase: FeatureSection[] = a.showcase!.map((s, i) => ({
+    badge: s.badge,
+    title: s.title,
+    description: s.description,
+    bullets: s.bullets,
+    imageAlt: s.imageAlt,
+    renderVisual: SHOWCASE_VISUALS[i],
+  }));
 
   return (
     <AppPage
       themeId="tap"
       title="Tap"
-      tagline="Servers on your wrist."
-      description="Run pre-configured SSH commands on remote servers from your Apple Watch. Tap, confirm, done. Works over cellular, supports Siri, encrypts everything end-to-end."
+      tagline={a.tagline}
+      description={a.description}
       heroImage="/tap/hero.png"
       icon="/tap/icon.png"
-      requirements="watchOS  ·  iOS  ·  iPadOS  ·  macOS  ·  Free & Open Source"
-      features={HERO_FEATURES}
-      featuresHeading="A remote control for your servers — on your wrist."
+      requirements={a.requirements}
+      features={a.features}
+      featuresHeading={a.featuresHeading}
       cta={{
         kind: "appstore",
         url: "https://apps.apple.com/app/tap-command-runner/id6762214314",
-        label: "App Store",
+        label: t.channels.appstore,
       }}
     >
       <div className="tap-extra">
         <section className="tap-stats">
-          {STATS.map(stat => (
+          {a.stats.map((stat) => (
             <div key={stat.label} className="tap-stats__item">
               <span className="tap-stats__value">{stat.value}</span>
               <span className="tap-stats__label">{stat.label}</span>
@@ -98,92 +93,176 @@ export function TapPage() {
         </section>
 
         <section id="features">
-          <FeatureShowcase features={FEATURES} />
+          <FeatureShowcase features={showcase} />
         </section>
 
         <section className="tap-demo">
-          <h2>Three seconds. That's it.</h2>
-          <p className="tap-demo__subtitle">From wrist to server and back.</p>
+          <h2>{a.threeSecondsHeading}</h2>
+          <p className="tap-demo__subtitle">{a.threeSecondsSub}</p>
           <div className="tap-demo__flow">
-            <div className="tap-demo__step"><div className="tap-demo__step-icon">👆</div><span>Tap</span></div>
+            <div className="tap-demo__step">
+              <div className="tap-demo__step-icon">👆</div>
+              <span>{a.stepTap}</span>
+            </div>
             <div className="tap-demo__arrow">→</div>
-            <div className="tap-demo__step"><div className="tap-demo__step-icon">✓</div><span>Confirm</span></div>
+            <div className="tap-demo__step">
+              <div className="tap-demo__step-icon">✓</div>
+              <span>{a.stepConfirm}</span>
+            </div>
             <div className="tap-demo__arrow">→</div>
-            <div className="tap-demo__step"><div className="tap-demo__step-icon">⚡</div><span>Done</span></div>
+            <div className="tap-demo__step">
+              <div className="tap-demo__step-icon">⚡</div>
+              <span>{a.stepDone}</span>
+            </div>
           </div>
         </section>
 
         <section className="tap-arch">
-          <h2>Architecture</h2>
+          <h2>{a.archHeading}</h2>
           <div className="tap-arch__diagram">
-            <div className="tap-arch__node tap-arch__node--watch"><Watch size={24} /><span>Watch</span></div>
-            <div className="tap-arch__connector"><span>HTTPS/TLS 1.3</span></div>
-            <div className="tap-arch__node tap-arch__node--relay"><Server size={24} /><span>Relay</span></div>
-            <div className="tap-arch__connector"><span>SSH</span></div>
-            <div className="tap-arch__node tap-arch__node--server"><Terminal size={24} /><span>Your Servers</span></div>
+            <div className="tap-arch__node tap-arch__node--watch">
+              <Watch size={24} />
+              <span>{a.archWatch}</span>
+            </div>
+            <div className="tap-arch__connector">
+              <span>HTTPS/TLS 1.3</span>
+            </div>
+            <div className="tap-arch__node tap-arch__node--relay">
+              <Server size={24} />
+              <span>{a.archRelay}</span>
+            </div>
+            <div className="tap-arch__connector">
+              <span>SSH</span>
+            </div>
+            <div className="tap-arch__node tap-arch__node--server">
+              <Terminal size={24} />
+              <span>{a.archServers}</span>
+            </div>
           </div>
           <div className="tap-arch__also">
-            <div className="tap-arch__node tap-arch__node--companion"><Smartphone size={24} /><span>Companion</span></div>
-            <div className="tap-arch__connector"><span>HTTPS/TLS 1.3</span></div>
-            <div className="tap-arch__node tap-arch__node--relay"><Server size={24} /><span>Relay</span></div>
-            <div className="tap-arch__connector"><span>HTTPS/TLS 1.3</span></div>
-            <div className="tap-arch__node tap-arch__node--mac"><Monitor size={24} /><span>macOS</span></div>
+            <div className="tap-arch__node tap-arch__node--companion">
+              <Smartphone size={24} />
+              <span>{a.archCompanion}</span>
+            </div>
+            <div className="tap-arch__connector">
+              <span>HTTPS/TLS 1.3</span>
+            </div>
+            <div className="tap-arch__node tap-arch__node--relay">
+              <Server size={24} />
+              <span>{a.archRelay}</span>
+            </div>
+            <div className="tap-arch__connector">
+              <span>HTTPS/TLS 1.3</span>
+            </div>
+            <div className="tap-arch__node tap-arch__node--mac">
+              <Monitor size={24} />
+              <span>{a.archMac}</span>
+            </div>
           </div>
         </section>
 
         <section className="tap-security">
-          <h2>Security Model</h2>
+          <h2>{a.securityHeading}</h2>
           <div className="tap-security__grid">
-            <div className="tap-security__card"><Lock size={20} /><h3>Keys at Rest</h3><p>SSH keys encrypted with AES-256-GCM. Master passphrase derived via Argon2id. Keys only exist decrypted in memory while the relay runs.</p></div>
-            <div className="tap-security__card"><Shield size={20} /><h3>Token Auth</h3><p>Per-device Bearer tokens, Argon2 hashed. Optional TOTP 2FA for destructive operations. Tokens are revocable instantly.</p></div>
-            <div className="tap-security__card"><Wifi size={20} /><h3>TLS Everywhere</h3><p>Built-in Let's Encrypt auto-renewal. All traffic encrypted in transit. Certificate pinning option for self-hosted relays.</p></div>
-            <div className="tap-security__card"><Watch size={20} /><h3>Watch Security</h3><p>Token stored in hardware-encrypted Watch Keychain. Wrist detection auto-locks. No sensitive data cached on device.</p></div>
+            <div className="tap-security__card">
+              <Lock size={20} />
+              <h3>{a.securityCards[0].title}</h3>
+              <p>{a.securityCards[0].body}</p>
+            </div>
+            <div className="tap-security__card">
+              <Shield size={20} />
+              <h3>{a.securityCards[1].title}</h3>
+              <p>{a.securityCards[1].body}</p>
+            </div>
+            <div className="tap-security__card">
+              <Wifi size={20} />
+              <h3>{a.securityCards[2].title}</h3>
+              <p>{a.securityCards[2].body}</p>
+            </div>
+            <div className="tap-security__card">
+              <Watch size={20} />
+              <h3>{a.securityCards[3].title}</h3>
+              <p>{a.securityCards[3].body}</p>
+            </div>
           </div>
         </section>
 
         <section className="tap-templates">
-          <h2>27 Built-in Templates</h2>
-          <p className="tap-templates__subtitle">Common commands pre-configured. Pick a template, fill in the blanks, done.</p>
+          <h2>{a.templatesHeading}</h2>
+          <p className="tap-templates__subtitle">{a.templatesSub}</p>
           <div className="tap-templates__grid">
-            {TEMPLATE_CATEGORIES.map(cat => (
-              <div key={cat.name} className="tap-templates__category">
-                <h4>{cat.name}</h4>
-                <ul>{cat.templates.map(t => <li key={t}>{t}</li>)}</ul>
-              </div>
-            ))}
+            {(Object.keys(TEMPLATE_LISTS) as Array<keyof typeof TEMPLATE_LISTS>).map(
+              (cat) => (
+                <div key={cat} className="tap-templates__category">
+                  <h4>{a.templateCategories[cat]}</h4>
+                  <ul>
+                    {TEMPLATE_LISTS[cat].map((tpl) => (
+                      <li key={tpl}>{tpl}</li>
+                    ))}
+                  </ul>
+                </div>
+              ),
+            )}
           </div>
         </section>
 
         <section className="tap-usecases">
-          <h2>Built for the Moments In Between</h2>
+          <h2>{a.useCasesHeading}</h2>
           <div className="tap-usecases__grid">
-            {USE_CASES.map(uc => (
-              <div key={uc.text} className="tap-usecases__item">
-                <span className="tap-usecases__emoji">{uc.emoji}</span>
-                <span>{uc.text}</span>
+            {a.useCases.map((text, i) => (
+              <div key={text} className="tap-usecases__item">
+                <span className="tap-usecases__emoji">{USE_CASE_EMOJI[i]}</span>
+                <span>{text}</span>
               </div>
             ))}
           </div>
         </section>
 
         <section className="tap-tech">
-          <h2>Tech Stack</h2>
+          <h2>{a.techHeading}</h2>
           <div className="tap-tech__grid">
-            <div className="tap-tech__item"><strong>Watch</strong><span>Swift + SwiftUI + WidgetKit + AppIntents</span></div>
-            <div className="tap-tech__item"><strong>macOS</strong><span>Swift + SwiftUI + Menu Bar</span></div>
-            <div className="tap-tech__item"><strong>Companion</strong><span>React Native + TypeScript + Base RN</span></div>
-            <div className="tap-tech__item"><strong>Relay</strong><span>Rust + axum + russh + SQLite</span></div>
-            <div className="tap-tech__item"><strong>Encryption</strong><span>AES-256-GCM + Argon2id</span></div>
-            <div className="tap-tech__item"><strong>TLS</strong><span>rustls + Let's Encrypt</span></div>
-            <div className="tap-tech__item"><strong>Notifications</strong><span>APNs + per-server toggle</span></div>
+            <div className="tap-tech__item">
+              <strong>{a.techStack.watch.label}</strong>
+              <span>{a.techStack.watch.value}</span>
+            </div>
+            <div className="tap-tech__item">
+              <strong>{a.techStack.macos.label}</strong>
+              <span>{a.techStack.macos.value}</span>
+            </div>
+            <div className="tap-tech__item">
+              <strong>{a.techStack.companion.label}</strong>
+              <span>{a.techStack.companion.value}</span>
+            </div>
+            <div className="tap-tech__item">
+              <strong>{a.techStack.relay.label}</strong>
+              <span>{a.techStack.relay.value}</span>
+            </div>
+            <div className="tap-tech__item">
+              <strong>{a.techStack.encryption.label}</strong>
+              <span>{a.techStack.encryption.value}</span>
+            </div>
+            <div className="tap-tech__item">
+              <strong>{a.techStack.tls.label}</strong>
+              <span>{a.techStack.tls.value}</span>
+            </div>
+            <div className="tap-tech__item">
+              <strong>{a.techStack.notifications.label}</strong>
+              <span>{a.techStack.notifications.value}</span>
+            </div>
           </div>
         </section>
 
         <section className="tap-expandable">
-          <button className={`tap-expandable__trigger ${expandedSection === 'setup' ? 'active' : ''}`} onClick={() => setExpandedSection(expandedSection === 'setup' ? null : 'setup')}>
-            <span>Quick Setup Guide</span><ChevronDown size={18} />
+          <button
+            className={`tap-expandable__trigger ${expandedSection === "setup" ? "active" : ""}`}
+            onClick={() =>
+              setExpandedSection(expandedSection === "setup" ? null : "setup")
+            }
+          >
+            <span>{a.quickSetup}</span>
+            <ChevronDown size={18} />
           </button>
-          {expandedSection === 'setup' && (
+          {expandedSection === "setup" && (
             <div className="tap-expandable__content">
               <pre>{`# Install and run the relay
 curl -sSL https://tap.mattssoftware.com/install.sh | bash
@@ -194,10 +273,16 @@ tap-relay
             </div>
           )}
 
-          <button className={`tap-expandable__trigger ${expandedSection === 'config' ? 'active' : ''}`} onClick={() => setExpandedSection(expandedSection === 'config' ? null : 'config')}>
-            <span>Relay Configuration</span><ChevronDown size={18} />
+          <button
+            className={`tap-expandable__trigger ${expandedSection === "config" ? "active" : ""}`}
+            onClick={() =>
+              setExpandedSection(expandedSection === "config" ? null : "config")
+            }
+          >
+            <span>{a.relayConfig}</span>
+            <ChevronDown size={18} />
           </button>
-          {expandedSection === 'config' && (
+          {expandedSection === "config" && (
             <div className="tap-expandable__content">
               <pre>{`# ~/.tap/relay.toml
 
@@ -220,11 +305,16 @@ ping_interval_seconds = 30`}</pre>
         </section>
 
         <section className="tap-cta">
-          <h2>Your servers are waiting.</h2>
-          <p>Free forever. Open source. No phone required.</p>
+          <h2>{a.ctaHeading}</h2>
+          <p>{a.ctaSub}</p>
           <div className="tap-cta__buttons">
-            <a href="https://github.com/InfamousVague/tap" className="btn btn--ghost" target="_blank" rel="noopener">
-              <ExternalLink size={18} /> View on GitHub
+            <a
+              href="https://github.com/InfamousVague/tap"
+              className="btn btn--ghost"
+              target="_blank"
+              rel="noopener"
+            >
+              <ExternalLink size={18} /> {a.ctaGithub}
             </a>
           </div>
         </section>

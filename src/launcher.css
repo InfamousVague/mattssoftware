@@ -14,53 +14,114 @@
   -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Web-only banner: install the launcher (sits above everything) ─ */
+/* ─── Big hero card: cream surface on the dark page, desk illustration +
+   "Tiny apps that earn their keep." + launcher/browse CTAs. ────────── */
 
-.ms-webbar {
-  display: flex;
+.ms-bighero {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: var(--sp-6);
   align-items: center;
+  padding: clamp(28px, 4vw, 56px);
+  margin: var(--sp-6) var(--sp-6) var(--sp-4);
+  border-radius: 32px;
+  background: #efece5;
+  color: #15151a;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ms-bighero__art {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.18));
+}
+
+.ms-bighero__text {
+  display: flex;
+  flex-direction: column;
   gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-6);
-  background: var(--color-accent);
-  color: var(--color-bg-primary);
-  flex-shrink: 0;
-}
-
-.ms-webbar__icon {
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-md);
-  flex-shrink: 0;
-}
-
-.ms-webbar__text {
-  font-size: var(--text-sm-size);
-  font-weight: var(--weight-medium);
   min-width: 0;
+  padding: var(--sp-2);
 }
 
-.ms-webbar__text b {
-  font-weight: var(--weight-bold);
-}
-
-.ms-webbar__cta {
-  margin-left: auto;
-  flex-shrink: 0;
+.ms-bighero__eyebrow {
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
   padding: 7px 14px;
-  border-radius: var(--radius-full);
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  font-size: var(--text-sm-size);
-  font-weight: var(--weight-semibold);
-  text-decoration: none;
-  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #15151a;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
 }
 
-.ms-webbar__cta:hover {
-  opacity: 0.9;
+.ms-bighero__title {
+  margin: 0;
+  font-size: clamp(36px, 5.4vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  color: #15151a;
+}
+
+.ms-bighero__sub {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #4a4a52;
+  max-width: 520px;
+}
+
+.ms-bighero__actions {
+  display: flex;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.ms-bighero__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: filter 0.15s ease;
+  color: #15151a;
+}
+
+.ms-bighero__btn:hover { filter: brightness(0.96); }
+
+.ms-bighero__btn--primary {
+  background: #f0b285;
+}
+
+.ms-bighero__btn--ghost {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.ms-bighero__meta {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #7d7a76;
+}
+
+@media (max-width: 880px) {
+  .ms-bighero { grid-template-columns: 1fr; padding: 28px; }
+  .ms-bighero__title { font-size: clamp(32px, 8vw, 44px); }
+  .ms-bighero__art { max-width: 480px; margin: 0 auto; }
 }
 
 /* ─── Title bar ──────────────────────────────────────────────── */
@@ -74,7 +135,16 @@
   height: 60px;
   flex-shrink: 0;
   border-bottom: 1px solid var(--color-border-subtle);
-  background: var(--color-bg-primary);
+  /* Dark glass: translucent + backdrop blur so section content
+     subtly washes behind it when the navbar pins on scroll. */
+  background: rgba(9, 9, 11, 0.65);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  /* Pin the navbar (titlebar + filters) to the viewport top as the
+     page scrolls. Filters sticks at top:60px so they stack flush. */
+  position: sticky;
+  top: 0;
+  z-index: 11;
 }
 
 .ms-brand {
@@ -152,6 +222,15 @@
   flex-shrink: 0;
   overflow-x: auto;
   border-bottom: 1px solid var(--color-border-subtle);
+  /* Sticks just under the titlebar (60px tall) so sections scroll
+     beneath. Matches the titlebar's dark glass so they read as one
+     continuous frosted bar. */
+  position: sticky;
+  top: 60px;
+  z-index: 10;
+  background: rgba(9, 9, 11, 0.65);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
 }
 
 .ms-filter {
@@ -402,4 +481,127 @@
 @media (max-width: 560px) {
   .ms-search-input { width: 150px; }
   .ms-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── App sections (home: per-app hero + detail rows) ─────────── */
+
+.ms-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8, 32px);
+  padding: var(--sp-6) var(--sp-6) var(--sp-8, 32px);
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.ms-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--sp-6);
+  align-items: center;
+  padding: var(--sp-6);
+  border-radius: var(--radius-xl, 20px);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-secondary);
+  /* NOTE: deliberately NOT `overflow: hidden`. Each hero illustration
+     carries a per-app drop-shadow glow that has to extend past the
+     card edge — hiding overflow clipped the halo flat (most visible
+     on Stats's hot-pink glow). The `::before` spotlight inherits the
+     card's border-radius so it still respects the rounded corners. */
+  isolation: isolate;
+}
+
+/* Ambient per-app spotlight — same wash the marketing page uses, so
+   clicking "View" lands the visitor in a visually continuous world. */
+.ms-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--app-spotlight, transparent);
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 0;
+}
+
+.ms-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ms-section__hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ms-section__hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 50px var(--app-glow, rgba(0, 0, 0, 0.4)));
+}
+
+.ms-section--flipped .ms-section__hero { order: 1; }
+
+.ms-section__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  min-width: 0;
+  padding: var(--sp-2);
+}
+
+.ms-section__eyebrow {
+  align-self: flex-start;
+  font-size: var(--text-xs-size);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  background: linear-gradient(90deg, var(--app-from), var(--app-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ms-section__name {
+  margin: 0;
+  font-size: var(--text-2xl-size, 28px);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.ms-section__tagline {
+  margin: 0;
+  font-size: var(--text-lg-size);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+  line-height: 1.35;
+}
+
+.ms-section__desc {
+  margin: 0;
+  font-size: var(--text-sm-size);
+  color: var(--color-text-tertiary);
+  line-height: 1.55;
+}
+
+.ms-section__actions {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  margin-top: var(--sp-2);
+}
+
+@media (max-width: 720px) {
+  .ms-section { grid-template-columns: 1fr; padding: var(--sp-4); }
+  .ms-section--flipped .ms-section__hero { order: 0; }
+  .ms-section__hero { aspect-ratio: 16 / 10; }
+  .ms-section__name { font-size: var(--text-xl-size, 22px); }
 }

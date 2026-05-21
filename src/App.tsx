@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { LanguageProvider } from "./i18n/context";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { ScrollToTop } from "./components/ScrollToTop";
@@ -65,32 +66,34 @@ function ChromeShell({ children }: { children: React.ReactNode }) {
 
 export function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <ChromeShell>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blip" element={<BlipPage />} />
-          <Route path="/vyv" element={<VyvPage />} />
-          <Route path="/port" element={<PortPage />} />
-          <Route path="/sentry" element={<SentryPage />} />
-          <Route path="/peephole" element={<PeepholePage />} />
-          <Route path="/stickykeys" element={<StickyKeysPage />} />
-          <Route path="/quarantine" element={<QuarantinePage />} />
-          <Route path="/diane" element={<DianePage />} />
-          <Route path="/alfred" element={<AlfredPage />} />
-          <Route path="/base" element={<BasePage />} />
-          <Route path="/stats" element={<StatsPage />} />
-          <Route path="/fishbones" element={<LibreRedirect />} />
-          <Route path="/libre" element={<LibreRedirect />} />
-          <Route path="/tap" element={<TapPage />} />
-          <Route path="/tap/privacy" element={<TapPrivacyPage />} />
-          <Route path="/tap/terms" element={<TapTermsPage />} />
-          <Route path="/tap/eula" element={<TapEulaPage />} />
-          {/* Catch-all 404 — playful ribbon-snake illustration. */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </ChromeShell>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <ChromeShell>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blip" element={<BlipPage />} />
+            <Route path="/vyv" element={<VyvPage />} />
+            <Route path="/port" element={<PortPage />} />
+            <Route path="/sentry" element={<SentryPage />} />
+            <Route path="/peephole" element={<PeepholePage />} />
+            <Route path="/stickykeys" element={<StickyKeysPage />} />
+            <Route path="/quarantine" element={<QuarantinePage />} />
+            <Route path="/diane" element={<DianePage />} />
+            <Route path="/alfred" element={<AlfredPage />} />
+            <Route path="/base" element={<BasePage />} />
+            <Route path="/stats" element={<StatsPage />} />
+            <Route path="/fishbones" element={<LibreRedirect />} />
+            <Route path="/libre" element={<LibreRedirect />} />
+            <Route path="/tap" element={<TapPage />} />
+            <Route path="/tap/privacy" element={<TapPrivacyPage />} />
+            <Route path="/tap/terms" element={<TapTermsPage />} />
+            <Route path="/tap/eula" element={<TapEulaPage />} />
+            {/* Catch-all 404 — playful ribbon-snake illustration. */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ChromeShell>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }

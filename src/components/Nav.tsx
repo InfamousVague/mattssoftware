@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, Download } from "lucide-react";
 import { CATALOG } from "../data/catalog";
+import { catalogTaglineForId } from "../data/i18nCatalog";
+import { useLanguage } from "../i18n/context";
 import TipPopover from "./TipPopover";
+import { LanguageSelector } from "./LanguageSelector";
 import "./Nav.css";
 
 /// Inline GitHub mark — lucide 1.x dropped brand glyphs and we don't
@@ -28,20 +31,21 @@ const LAUNCHER_RELEASE =
 /// the row overflowed at most viewport widths and pushed the Tip
 /// popover off-screen. The new layout is:
 ///
-///   [ M Matt's Software ]   [ Apps ▾ ]  [↓ Launcher]  [GitHub]  [♥ Tip]
+///   [ M Matt's Software ]   [ Apps ▾ ]  [Lang ▾]  [↓ Launcher]  [GitHub]  [♥ Tip]
 ///
 /// "Apps ▾" opens a panel that lists every app in the catalog, so
 /// the topbar stays tight and the Tip is always visible. The panel
 /// closes on outside-click or Escape.
 export function Nav() {
+  const { t, format } = useLanguage();
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!open) return;
     function onMouseDown(e: MouseEvent) {
-      const t = e.target as Node | null;
-      if (!t || wrapRef.current?.contains(t)) return;
+      const target = e.target as Node | null;
+      if (!target || wrapRef.current?.contains(target)) return;
       setOpen(false);
     }
     function onKey(e: KeyboardEvent) {
@@ -59,7 +63,7 @@ export function Nav() {
     <nav className="nav">
       <Link to="/" className="nav__brand" onClick={() => setOpen(false)}>
         <img src="/brandmark.png" alt="" className="nav__brand-mark" />
-        Matt's Software
+        {t.nav.brand}
       </Link>
 
       <div className="nav__right">
@@ -73,19 +77,27 @@ export function Nav() {
             aria-expanded={open}
             aria-haspopup="menu"
           >
-            Apps <ChevronDown size={14} className="nav__apps-chev" />
+            {t.nav.apps} <ChevronDown size={14} className="nav__apps-chev" />
           </button>
 
           {open && (
-            <div className="nav__apps-panel" role="menu" aria-label="All apps">
+            <div
+              className="nav__apps-panel"
+              role="menu"
+              aria-label={t.nav.appsAllLabel}
+            >
               <div className="nav__apps-grid">
                 {CATALOG.map((app) => {
+                  // The app's localized tagline. Brand names stay as-is.
+                  const localizedTagline = catalogTaglineForId(app.id, t);
                   const inner = (
                     <>
                       <img src={app.icon} alt="" className="nav__apps-icon" />
                       <span className="nav__apps-meta">
                         <span className="nav__apps-name">{app.name}</span>
-                        <span className="nav__apps-tagline">{app.tagline}</span>
+                        <span className="nav__apps-tagline">
+                          {localizedTagline}
+                        </span>
                       </span>
                     </>
                   );
@@ -113,19 +125,26 @@ export function Nav() {
                 })}
               </div>
               <div className="nav__apps-footer">
-                <span>{CATALOG.length} apps, one launcher.</span>
+                <span>
+                  {format(t.nav.suiteFooter, { count: CATALOG.length })}
+                </span>
                 <a className="nav__apps-cta" href={LAUNCHER_RELEASE}>
-                  Get the launcher <Download size={13} />
+                  {t.nav.getLauncher} <Download size={13} />
                 </a>
               </div>
             </div>
           )}
         </div>
 
+        {/* Language picker — globe-icon dropdown of all 7 supported
+            languages. Sits between Apps and Launcher so it's discoverable
+            without competing with the primary CTA. */}
+        <LanguageSelector />
+
         {/* Primary CTA — visible everywhere so visitors always have
             an obvious next step. */}
         <a className="nav__cta" href={LAUNCHER_RELEASE}>
-          <Download size={14} /> Launcher
+          <Download size={14} /> {t.nav.launcher}
         </a>
 
         <a
@@ -133,13 +152,13 @@ export function Nav() {
           href="https://github.com/InfamousVague"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="GitHub"
+          aria-label={t.nav.githubAria}
         >
           <GithubMark />
         </a>
 
         {/* Tip popover — now has room to render its trigger and panel. */}
-        <TipPopover />
+        <TipPopover label={t.nav.tipLabel} />
       </div>
     </nav>
   );

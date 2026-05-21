@@ -3,6 +3,8 @@ import { Download, ExternalLink, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CATALOG } from "../data/catalog";
 import { themeVars } from "../data/themes";
+import { useLanguage } from "../i18n/context";
+import { catalogTaglineForId } from "../data/i18nCatalog";
 import "./AppPage.css";
 
 /// Shape every app page (Blip, Port, Sentry, …) uses. The page passes
@@ -46,9 +48,6 @@ interface AppPageProps {
   cta: AppPageCTA;
   /// True when this app genuinely lives in the macOS menu bar — drives
   /// the bottom-CTA copy ("Add X to your menu bar." vs. "Get X.").
-  /// Stays accurate for Port/Sentry/Peephole/etc., and stays generic
-  /// for Base (a library), Tap (watchOS), Diane (floating sidebar),
-  /// Blip (full window).
   menuBarApp?: boolean;
   /// Optional extra children rendered between the features grid and
   /// the suite carousel — for pages that have extra sections (Tap's
@@ -94,6 +93,7 @@ async function fetchLatestRelease(repo: string): Promise<Release> {
 }
 
 function PrimaryCTA({ cta }: { cta: AppPageProps["cta"] }) {
+  const { t } = useLanguage();
   const [release, setRelease] = useState<Release>({ url: "", version: "" });
 
   useEffect(() => {
@@ -103,29 +103,42 @@ function PrimaryCTA({ cta }: { cta: AppPageProps["cta"] }) {
 
   if (cta.kind === "appstore") {
     return (
-      <a href={cta.url} className="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">
+      <a
+        href={cta.url}
+        className="btn btn--primary btn--lg"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Download size={16} /> {cta.label}
       </a>
     );
   }
   if (cta.kind === "library") {
     return (
-      <a href={cta.url} className="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">
+      <a
+        href={cta.url}
+        className="btn btn--primary btn--lg"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <ExternalLink size={16} /> {cta.label}
       </a>
     );
   }
   // cta.kind === "github" — TS narrows once the other two branches return.
   const repo = cta.repo;
-  const href = release.url || `https://github.com/InfamousVague/${repo}/releases/latest`;
+  const href =
+    release.url || `https://github.com/InfamousVague/${repo}/releases/latest`;
   return (
     <a href={href} className="btn btn--primary btn--lg">
-      <Download size={16} /> Download{release.version ? ` ${release.version}` : ""}
+      <Download size={16} /> {t.appPage.downloadBtn}
+      {release.version ? ` ${release.version}` : ""}
     </a>
   );
 }
 
 function SecondaryCTA({ cta }: { cta: AppPageProps["cta"] }) {
+  const { t } = useLanguage();
   if (cta.kind === "github") {
     return (
       <a
@@ -134,18 +147,24 @@ function SecondaryCTA({ cta }: { cta: AppPageProps["cta"] }) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <ExternalLink size={16} /> View on GitHub
+        <ExternalLink size={16} /> {t.appPage.viewGithub}
       </a>
     );
   }
   return (
-    <a href={cta.url} className="btn btn--ghost btn--lg" target="_blank" rel="noopener noreferrer">
-      <ExternalLink size={16} /> Open in browser
+    <a
+      href={cta.url}
+      className="btn btn--ghost btn--lg"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <ExternalLink size={16} /> {t.appPage.openInBrowser}
     </a>
   );
 }
 
 function SuiteCarousel({ excludeId }: { excludeId: string }) {
+  const { t } = useLanguage();
   // Show every other app in the catalog as a "more from Matt's
   // Software" carousel. The carousel reads horizontally so visitors
   // browse sideways without crowding the page.
@@ -153,26 +172,36 @@ function SuiteCarousel({ excludeId }: { excludeId: string }) {
   return (
     <section className="suite-carousel">
       <div className="suite-carousel__head">
-        <span className="eyebrow">The suite</span>
-        <h2>More from the shop</h2>
-        <p>Each one solves exactly one thing well — install just what you need.</p>
+        <span className="eyebrow">{t.appPage.suiteEyebrow}</span>
+        <h2>{t.appPage.suiteHeading}</h2>
+        <p>{t.appPage.suiteSub}</p>
       </div>
       <div className="suite-carousel__row">
         {others.map((a) => {
+          const localizedTagline = catalogTaglineForId(a.id, t);
           const Card = (
             <div className="suite-carousel__card">
               <img src={a.icon} alt="" className="suite-carousel__icon" />
               <div className="suite-carousel__meta">
                 <h3>{a.name}</h3>
-                <p>{a.tagline}</p>
+                <p>{localizedTagline}</p>
               </div>
               <ArrowRight size={14} className="suite-carousel__arrow" />
             </div>
           );
           return a.viewExternal ? (
-            <a key={a.id} href={a.view} target="_blank" rel="noopener noreferrer">{Card}</a>
+            <a
+              key={a.id}
+              href={a.view}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {Card}
+            </a>
           ) : (
-            <Link key={a.id} to={a.view}>{Card}</Link>
+            <Link key={a.id} to={a.view}>
+              {Card}
+            </Link>
           );
         })}
       </div>
@@ -181,6 +210,7 @@ function SuiteCarousel({ excludeId }: { excludeId: string }) {
 }
 
 export function AppPage(props: AppPageProps) {
+  const { t, format } = useLanguage();
   const style = themeVars(props.themeId) as CSSProperties;
   return (
     <div className="app-page" style={style}>
@@ -230,8 +260,8 @@ export function AppPage(props: AppPageProps) {
             in the menu bar; "Get X." everywhere else. */}
         <h2>
           {props.menuBarApp
-            ? `Add ${props.title} to your menu bar.`
-            : `Get ${props.title}.`}
+            ? format(t.appPage.bottomAddToMenuBar, { name: props.title })
+            : format(t.appPage.bottomGet, { name: props.title })}
         </h2>
         <div className="app-page__actions">
           <PrimaryCTA cta={props.cta} />

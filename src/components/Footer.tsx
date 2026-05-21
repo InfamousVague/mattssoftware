@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useLanguage } from "../i18n/context";
 
 /// Site-wide footer. The cat is the office mascot — a generated
 /// playful-3D asset — and the copy reflects the actual workshop:
@@ -6,24 +7,26 @@ import { Link } from "react-router-dom";
 /// every marketing page (the launcher-replica home has its own
 /// footer area baked into its layout).
 export function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="footer">
       <img
         className="footer__mascot"
         src="/_brand/cat-mascot.png"
-        alt="A white cat curled around a blueprint and a mug of coffee — somehow asleep through the music"
+        alt={t.footer.mascotAlt}
       />
-      <p className="footer__line">Built on espresso and loud music.</p>
-      <p className="footer__sub">
-        Matt's Software is a one-person shop. Every app is signed,
-        notarized, and free.
-      </p>
+      <p className="footer__line">{t.footer.line}</p>
+      <p className="footer__sub">{t.footer.sub}</p>
       <div className="footer__links">
-        <a href="https://github.com/InfamousVague" target="_blank" rel="noopener noreferrer">
-          GitHub
+        <a
+          href="https://github.com/InfamousVague"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t.footer.github}
         </a>
-        <Link to="/">All apps</Link>
-        <a href="mailto:infamousvaguerat@gmail.com">Contact</a>
+        <Link to="/">{t.footer.allApps}</Link>
+        <a href="mailto:infamousvaguerat@gmail.com">{t.footer.contact}</a>
       </div>
     </footer>
   );

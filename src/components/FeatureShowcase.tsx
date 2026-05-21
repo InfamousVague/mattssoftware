@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { useLanguage } from "../i18n/context";
 import "./FeatureShowcase.css";
 
 export interface FeatureSection {
@@ -10,10 +11,20 @@ export interface FeatureSection {
   imageAlt: string;
   imageMaxHeight?: string;
   renderVisual?: ReactNode;
+  /// "screenshot" (default) wraps the image in the playful window-chrome
+  /// frame (`/_brand/window-frame.png`) — right when the image is a flat
+  /// app screenshot.
+  ///
+  /// "illustration" drops the chrome and renders the image naked on the
+  /// cream pad — right for the cute-3D transparent PNGs whose subject is
+  /// the whole composition.
+  imageMode?: "screenshot" | "illustration";
 }
 
 function FeatureHero({ feature, index }: { feature: FeatureSection; index: number }) {
+  const { t } = useLanguage();
   const isReversed = index % 2 === 1;
+  const placeholder = t.featureShowcase.screenshotComingSoon;
 
   return (
     <div className={`feature-hero ${isReversed ? "feature-hero--reverse" : ""}`}>
@@ -35,21 +46,42 @@ function FeatureHero({ feature, index }: { feature: FeatureSection; index: numbe
         {feature.renderVisual ? (
           feature.renderVisual
         ) : feature.image ? (
-          <div className="feature-hero__frame">
-            <img
-              src={feature.image}
-              alt={feature.imageAlt}
-              loading="lazy"
-              style={feature.imageMaxHeight ? { maxHeight: feature.imageMaxHeight, width: "auto", margin: "0 auto", display: "block" } : undefined}
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-                e.currentTarget.parentElement?.classList.add("feature-hero__placeholder");
-                e.currentTarget.parentElement!.textContent = "Screenshot coming soon";
-              }}
-            />
-          </div>
+          feature.imageMode === "illustration" ? (
+            <div className="feature-hero__illustration">
+              <img
+                src={feature.image}
+                alt={feature.imageAlt}
+                loading="lazy"
+                style={
+                  feature.imageMaxHeight
+                    ? { maxHeight: feature.imageMaxHeight }
+                    : undefined
+                }
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  e.currentTarget.parentElement?.classList.add(
+                    "feature-hero__illustration--missing",
+                  );
+                }}
+              />
+            </div>
+          ) : (
+            <div className="feature-hero__frame">
+              <img
+                src={feature.image}
+                alt={feature.imageAlt}
+                loading="lazy"
+                style={feature.imageMaxHeight ? { maxHeight: feature.imageMaxHeight, width: "auto", margin: "0 auto", display: "block" } : undefined}
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  e.currentTarget.parentElement?.classList.add("feature-hero__placeholder");
+                  e.currentTarget.parentElement!.textContent = placeholder;
+                }}
+              />
+            </div>
+          )
         ) : (
-          <div className="feature-hero__placeholder">Screenshot coming soon</div>
+          <div className="feature-hero__placeholder">{placeholder}</div>
         )}
       </div>
     </div>
