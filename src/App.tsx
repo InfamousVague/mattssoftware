@@ -14,7 +14,6 @@ import { QuarantinePage } from "./pages/Quarantine";
 import { DianePage } from "./pages/Diane";
 import { AlfredPage } from "./pages/Alfred";
 import { BasePage } from "./pages/Base";
-import { StashPage } from "./pages/Stash";
 import { StatsPage } from "./pages/Stats";
 import { TapPage } from "./pages/Tap";
 import { TapPrivacyPage } from "./pages/TapPrivacy";
@@ -81,7 +80,6 @@ export function App() {
           <Route path="/diane" element={<DianePage />} />
           <Route path="/alfred" element={<AlfredPage />} />
           <Route path="/base" element={<BasePage />} />
-          <Route path="/stash" element={<StashPage />} />
           <Route path="/stats" element={<StatsPage />} />
           <Route path="/fishbones" element={<LibreRedirect />} />
           <Route path="/libre" element={<LibreRedirect />} />

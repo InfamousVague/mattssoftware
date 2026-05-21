@@ -33,7 +33,6 @@ export const APP_THEMES: Record<string, AppTheme> = {
   base:       { from: "#c8c8d4", to: "#6b6b80", glow: "rgba(107, 107, 128, 0.30)",spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(200,200,212,0.18), transparent 65%)" },
   alfred:     { from: "#7bc585", to: "#2f8b48", glow: "rgba(47, 139, 72, 0.32)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(123,197,133,0.22), transparent 65%)" },
   quarantine: { from: "#f7d05c", to: "#c89212", glow: "rgba(200, 146, 18, 0.32)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(247,208,92,0.22), transparent 65%)" },
-  stash:      { from: "#7aa9ff", to: "#2d5fde", glow: "rgba(45, 95, 222, 0.34)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(122,169,255,0.22), transparent 65%)" },
 };
 
 /// Fallback gradient (matches the :root default in styles.css).

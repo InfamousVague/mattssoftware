@@ -48,7 +48,7 @@ interface AppPageProps {
   /// the bottom-CTA copy ("Add X to your menu bar." vs. "Get X.").
   /// Stays accurate for Port/Sentry/Peephole/etc., and stays generic
   /// for Base (a library), Tap (watchOS), Diane (floating sidebar),
-  /// Blip/Stash (full windows).
+  /// Blip (full window).
   menuBarApp?: boolean;
   /// Optional extra children rendered between the features grid and
   /// the suite carousel — for pages that have extra sections (Tap's

@@ -84,19 +84,6 @@ export const CATALOG: readonly CatalogApp[] = [
     view: "/diane",
   },
   {
-    id: "stash",
-    name: "Stash",
-    tagline: "Your .env files deserve a bodyguard.",
-    description:
-      "Encrypted environment-variable vault with profiles, team sharing via public-key crypto, a CLI, health monitoring, and an API directory. Never leak a secret again.",
-    category: "Developer Tools",
-    icon: "/stash/app-icon.png",
-    tags: ["Security", "Developer Tools", "macOS", "Encryption"],
-    channel: "github",
-    githubRepo: "Stash",
-    view: "/stash",
-  },
-  {
     id: "port",
     name: "Port",
     tagline: "Every open port on your Mac, one click away.",
