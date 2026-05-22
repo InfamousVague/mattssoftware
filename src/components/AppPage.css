@@ -132,6 +132,11 @@
   width: 100%;
   max-width: 760px;
   height: auto;
+  /* Matches the suite-carousel icon squircle vibe at a larger scale.
+     Invisible on the transparent 3D PNGs we ship today, but the design
+     system wants the radius set so any future opaque preview (a real
+     screenshot, a screen-recording still, etc.) clips cleanly. */
+  border-radius: 28px;
   filter:
     drop-shadow(0 50px 60px rgba(0, 0, 0, 0.18))
     drop-shadow(0 80px 90px var(--app-glow));

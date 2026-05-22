@@ -22,6 +22,7 @@ function appKey(id: string): AppKey | undefined {
     "stats",
     "port",
     "alfred",
+    "uninstaller",
     "blip",
     "diane",
     "peephole",

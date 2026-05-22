@@ -14,6 +14,7 @@ import { StickyKeysPage } from "./pages/StickyKeys";
 import { QuarantinePage } from "./pages/Quarantine";
 import { DianePage } from "./pages/Diane";
 import { AlfredPage } from "./pages/Alfred";
+import { UninstallerPage } from "./pages/Uninstaller";
 import { BasePage } from "./pages/Base";
 import { StatsPage } from "./pages/Stats";
 import { TapPage } from "./pages/Tap";
@@ -81,6 +82,7 @@ export function App() {
             <Route path="/quarantine" element={<QuarantinePage />} />
             <Route path="/diane" element={<DianePage />} />
             <Route path="/alfred" element={<AlfredPage />} />
+            <Route path="/uninstaller" element={<UninstallerPage />} />
             <Route path="/base" element={<BasePage />} />
             <Route path="/stats" element={<StatsPage />} />
             <Route path="/fishbones" element={<LibreRedirect />} />

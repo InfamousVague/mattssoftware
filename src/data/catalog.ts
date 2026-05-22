@@ -113,6 +113,19 @@ export const CATALOG: readonly CatalogApp[] = [
     view: "/alfred",
   },
   {
+    id: "uninstaller",
+    name: "Uninstaller",
+    tagline: "Apps + their crumbs, in one click.",
+    description:
+      "Native menu-bar uninstaller. Finds every leftover an app keeps on disk — preferences, caches, sandbox containers, login items, crash logs — and moves the whole pile to Trash in one click.",
+    category: "Utilities",
+    icon: "/uninstaller/app-icon.png",
+    tags: ["Menu Bar", "Utility", "Disk", "macOS"],
+    channel: "github",
+    githubRepo: "Uninstaller",
+    view: "/uninstaller",
+  },
+  {
     id: "blip",
     name: "Blip",
     tagline: "Your computer has been talking behind your back.",

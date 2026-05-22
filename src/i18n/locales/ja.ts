@@ -373,6 +373,30 @@ export const ja: Translation = {
         },
       ],
     },
+    uninstaller: {
+      tagline: "Apps + their crumbs, in one click.",
+      description:
+        "Dragging an app to the Trash leaves behind preferences, caches, sandbox containers, login items, and crash logs. Uninstaller finds the whole pile for any installed app and moves it all to Trash in one click — with a clear list of what's about to go and a separate badge for system-owned files it can't touch.",
+      catalogTagline: "Apps + their crumbs, in one click.",
+      catalogDescription:
+        "Native menu-bar uninstaller. Finds every leftover an app keeps on disk — preferences, caches, sandbox containers, login items, crash logs — and moves the whole pile to Trash in one click.",
+      requirements: "macOS 14+  ·  Apple Silicon  ·  Free  ·  Developer ID signed",
+      featuresHeading: "Three reasons to use Uninstaller",
+      features: [
+        {
+          title: "One click, whole pile",
+          body: "Pick an app, see every residue path with sizes, hit Uninstall. The bundle and every leftover go to Trash together — recoverable in one click, no separate cleanup pass.",
+        },
+        {
+          title: "Login items + LaunchAgents",
+          body: "Catches the helper plists that survive normal app removal and would otherwise quietly re-run at every login. Surfaces them with the rest of the residue so they don't slip through.",
+        },
+        {
+          title: "Honest about admin",
+          body: "System paths under /Library and /private/var/db/receipts are listed but flagged — Uninstaller won't ask for your password to scrub things you probably don't care about.",
+        },
+      ],
+    },
 
     blip: {
       tagline: "出ていくものを見る。",

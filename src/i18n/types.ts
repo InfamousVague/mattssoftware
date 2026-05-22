@@ -213,6 +213,7 @@ export interface Translation {
     stats: BaseAppCopy;
     port: BaseAppCopy;
     alfred: BaseAppCopy;
+    uninstaller: BaseAppCopy;
     blip: BaseAppCopy;
     diane: BaseAppCopy;
     peephole: BaseAppCopy;

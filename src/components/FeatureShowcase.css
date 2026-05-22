@@ -202,6 +202,9 @@
   object-fit: contain;
   object-position: center;
   display: block;
+  /* Matches the larger app-page hero illustration radius — invisible
+     on transparent renders, ready when a real screenshot lands. */
+  border-radius: 20px;
   /* The 3D renders carry their own contact shadows, but a soft
      ambient drop helps them feel anchored to the cream pad. */
   filter: drop-shadow(0 30px 36px rgba(0, 0, 0, 0.18))
