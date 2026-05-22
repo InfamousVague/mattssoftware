@@ -396,6 +396,34 @@ export const ja: Translation = {
           body: "System paths under /Library and /private/var/db/receipts are listed but flagged — Uninstaller won't ask for your password to scrub things you probably don't care about.",
         },
       ],
+      showcase: [
+        {
+          badge: "One sweep, whole pile",
+          title: "Apps and their crumbs, gone together",
+          description:
+            "Pick an app and Uninstaller scans the dozen-plus standard residue locations — Preferences, Application Support, Caches, Saved State, Logs, Containers, Group Containers, HTTP Storages, WebKit data, Cookies, LaunchAgents, crash reports. The bundle and every leftover go to the Trash together, in a single batched Finder request.",
+          bullets: [
+            "Twelve+ residue locations probed per app — by bundle id AND display name so apps that store under either layout don't get missed",
+            "Sized biggest-first so you can see exactly what's about to be reclaimed",
+            "Trash by default — recoverable in one click if you change your mind",
+            "Single batched recycle call so macOS shows one auth prompt for the whole pile, not one per file",
+          ],
+          imageAlt: "Cute 3D sanitation worker character in a red coverall and red hardhat sweeping a row of colourful app squircles into a chunky white trash bag",
+        },
+        {
+          badge: "Honest about admin",
+          title: "App Management permission, asked once",
+          description:
+            "macOS 13+ gates modifying apps in /Applications behind App Management TCC. Uninstaller routes the trash request through Finder so you get a single, clear permission prompt the first time — and a deep-link to System Settings → Privacy & Security → App Management if anything's still denied after.",
+          bullets: [
+            "Single Finder-mediated prompt the first time, not one per app removed",
+            "System-owned residue under /Library and /private/var/db/receipts is listed with an 'admin' badge but never silently fails — you see exactly what was skipped",
+            "Permission-shaped failures surface a one-line tip + a button that opens the right Privacy & Security pane directly",
+            "Apple's own apps (com.apple.*) are filtered out of the picker — never offered for removal",
+          ],
+          imageAlt: "Cute 3D sanitation worker character in red holding up a Privacy & Security clipboard with a green checkmark, three app icons fading into sparkles on his right",
+        },
+      ],
     },
 
     blip: {
