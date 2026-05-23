@@ -752,7 +752,48 @@ export const zh: Translation = {
         "扔入 PDF 或 EPUB，Libre 就生成课时、练习和隐藏测验。16 种语言一个编辑器、笔记本上的本地 AI 助教、能挺过周末的连胜火焰，以及 17 种主题。",
       requirements: "免费且开源",
       featuresHeading: "从任何书中学习。",
-      features: [],
+      features: [
+        {
+          title: "Drop a PDF, get a real course",
+          body: "Point Libre at a technical book and it generates chapters with lessons, hands-on exercises, and hidden tests that verify your code. The book stays the source of truth; the lessons stay re-generable.",
+        },
+        {
+          title: "Sixteen languages, one editor",
+          body: "Python, TypeScript, Go, Rust, Swift, C++, Java, Kotlin, Ruby, Elixir, Zig, Lua, Bash, SQL, HTML/CSS, and Markdown. Built-in language servers, syntax highlighting, and per-language test runners — never leave the editor.",
+        },
+        {
+          title: "A tutor on your laptop, not in the cloud",
+          body: "Libre's AI tutor runs locally on Apple Silicon. Stuck on an exercise? Ask in plain English; get a hint pegged to the exact chapter you're on. Your homework never leaves your machine.",
+        },
+      ],
+      showcase: [
+        {
+          badge: "Lessons that grade themselves",
+          title: "Chapter → exercise → hidden test",
+          description:
+            "Every chapter expands into a sequence: a short read, an exercise scaffold, and a hidden test suite that runs against your code in the background. The test only reveals itself when you ask — so you learn from the failure, not from a leaked answer.",
+          bullets: [
+            "Hidden tests run in a sandboxed runner per supported language — no Docker, no shell access required",
+            "Failures surface as a hint first, the full diff second, and only the test source on explicit request",
+            "Exercises remember your in-progress code across sessions; re-opening picks up exactly where you left off",
+            "Chapters re-generate cleanly when you swap in a newer edition of the same book — your progress carries over by chapter title",
+          ],
+          imageAlt: "Cute 3D white python coiled, holding three floating lesson cards labelled Chapter / Exercise / Quiz with its tail-tip ribbons",
+        },
+        {
+          badge: "Habit, not homework",
+          title: "Streak fire that survives weekends",
+          description:
+            "A streak that's only kind on the days you forget. Two free \"weekend tokens\" a month let the fire keep burning when life shows up. The flame's there to nudge — never to shame.",
+          bullets: [
+            "Two skip-tokens regenerate monthly; a single failed day doesn't reset weeks of work",
+            "Tiny daily target (one lesson) keeps the bar realistic; you can always do more on a good day",
+            "Streak history lives in a local SQLite file, exportable and inspectable — no cloud account required",
+            "Notifications respect Focus modes; \"don't bug me, just keep counting\" is one tap from the menu bar",
+          ],
+          imageAlt: "Cute 3D white python with a small flame balanced on its nose, four calendar squares with red checkmarks drifting in an arc around it",
+        },
+      ],
     },
 
     tap: {

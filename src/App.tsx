@@ -15,6 +15,7 @@ import { QuarantinePage } from "./pages/Quarantine";
 import { DianePage } from "./pages/Diane";
 import { AlfredPage } from "./pages/Alfred";
 import { UninstallerPage } from "./pages/Uninstaller";
+import { LibrePage } from "./pages/Libre";
 import { BasePage } from "./pages/Base";
 import { StatsPage } from "./pages/Stats";
 import { TapPage } from "./pages/Tap";
@@ -85,8 +86,12 @@ export function App() {
             <Route path="/uninstaller" element={<UninstallerPage />} />
             <Route path="/base" element={<BasePage />} />
             <Route path="/stats" element={<StatsPage />} />
+            {/* /fishbones is the historical codename route; keep
+                it pointing at libre.academy for any links that still
+                use it in the wild. /libre is the in-suite marketing
+                page now (it used to redirect too). */}
             <Route path="/fishbones" element={<LibreRedirect />} />
-            <Route path="/libre" element={<LibreRedirect />} />
+            <Route path="/libre" element={<LibrePage />} />
             <Route path="/tap" element={<TapPage />} />
             <Route path="/tap/privacy" element={<TapPrivacyPage />} />
             <Route path="/tap/terms" element={<TapTermsPage />} />

@@ -202,8 +202,7 @@ export const CATALOG: readonly CatalogApp[] = [
     channel: "github",
     platforms: ["macOS", "Windows", "Linux"],
     githubRepo: "Libre",
-    view: "https://libre.academy",
-    viewExternal: true,
+    view: "/libre",
   },
   {
     id: "tap",
