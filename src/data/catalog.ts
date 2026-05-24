@@ -46,16 +46,16 @@ export const CATALOG: readonly CatalogApp[] = [
   {
     id: "espresso",
     name: "Espresso",
-    tagline: "Your computer wants to sleep. Espresso disagrees.",
+    tagline: "Keep your devices awake. Mac or iPhone.",
     description:
-      "Keep-awake utility that prevents your computer from sleeping. Timed sessions, mouse-jiggle simulation, lid-closed override, and a panic hotkey for instant deactivation.",
+      "Menu-bar keep-awake on macOS with a duration grid, mouse jiggle, and lid-closed override. iPhone companion with a Live Activity countdown in the Dynamic Island, brightness boost, and the same duration vocabulary. Same cup-and-saucer brand, two platforms.",
     category: "Utilities",
     icon: "/espresso/app-icon.png",
-    tags: ["Utility", "Menu Bar", "Productivity", "macOS", "Windows", "Linux"],
+    tags: ["Utility", "Menu Bar", "Live Activity", "macOS", "iOS"],
     channel: "github",
-    platforms: ["macOS", "Windows", "Linux"],
+    platforms: ["macOS", "iOS"],
     githubRepo: "Espresso",
-    view: "/vyv",
+    view: "/espresso",
   },
   {
     id: "stickykeys",
