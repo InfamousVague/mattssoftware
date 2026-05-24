@@ -23,6 +23,7 @@ import { TapPrivacyPage } from "./pages/TapPrivacy";
 import { TapTermsPage } from "./pages/TapTerms";
 import { TapEulaPage } from "./pages/TapEula";
 import { EspressoPage } from "./pages/Espresso";
+import { SeasickPage } from "./pages/Seasick";
 import { NotFound } from "./pages/NotFound";
 import "./styles.css";
 
@@ -98,6 +99,7 @@ export function App() {
             <Route path="/tap/terms" element={<TapTermsPage />} />
             <Route path="/tap/eula" element={<TapEulaPage />} />
             <Route path="/espresso" element={<EspressoPage />} />
+            <Route path="/seasick" element={<SeasickPage />} />
             {/* Catch-all 404 — playful ribbon-snake illustration. */}
             <Route path="*" element={<NotFound />} />
           </Routes>

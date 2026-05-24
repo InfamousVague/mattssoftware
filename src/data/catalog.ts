@@ -58,6 +58,20 @@ export const CATALOG: readonly CatalogApp[] = [
     view: "/espresso",
   },
   {
+    id: "seasick",
+    name: "Seasick",
+    tagline: "Motion cues for your Mac — Apple's iPhone trick, on the desktop.",
+    description:
+      "Native macOS overlay that flows particle dots across every screen in the direction of device travel, mirroring Apple's iPhone Motion Cues. Reads from the MacBook's sudden-motion sensor, your AirPods Pro/3/Max, or a paired iPhone companion that streams CoreMotion data over Bonjour. Click-through, multi-screen, never steals focus.",
+    category: "Utilities",
+    icon: "/seasick/app-icon.png",
+    tags: ["Utility", "Accessibility", "Motion", "Menu Bar", "macOS", "iOS"],
+    channel: "github",
+    platforms: ["macOS", "iOS"],
+    githubRepo: "Seasick",
+    view: "/seasick",
+  },
+  {
     id: "stickykeys",
     name: "StickyKeys",
     tagline: "Lock the keyboard so a cleaning cloth can't fire shortcuts.",
