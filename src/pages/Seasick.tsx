@@ -49,7 +49,9 @@ const FEATURES: FeatureSection[] = [
       "iPhone companion app (separate target) streams CoreMotion data over Bonjour to your Mac",
       "Auto-fallback: best source wins, switches live if a better one becomes available",
     ],
-    imageAlt: "Three icons showing MacBook, AirPods, and iPhone as motion sources",
+    image: "/seasick/feature-sources.png",
+    imageMode: "illustration",
+    imageAlt: "Chibi MacBook, AirPods, and iPhone feeding motion data to a receiver MacBook",
   },
   {
     badge: "iOS · Companion",
@@ -67,7 +69,9 @@ const FEATURES: FeatureSection[] = [
       "Keeps the screen on while streaming so it doesn't sleep mid-trip",
       "One-tap start/stop with a pulse indicator showing live motion magnitude",
     ],
-    imageAlt: "Seasick iPhone companion streaming motion to a Mac",
+    image: "/seasick/feature-iphone.png",
+    imageMode: "illustration",
+    imageAlt: "Chibi iPhone in a hand streaming motion dots to a chibi MacBook's overlay",
   },
 ];
 
