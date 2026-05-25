@@ -72,6 +72,20 @@ export const CATALOG: readonly CatalogApp[] = [
     view: "/seasick",
   },
   {
+    id: "worktree",
+    name: "Worktree",
+    tagline: "Your current git project + branch, always in the menu bar.",
+    description:
+      "Menu-bar agent that follows your editor focus and surfaces the repo + branch you're editing. One-click branch switching, worktree management, fetch + pull, and a saved-projects list so you can manage branches on repos you aren't focused in. Detects projects in Xcode, VS Code / Cursor / Windsurf / Code-OSS, and every common terminal.",
+    category: "Developer Tools",
+    icon: "/worktree/app-icon.png",
+    tags: ["Developer Tools", "Git", "Menu Bar", "macOS"],
+    channel: "github",
+    platforms: ["macOS"],
+    githubRepo: "Worktree",
+    view: "/worktree",
+  },
+  {
     id: "stickykeys",
     name: "StickyKeys",
     tagline: "Lock the keyboard so a cleaning cloth can't fire shortcuts.",
