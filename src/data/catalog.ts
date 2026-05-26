@@ -86,6 +86,21 @@ export const CATALOG: readonly CatalogApp[] = [
     view: "/worktree",
   },
   {
+    id: "halo",
+    name: "Halo",
+    tagline: "Dynamic Island for the MacBook notch.",
+    description:
+      "A native macOS Dynamic Island that turns the MacBook notch into a live status pill. Hangs from the screen edge, shows the volume HUD, brightness, now-playing track, AirPods battery, and every MattsSoftware suite app that wants the slot — Espresso countdown, Worktree's current repo, Port's listening count, Peephole's camera/mic activity. Context-aware focus so each app pulls to attention when its state changes; ambient priority otherwise. Click the pill to cycle through what's published.",
+    category: "Utilities",
+    icon: "/halo/app-icon.png",
+    tags: ["Utilities", "Menu Bar", "Dynamic Island", "macOS"],
+    channel: "github",
+    platforms: ["macOS"],
+    githubRepo: "Halo",
+    view: "https://github.com/InfamousVague/Halo",
+    viewExternal: true,
+  },
+  {
     id: "stickykeys",
     name: "StickyKeys",
     tagline: "Lock the keyboard so a cleaning cloth can't fire shortcuts.",
