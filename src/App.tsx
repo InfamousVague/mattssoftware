@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "./i18n/context";
+import { trackPageview } from "./lib/analytics";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { ScrollToTop } from "./components/ScrollToTop";
@@ -57,9 +58,27 @@ function LibreRedirect() {
 /// Splits the chrome decision out of <App> so we can call
 /// `useLocation` (which requires a Router ancestor — App itself
 /// IS the Router, so we need a child component).
+///
+/// Also fires Plausible SPA pageviews on route change. The hosted
+/// script in `index.html` auto-fires the FIRST pageview when it
+/// loads, so we skip the initial mount with a `firstRouteRef`
+/// toggle and only fire on subsequent route changes. Without that
+/// guard, every entry visit would double-count (once from the
+/// script's auto-fire, once from this effect's first run). Same
+/// pattern as libre.academy's App.tsx.
 function ChromeShell({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const hideChrome = shouldHideChrome(location.pathname);
+
+  const firstRouteRef = useRef(true);
+  useEffect(() => {
+    if (firstRouteRef.current) {
+      firstRouteRef.current = false;
+      return;
+    }
+    trackPageview();
+  }, [location.pathname]);
+
   return (
     <>
       {!hideChrome && <Nav />}

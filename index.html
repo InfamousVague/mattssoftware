@@ -41,6 +41,37 @@
       content="A small shop of tiny, free, open-source apps. One launcher installs them all and keeps them up to date."
     />
     <meta name="twitter:image" content="https://mattssoftware.com/_brand/home-hero-desk.png" />
+
+    <!-- Self-hosted Plausible analytics. Privacy-friendly (no
+         cookies, no fingerprinting, no PII) so it doesn't need a
+         consent banner. `script.outbound-links.js` auto-fires the
+         initial pageview and tracks outbound clicks (GitHub,
+         App Store, releases) for free; SPA route changes are
+         fired manually from React (see `src/lib/analytics.ts` +
+         the route-change effect in App.tsx).
+         Keeping the script on our own subdomain (`stats.
+         mattssoftware.com`) means no third-party cookies, no
+         ad-blocker false positives, and corporate firewalls only
+         need to whitelist one host. Mirrors the libre.academy
+         setup exactly. -->
+    <script
+      defer
+      data-domain="mattssoftware.com"
+      src="https://stats.mattssoftware.com/js/script.outbound-links.js"
+    ></script>
+    <!-- Plausible's standard early-call buffer. Lets us call
+         `window.plausible("pageview")` from React before the
+         deferred script finishes loading — early calls queue on
+         `plausible.q` and the real implementation flushes them
+         once it installs itself. Without this, any pageview the
+         router fires during the script-load window is lost. -->
+    <script>
+      window.plausible =
+        window.plausible ||
+        function () {
+          (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+    </script>
   </head>
   <body>
     <div id="root"></div>
