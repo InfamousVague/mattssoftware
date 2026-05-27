@@ -19,6 +19,8 @@ const TILES = [
   { id: "blip",        name: "Blip",        to: "/blip" },
   { id: "base",        name: "Base",        to: "/base" },
   { id: "diane",       name: "Diane",       to: "/diane" },
+  { id: "seasick",     name: "Seasick",     to: "/seasick" },
+  { id: "tap",         name: "Tap",         to: "/tap" },
 ] as const;
 
 /// Random pause between one tile's playthrough finishing and
