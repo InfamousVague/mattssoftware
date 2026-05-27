@@ -40,11 +40,6 @@
     text-decoration: none;
     color: inherit;
     width: 100%;
-    transition: transform 220ms ease;
-}
-
-.ms-anim-tile:hover {
-    transform: translateY(-3px);
 }
 
 .ms-anim-tile:focus-visible {
@@ -69,17 +64,12 @@
     border-radius: 22.4%;
     overflow: hidden;
     /* Subtle drop shadow grounds the tile against the cream
-       hero card. Lifted on hover so the squircle feels live. */
+       hero card. No hover boost — the video playing IS the
+       hover feedback; layering a lift + shadow change on top
+       just makes the tile feel jittery. */
     box-shadow:
         0 8px 22px rgba(0, 0, 0, 0.18),
         0 1px 3px rgba(0, 0, 0, 0.12);
-    transition: box-shadow 220ms ease;
-}
-
-.ms-anim-tile:hover .ms-anim-tile__squircle {
-    box-shadow:
-        0 14px 30px rgba(0, 0, 0, 0.24),
-        0 3px 8px rgba(0, 0, 0, 0.16);
 }
 
 .ms-anim-tile__img,
