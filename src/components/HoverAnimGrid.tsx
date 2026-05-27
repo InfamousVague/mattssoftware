@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./HoverAnimGrid.css";
 
@@ -21,51 +21,117 @@ const TILES = [
   { id: "diane",       name: "Diane",       to: "/diane" },
 ] as const;
 
-/// Compact 3×3 grid sized to fit the bighero's left column. No
-/// header text — context comes from the hero pitch sitting to
-/// its right. Renders as plain anchors / links so each tile is
-/// a deep-link into the relevant marketing page.
+/// How many tiles play ambiently at any given moment. Two
+/// reads as "the grid is alive" without being chaotic; modern
+/// browsers handle two simultaneous H.264 decode streams at
+/// 400×400 effortlessly.
+const AMBIENT_COUNT = 2;
+/// Delay between the first and second tile's initial start so
+/// the two streams don't end at the same moment + immediately
+/// replace as a pair. ~1.5s on a 4s clip gives a comfortable
+/// stagger that's preserved through the rolling rotation.
+const AMBIENT_STAGGER_MS = 1500;
+
+/// Random tile id NOT already in the active set. Used both for
+/// the initial mount and for rolling a new tile every time an
+/// active one finishes its loop.
+function pickReplacement(active: Set<string>): string | null {
+  const available = TILES.filter((t) => !active.has(t.id));
+  if (available.length === 0) return null;
+  return available[Math.floor(Math.random() * available.length)].id;
+}
+
 export function HoverAnimGrid() {
+  // Set of tile ids currently driven by the ambient orchestrator.
+  // Tiles also play on hover regardless of whether they're in
+  // this set, so the two surfaces compose cleanly.
+  const [ambient, setAmbient] = useState<Set<string>>(new Set());
+
+  // Initial mount: seed AMBIENT_COUNT tiles, staggered so they
+  // never finish at the same instant. After this, the rolling
+  // logic in handleAmbientFinished maintains the rhythm — each
+  // tile that finishes is immediately replaced by a fresh pick.
+  useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    for (let i = 0; i < AMBIENT_COUNT; i++) {
+      timers.push(
+        window.setTimeout(() => {
+          setAmbient((prev) => {
+            const next = new Set(prev);
+            const pick = pickReplacement(next);
+            if (pick) next.add(pick);
+            return next;
+          });
+        }, i * AMBIENT_STAGGER_MS),
+      );
+    }
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  // A tile's ambient playthrough hit its last frame. Drop it
+  // from the active set + roll a fresh tile into the slot it
+  // vacated, preserving the rolling-flow rhythm.
+  function handleAmbientFinished(id: string) {
+    setAmbient((prev) => {
+      const next = new Set(prev);
+      next.delete(id);
+      const pick = pickReplacement(next);
+      if (pick) next.add(pick);
+      return next;
+    });
+  }
+
   return (
     <div className="ms-anim-grid" aria-label="App icon previews">
       {TILES.map((tile) => (
-        <Tile key={tile.id} tile={tile} />
+        <Tile
+          key={tile.id}
+          tile={tile}
+          isAmbient={ambient.has(tile.id)}
+          onAmbientFinished={handleAmbientFinished}
+        />
       ))}
     </div>
   );
 }
 
-function Tile({ tile }: { tile: (typeof TILES)[number] }) {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  // Drives the crossfade: static icon underneath, video on top
-  // at opacity 0 until showVideo flips true. Video reaches end
-  // → showVideo back to false → static icon shows through.
-  const [showVideo, setShowVideo] = useState(false);
+interface TileProps {
+  tile: (typeof TILES)[number];
+  isAmbient: boolean;
+  onAmbientFinished: (id: string) => void;
+}
 
-  function handleEnter() {
+function Tile({ tile, isAmbient, onAmbientFinished }: TileProps) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  // Local hover state composes with the ambient prop —
+  // whichever is true keeps the video visible + playing.
+  const [isHovering, setIsHovering] = useState(false);
+  const showVideo = isHovering || isAmbient;
+
+  // Whenever `showVideo` transitions true → false → true, seek
+  // to 0 and play. SwiftUI-style behaviour: each fresh activation
+  // gets a fresh playthrough from the opening frame. (Re-hovering
+  // mid-ambient-loop is a no-op because showVideo was already
+  // true, so we don't restart and the user sees the in-progress
+  // motion they'd otherwise interrupt.)
+  useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-    v.currentTime = 0;
-    setShowVideo(true);
-    v.play().catch(() => {});
-  }
-
-  function handleLeave() {
-    const v = videoRef.current;
-    setShowVideo(false);
-    // Pause so background tabs / off-screen tiles don't hold a
-    // decoder. The next hover seeks to 0 + plays from scratch.
-    v?.pause();
-  }
+    if (showVideo) {
+      v.currentTime = 0;
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  }, [showVideo]);
 
   function handleEnded() {
-    // Video finished its loop — fade back to the static icon
-    // even if the cursor is still hovering. Mirrors the
-    // launcher's behaviour (actionAtItemEnd = .pause + the
-    // `videoFinished` latch in AppTile).
-    setShowVideo(false);
-    const v = videoRef.current;
-    v?.pause();
+    // Tell the orchestrator we finished (it'll roll us out of
+    // the ambient set and pick a replacement). Also drop our
+    // hover latch so the next mouseleave + mouseenter starts
+    // cleanly — same "videoFinished" latch the launcher uses.
+    if (isAmbient) onAmbientFinished(tile.id);
+    setIsHovering(false);
   }
 
   const inner = (
@@ -97,6 +163,11 @@ function Tile({ tile }: { tile: (typeof TILES)[number] }) {
     </>
   );
 
+  const hoverHandlers = {
+    onMouseEnter: () => setIsHovering(true),
+    onMouseLeave: () => setIsHovering(false),
+  };
+
   if ("href" in tile) {
     return (
       <a
@@ -104,20 +175,14 @@ function Tile({ tile }: { tile: (typeof TILES)[number] }) {
         target="_blank"
         rel="noopener noreferrer"
         className="ms-anim-tile"
-        onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
+        {...hoverHandlers}
       >
         {inner}
       </a>
     );
   }
   return (
-    <Link
-      to={tile.to}
-      className="ms-anim-tile"
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-    >
+    <Link to={tile.to} className="ms-anim-tile" {...hoverHandlers}>
       {inner}
     </Link>
   );
