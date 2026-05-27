@@ -71,9 +71,13 @@ function Tile({ tile }: { tile: (typeof TILES)[number] }) {
   const inner = (
     <>
       <span className="ms-anim-tile__squircle">
+        {/* Static image is the video's first frame, extracted
+            from the SAME re-encoded mp4 below — so the
+            crossfade is pixel-for-pixel seamless. No PNG <→>
+            video mismatch on the seam. */}
         <img
           className="ms-anim-tile__img"
-          src={`/${tile.id}/app-icon.png`}
+          src={`/anim/${tile.id}.png`}
           alt=""
           draggable={false}
         />
