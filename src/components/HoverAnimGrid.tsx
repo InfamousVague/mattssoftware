@@ -1,14 +1,13 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./HoverAnimGrid.css";
 
-/// Tiles to show in the 3×3 showcase. Each row is rendered
-/// left-to-right; the layout grids them with CSS, so reordering
-/// here just shuffles the visual.
+/// Tiles shown in the home-hero icon grid. Each tile mirrors
+/// the launcher's APPS-grid behaviour: static icon by default,
+/// fade in the hover-video on `:hover`, fade back out when the
+/// video reaches its last frame or the cursor leaves.
 ///
-/// `to` is the route the tile links to on click. Apps whose
-/// catalog rows still use external URLs (`viewExternal: true`)
-/// get the external URL inline.
+/// `to` → internal route (Link). `href` → external (anchor).
 const TILES = [
   { id: "alfred",      name: "Alfred",      to: "/alfred" },
   { id: "espresso",    name: "Espresso",    to: "/espresso" },
@@ -22,76 +21,74 @@ const TILES = [
   { id: "diane",       name: "Diane",       to: "/diane" },
 ] as const;
 
-/// Lazy intersection-observer hook would be the proper finish
-/// here, but with 9 video tags at 100–250KB each + autoplay-
-/// muted-loop + decoding from ~24fps source, modern browsers
-/// idle out the off-screen ones automatically. Skip the hook.
+/// Compact 3×3 grid sized to fit the bighero's left column. No
+/// header text — context comes from the hero pitch sitting to
+/// its right. Renders as plain anchors / links so each tile is
+/// a deep-link into the relevant marketing page.
 export function HoverAnimGrid() {
   return (
-    <section className="ms-anim-showcase" aria-label="Hover-to-play app icons">
-      <div className="ms-anim-showcase__eyebrow">
-        <span className="ms-anim-showcase__chip">NEW</span>
-        Live icons in the launcher
-      </div>
-      <h2 className="ms-anim-showcase__title">
-        Every app has a&nbsp;little life now.
-      </h2>
-      <p className="ms-anim-showcase__sub">
-        Hover any tile in the MattsSoftware launcher and its
-        squircle takes a breath — a four-second loop that crosses
-        right back into the static icon when it&apos;s done. Same
-        chibi-Pixar voice the whole suite shares.
-      </p>
-      <div className="ms-anim-showcase__grid">
-        {TILES.map((tile) => (
-          <Tile key={tile.id} tile={tile} />
-        ))}
-      </div>
-    </section>
+    <div className="ms-anim-grid" aria-label="App icon previews">
+      {TILES.map((tile) => (
+        <Tile key={tile.id} tile={tile} />
+      ))}
+    </div>
   );
 }
 
 function Tile({ tile }: { tile: (typeof TILES)[number] }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  // Drives the crossfade: static icon underneath, video on top
+  // at opacity 0 until showVideo flips true. Video reaches end
+  // → showVideo back to false → static icon shows through.
+  const [showVideo, setShowVideo] = useState(false);
 
-  // The video autoplays muted on mount (Safari + Chrome allow
-  // muted autoplay without user gesture). We DON'T loop in the
-  // <video> tag itself — instead we listen for `ended` and
-  // restart on a small delay so the brand has a moment of
-  // stillness between plays, mirroring the launcher's behaviour.
-  function handleEnded() {
-    const v = videoRef.current;
-    if (!v) return;
-    window.setTimeout(() => {
-      if (!v.isConnected) return;
-      v.currentTime = 0;
-      v.play().catch(() => {});
-    }, 600);
-  }
-
-  // On hover, restart immediately so a passing cursor always
-  // catches the opening frame instead of mid-loop.
-  function handleMouseEnter() {
+  function handleEnter() {
     const v = videoRef.current;
     if (!v) return;
     v.currentTime = 0;
+    setShowVideo(true);
     v.play().catch(() => {});
+  }
+
+  function handleLeave() {
+    const v = videoRef.current;
+    setShowVideo(false);
+    // Pause so background tabs / off-screen tiles don't hold a
+    // decoder. The next hover seeks to 0 + plays from scratch.
+    v?.pause();
+  }
+
+  function handleEnded() {
+    // Video finished its loop — fade back to the static icon
+    // even if the cursor is still hovering. Mirrors the
+    // launcher's behaviour (actionAtItemEnd = .pause + the
+    // `videoFinished` latch in AppTile).
+    setShowVideo(false);
+    const v = videoRef.current;
+    v?.pause();
   }
 
   const inner = (
     <>
-      <video
-        ref={videoRef}
-        className="ms-anim-tile__video"
-        src={`/anim/${tile.id}.mp4`}
-        muted
-        playsInline
-        autoPlay
-        preload="auto"
-        onEnded={handleEnded}
-        onMouseEnter={handleMouseEnter}
-        aria-hidden="true"
-      />
+      <span className="ms-anim-tile__squircle">
+        <img
+          className="ms-anim-tile__img"
+          src={`/${tile.id}/app-icon.png`}
+          alt=""
+          draggable={false}
+        />
+        <video
+          ref={videoRef}
+          className="ms-anim-tile__video"
+          src={`/anim/${tile.id}.mp4`}
+          muted
+          playsInline
+          preload="metadata"
+          onEnded={handleEnded}
+          aria-hidden="true"
+          style={{ opacity: showVideo ? 1 : 0 }}
+        />
+      </span>
       <span className="ms-anim-tile__label">{tile.name}</span>
     </>
   );
@@ -103,13 +100,20 @@ function Tile({ tile }: { tile: (typeof TILES)[number] }) {
         target="_blank"
         rel="noopener noreferrer"
         className="ms-anim-tile"
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
       >
         {inner}
       </a>
     );
   }
   return (
-    <Link to={tile.to} className="ms-anim-tile">
+    <Link
+      to={tile.to}
+      className="ms-anim-tile"
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
       {inner}
     </Link>
   );

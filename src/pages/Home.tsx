@@ -187,12 +187,15 @@ export function Home() {
       {/* Cream hero card on the dark page: the desk illustration plus
           the launcher pitch + Browse-the-suite anchor jump. */}
       <section className="ms-bighero">
-        <img
-          className="ms-bighero__art"
-          src="/_brand/home-hero-desk.png"
-          alt=""
-          draggable={false}
-        />
+        {/* Used to be the desk-illustration shelf image; now
+            the live 3×3 hover-icon grid lives in this column
+            instead so the homepage opens on motion. Wrapper
+            sits in the SAME grid slot as the old `.ms-bighero__
+            art` <img>, but uses its own class so the image's
+            drop-shadow filter doesn't bleed onto the icons. */}
+        <div className="ms-bighero__icons">
+          <HoverAnimGrid />
+        </div>
         <div className="ms-bighero__text">
           <span className="ms-bighero__eyebrow">{t.home.eyebrow}</span>
           <h1 className="ms-bighero__title">{t.home.title}</h1>
@@ -215,13 +218,6 @@ export function Home() {
           <p className="ms-bighero__meta">{t.home.metaLine}</p>
         </div>
       </section>
-
-      {/* Hover-icon showcase — 3×3 grid of large squircles
-          autoplaying the same hover clips the launcher's APPS
-          grid ships with. Lives between the bighero and the
-          searchable catalog so it's the first proof of polish
-          a visitor scrolls past. */}
-      <HoverAnimGrid />
 
       <header className="ms-titlebar">
         <div className="ms-brand">
