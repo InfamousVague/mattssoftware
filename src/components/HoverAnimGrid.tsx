@@ -33,14 +33,27 @@ function ambientBuffer(): number {
   return min + Math.random() * (max - min);
 }
 
-/// Random tile id NOT already in the active set. Used both for
-/// the initial mount and for rolling a new tile every time an
-/// active one finishes its loop.
-function pickReplacement(active: Set<string>): string | null {
-  const available = TILES.filter((t) => !active.has(t.id));
+/// Random tile id that is NOT currently playing AND NOT in the
+/// short recent-history list. Excluding the last few picks
+/// keeps the rotation feeling random instead of "oh, base
+/// again." 9 tiles minus up to 1 active and up to 2 recent =
+/// always at least 6 candidates, so the available list is
+/// never empty in practice.
+function pickReplacement(
+  active: Set<string>,
+  recent: readonly string[],
+): string | null {
+  const exclude = new Set([...active, ...recent]);
+  const available = TILES.filter((t) => !exclude.has(t.id));
   if (available.length === 0) return null;
   return available[Math.floor(Math.random() * available.length)].id;
 }
+
+/// How many of the most-recent picks to exclude from the next
+/// random draw. Two = "don't repeat what the user just saw or
+/// the one before that"; bigger numbers tighten variety
+/// further (but at 9 tiles, anything past 6 starves the pool).
+const RECENT_HISTORY_DEPTH = 2;
 
 export function HoverAnimGrid() {
   // Set of tile ids currently driven by the ambient orchestrator.
@@ -51,6 +64,11 @@ export function HoverAnimGrid() {
   // Pending "next pick" timer so we can cancel it if the
   // component unmounts during a buffer pause.
   const pendingPickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Rolling history of the last N ambient picks (FIFO). The
+  // picker reads this so the same tile doesn't recur within
+  // a short window. Lives on a ref so updates don't trigger
+  // re-renders (the `ambient` Set already does that).
+  const recentRef = useRef<string[]>([]);
 
   function scheduleNextPick() {
     if (pendingPickRef.current) {
@@ -60,8 +78,13 @@ export function HoverAnimGrid() {
       pendingPickRef.current = null;
       setAmbient((prev) => {
         const next = new Set(prev);
-        const pick = pickReplacement(next);
-        if (pick) next.add(pick);
+        const pick = pickReplacement(next, recentRef.current);
+        if (pick) {
+          next.add(pick);
+          // Push to FIFO history + trim to the last N entries.
+          recentRef.current = [...recentRef.current, pick]
+            .slice(-RECENT_HISTORY_DEPTH);
+        }
         return next;
       });
     }, ambientBuffer());
