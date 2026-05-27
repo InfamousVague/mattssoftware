@@ -5,6 +5,7 @@ import { CATALOG, CATEGORIES, type CatalogApp } from "../data/catalog";
 import { themeVars } from "../data/themes";
 import { useLanguage } from "../i18n/context";
 import { LanguageSelector } from "../components/LanguageSelector";
+import { HoverAnimGrid } from "../components/HoverAnimGrid";
 import {
   catalogTaglineForId,
   catalogDescriptionForId,
@@ -214,6 +215,13 @@ export function Home() {
           <p className="ms-bighero__meta">{t.home.metaLine}</p>
         </div>
       </section>
+
+      {/* Hover-icon showcase — 3×3 grid of large squircles
+          autoplaying the same hover clips the launcher's APPS
+          grid ships with. Lives between the bighero and the
+          searchable catalog so it's the first proof of polish
+          a visitor scrolls past. */}
+      <HoverAnimGrid />
 
       <header className="ms-titlebar">
         <div className="ms-brand">
