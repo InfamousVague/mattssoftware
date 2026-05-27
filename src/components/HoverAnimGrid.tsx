@@ -21,16 +21,17 @@ const TILES = [
   { id: "diane",       name: "Diane",       to: "/diane" },
 ] as const;
 
-/// How many tiles play ambiently at any given moment. Two
-/// reads as "the grid is alive" without being chaotic; modern
-/// browsers handle two simultaneous H.264 decode streams at
-/// 400×400 effortlessly.
-const AMBIENT_COUNT = 2;
-/// Delay between the first and second tile's initial start so
-/// the two streams don't end at the same moment + immediately
-/// replace as a pair. ~1.5s on a 4s clip gives a comfortable
-/// stagger that's preserved through the rolling rotation.
-const AMBIENT_STAGGER_MS = 1500;
+/// Random pause between one tile's playthrough finishing and
+/// the next tile being picked. Reads as "the grid takes a
+/// breath" rather than slamming straight into the next motion.
+/// Tuple is [min, max] in ms — actual buffer rolls uniformly
+/// inside the range so the rhythm doesn't feel metronomic.
+const AMBIENT_BUFFER_MS: [number, number] = [1000, 2000];
+
+function ambientBuffer(): number {
+  const [min, max] = AMBIENT_BUFFER_MS;
+  return min + Math.random() * (max - min);
+}
 
 /// Random tile id NOT already in the active set. Used both for
 /// the initial mount and for rolling a new tile every time an
@@ -47,38 +48,51 @@ export function HoverAnimGrid() {
   // this set, so the two surfaces compose cleanly.
   const [ambient, setAmbient] = useState<Set<string>>(new Set());
 
-  // Initial mount: seed AMBIENT_COUNT tiles, staggered so they
-  // never finish at the same instant. After this, the rolling
-  // logic in handleAmbientFinished maintains the rhythm — each
-  // tile that finishes is immediately replaced by a fresh pick.
-  useEffect(() => {
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    for (let i = 0; i < AMBIENT_COUNT; i++) {
-      timers.push(
-        window.setTimeout(() => {
-          setAmbient((prev) => {
-            const next = new Set(prev);
-            const pick = pickReplacement(next);
-            if (pick) next.add(pick);
-            return next;
-          });
-        }, i * AMBIENT_STAGGER_MS),
-      );
+  // Pending "next pick" timer so we can cancel it if the
+  // component unmounts during a buffer pause.
+  const pendingPickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function scheduleNextPick() {
+    if (pendingPickRef.current) {
+      clearTimeout(pendingPickRef.current);
     }
-    return () => timers.forEach(clearTimeout);
+    pendingPickRef.current = window.setTimeout(() => {
+      pendingPickRef.current = null;
+      setAmbient((prev) => {
+        const next = new Set(prev);
+        const pick = pickReplacement(next);
+        if (pick) next.add(pick);
+        return next;
+      });
+    }, ambientBuffer());
+  }
+
+  // Initial mount: pick the first tile after a brief buffer so
+  // the grid opens still and then comes alive — feels less like
+  // a video playing on page-load and more like an ambient
+  // organism.
+  useEffect(() => {
+    scheduleNextPick();
+    return () => {
+      if (pendingPickRef.current) {
+        clearTimeout(pendingPickRef.current);
+        pendingPickRef.current = null;
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // A tile's ambient playthrough hit its last frame. Drop it
-  // from the active set + roll a fresh tile into the slot it
-  // vacated, preserving the rolling-flow rhythm.
+  // from the active set immediately, then wait a 1-2s buffer
+  // before promoting a fresh tile — the visual pause is what
+  // separates "alive" from "noisy".
   function handleAmbientFinished(id: string) {
     setAmbient((prev) => {
       const next = new Set(prev);
       next.delete(id);
-      const pick = pickReplacement(next);
-      if (pick) next.add(pick);
       return next;
     });
+    scheduleNextPick();
   }
 
   return (
