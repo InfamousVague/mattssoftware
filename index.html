@@ -11,11 +11,18 @@
     />
     <meta name="theme-color" content="#0c0a12" />
 
-    <!-- Favicon: the same white ">|M" mark as the site navbar, on
-         a dark squircle so it stays legible on light browser tab
-         bars. Apple-touch-icon is the full-colour launcher squircle
-         (better for iOS home-screen contexts than a bare mark). -->
-    <link rel="icon" type="image/png" href="/favicon.png?v=2" />
+    <!-- Favicon — glossy 3D ">|M" mark from the launcher hero,
+         swapped light/dark to stay legible on either tab bar:
+           • Dark-themed browser → white glyph (`favicon.png`)
+           • Light-themed browser → black glyph (`favicon-dark.png`)
+         The legacy unconditional <link> below is the dark-mode
+         glyph and acts as the fallback for browsers that ignore
+         media-conditional icons (older Safari, some feed readers).
+         Apple-touch-icon stays the full-colour launcher squircle —
+         better than a bare mark on iOS home-screen contexts. -->
+    <link rel="icon" type="image/png" href="/favicon.png?v=3" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=3" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/png" href="/favicon-dark.png?v=3" media="(prefers-color-scheme: light)" />
     <link rel="apple-touch-icon" href="/launcher-icon.png" />
 
     <!-- Open Graph — for previews on Twitter / iMessage / Slack /
