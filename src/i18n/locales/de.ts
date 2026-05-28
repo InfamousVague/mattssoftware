@@ -34,6 +34,7 @@ export const de: Translation = {
     appsAllLabel: "Alle Apps",
     launcher: "Launcher",
     githubAria: "GitHub",
+    discordAria: "Discord beitreten",
     suiteFooter: "{count} Apps, ein Launcher.",
     getLauncher: "Launcher holen",
     tipLabel: "Trinkgeld",

@@ -34,6 +34,7 @@ export const zh: Translation = {
     appsAllLabel: "所有应用",
     launcher: "启动器",
     githubAria: "GitHub",
+    discordAria: "加入 Discord",
     suiteFooter: "{count} 个应用，一个启动器。",
     getLauncher: "获取启动器",
     tipLabel: "打赏",

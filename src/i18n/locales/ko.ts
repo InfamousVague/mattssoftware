@@ -34,6 +34,7 @@ export const ko: Translation = {
     appsAllLabel: "모든 앱",
     launcher: "런처",
     githubAria: "GitHub",
+    discordAria: "Discord 참여하기",
     suiteFooter: "{count}개의 앱, 하나의 런처.",
     getLauncher: "런처 받기",
     tipLabel: "팁",

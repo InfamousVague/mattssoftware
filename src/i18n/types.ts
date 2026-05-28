@@ -133,6 +133,7 @@ export interface Translation {
     appsAllLabel: string;
     launcher: string;
     githubAria: string;
+    discordAria: string;
     suiteFooter: string;
     getLauncher: string;
     tipLabel: string;

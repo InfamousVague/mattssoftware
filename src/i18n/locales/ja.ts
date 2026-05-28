@@ -34,6 +34,7 @@ export const ja: Translation = {
     appsAllLabel: "すべてのアプリ",
     launcher: "ランチャー",
     githubAria: "GitHub",
+    discordAria: "Discord に参加",
     suiteFooter: "{count} 個のアプリ、ひとつのランチャー。",
     getLauncher: "ランチャーを入手",
     tipLabel: "チップ",

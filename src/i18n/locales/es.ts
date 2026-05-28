@@ -34,6 +34,7 @@ export const es: Translation = {
     appsAllLabel: "Todas las aplicaciones",
     launcher: "Lanzador",
     githubAria: "GitHub",
+    discordAria: "Unirse al Discord",
     suiteFooter: "{count} aplicaciones, un solo lanzador.",
     getLauncher: "Obtener el lanzador",
     tipLabel: "Propina",
