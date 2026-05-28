@@ -217,12 +217,50 @@
   color: var(--text-primary);
 }
 
+/* ── Discord CTA pill ──────────────────────────────────────
+   Brand-coloured pill in Discord Blurple (#5865F2) — the
+   official "join my server" CTA treatment from Discord's
+   marketing kit. Sits between the GitHub icon and Tip so
+   it's prominent without competing with the launcher CTA. */
+
+.nav__discord {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #5865F2;          /* Discord Blurple */
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  box-shadow:
+    0 6px 16px -6px rgba(88, 101, 242, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: filter .15s ease, transform .15s ease;
+}
+.nav__discord:hover {
+  color: white;
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
 /* ── Responsive ────────────────────────────────────────── */
 
 @media (max-width: 720px) {
   /* Drop the launcher pill text below ~720px — the icon link
-     in the dropdown footer still carries the action. */
+     in the dropdown footer still carries the action. The Discord
+     pill collapses to icon-only (drop the "Discord" label) so it
+     still fits comfortably next to the GitHub mark. */
   .nav__cta { display: none; }
+  .nav__discord {
+    padding: 0;
+    width: 32px;
+    justify-content: center;
+    gap: 0;
+  }
+  .nav__discord-label { display: none; }
 }
 
 @media (max-width: 540px) {

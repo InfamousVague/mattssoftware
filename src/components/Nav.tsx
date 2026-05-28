@@ -178,17 +178,19 @@ export function Nav() {
           <GithubMark />
         </a>
 
-        {/* Discord — same icon-link treatment as the GitHub mark so the
-            row stays visually balanced. Marked external because the
-            invite URL leaves the site. */}
+        {/* Discord — brand-coloured pill in Discord Blurple so the CTA
+            actually reads in the dark nav (the icon-link treatment we
+            had first was 4%-alpha and invisible). Collapses to an
+            icon-only chip below the 720px breakpoint via CSS. */}
         <a
-          className="nav__icon-link"
+          className="nav__discord"
           href={DISCORD_INVITE}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={t.nav.discordAria}
         >
           <DiscordMark />
+          <span className="nav__discord-label">Discord</span>
         </a>
 
         {/* Tip popover — now has room to render its trigger and panel. */}
