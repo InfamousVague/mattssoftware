@@ -217,6 +217,47 @@
   outline: none;
 }
 
+/* ── Discord CTA pill (launcher-replica titlebar) ──────────
+   Brand-coloured pill in Discord Blurple (#5865F2). Matches
+   the `.nav__discord` pill on the marketing sub-pages so the
+   home page (which hides the global Nav) carries the same
+   community CTA. */
+.ms-discord {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: var(--radius-full);
+  background: #5865F2;             /* Discord Blurple */
+  color: white;
+  font-weight: var(--weight-semibold, 600);
+  font-size: var(--text-sm-size, 13px);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow:
+    0 6px 16px -6px rgba(88, 101, 242, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: filter var(--transition-fast), transform var(--transition-fast);
+}
+.ms-discord:hover {
+  color: white;
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  /* Collapse to an icon-only chip so the titlebar still fits
+     comfortably next to the search input on narrow screens. */
+  .ms-discord {
+    padding: 0;
+    width: 32px;
+    justify-content: center;
+    gap: 0;
+  }
+  .ms-discord__label { display: none; }
+}
+
 .ms-search-input::placeholder {
   color: var(--color-text-tertiary);
 }

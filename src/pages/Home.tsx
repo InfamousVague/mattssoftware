@@ -6,6 +6,7 @@ import { themeVars } from "../data/themes";
 import { useLanguage } from "../i18n/context";
 import { LanguageSelector } from "../components/LanguageSelector";
 import { HoverAnimGrid } from "../components/HoverAnimGrid";
+import { DiscordMark, DISCORD_INVITE } from "../components/icons/DiscordMark";
 import {
   catalogTaglineForId,
   catalogDescriptionForId,
@@ -243,6 +244,21 @@ export function Home() {
             onChange={(e) => setQuery(e.target.value)}
             aria-label={t.home.searchAria}
           />
+          {/* Discord CTA — the global Nav is hidden on this surface
+              (`shouldHideChrome` in App.tsx), so the marketing Nav's
+              Blurple pill never reaches the home page. Mirroring it
+              here gives the launcher-replica its own community CTA
+              without breaking the titlebar layout. */}
+          <a
+            className="ms-discord"
+            href={DISCORD_INVITE}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t.nav.discordAria}
+          >
+            <DiscordMark />
+            <span className="ms-discord__label">Discord</span>
+          </a>
         </div>
       </header>
 
