@@ -35,6 +35,7 @@ export const APP_THEMES: Record<string, AppTheme> = {
   quarantine: { from: "#f7d05c", to: "#c89212", glow: "rgba(200, 146, 18, 0.32)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(247,208,92,0.22), transparent 65%)" },
   uninstaller:{ from: "#ff8a8a", to: "#a02828", glow: "rgba(160, 40, 40, 0.34)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,138,138,0.24), transparent 65%)" },
   worktree:   { from: "#98c97d", to: "#4d8a3e", glow: "rgba(77, 138, 62, 0.32)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(152,201,125,0.22), transparent 65%)" },
+  halo:       { from: "#ffd988", to: "#dda84a", glow: "rgba(221, 168, 74, 0.34)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,217,136,0.24), transparent 65%)" },
 };
 
 /// Fallback gradient (matches the :root default in styles.css).

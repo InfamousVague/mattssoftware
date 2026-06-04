@@ -26,6 +26,7 @@ import { TapEulaPage } from "./pages/TapEula";
 import { EspressoPage } from "./pages/Espresso";
 import { SeasickPage } from "./pages/Seasick";
 import { WorktreePage } from "./pages/Worktree";
+import { HaloPage } from "./pages/Halo";
 import { NotFound } from "./pages/NotFound";
 import "./styles.css";
 
@@ -121,6 +122,7 @@ export function App() {
             <Route path="/espresso" element={<EspressoPage />} />
             <Route path="/seasick" element={<SeasickPage />} />
             <Route path="/worktree" element={<WorktreePage />} />
+            <Route path="/halo" element={<HaloPage />} />
             {/* Catch-all 404 — playful ribbon-snake illustration. */}
             <Route path="*" element={<NotFound />} />
           </Routes>

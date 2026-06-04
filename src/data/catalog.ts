@@ -97,8 +97,7 @@ export const CATALOG: readonly CatalogApp[] = [
     channel: "github",
     platforms: ["macOS"],
     githubRepo: "Halo",
-    view: "https://github.com/InfamousVague/Halo",
-    viewExternal: true,
+    view: "/halo",
   },
   {
     id: "stickykeys",
