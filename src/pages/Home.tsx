@@ -121,7 +121,7 @@ function AppSection({
       style={style}
     >
       <div className="ms-section__hero">
-        <img src={heroFor(app)} alt="" draggable={false} />
+        <img src={heroFor(app)} alt="" draggable={false} loading="lazy" decoding="async" />
       </div>
       <div className="ms-section__text">
         <span className="ms-section__eyebrow">{platformLabel(app, t)}</span>
