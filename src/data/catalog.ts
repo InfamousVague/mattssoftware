@@ -44,6 +44,20 @@ export interface CatalogApp {
 
 export const CATALOG: readonly CatalogApp[] = [
   {
+    id: "blackpearl",
+    name: "The Black Pearl",
+    tagline: "Discover, stream, and keep movies, shows & music — one beautiful app.",
+    description:
+      "A media browser for legal & public-domain torrents: search every source at once, stream while it downloads, and build a tidy library of movies, TV, and music. On-the-fly transcoding plays formats the browser can't, an iTunes-style music view scrubs album art from Spotify, and a local-AI pass tidies your folder. Cross-platform — macOS, Windows, Linux.",
+    category: "Utilities",
+    icon: "/blackpearl/app-icon.png",
+    tags: ["Media", "Streaming", "Library", "macOS", "Windows", "Linux"],
+    channel: "github",
+    platforms: ["macOS", "Windows", "Linux"],
+    githubRepo: "TheBlackPearl",
+    view: "/blackpearl",
+  },
+  {
     id: "espresso",
     name: "Espresso",
     tagline: "Keep your devices awake. Mac or iPhone.",

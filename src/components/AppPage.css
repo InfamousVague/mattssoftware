@@ -465,3 +465,11 @@
   .app-page__hero-img { max-width: 340px; }
   .suite-carousel__row { grid-auto-columns: 240px; }
 }
+
+/* Cross-platform download buttons: a platform with no published build yet
+   shows a non-clickable "Soon" chip instead of a dead link. */
+.app-page__actions .btn.is-soon {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}

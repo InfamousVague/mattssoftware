@@ -36,6 +36,7 @@ export const APP_THEMES: Record<string, AppTheme> = {
   uninstaller:{ from: "#ff8a8a", to: "#a02828", glow: "rgba(160, 40, 40, 0.34)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,138,138,0.24), transparent 65%)" },
   worktree:   { from: "#98c97d", to: "#4d8a3e", glow: "rgba(77, 138, 62, 0.32)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(152,201,125,0.22), transparent 65%)" },
   halo:       { from: "#ffd988", to: "#dda84a", glow: "rgba(221, 168, 74, 0.34)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,217,136,0.24), transparent 65%)" },
+  blackpearl: { from: "#f2c94c", to: "#1f9e8f", glow: "rgba(31, 158, 143, 0.34)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(242,201,76,0.22), transparent 65%)" }, // treasure-gold → sea-teal
 };
 
 /// Fallback gradient (matches the :root default in styles.css).

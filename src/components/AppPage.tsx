@@ -46,6 +46,13 @@ interface AppPageProps {
   ///   { kind: "appstore", url: "https://apps.apple.com/…" }
   ///   { kind: "library", url: "https://github.com/InfamousVague" }
   cta: AppPageCTA;
+  /// Opt-in cross-platform downloads. When set (and cta.kind === "github"),
+  /// the hero + bottom CTA render one download button per platform —
+  /// "macOS" / "Windows" / "Linux" — each resolving the matching asset
+  /// (.dmg / .msi|.exe / .AppImage|.deb) from the latest GitHub release,
+  /// falling back to a "Soon" chip until that platform's build is published.
+  /// Omit it for the usual single Mac-DMG button.
+  platforms?: string[];
   /// True when this app genuinely lives in the macOS menu bar — drives
   /// the bottom-CTA copy ("Add X to your menu bar." vs. "Get X.").
   menuBarApp?: boolean;
@@ -90,6 +97,87 @@ async function fetchLatestRelease(repo: string): Promise<Release> {
   } catch {
     return fallback;
   }
+}
+
+// ---- cross-platform downloads (macOS / Windows / Linux) ----
+
+interface PlatformAssets {
+  version: string;
+  releaseUrl: string;
+  mac?: string;
+  windows?: string;
+  linux?: string;
+}
+
+/// Resolve the latest release's download URL for each platform from its asset
+/// list (Tauri ships .dmg / .msi+.exe / .AppImage+.deb). Missing platforms stay
+/// undefined so the UI can show "Soon" until that build is published.
+async function fetchPlatformAssets(repo: string): Promise<PlatformAssets> {
+  const releaseUrl = `https://github.com/InfamousVague/${repo}/releases/latest`;
+  const empty: PlatformAssets = { version: "", releaseUrl };
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/InfamousVague/${repo}/releases?per_page=20`,
+    );
+    if (!res.ok) return empty;
+    const releases = await res.json();
+    if (!Array.isArray(releases)) return empty;
+    for (const rel of releases) {
+      if (rel.draft) continue;
+      const assets: { name: string; browser_download_url: string }[] = rel.assets ?? [];
+      const find = (test: (n: string) => boolean) =>
+        assets.find((a) => test(a.name.toLowerCase()))?.browser_download_url;
+      const mac = find((n) => n.endsWith(".dmg"));
+      const windows = find((n) => n.endsWith(".msi") || n.endsWith(".exe"));
+      const linux = find((n) => n.endsWith(".appimage") || n.endsWith(".deb") || n.endsWith(".rpm"));
+      if (mac || windows || linux) {
+        return { version: rel.tag_name || "", releaseUrl, mac, windows, linux };
+      }
+    }
+    return empty;
+  } catch {
+    return empty;
+  }
+}
+
+const PLATFORM_META: Record<string, { label: string; key: "mac" | "windows" | "linux" }> = {
+  macOS: { label: "macOS", key: "mac" },
+  Windows: { label: "Windows", key: "windows" },
+  Linux: { label: "Linux", key: "linux" },
+};
+
+function PlatformDownloads({ repo, platforms }: { repo: string; platforms: string[] }) {
+  const [assets, setAssets] = useState<PlatformAssets>({
+    version: "",
+    releaseUrl: `https://github.com/InfamousVague/${repo}/releases/latest`,
+  });
+  useEffect(() => {
+    fetchPlatformAssets(repo).then(setAssets);
+  }, [repo]);
+
+  return (
+    <>
+      {platforms.map((p) => {
+        const meta = PLATFORM_META[p];
+        if (!meta) return null;
+        const url = assets[meta.key];
+        return url ? (
+          <a key={p} href={url} className="btn btn--primary btn--lg" download>
+            <Download size={16} /> {meta.label}
+          </a>
+        ) : (
+          <span
+            key={p}
+            className="btn btn--ghost btn--lg is-soon"
+            aria-disabled="true"
+            title={`${meta.label} build coming soon`}
+          >
+            {meta.label} · Soon
+          </span>
+        );
+      })}
+    </>
+  );
 }
 
 function PrimaryCTA({ cta }: { cta: AppPageProps["cta"] }) {
@@ -225,7 +313,11 @@ export function AppPage(props: AppPageProps) {
             <h1 className="app-page__title">{props.tagline}</h1>
             <p className="app-page__desc">{props.description}</p>
             <div className="app-page__actions">
-              <PrimaryCTA cta={props.cta} />
+              {props.platforms && props.platforms.length > 0 && props.cta.kind === "github" ? (
+                <PlatformDownloads repo={props.cta.repo} platforms={props.platforms} />
+              ) : (
+                <PrimaryCTA cta={props.cta} />
+              )}
               <SecondaryCTA cta={props.cta} />
             </div>
             {props.requirements ? (
@@ -264,7 +356,11 @@ export function AppPage(props: AppPageProps) {
             : format(t.appPage.bottomGet, { name: props.title })}
         </h2>
         <div className="app-page__actions">
-          <PrimaryCTA cta={props.cta} />
+          {props.platforms && props.platforms.length > 0 && props.cta.kind === "github" ? (
+            <PlatformDownloads repo={props.cta.repo} platforms={props.platforms} />
+          ) : (
+            <PrimaryCTA cta={props.cta} />
+          )}
           <SecondaryCTA cta={props.cta} />
         </div>
         {props.requirements ? (

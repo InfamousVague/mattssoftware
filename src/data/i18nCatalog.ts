@@ -4,7 +4,7 @@
 /// fields (icon paths, repo names, routes); these helpers pull
 /// translated copy (tagline, description) out of the active locale.
 
-import type { CatalogApp } from "./catalog";
+import { CATALOG, type CatalogApp } from "./catalog";
 import type { Translation } from "../i18n/types";
 
 /// Map a catalog id to the matching key in `t.apps`. The catalog uses
@@ -40,13 +40,15 @@ function appKey(id: string): AppKey | undefined {
 /// tagline baked into the catalog if the id isn't found.
 export function catalogTaglineForId(id: string, t: Translation): string {
   const key = appKey(id);
-  return key ? t.apps[key].catalogTagline : "";
+  if (key) return t.apps[key].catalogTagline;
+  return CATALOG.find((a) => a.id === id)?.tagline ?? "";
 }
 
 /// Get the localized long description for a catalog row.
 export function catalogDescriptionForId(id: string, t: Translation): string {
   const key = appKey(id);
-  return key ? t.apps[key].catalogDescription : "";
+  if (key) return t.apps[key].catalogDescription;
+  return CATALOG.find((a) => a.id === id)?.description ?? "";
 }
 
 /// Convenience: pulls the localized {tagline, description} pair for an
