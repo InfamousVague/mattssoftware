@@ -1,0 +1,260 @@
+/* The Black Pearl — scoped marketing sections.
+   Uses the page's theme tokens (--app-from = treasure-gold #f2c94c,
+   --app-to = sea-teal #1f9e8f, --app-glow) over the site's dark palette. */
+.bp {
+  --bp-gold: var(--app-from, #f2c94c);
+  --bp-teal: var(--app-to, #1f9e8f);
+}
+
+.bp-section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 76px 24px;
+}
+.bp-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 44px;
+}
+.bp-eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  color: var(--bp-gold);
+  background: color-mix(in oklab, var(--bp-gold) 13%, transparent);
+  border: 1px solid color-mix(in oklab, var(--bp-gold) 30%, transparent);
+  margin-bottom: 18px;
+}
+.bp-title {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: clamp(26px, 3.4vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--gray-12);
+  margin: 0 0 12px;
+  line-height: 1.12;
+}
+.bp-sub {
+  color: var(--gray-9);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---- Chart your course (3 steps) ---- */
+.bp-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.bp-step {
+  background: var(--gray-2);
+  border: 1px solid var(--gray-5);
+  border-radius: var(--radius-lg);
+  padding: 30px 26px;
+}
+.bp-step__n {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--bp-gold);
+}
+.bp-step__t {
+  font-family: var(--font-display, var(--font-sans));
+  font-weight: 800;
+  font-size: 19px;
+  color: var(--gray-12);
+  margin: 12px 0 8px;
+}
+.bp-step__b {
+  color: var(--gray-9);
+  font-size: 14.5px;
+  line-height: 1.58;
+  margin: 0;
+}
+
+/* ---- Treasure chest (stats) ---- */
+.bp-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+}
+.bp-stat {
+  text-align: center;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--bp-teal) 9%, var(--gray-2)), var(--gray-2));
+  border: 1px solid var(--gray-5);
+  border-radius: var(--radius-lg);
+  padding: 28px 18px;
+}
+.bp-stat__big {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--bp-gold), var(--bp-teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.bp-stat__l {
+  color: var(--gray-9);
+  font-size: 13.5px;
+  line-height: 1.45;
+  margin-top: 10px;
+}
+
+/* ---- Under the hull (tech) ---- */
+.bp-tech {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  background:
+    radial-gradient(120% 130% at 50% 0%, color-mix(in oklab, var(--bp-teal) 14%, transparent), transparent 60%),
+    var(--gray-2);
+  border: 1px solid var(--gray-5);
+  border-radius: var(--radius-xl);
+  padding: 48px 40px;
+}
+.bp-tech .bp-sub {
+  max-width: 680px;
+  margin: 0 auto;
+}
+.bp-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 26px;
+}
+.bp-chip {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--gray-11);
+  background: var(--gray-3);
+  border: 1px solid var(--gray-5);
+  border-radius: var(--radius-full);
+  padding: 8px 15px;
+}
+.bp-chip::before {
+  content: "⚓";
+  margin-right: 8px;
+  color: var(--bp-gold);
+}
+
+/* ---- Captain's log (quote) ---- */
+.bp-quote {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 56px 40px;
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(100% 120% at 50% 0%, color-mix(in oklab, var(--bp-gold) 10%, transparent), transparent 55%),
+    var(--gray-2);
+  border: 1px solid var(--gray-5);
+}
+.bp-quote__mark {
+  font-family: Georgia, serif;
+  font-size: 64px;
+  line-height: 0.4;
+  color: var(--bp-gold);
+}
+.bp-quote__q {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: clamp(22px, 3vw, 31px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--gray-12);
+  line-height: 1.3;
+  margin: 16px 0 18px;
+}
+.bp-quote__b {
+  color: var(--gray-9);
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 640px;
+}
+
+/* ---- Ship's manifest (FAQ) ---- */
+.bp-faq {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.bp-faq__item {
+  background: var(--gray-2);
+  border: 1px solid var(--gray-5);
+  border-radius: var(--radius-lg);
+  padding: 22px 26px;
+}
+.bp-faq__q {
+  font-family: var(--font-display, var(--font-sans));
+  font-weight: 700;
+  font-size: 16.5px;
+  color: var(--gray-12);
+  margin: 0 0 8px;
+  display: flex;
+  gap: 11px;
+  align-items: baseline;
+}
+.bp-faq__q::before {
+  content: "⚓";
+  color: var(--bp-gold);
+  font-size: 14px;
+}
+.bp-faq__a {
+  color: var(--gray-9);
+  font-size: 14.5px;
+  line-height: 1.62;
+  margin: 0;
+}
+
+/* ---- Rounded / squircle clipping for the page's imagery ---- */
+/* Hero illustration (it's a full opaque scene now, so the corners show). */
+.app-page--blackpearl .app-page__hero-img {
+  border-radius: clamp(24px, 3.4%, 44px);
+  overflow: hidden;
+}
+/* Feature-scene illustrations are square (1200×1200); the showcase box is 16:9
+   with object-fit:contain, which letterboxes the art so its radius never shows.
+   Make the box square and let the image fill it edge-to-edge so the squircle
+   corners clip the actual picture. */
+.bp .feature-hero__illustration {
+  aspect-ratio: 1 / 1;
+  max-width: 500px;
+}
+.bp .feature-hero__illustration img {
+  object-fit: cover;
+  border-radius: clamp(20px, 5.5%, 38px);
+  overflow: hidden;
+}
+
+/* Terms & disclaimer — small print, at the very bottom of the page. */
+.bp-legal {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 28px 20px 8px;
+  border-top: 1px solid var(--gray-5);
+}
+.bp-legal p {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--gray-8);
+  text-align: center;
+}
+.bp-legal strong { color: var(--gray-10); font-weight: 600; }
+
+@media (max-width: 760px) {
+  .bp-steps { grid-template-columns: 1fr; }
+  .bp-section { padding: 56px 20px; }
+}

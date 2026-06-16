@@ -301,7 +301,7 @@ export function AppPage(props: AppPageProps) {
   const { t, format } = useLanguage();
   const style = themeVars(props.themeId) as CSSProperties;
   return (
-    <div className="app-page" style={style}>
+    <div className={`app-page app-page--${props.themeId}`} style={style}>
       {/* Cream wash banner behind the hero — it's the same cream
           shelf material we use on the home hero, with the spotlight
           gradient burning through it from below. */}
