@@ -798,7 +798,83 @@ field) stack lightly off one face.
 
 ---
 
-## 18. Family-cue checklist
+## 18. GhostWire
+
+**Brand:** electric wire-teal `#19C3B1`. Squircle: `#34D9C6 → #0C6E66`.
+(Formerly "The Black Pearl" — rebranded; takes the cool teal end of the
+suite palette.)
+
+**Character:** a normal, classic **ghost** — the universal rounded-top,
+wavy-hem silhouette — rendered in clean glossy Pixar 3D (soft-vinyl /
+marshmallow surface), **not** chibi and **not** shaped into a person.
+Balanced proportions, just a friendly little spirit. Two simple dark
+**X-shaped eyes** (each a neat little "X", classic cartoon-ghost style)
+and a small soft mouth. Pearl-white body with an electric-teal inner glow
+and teal rim — the *Wire* reads through the name + teal energy, no props.
+Small teal "G" monogram low on the body for 32 × 32 favicon legibility.
+
+**App icon (1024 × 1024):**
+
+> A clean Pixar/Apple-style 3D ghost character, glossy soft-vinyl
+> (marshmallow) finish — a normal, classic ghost, NOT chibi and NOT
+> stylized as a person. The universal ghost silhouette: smooth rounded
+> dome top, simple body, a gently scalloped wavy hem at the bottom,
+> floating upright with balanced (not baby / big-head) proportions.
+> Pearl-white body (`#F2F6FA`) with a subtle cool sheen. Face: two simple
+> dark-navy (`#1E2C46`) X-shaped eyes — each eye a small neat "X" mark in
+> the classic cartoon-ghost style — and a small soft open mouth; friendly
+> and a little playful, never scary. A soft electric-teal inner glow
+> (`#7DF0E2`) rises from within and fades upward; a faint electric-teal
+> rim of light traces the right edge; a few tiny teal energy motes drift
+> softly nearby. A small subtly-glowing teal "G" monogram low on the body.
+> Soft three-point Pixar studio lighting from the upper-left,
+> electric-teal rim along the right, gentle cool bounce from below, subtle
+> contact shadow. Background: smooth radial-gradient rounded-square
+> (squircle) from `#34D9C6` upper-left to `#0C6E66` lower-right, subtle
+> inner-gloss highlight along the top edge. Composition tight and centred,
+> the ghost fills ~70% of the squircle vertically. Same glossy soft-vinyl
+> render family as the rest of the suite icons, but classic ghost
+> proportions (not chibi). 1024 × 1024 PNG, no border, no text other than
+> the single "G" monogram.
+> **Exclude:** chibi or baby proportions (no giant head, no rosy-cheek
+> baby look); any human / person / woman features (no hair, no face shaped
+> into a person, no limbs); round or kawaii eyes — eyes MUST be simple "X"
+> marks; cables / wires / plugs / cords / electronics; scary / creepy /
+> sheet-with-eyeholes styling; any text or letterforms beyond the "G".
+
+**Hero (1600 × 1200, transparent):**
+
+> Same clean 3D ghost character (classic rounded ghost silhouette, glossy
+> soft-vinyl, simple dark X-shaped eyes, small mouth — not chibi, not a
+> person), full body, three-quarter view, drifting gently on a fully
+> transparent backdrop with no ground, shadow plane or environment. The
+> wavy hem trails into soft flowing wisps as if mid-float, with a light
+> playful air. A soft electric-teal aura glows from within and a faint
+> teal rim traces its silhouette; tiny teal energy motes drift around it,
+> trailing faint light. No cables, plugs or props of any kind. Soft
+> three-point Pixar lighting from the upper-left, electric-teal rim along
+> the right, cool bounce from below. Centred character ~80% of frame
+> vertically. 1600 × 1200 PNG, transparent alpha, no environment, no text.
+> **Exclude:** chibi / baby proportions; any human or person features or
+> hair; round / kawaii eyes (must be "X" marks); wires / cables / plugs /
+> electronics; opaque or painted background; ground or cast-shadow plane.
+
+**Splash / loading (1024 × 1024, transparent):**
+
+> Same clean 3D ghost character (classic ghost silhouette, glossy
+> soft-vinyl, simple dark X-shaped eyes, small mouth — not chibi, not a
+> person), centred and front-facing, floating calmly, on a fully
+> transparent backdrop. A gentle electric-teal aura blooms softly around
+> it (soft volumetric glow, not harsh neon) and its inner teal glow pulses
+> faintly; a few teal energy motes hover near the hem. Symmetric and
+> balanced for a centred app splash / loading screen. Soft three-point
+> Pixar lighting, electric-teal rim, subtle cool bounce. Ghost fills ~70%
+> of frame. 1024 × 1024 PNG, transparent alpha, no text, no environment,
+> no ground shadow, no wires.
+
+---
+
+## 19. Family-cue checklist
 
 When generating new art, before approving:
 
@@ -817,12 +893,12 @@ When generating new art, before approving:
   materials, rim lighting, own-glow — never in a backdrop
   wash. Transparent alpha required.
 
-## 19. Where rendered assets land
+## 20. Where rendered assets land
 
 | Path                                                | Contents                              |
 | --------------------------------------------------- | ------------------------------------- |
-| `mattssoftware/public/{id}/app-icon.png`            | 1024 × 1024 squircle (§3-§17)        |
-| `mattssoftware/public/{id}/hero.png`                | 1600 × 1200 transparent (§3-§17)     |
+| `mattssoftware/public/{id}/app-icon.png`            | 1024 × 1024 squircle (§3-§18)        |
+| `mattssoftware/public/{id}/hero.png`                | 1600 × 1200 transparent (§3-§18)     |
 | `mattssoftware/public/{id}/screenshots/*.png`       | Optional app-specific showcase scenes |
 | `mattssoftware-launcher/.../Assets.xcassets/{id}.imageset/{id}.png` | 1024 × 1024 same icon                |
 | `Apps/{id}-swift/art/AppIcon-source.png`            | Same 1024 × 1024 (script-converted to `.icns`) |

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { LanguageProvider } from "./i18n/context";
 import { trackPageview } from "./lib/analytics";
 import { Nav } from "./components/Nav";
@@ -27,7 +27,7 @@ import { EspressoPage } from "./pages/Espresso";
 import { SeasickPage } from "./pages/Seasick";
 import { WorktreePage } from "./pages/Worktree";
 import { HaloPage } from "./pages/Halo";
-import { BlackPearlPage } from "./pages/BlackPearl";
+import { GhostWirePage } from "./pages/GhostWire";
 import { NotFound } from "./pages/NotFound";
 import "./styles.css";
 
@@ -124,7 +124,12 @@ export function App() {
             <Route path="/seasick" element={<SeasickPage />} />
             <Route path="/worktree" element={<WorktreePage />} />
             <Route path="/halo" element={<HaloPage />} />
-            <Route path="/blackpearl" element={<BlackPearlPage />} />
+            <Route path="/ghostwire" element={<GhostWirePage />} />
+            {/* The product formerly known as "The Black Pearl" rebranded
+                to GhostWire (see docs/icon-prompts.md §18). Keep the old
+                path alive as a client-side redirect so any inbound links
+                land on the new page instead of a 404. */}
+            <Route path="/blackpearl" element={<Navigate to="/ghostwire" replace />} />
             {/* Catch-all 404 — playful ribbon-snake illustration. */}
             <Route path="*" element={<NotFound />} />
           </Routes>

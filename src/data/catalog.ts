@@ -44,18 +44,33 @@ export interface CatalogApp {
 
 export const CATALOG: readonly CatalogApp[] = [
   {
-    id: "blackpearl",
-    name: "The Black Pearl",
-    tagline: "Discover, stream, and keep movies, shows & music — one beautiful app.",
+    id: "fishbones",
+    name: "Libre",
+    tagline: "Turn any technical book into an interactive course.",
     description:
-      "A media browser for legal & public-domain torrents: search every source at once, stream while it downloads, and build a tidy library of movies, TV, and music. On-the-fly transcoding plays formats the browser can't, an iTunes-style music view scrubs album art from Spotify, and a local-AI pass tidies your folder. Cross-platform — macOS, Windows, Linux.",
+      "Drop in a PDF or EPUB and Libre generates lessons, exercises, and hidden tests. Sixteen languages with one editor, a local AI tutor on your laptop, streak fire that survives weekends, and seventeen themes.",
+    category: "Learning",
+    icon: "/libre/libre_icon.png",
+    tags: ["Learning", "Multi-language", "AI Tutor", "Local-first", "macOS", "Windows", "Linux"],
+    channel: "github",
+    platforms: ["macOS", "Windows", "Linux"],
+    githubRepo: "Libre",
+    view: "/libre",
+  },
+  {
+    id: "ghostwire",
+    name: "GhostWire",
+    tagline:
+      "Tune in, press play, keep what stays with you — a friendly ghost on the wire.",
+    description:
+      "A media browser for legal & public-domain streams: tune every source at once, press play before the download lands, and pin a tidy library of movies, TV, and music. On-the-fly transcoding plays formats the browser can't, an iTunes-style music view pulls album art from Spotify, and a local-AI pass quietly tidies your folder. Cross-platform — macOS, Windows, Linux.",
     category: "Utilities",
-    icon: "/blackpearl/app-icon.png",
+    icon: "/ghostwire/app-icon.png",
     tags: ["Media", "Streaming", "Library", "macOS", "Windows", "Linux"],
     channel: "github",
     platforms: ["macOS", "Windows", "Linux"],
-    githubRepo: "TheBlackPearl",
-    view: "/blackpearl",
+    githubRepo: "GhostWire.tv",
+    view: "/ghostwire",
   },
   {
     id: "espresso",
@@ -245,20 +260,6 @@ export const CATALOG: readonly CatalogApp[] = [
     channel: "github",
     githubRepo: "Sentry",
     view: "/sentry",
-  },
-  {
-    id: "fishbones",
-    name: "Libre",
-    tagline: "Turn any technical book into an interactive course.",
-    description:
-      "Drop in a PDF or EPUB and Libre generates lessons, exercises, and hidden tests. Sixteen languages with one editor, a local AI tutor on your laptop, streak fire that survives weekends, and seventeen themes.",
-    category: "Learning",
-    icon: "/libre/libre_icon.png",
-    tags: ["Learning", "Multi-language", "AI Tutor", "Local-first", "macOS", "Windows", "Linux"],
-    channel: "github",
-    platforms: ["macOS", "Windows", "Linux"],
-    githubRepo: "Libre",
-    view: "/libre",
   },
   {
     id: "tap",
