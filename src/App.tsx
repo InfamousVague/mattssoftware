@@ -125,10 +125,8 @@ export function App() {
             <Route path="/worktree" element={<WorktreePage />} />
             <Route path="/halo" element={<HaloPage />} />
             <Route path="/ghostwire" element={<GhostWirePage />} />
-            {/* The product formerly known as "The Black Pearl" rebranded
-                to GhostWire (see docs/icon-prompts.md §18). Keep the old
-                path alive as a client-side redirect so any inbound links
-                land on the new page instead of a 404. */}
+            {/* Legacy path kept as a client-side redirect so any inbound
+                links still land on /ghostwire instead of a 404. */}
             <Route path="/blackpearl" element={<Navigate to="/ghostwire" replace />} />
             {/* Catch-all 404 — playful ribbon-snake illustration. */}
             <Route path="*" element={<NotFound />} />

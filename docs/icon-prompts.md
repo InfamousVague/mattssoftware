@@ -801,8 +801,7 @@ field) stack lightly off one face.
 ## 18. GhostWire
 
 **Brand:** electric wire-teal `#19C3B1`. Squircle: `#34D9C6 → #0C6E66`.
-(Formerly "The Black Pearl" — rebranded; takes the cool teal end of the
-suite palette.)
+Takes the cool teal end of the suite palette.
 
 **Character:** a normal, classic **ghost** — the universal rounded-top,
 wavy-hem silhouette — rendered in clean glossy Pixar 3D (soft-vinyl /

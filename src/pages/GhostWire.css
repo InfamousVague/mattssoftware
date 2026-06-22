@@ -1,7 +1,6 @@
 /* GhostWire — scoped marketing sections.
    Uses the page's theme tokens (--app-from = wire-teal #34D9C6,
-   --app-to = deep teal #0C6E66, --app-glow) over the site's dark palette.
-   Rebranded from "The Black Pearl" — same structure, ghost+wire copy. */
+   --app-to = deep teal #0C6E66, --app-glow) over the site's dark palette. */
 .gw {
   --gw-teal-light: var(--app-from, #34D9C6);
   --gw-teal-deep:  var(--app-to,   #0C6E66);

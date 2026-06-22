@@ -2,112 +2,101 @@ import { AppPage } from "../components/AppPage";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
 import "./GhostWire.css";
 
-/// GhostWire's marketing page on mattssoftware.com — a detailed,
-/// signal-themed landing page. Hero + download buttons come from AppPage;
-/// the rich showcase + custom sections are passed as children.
+/// GhostWire's marketing card on mattssoftware.com.
 ///
-/// Rebranded from "The Black Pearl" (the pirate-themed earlier name). The
-/// product is the same Tauri media browser; this page now matches the
-/// new GhostWire.tv identity — friendly Pixar ghost, electric-wire teal,
-/// and copy that leans on signal / channel / broadcast metaphors instead
-/// of nautical ones.
+/// Copy and feature framing mirror the canonical GhostWire.tv landing
+/// page (see ~/Development/Apps/ghosty/site/index.html); illustrations
+/// are pulled straight from the GhostWire source repo's /public/ so
+/// what ships here matches what ships in the app. Hero + downloads come
+/// from AppPage; the showcase + richer sections are passed as children.
 ///
-/// Cross-platform: the `platforms` prop makes AppPage render one download button
-/// per OS, each resolving the matching asset (.dmg / .msi / .AppImage) from the
-/// latest github.com/InfamousVague/GhostWire.tv release.
-///
-/// The feature-scene illustrations under /public/ghostwire are themed
-/// placeholders; swap in the generated art at the same filenames.
+/// Cross-platform: the `platforms` prop makes AppPage render one download
+/// button per OS, each resolving the matching asset (.dmg / .msi /
+/// .AppImage) from the latest github.com/InfamousVague/GhostWire.tv release.
 
 const SHOWCASE: FeatureSection[] = [
   {
-    badge: "Tune in",
-    title: "One dial. Every channel.",
+    badge: "Discover",
+    title: "One search. Every source.",
     description:
-      "Turn the dial once and GhostWire pulls every configured source in unison: The Pirate Bay through the apibay JSON API, 1337x, and any Torznab indexer you add. Results come back ranked best-match-first, with a heavy thumb on the scale for exact title matches — so the thing you actually wanted lands at the top.",
+      "Point GhostWire at the sources you want and search them all from one bar. Results are ranked by seeders, size, and quality, so the right title is always first — and a “Test source” diagnoses a dead channel with HTTP status, detected format, item count, and a plain-language hint.",
     bullets: [
-      "Seeders, size, and quality readable at a glance — no clicking through",
-      "Exact-title matches strongly favored, so the right result surfaces first",
-      "A “Test source” button diagnoses a dead channel: HTTP status, detected format, item count, and a plain-language hint",
+      "Every configured source queried in parallel — apibay, 1337x, Torznab",
+      "Ranked best-match-first, with seeders / size / quality up front",
+      "Source health checks built in: status, format, item count, hints",
     ],
     image: "/ghostwire/discover.png",
-    imageAlt:
-      "GhostWire Discover view: a single search bar above ranked results from multiple sources, each showing seeders, size, and quality.",
+    imageAlt: "GhostWire Discover view searching every configured source at once",
     imageMode: "illustration",
   },
   {
-    badge: "Stream while downloading",
-    title: "Press play. The wire takes over.",
+    badge: "Movies",
+    title: "Movies, with poster art for every shelf.",
     description:
-      "Hit play and the picture starts now — not when the transfer finishes. On-the-fly HLS transcoding handles the formats a webview can't decode on its own, with hardware VideoToolbox acceleration on Mac doing the heavy lifting. Scrubbing and seeking stay smooth, even mid-download.",
+      "Finished films land in a clean Movies library — sorted automatically, with posters fetched and cached for you. A “Recently added” feed buckets new arrivals by Today / This week / and beyond, so the next thing to watch is always at the top.",
     bullets: [
-      "Watch immediately, long before 100%",
-      "MKV, AVI, and HEVC play through ffmpeg transcoding — no fiddling",
-      "Seamless scrubbing and seeking, even on a file that's still arriving",
+      "Posters and metadata pulled and cached automatically",
+      "Recently-added rail bucketed Today / This week / and on",
+      "Title, year, and runtime auto-extracted from the file",
     ],
-    image: "/ghostwire/stream.png",
-    imageAlt:
-      "A video playing inside GhostWire while a download progress bar below sits well short of complete, the timeline scrubber mid-seek.",
+    image: "/ghostwire/movies.png",
+    imageAlt: "A grid of movie posters in GhostWire's Movies library",
+    imageMode: "illustration",
+  },
+  {
+    badge: "TV",
+    title: "Shows, sorted by series and season.",
+    description:
+      "TV groups itself by series with season-and-episode aware sorting. A missing-episodes finder cross-references TVMaze so you can spot the gaps in a season at a glance, and one click sends you back to Discover with the right query already typed.",
+    bullets: [
+      "Series-and-season grouping, episode-aware sort",
+      "Missing-episode finder backed by TVMaze",
+      "One click to fill a gap from Discover",
+    ],
+    image: "/ghostwire/tv.png",
+    imageAlt: "GhostWire's TV library grouped by series and season",
+    imageMode: "illustration",
+  },
+  {
+    badge: "Anime",
+    title: "Anime gets its own room.",
+    description:
+      "Anime is sorted and posterized through a dedicated pipeline backed by AniList, Jikan, and Kitsu — so the artwork matches the source, the season numbering matches the franchise, and the catalog stays clean even when a series goes long.",
+    bullets: [
+      "Posters from AniList → Jikan → Kitsu (free, keyless)",
+      "Franchise-aware season numbering",
+      "Sub / dub indicators on the poster grid",
+    ],
+    image: "/ghostwire/anime.png",
+    imageAlt: "GhostWire's Anime library grid with cover art",
+    imageMode: "illustration",
+  },
+  {
+    badge: "Books",
+    title: "A reading shelf, alongside the rest.",
+    description:
+      "Books get their own room next to Movies, TV, and Anime — sorted by author and series, with covers and metadata fetched automatically. EPUB and PDF land directly in the library, ready to open in whatever reader you already use.",
+    bullets: [
+      "Sorted by author and series, with covers and metadata",
+      "EPUB and PDF land in the library ready to read",
+      "Opens through your existing reader — no built-in DRM, ever",
+    ],
+    image: "/ghostwire/books.png",
+    imageAlt: "GhostWire's Books library showing covers grouped by author and series",
     imageMode: "illustration",
   },
   {
     badge: "Library",
-    title: "Everything you keep, on the shelf.",
+    title: "Everything you keep, organized for you.",
     description:
-      "Everything you decide to hold onto lands in a tidy library, sorted into Movies, TV, and Music. A cross-type “Recently added” feed buckets new arrivals into Today, This week, and beyond, while TV groups itself by series. A “find missing episodes” finder cross-references TVMaze so you can see the gaps in a season at a glance.",
+      "Movies, TV, anime, music, books — every type lives in its own browsable room, with automatic sorting and box art for every shelf. No metadata wrangling, no folder rename rituals: GhostWire's local-AI organize pass keeps the library tidy without ever leaving your machine.",
     bullets: [
-      "Movies, TV, and Music, cleanly grouped",
-      "“Recently added” feed bucketed Today / This week / and on",
-      "TV grouped by series with a missing-episodes finder backed by TVMaze",
+      "One library, every content type, sorted automatically",
+      "Box art for movies, TV, anime, games, and albums",
+      "Local-AI organize pass runs on Ollama, on-device only",
     ],
     image: "/ghostwire/library.png",
-    imageAlt:
-      "GhostWire Library with Movies, TV, and Music sections, a Recently-added rail bucketed by Today and This week, and a TV series showing missing episodes flagged.",
-    imageMode: "illustration",
-  },
-  {
-    badge: "Music",
-    title: "An iTunes-style shelf, neatly stacked.",
-    description:
-      "Drill from Artists into Albums into Tracks in a familiar, iTunes-style view that makes a big music collection easy to wander. Album art is pulled legitimately from Spotify's catalog API, so your shelves look the part without you lifting a finger. It's the listening room of the house, finally organized.",
-    bullets: [
-      "Artists → Albums → Tracks, no hunting through folders",
-      "Album art pulled legitimately from Spotify's catalog API",
-      "Built for browsing a real collection, not just one playlist",
-    ],
-    image: "/ghostwire/music.png",
-    imageAlt:
-      "An iTunes-style music browser in GhostWire showing an artist list, an album grid with cover art, and a track listing for the selected album.",
-    imageMode: "illustration",
-  },
-  {
-    badge: "Organize",
-    title: "A friendly ghost tidies up.",
-    description:
-      "One click sics a local-AI pass on your messy download folder and turns the chaos into a clean, well-named library. It runs on Ollama, right on your laptop, so no cloud is involved and no data leaves the machine. You point; the ghost does the tidying.",
-    bullets: [
-      "One click to tidy and rename a cluttered download folder",
-      "Runs locally on Ollama, on your own hardware",
-      "No cloud, no uploads — nothing leaves your machine",
-    ],
-    image: "/ghostwire/organize.png",
-    imageAlt:
-      "Before-and-after of a download folder: cryptic torrent filenames on the left, a clean well-named Movies and TV library on the right, with a local-AI Organize button between them.",
-    imageMode: "illustration",
-  },
-  {
-    badge: "Downloads & Seeding",
-    title: "Watch the wire, both ways.",
-    description:
-      "See every active transfer in one place — and just as clearly, see what you're seeding back to the swarm. Live upload speeds and peer counts show exactly what you're sharing in real time. A polite ghost gives a little back; here you can actually watch it happen.",
-    bullets: [
-      "Active downloads and active seeds in a single view",
-      "Live upload speed and peer counts as you share back",
-      "Real-time visibility into what you're giving the swarm",
-    ],
-    image: "/ghostwire/seeding.png",
-    imageAlt:
-      "GhostWire Downloads view listing active transfers alongside a seeding section with live upload speeds and peer counts for each shared item.",
+    imageAlt: "GhostWire's unified Library view with movies, TV, anime, and music sections",
     imageMode: "illustration",
   },
 ];
@@ -115,25 +104,25 @@ const SHOWCASE: FeatureSection[] = [
 const STEPS = [
   {
     n: "01",
-    t: "Add your channels",
-    b: "Point GhostWire at The Pirate Bay (apibay), 1337x, or any Torznab indexer, and use “Test source” to confirm each one is alive.",
+    t: "Add your sources",
+    b: "Point GhostWire at the sources you want — The Pirate Bay (apibay), 1337x, or any Torznab indexer — and use “Test source” to confirm each one is alive.",
   },
   {
     n: "02",
-    t: "Tune every channel at once",
+    t: "Search every source at once",
     b: "One query fans out to all your sources, ranked best-match-first with seeders, size, and quality up front.",
   },
   {
     n: "03",
-    t: "Press play, the wire takes over",
-    b: "Streaming starts before the download finishes, the file lands in a clean library, and you can seed it back to the swarm.",
+    t: "Press play, the rest takes care of itself",
+    b: "Streaming starts before the download finishes, the file lands in a clean library with box art, and you can seed it back to the swarm.",
   },
 ];
 
 const STATS = [
+  { big: "5", l: "content rooms: Movies, TV, Anime, Music, Books" },
   { big: "3", l: "platforms — macOS (signed & notarized), Windows, and Linux" },
-  { big: "3", l: "source types searched at once: apibay, 1337x, and Torznab" },
-  { big: "0", l: "accounts, and zero bytes of your data sent to any cloud" },
+  { big: "0", l: "accounts, API keys, or sign-ins required" },
   { big: "1", l: "click to organize a messy folder with on-device AI" },
 ];
 
@@ -143,16 +132,17 @@ const TECH = [
   "ffmpeg transcoding with hardware VideoToolbox on Mac",
   "Developer-ID signed & Apple-notarized macOS build",
   "Local-AI organizing via Ollama, on-device only",
+  "Keyless artwork: TMDB / OMDb / iTunes for film + music, AniList / Jikan / Kitsu for anime",
 ];
 
 const FAQ = [
   {
     q: "Is GhostWire legal to use?",
-    a: "The app itself is a search, streaming, and library tool. It's framed and intended for legal and public-domain content — of which there's a vast amount: films, music, and shows whose copyright has expired or that were released freely. What you choose to search for and download is your responsibility; we ask you to keep your dial on legal frequencies.",
+    a: "The app itself is a search, streaming, and library tool. It's framed and intended for legal and public-domain content — of which there's a vast amount: films, music, and shows whose copyright has expired or that were released freely. What you choose to search for is your responsibility; keep your dial on legal frequencies.",
   },
   {
     q: "Which platforms can run it?",
-    a: "macOS, Windows, and Linux. The macOS build is Developer-ID signed and Apple-notarized, so it opens cleanly without wrestling Gatekeeper. It's a Tauri app, so it stays light on resources across all three.",
+    a: "macOS (Apple Silicon + Intel), Windows, and Linux. The macOS build is Developer-ID signed and Apple-notarized, so it opens cleanly without wrestling Gatekeeper. It's a Tauri app, so it stays light on resources across all three.",
   },
   {
     q: "Do I need an account, and where does my data go?",
@@ -160,11 +150,11 @@ const FAQ = [
   },
   {
     q: "What's this ffmpeg and transcoding business about?",
-    a: "Some video formats — MKV, AVI, HEVC — can't be decoded by the webview directly. GhostWire uses ffmpeg to transcode them on the fly into HLS so they play smoothly, with hardware VideoToolbox acceleration on Mac. It happens automatically in the background; you just press play, even before the download is done.",
+    a: "Some video formats — MKV, AVI, HEVC — can't be decoded by the webview directly. GhostWire uses ffmpeg to transcode them on the fly into HLS so they play smoothly, with hardware VideoToolbox acceleration on Mac. It happens automatically in the background; you just press play.",
   },
   {
     q: "How can I stream before the download finishes?",
-    a: "The librqbit torrent engine and a local loopback streaming server work together to serve the parts of the file you need as they arrive. Press play and watch immediately — scrubbing and seeking stay seamless while the rest of the file is still coming in over the wire.",
+    a: "The librqbit torrent engine and a local loopback streaming server work together to serve the parts of the file you need as they arrive. Press play and watch immediately — scrubbing and seeking stay seamless while the rest is still coming in.",
   },
   {
     q: "What does it cost?",
@@ -177,24 +167,24 @@ export function GhostWirePage() {
     <AppPage
       themeId="ghostwire"
       title="GhostWire"
-      tagline="One ghost. Every wire."
-      description="Tune every source at once, press play before the download lands, and watch a tidy library settle in on its own. Free, local-first, and built to roam the public domain."
+      tagline="Stream anything. Wait for nothing."
+      description="A free desktop app that searches every source you configure, streams torrents while they download, and builds a tidy library with automatic box art — no account, no API keys, nothing leaves your machine."
       heroImage="/ghostwire/hero.png"
       icon="/ghostwire/app-icon.png"
       requirements="Free · No account, ever · macOS (signed & notarized), Windows, Linux · Runs entirely on your machine"
       featuresHeading="What it does"
       features={[
         {
-          title: "Discover everything",
-          body: "One search hits all your sources at once, favors exact matches, and shows seeders, size, and quality at a glance — so the best result is always first.",
+          title: "Search every source at once",
+          body: "One search hits every configured source in parallel, favors exact matches, and shows seeders, size, and quality at a glance — the best result is always first.",
         },
         {
           title: "Stream while it downloads",
           body: "Press play and watch immediately. Even MKV and other formats the browser can't decode are transcoded on the fly, with seamless seeking.",
         },
         {
-          title: "A library that tidies itself",
-          body: "Movies, shows, and music land in a clean, browsable library — album art from Spotify, an iTunes-style music view, and a local-AI organize pass.",
+          title: "A library that organizes itself",
+          body: "Movies, TV, anime, music, and books each get their own room — sorted automatically, with poster art and metadata fetched for every shelf.",
         },
       ]}
       cta={{ kind: "github", repo: "GhostWire.tv" }}
@@ -203,14 +193,14 @@ export function GhostWirePage() {
       <div className="gw">
         <FeatureShowcase features={SHOWCASE} />
 
-        {/* Tune in — 3 steps */}
+        {/* Three steps onto the wire */}
         <section className="gw-section">
           <div className="gw-head">
             <span className="gw-eyebrow">Tune in</span>
             <h2 className="gw-title">Three steps onto the wire</h2>
             <p className="gw-sub">
-              No account, no setup wizard, no waiting. Add a channel, tune the dial, and press play —
-              GhostWire handles the rest while you watch.
+              No account, no setup wizard, no waiting. Add a source, search, and press play — GhostWire
+              handles the rest while you watch.
             </p>
           </div>
           <div className="gw-steps">
@@ -224,10 +214,10 @@ export function GhostWirePage() {
           </div>
         </section>
 
-        {/* The signal kit — stats */}
+        {/* What's on the wire */}
         <section className="gw-section">
           <div className="gw-head">
-            <span className="gw-eyebrow">The signal kit</span>
+            <span className="gw-eyebrow">At a glance</span>
             <h2 className="gw-title">What's on the wire</h2>
             <p className="gw-sub">Real claims, no tall tales — everything below ships in the box and runs on your own machine.</p>
           </div>
@@ -241,7 +231,7 @@ export function GhostWirePage() {
           </div>
         </section>
 
-        {/* Under the hood — tech */}
+        {/* Under the hood */}
         <section className="gw-section">
           <div className="gw-tech">
             <span className="gw-eyebrow">Under the hood</span>
@@ -259,14 +249,15 @@ export function GhostWirePage() {
           </div>
         </section>
 
-        {/* On the air — quote */}
+        {/* On the air */}
         <section className="gw-section">
           <div className="gw-quote">
             <div className="gw-quote__mark">“</div>
-            <p className="gw-quote__q">Built to broadcast the public domain — not to steal anyone's signal.</p>
+            <p className="gw-quote__q">Stream the public domain — without sending anyone's signal home.</p>
             <p className="gw-quote__b">
-              The public domain is the original open frequency: a century of films, music, and shows that belong to
-              everyone, free for the listening. We carry the spirit of it — and route it somewhere entirely legal.
+              The public domain is the original open frequency: a century of films, music, and shows that belong
+              to everyone, free for the watching. GhostWire carries that spirit, keyless and accountless, and
+              routes it somewhere entirely legal.
             </p>
           </div>
         </section>
