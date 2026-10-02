@@ -167,11 +167,18 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
-      # Production deploy lives on the Vultr VPS (149.28.120.197),
-      # served by Caddy from /var/www/mattssoftware. GitHub Pages is
-      # the secondary mirror at infamousvague.github.io/mattssoftware/.
+      # Production deploy lives on the shared hub VPS (149.248.47.151),
+      # served by Caddy from /opt/mattssoftware-site. The same box also
+      # hosts attack.fm, prettycardboard.com, libre.academy, and others
+      # under their own vhosts — never rsync without a target dir, and
+      # never issue a --delete above /opt/mattssoftware-site, or you'll
+      # delete someone else's site. GitHub Pages is the secondary mirror
+      # at infamousvague.github.io/mattssoftware/.
       #
       # ─── One-time setup required ────────────────────────────────
+      # The VPS_SSH_PASSWORD secret must match the hub's root password
+      # (same credential that AttackFM/.env's AFM_DEPLOY_PASS carries
+      # locally). Rotate at the box, then:
       # gh secret set VPS_SSH_PASSWORD --repo InfamousVague/mattssoftware --body '<password>'
       #
       # When the secret is unset the rsync step short-circuits with a
@@ -179,10 +186,10 @@ jobs:
       # green for non-owners.
       - name: Sync to VPS (Caddy host)
         env:
-          VPS_HOST: 149.28.120.197
+          VPS_HOST: 149.248.47.151
           VPS_USER: root
           VPS_PORT: "22"
-          VPS_TARGET_DIR: /var/www/mattssoftware
+          VPS_TARGET_DIR: /opt/mattssoftware-site
           # sshpass reads password from $SSHPASS via the -e flag, so
           # naming the env var SSHPASS keeps the invocation tidy and
           # avoids leaking the password through the process command
