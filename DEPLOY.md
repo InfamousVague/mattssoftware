@@ -38,51 +38,32 @@ checkout marketing → checkout Fishbones → checkout @mattmattmattmatt/base
 
 A typical end-to-end deploy takes ~3-4 minutes.
 
-## DNS cutover (OLD box → hub)
+## DNS
 
-The migration from the old Vultr box (`149.28.120.197`) to the shared hub
-(`149.248.47.151`) needs DNS updates in Gandi:
-
-```
-mattssoftware.com.       A   149.28.120.197    ← OLD (decommission)
-www.mattssoftware.com.   A   —                 ← missing; add one
-```
-
-Target state:
+Current (2026-10-02, cutover complete):
 
 ```
-mattssoftware.com.       A   149.248.47.151    ✓
-www.mattssoftware.com.   A   149.248.47.151    ✓
+mattssoftware.com.       A   149.248.47.151    ✓ (apex only — no www)
 ```
 
-Steps:
+The old Vultr box (`149.28.120.197`) is still powered on but no longer
+part of this site. It can be decommissioned at your leisure (Vultr
+console → Destroy server). Once destroyed, you may also want to clean
+up any `api.mattssoftware.com` / `tap.mattssoftware.com` records in
+Gandi that still point to it, if their respective products have moved.
 
-1. Log into [Gandi](https://gandi.net) → `mattssoftware.com` → DNS records.
-2. **Update the apex `A` record**: `mattssoftware.com.` → `149.248.47.151`.
-3. **Add the `www` `A` record**: `www.mattssoftware.com.` → `149.248.47.151`.
-4. (Optional) Drop the TTL to 300s an hour before the change so propagation
-   completes within minutes; restore to 3600s+ after.
-5. Wait 5-30 minutes. Caddy on the hub will auto-ACME the Let's Encrypt
-   cert as soon as the HTTP-01 challenge reaches the right box — no
-   manual intervention needed. (Confirm with
-   `journalctl -u caddy -g mattssoftware` on the hub if curious.)
-6. Verify from outside:
-   ```
-   dig +short A mattssoftware.com         # expect 149.248.47.151
-   curl -I https://mattssoftware.com/     # expect 200, Server: Caddy
-   curl -I https://mattssoftware.com/ghostwire/hero.png  # expect 200
-   ```
-7. Once the hub is confirmed serving, decommission `149.28.120.197`
-   (Vultr console → Destroy server). Also drop any leftover
-   `/var/www/mattssoftware` + stale vhost from that box if it stays
-   around for anything else.
+**No `www` subdomain** — deliberate. The vhost on the hub serves the
+apex only; a stray `www.` lookup will NXDOMAIN, which is intended. If
+you ever want to add it: create a `www` A record in Gandi pointing at
+`149.248.47.151`, then edit the hub's Caddyfile vhost line from
+`mattssoftware.com {` to `mattssoftware.com, www.mattssoftware.com {`
+and `caddy reload`.
 
-Pre-cutover testing without touching DNS:
+### Pre-cutover smoke test (useful next time around a cutover)
 
 ```
-# Hit the hub directly with the right Host header
-curl --resolve mattssoftware.com:80:149.248.47.151 http://mattssoftware.com/
-# → 308 Permanent Redirect, Server: Caddy  (vhost is wired)
+# Hit the hub directly with the right Host header, before DNS flips
+curl --resolve mattssoftware.com:443:149.248.47.151 https://mattssoftware.com/
 ```
 
 ## VPS access
@@ -108,7 +89,7 @@ secret, and the other product deploys that share the box.
 ## Caddy block
 
 ```caddy
-mattssoftware.com, www.mattssoftware.com {
+mattssoftware.com {
     root * /opt/mattssoftware-site
     encode zstd gzip
     try_files {path} /index.html
