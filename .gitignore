@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 dist
+# The vendored kit ships built: its dist is source to this repo.
+!vendor/@glacier/react/dist/
 .vite
 dist-ssr
 *.local
