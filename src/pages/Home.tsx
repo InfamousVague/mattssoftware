@@ -213,7 +213,7 @@ export function Home() {
                 {options.map((o) => (
                   <FilterChip
                     key={o.value}
-                    size="sm"
+                    size="md"
                     selected={platform === o.value}
                     onSelectedChange={() => setPlatform(o.value)}
                   >

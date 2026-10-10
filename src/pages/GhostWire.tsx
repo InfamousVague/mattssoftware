@@ -1,7 +1,7 @@
 import { AppPage } from "../components/AppPage";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
-import { Accordion, Pill } from "@glacier/react";
-import { Section, Stats, Tiles } from "../components/sections";
+import { Accordion } from "@glacier/react";
+import { Checks, Section, Stats, Tiles } from "../components/sections";
 
 /// GhostWire's marketing card on mattssoftware.com.
 ///
@@ -224,15 +224,7 @@ export function GhostWirePage() {
         title="Built in Rust, run on the loopback"
         sub="GhostWire is a Tauri app: a Rust core under a dark, monochrome React interface. Torrents run on the librqbit engine and stream through their own loopback server on your machine, so playback never touches a remote service. Local-first isn't a slogan here. It's the architecture."
       >
-        <ul className="chips">
-          {TECH.map((c) => (
-            <li key={c}>
-              <Pill tone="neutral" variant="soft">
-                {c}
-              </Pill>
-            </li>
-          ))}
-        </ul>
+        <Checks items={TECH} />
       </Section>
 
       {/* On the air */}

@@ -27,7 +27,7 @@ const FEATURES: FeatureSection[] = [
     ],
     image: "/espresso/screenshots/awake.png",
     imageMode: "illustration",
-    imageAlt: "A coffee cup holding a laptop's lid open",
+    imageAlt: "A determined espresso cup holding a laptop's lid open",
   },
   {
     badge: "iOS · Live Activity",
@@ -81,7 +81,7 @@ const FEATURES: FeatureSection[] = [
     ],
     image: "/espresso/screenshots/timer.png",
     imageMode: "illustration",
-    imageAlt: "An espresso cup beside a timer",
+    imageAlt: "An hourglass beside a red button and a coffee bean",
   },
 ];
 

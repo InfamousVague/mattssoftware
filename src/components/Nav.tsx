@@ -52,6 +52,7 @@ export function Nav() {
             onOpenChange={setAppsOpen}
             placement="bottom-end"
             aria-label={site.nav.allApps}
+            className="apps-popover"
             trigger={
               <Button variant="ghost" size="sm">
                 {site.nav.apps} <ChevronDown size={14} aria-hidden />

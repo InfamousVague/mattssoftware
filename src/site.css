@@ -370,6 +370,8 @@ pre {
 
 .stage--cover > img {
   object-fit: cover;
+  /* A banner's wordmark and a screenshot's title bar both start top left. */
+  object-position: left top;
   padding: 0;
 }
 
@@ -468,12 +470,21 @@ pre {
   }
 }
 
-/* The Apps panel, inside the kit's Popover. */
+/* The Apps panel, inside the kit's Popover. The kit's panel stops at 24rem;
+   this one holds three columns of apps, so it is given its own measure. */
+.apps-popover.apps-popover {
+  width: min(46rem, calc(100vw - 1.5rem));
+  max-width: none;
+}
+
 .apps-panel {
-  width: min(44rem, calc(100vw - 2 * var(--glacier-space-3)));
-  max-height: min(34rem, calc(100dvh - var(--site-nav-height) - 2rem));
-  overflow-y: auto;
+  /* A solid ground over the kit's glass: this panel is wide enough to lie
+     over a whole card of text, which read through it. */
   padding: var(--glacier-space-2);
+  border-radius: var(--glacier-radius-md);
+  background: var(--glacier-surface-raised);
+  max-height: min(34rem, calc(100dvh - var(--site-nav-height) - 2.5rem));
+  overflow-y: auto;
 }
 
 .apps-panel__grid {
@@ -769,6 +780,17 @@ pre {
   display: flex;
   flex-wrap: wrap;
   gap: var(--glacier-space-2);
+  /* The chosen chip in ink: with a grey accent the kit's soft fill is one
+     step off the page, too quiet to say which filter is on. */
+  --glacier-accent-soft: var(--glacier-gray-12);
+  --glacier-accent-soft-hover: var(--glacier-gray-11);
+  --glacier-accent-border: var(--glacier-gray-12);
+  --glacier-accent-text: var(--glacier-gray-1);
+}
+/* The kit's hover rule repaints a chip's text in the page's ink, which on a
+   chosen (ink-filled) chip would be ink on ink. */
+.controls__chips button[aria-pressed='true']:hover:not(:disabled) {
+  color: var(--glacier-gray-1);
 }
 
 .controls__count {
@@ -1017,9 +1039,10 @@ pre {
 }
 
 .closing.stage > img {
-  width: auto;
-  height: auto;
+  width: var(--icon);
+  height: var(--icon);
   padding: 0;
+  object-fit: cover;
 }
 
 .closing .ap-hero__actions {

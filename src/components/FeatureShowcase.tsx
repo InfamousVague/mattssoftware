@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { Pill } from "@glacier/react";
 import { Check } from "@glacier/icons";
 import { Reveal } from "./Reveal";
@@ -20,7 +20,9 @@ export interface FeatureSection {
 }
 
 function Row({ feature, index }: { feature: FeatureSection; index: number }) {
-  const hasVisual = Boolean(feature.renderVisual || feature.image);
+  // A picture that fails to load is dropped, and the row is set as text.
+  const [missing, setMissing] = useState(false);
+  const hasVisual = Boolean(feature.renderVisual || (feature.image && !missing));
   const stageClass = feature.renderVisual
     ? "stage stage--free"
     : feature.imageMode === "phone"
@@ -56,10 +58,7 @@ function Row({ feature, index }: { feature: FeatureSection; index: number }) {
                 loading="lazy"
                 decoding="async"
                 style={feature.imageMaxHeight ? { maxHeight: feature.imageMaxHeight } : undefined}
-                onError={(e) => {
-                  // A missing picture leaves the stage, not a broken-image icon.
-                  e.currentTarget.style.display = "none";
-                }}
+                onError={() => setMissing(true)}
               />
             )}
           </div>
