@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n/context";
-import "./LegalPage.css";
 
 export function TapTermsPage() {
   const { t } = useLanguage();

@@ -17,6 +17,7 @@ import { pt } from "./locales/pt";
 import { ko } from "./locales/ko";
 import { pl } from "./locales/pl";
 import { LANGUAGE_CODES, type LanguageCode, type Translation } from "./types";
+import { SITE_COPY, type SiteCopy } from "./site";
 
 const TRANSLATIONS: Record<LanguageCode, Translation> = {
   en,
@@ -36,6 +37,8 @@ interface LanguageContextValue {
   lang: LanguageCode;
   setLang: (lang: LanguageCode) => void;
   t: Translation;
+  /// Copy for the chrome and the home page (see ./site.ts).
+  site: SiteCopy;
   /// Substitutes `{key}` placeholders in a template string. Used for
   /// strings like "{count} apps, one launcher." where we don't want to
   /// hardcode the number into the translation file.
@@ -97,13 +100,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const t = TRANSLATIONS[lang];
     document.documentElement.lang = t.meta.htmlLang;
     document.documentElement.dir = t.meta.direction;
-    document.title = t.meta.siteTitle;
+    const site = SITE_COPY[lang];
+    document.title = site.metaTitle;
     const descMeta = document.querySelector('meta[name="description"]');
-    if (descMeta) descMeta.setAttribute("content", t.meta.siteDescription);
+    if (descMeta) descMeta.setAttribute("content", site.metaDescription);
   }, [lang]);
 
   const value = useMemo<LanguageContextValue>(
-    () => ({ lang, setLang, t: TRANSLATIONS[lang], format }),
+    () => ({ lang, setLang, t: TRANSLATIONS[lang], site: SITE_COPY[lang], format }),
     [lang, setLang],
   );
 
@@ -123,6 +127,6 @@ export function useLanguage(): LanguageContextValue {
 /// Convenience hook — returns just the strings + format helper.
 /// Components that don't need to switch languages should use this.
 export function useTranslation() {
-  const { t, format: f } = useLanguage();
-  return { t, format: f };
+  const { t, site, format: f } = useLanguage();
+  return { t, site, format: f };
 }

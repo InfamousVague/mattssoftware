@@ -36,6 +36,9 @@ export const APP_THEMES: Record<string, AppTheme> = {
   uninstaller:{ from: "#ff8a8a", to: "#a02828", glow: "rgba(160, 40, 40, 0.34)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,138,138,0.24), transparent 65%)" },
   worktree:   { from: "#98c97d", to: "#4d8a3e", glow: "rgba(77, 138, 62, 0.32)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(152,201,125,0.22), transparent 65%)" },
   halo:       { from: "#ffd988", to: "#dda84a", glow: "rgba(221, 168, 74, 0.34)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,217,136,0.24), transparent 65%)" },
+  attackfm:   { from: "#fc427b", to: "#7a1f4a", glow: "rgba(252, 66, 123, 0.34)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(252,66,123,0.22), transparent 65%)" }, // the product's own brand pink
+  prettycardboard: { from: "#c89b6a", to: "#8f5fd6", glow: "rgba(143, 95, 214, 0.32)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(200,155,106,0.22), transparent 65%)" }, // cardboard and foil, from its icon
+  ghost:      { from: "#b8b8c0", to: "#6f6f78", glow: "rgba(111, 111, 120, 0.30)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(184,184,192,0.18), transparent 65%)" }, // ink and paper: no hue
   ghostwire:  { from: "#34D9C6", to: "#0C6E66", glow: "rgba(25, 195, 177, 0.34)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(52,217,198,0.22), transparent 65%)" }, // electric wire-teal squircle (icon-prompts.md §18)
 };
 

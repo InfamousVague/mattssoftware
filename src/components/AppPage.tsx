@@ -1,372 +1,259 @@
-import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
-import { Download, ExternalLink, ArrowRight } from "lucide-react";
+import type { CSSProperties, ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { ArrowLeft, ArrowUpRight, Download, ExternalLink } from "@glacier/icons";
 import { CATALOG } from "../data/catalog";
+import { taglineFor } from "../data/i18nCatalog";
 import { themeVars } from "../data/themes";
 import { useLanguage } from "../i18n/context";
-import { catalogTaglineForId } from "../data/i18nCatalog";
-import "./AppPage.css";
+import { useRelease } from "../lib/releases";
+import { AppIcon } from "./AppIcon";
+import { ButtonLink } from "./ButtonLink";
+import { PlatformPills } from "./PlatformPills";
+import { Reveal } from "./Reveal";
 
-/// Shape every app page (Blip, Port, Sentry, …) uses. The page passes
-/// its identity, hero artwork, copy, and a list of "what it does"
-/// features; the template renders the playful-3D hero (illustration
-/// floating over an ambient per-app gradient spotlight), the
-/// requirements line, two CTAs, the feature grid, a "see what else
-/// we make" carousel of every other app, and a bottom download CTA.
-///
-/// `themeId` keys into APP_THEMES; pass the same id the catalog uses
-/// (or the app's route slug for legacy ids like "vyv" = Espresso).
+/// The page every app has. A page passes its identity, hero art, copy and
+/// three "what it does" features; the template draws the hero (the art on a
+/// stage washed in the app's own hue), the platforms, the downloads, the
+/// feature tiles, whatever sections the page adds as children, a shelf of
+/// other apps, and a closing call to action.
+
 export interface AppPageFeature {
   title: string;
   body: string;
 }
 
-interface AppPageProps {
-  /// Theme key — matches APP_THEMES (e.g. "blip", "port", "sentry").
-  themeId: string;
-  /// Big title (usually the product name).
-  title: string;
-  /// One-line poetic subhead.
-  tagline: string;
-  /// 2–4 sentence elevator pitch, shown below the tagline.
-  description: string;
-  /// Public hero illustration path, e.g. "/blip/hero.png".
-  heroImage: string;
-  /// Public app-icon path, used in the bottom carousel and Open Graph.
-  icon: string;
-  /// "macOS 14+ · Apple Silicon · Free · Developer ID signed".
-  requirements?: string;
-  /// 3 feature cards beneath the hero.
-  features: AppPageFeature[];
-  /// Section title above the feature grid.
-  featuresHeading: string;
-  /// Channel + (for GitHub channel) repo to fetch the latest release.
-  /// One of:
-  ///   { kind: "github", repo: "Blip" }
-  ///   { kind: "appstore", url: "https://apps.apple.com/…" }
-  ///   { kind: "library", url: "https://github.com/InfamousVague" }
-  cta: AppPageCTA;
-  /// Opt-in cross-platform downloads. When set (and cta.kind === "github"),
-  /// the hero + bottom CTA render one download button per platform —
-  /// "macOS" / "Windows" / "Linux" — each resolving the matching asset
-  /// (.dmg / .msi|.exe / .AppImage|.deb) from the latest GitHub release,
-  /// falling back to a "Soon" chip until that platform's build is published.
-  /// Omit it for the usual single Mac-DMG button.
-  platforms?: string[];
-  /// True when this app genuinely lives in the macOS menu bar — drives
-  /// the bottom-CTA copy ("Add X to your menu bar." vs. "Get X.").
-  menuBarApp?: boolean;
-  /// Optional extra children rendered between the features grid and
-  /// the suite carousel — for pages that have extra sections (Tap's
-  /// watchOS mockup, Base's primitives list, etc).
-  children?: ReactNode;
-}
-
-/// Discriminated union for the CTA. Splitting the non-github cases
-/// into their own variants (rather than a single `kind: "appstore" |
-/// "library"`) keeps TypeScript's narrowing working — after the
-/// appstore/library branches return, the remaining `cta` is provably
-/// a GithubCTA and `cta.repo` is safe.
+/// Where the primary button goes.
+///   github   → the latest release of github.com/InfamousVague/<repo>
+///   appstore → an App Store listing
+///   library  → source or docs (nothing to install)
+///   site     → the product's own website, which carries its downloads
 type GithubCTA = { kind: "github"; repo: string };
 type AppstoreCTA = { kind: "appstore"; url: string; label: string };
 type LibraryCTA = { kind: "library"; url: string; label: string };
-type AppPageCTA = GithubCTA | AppstoreCTA | LibraryCTA;
+type SiteCTA = { kind: "site"; url: string };
+type AppPageCTA = GithubCTA | AppstoreCTA | LibraryCTA | SiteCTA;
 
-interface Release { url: string; version: string }
-
-async function fetchLatestRelease(repo: string): Promise<Release> {
-  const fallback: Release = {
-    url: `https://github.com/InfamousVague/${repo}/releases/latest`,
-    version: "",
-  };
-  try {
-    const res = await fetch(
-      `https://api.github.com/repos/InfamousVague/${repo}/releases?per_page=20`,
-    );
-    if (!res.ok) return fallback;
-    const releases = await res.json();
-    if (!Array.isArray(releases)) return fallback;
-    for (const rel of releases) {
-      if (rel.draft) continue;
-      const dmg = rel.assets?.find((a: { name: string }) =>
-        a.name.endsWith(".dmg"),
-      );
-      if (dmg) return { url: dmg.browser_download_url, version: rel.tag_name || "" };
-    }
-    return fallback;
-  } catch {
-    return fallback;
-  }
+interface AppPageProps {
+  /// Theme key: matches APP_THEMES (e.g. "blip", "port", "sentry").
+  themeId: string;
+  /// The app's id in the catalogue, when it differs from `themeId`.
+  catalogId?: string;
+  /// The product name.
+  title: string;
+  /// One-line headline.
+  tagline: string;
+  /// Two to four sentences, shown under the headline.
+  description: string;
+  /// Public hero art path, e.g. "/blip/hero.png".
+  heroImage: string;
+  /// How the art sits on its stage: floating (transparent art), filling it
+  /// (a screenshot or a banner), or as a large icon.
+  heroFit?: "contain" | "cover" | "icon";
+  /// What the hero art shows, for screen readers. Omit for decoration.
+  heroAlt?: string;
+  /// Public app-icon path.
+  icon: string;
+  /// "macOS 14+ · Apple Silicon · Free · Developer ID signed".
+  requirements?: string;
+  /// The three "what it does" tiles under the hero, and their heading.
+  /// A page that opens with its own section instead leaves both out.
+  features?: AppPageFeature[];
+  featuresHeading?: string;
+  /// The closing line and a note under it, where the page has its own;
+  /// otherwise the closing line is "Get <name>." in the active language.
+  closingTitle?: string;
+  closingNote?: string;
+  cta: AppPageCTA;
+  /// One download button per desktop platform (github channel only), each
+  /// resolving its asset from the latest release. A platform with no asset
+  /// in that release is shown as coming soon, with no link.
+  platforms?: string[];
+  /// The product's own website, linked beside the downloads.
+  site?: string;
+  /// True when the app lives in the macOS menu bar; picks the closing line.
+  menuBarApp?: boolean;
+  /// Extra sections between the feature tiles and the shelf of other apps.
+  children?: ReactNode;
 }
 
-// ---- cross-platform downloads (macOS / Windows / Linux) ----
-
-interface PlatformAssets {
-  version: string;
-  releaseUrl: string;
-  mac?: string;
-  windows?: string;
-  linux?: string;
+/// "https://attack.fm" → "attack.fm".
+function hostOf(url: string): string {
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
 
-/// Resolve the latest release's download URL for each platform from its asset
-/// list (Tauri ships .dmg / .msi+.exe / .AppImage+.deb). Missing platforms stay
-/// undefined so the UI can show "Soon" until that build is published.
-async function fetchPlatformAssets(repo: string): Promise<PlatformAssets> {
-  const releaseUrl = `https://github.com/InfamousVague/${repo}/releases/latest`;
-  const empty: PlatformAssets = { version: "", releaseUrl };
-  try {
-    const res = await fetch(
-      `https://api.github.com/repos/InfamousVague/${repo}/releases?per_page=20`,
-    );
-    if (!res.ok) return empty;
-    const releases = await res.json();
-    if (!Array.isArray(releases)) return empty;
-    for (const rel of releases) {
-      if (rel.draft) continue;
-      const assets: { name: string; browser_download_url: string }[] = rel.assets ?? [];
-      const find = (test: (n: string) => boolean) =>
-        assets.find((a) => test(a.name.toLowerCase()))?.browser_download_url;
-      const mac = find((n) => n.endsWith(".dmg"));
-      const windows = find((n) => n.endsWith(".msi") || n.endsWith(".exe"));
-      const linux = find((n) => n.endsWith(".appimage") || n.endsWith(".deb") || n.endsWith(".rpm"));
-      if (mac || windows || linux) {
-        return { version: rel.tag_name || "", releaseUrl, mac, windows, linux };
-      }
-    }
-    return empty;
-  } catch {
-    return empty;
-  }
-}
-
-const PLATFORM_META: Record<string, { label: string; key: "mac" | "windows" | "linux" }> = {
-  macOS: { label: "macOS", key: "mac" },
+const DESKTOP: Record<string, { label: string; key: "mac" | "windows" | "linux" }> = {
+  macOS: { label: "Mac", key: "mac" },
   Windows: { label: "Windows", key: "windows" },
   Linux: { label: "Linux", key: "linux" },
 };
 
-function PlatformDownloads({ repo, platforms }: { repo: string; platforms: string[] }) {
-  const [assets, setAssets] = useState<PlatformAssets>({
-    version: "",
-    releaseUrl: `https://github.com/InfamousVague/${repo}/releases/latest`,
-  });
-  useEffect(() => {
-    fetchPlatformAssets(repo).then(setAssets);
-  }, [repo]);
+function Actions({ cta, platforms, site }: Pick<AppPageProps, "cta" | "platforms" | "site">) {
+  const { t, site: copy, format } = useLanguage();
+  const release = useRelease(cta.kind === "github" ? cta.repo : undefined);
+
+  const siteLink = site ? (
+    <ButtonLink href={site} variant="outline" size="lg" external>
+      {format(copy.appPage.visitSite, { site: hostOf(site) })} <ArrowUpRight size={16} aria-hidden />
+    </ButtonLink>
+  ) : null;
+
+  if (cta.kind === "site") {
+    return (
+      <ButtonLink href={cta.url} size="lg" external>
+        {format(copy.appPage.visitSite, { site: hostOf(cta.url) })} <ArrowUpRight size={16} aria-hidden />
+      </ButtonLink>
+    );
+  }
+
+  if (cta.kind === "appstore" || cta.kind === "library") {
+    return (
+      <>
+        <ButtonLink href={cta.url} size="lg" external>
+          {cta.kind === "appstore" ? <Download size={16} aria-hidden /> : <ExternalLink size={16} aria-hidden />}
+          {cta.label}
+        </ButtonLink>
+        {siteLink}
+      </>
+    );
+  }
+
+  const repoLink = (
+    <ButtonLink href={`https://github.com/InfamousVague/${cta.repo}`} variant="ghost" size="lg" external>
+      <ExternalLink size={16} aria-hidden /> {t.appPage.viewGithub}
+    </ButtonLink>
+  );
+
+  if (platforms && platforms.length > 0) {
+    return (
+      <>
+        {platforms.map((p) => {
+          const meta = DESKTOP[p];
+          if (!meta) return null;
+          const url = release[meta.key];
+          return url ? (
+            <ButtonLink key={p} href={url} size="lg" download>
+              <Download size={16} aria-hidden /> {meta.label}
+            </ButtonLink>
+          ) : (
+            <span key={p} className="lbtn lbtn--outline lbtn--lg" aria-disabled="true">
+              {format(copy.status.soon, { platform: meta.label })}
+            </span>
+          );
+        })}
+        {siteLink}
+        {repoLink}
+      </>
+    );
+  }
 
   return (
     <>
-      {platforms.map((p) => {
-        const meta = PLATFORM_META[p];
-        if (!meta) return null;
-        const url = assets[meta.key];
-        return url ? (
-          <a key={p} href={url} className="btn btn--primary btn--lg" download>
-            <Download size={16} /> {meta.label}
-          </a>
-        ) : (
-          <span
-            key={p}
-            className="btn btn--ghost btn--lg is-soon"
-            aria-disabled="true"
-            title={`${meta.label} build coming soon`}
-          >
-            {meta.label} · Soon
-          </span>
-        );
-      })}
+      <ButtonLink href={release.mac ?? release.releaseUrl} size="lg">
+        <Download size={16} aria-hidden /> {t.appPage.downloadBtn}
+        {release.version ? ` ${release.version}` : ""}
+      </ButtonLink>
+      {siteLink}
+      {repoLink}
     </>
   );
 }
 
-function PrimaryCTA({ cta }: { cta: AppPageProps["cta"] }) {
-  const { t } = useLanguage();
-  const [release, setRelease] = useState<Release>({ url: "", version: "" });
-
-  useEffect(() => {
-    if (cta.kind !== "github") return;
-    fetchLatestRelease(cta.repo).then(setRelease);
-  }, [cta]);
-
-  if (cta.kind === "appstore") {
-    return (
-      <a
-        href={cta.url}
-        className="btn btn--primary btn--lg"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Download size={16} /> {cta.label}
-      </a>
-    );
-  }
-  if (cta.kind === "library") {
-    return (
-      <a
-        href={cta.url}
-        className="btn btn--primary btn--lg"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <ExternalLink size={16} /> {cta.label}
-      </a>
-    );
-  }
-  // cta.kind === "github" — TS narrows once the other two branches return.
-  const repo = cta.repo;
-  const href =
-    release.url || `https://github.com/InfamousVague/${repo}/releases/latest`;
+function MoreApps({ excludeId }: { excludeId: string }) {
+  const { t, site } = useLanguage();
+  const others = CATALOG.filter((a) => a.id !== excludeId).slice(0, 8);
   return (
-    <a href={href} className="btn btn--primary btn--lg">
-      <Download size={16} /> {t.appPage.downloadBtn}
-      {release.version ? ` ${release.version}` : ""}
-    </a>
-  );
-}
-
-function SecondaryCTA({ cta }: { cta: AppPageProps["cta"] }) {
-  const { t } = useLanguage();
-  if (cta.kind === "github") {
-    return (
-      <a
-        href={`https://github.com/InfamousVague/${cta.repo}`}
-        className="btn btn--ghost btn--lg"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <ExternalLink size={16} /> {t.appPage.viewGithub}
-      </a>
-    );
-  }
-  return (
-    <a
-      href={cta.url}
-      className="btn btn--ghost btn--lg"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <ExternalLink size={16} /> {t.appPage.openInBrowser}
-    </a>
-  );
-}
-
-function SuiteCarousel({ excludeId }: { excludeId: string }) {
-  const { t } = useLanguage();
-  // Show every other app in the catalog as a "more from Matt's
-  // Software" carousel. The carousel reads horizontally so visitors
-  // browse sideways without crowding the page.
-  const others = CATALOG.filter((a) => a.id !== excludeId).slice(0, 12);
-  return (
-    <section className="suite-carousel">
-      <div className="suite-carousel__head">
-        <span className="eyebrow">{t.appPage.suiteEyebrow}</span>
-        <h2>{t.appPage.suiteHeading}</h2>
-        <p>{t.appPage.suiteSub}</p>
+    <section className="sec sec--ruled" aria-labelledby="more-heading">
+      <div className="sec__head">
+        <p className="eyebrow">MattsSoftware</p>
+        <h2 className="h2" id="more-heading">
+          {t.appPage.suiteHeading}
+        </h2>
       </div>
-      <div className="suite-carousel__row">
-        {others.map((a) => {
-          const localizedTagline = catalogTaglineForId(a.id, t);
-          const Card = (
-            <div className="suite-carousel__card">
-              <img src={a.icon} alt="" className="suite-carousel__icon" />
-              <div className="suite-carousel__meta">
-                <h3>{a.name}</h3>
-                <p>{localizedTagline}</p>
-              </div>
-              <ArrowRight size={14} className="suite-carousel__arrow" />
-            </div>
-          );
-          return a.viewExternal ? (
-            <a
-              key={a.id}
-              href={a.view}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {Card}
-            </a>
-          ) : (
-            <Link key={a.id} to={a.view}>
-              {Card}
+      <ul className="more">
+        {others.map((a) => (
+          <li key={a.id}>
+            <Link to={a.view}>
+              <AppIcon src={a.icon} size="2.5rem" />
+              <span className="apps-panel__meta">
+                <span className="apps-panel__name">{a.name}</span>
+                <span className="apps-panel__tag">{taglineFor(a, t, site)}</span>
+              </span>
             </Link>
-          );
-        })}
-      </div>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
 
 export function AppPage(props: AppPageProps) {
-  const { t, format } = useLanguage();
+  const { t, site, format } = useLanguage();
   const style = themeVars(props.themeId) as CSSProperties;
-  return (
-    <div className={`app-page app-page--${props.themeId}`} style={style}>
-      {/* Cream wash banner behind the hero — it's the same cream
-          shelf material we use on the home hero, with the spotlight
-          gradient burning through it from below. */}
-      <section className="app-page__hero">
-        <div className="app-page__hero-bg" aria-hidden />
-        <div className="app-page__hero-inner">
-          <div className="app-page__hero-text">
-            <span className="eyebrow">{props.title}</span>
-            <h1 className="app-page__title">{props.tagline}</h1>
-            <p className="app-page__desc">{props.description}</p>
-            <div className="app-page__actions">
-              {props.platforms && props.platforms.length > 0 && props.cta.kind === "github" ? (
-                <PlatformDownloads repo={props.cta.repo} platforms={props.platforms} />
-              ) : (
-                <PrimaryCTA cta={props.cta} />
-              )}
-              <SecondaryCTA cta={props.cta} />
-            </div>
-            {props.requirements ? (
-              <span className="app-page__req">{props.requirements}</span>
-            ) : null}
-          </div>
-          <div className="app-page__hero-art">
-            <img src={props.heroImage} alt="" className="app-page__hero-img" />
-          </div>
-        </div>
-      </section>
+  const catalogId = props.catalogId ?? props.themeId;
+  const app = CATALOG.find((a) => a.id === catalogId);
+  const fit = props.heroFit ?? "contain";
 
-      <section className="section section--narrow">
-        <h2 className="section__title">{props.featuresHeading}</h2>
-        <div className="app-page__features">
-          {props.features.map((f) => (
-            <div key={f.title} className="app-page__feature">
-              <h3>{f.title}</h3>
-              <p>{f.body}</p>
-            </div>
-          ))}
+  return (
+    <article className="wrap" style={style}>
+      <Link to="/" className="ap-back">
+        <ArrowLeft size={14} aria-hidden /> {site.appPage.back}
+      </Link>
+
+      <header className="ap-hero">
+        <div className="ap-hero__text">
+          <p className="ap-hero__id">
+            <AppIcon src={props.icon} size="2.75rem" eager />
+            {props.title}
+          </p>
+          <h1 className="h1">{props.tagline}</h1>
+          <p className="lede">{props.description}</p>
+          {app ? <PlatformPills app={app} size="md" /> : null}
+          <div className="ap-hero__actions">
+            <Actions cta={props.cta} platforms={props.platforms} site={props.site} />
+          </div>
+          {props.requirements ? <p className="ap-hero__req">{props.requirements}</p> : null}
         </div>
-      </section>
+        <div className={`stage${fit === "contain" ? "" : ` stage--${fit}`}`}>
+          <img src={props.heroImage} alt={props.heroAlt ?? ""} decoding="async" />
+        </div>
+      </header>
+
+      {props.features && props.features.length > 0 ? (
+        <section className="sec sec--tight" aria-labelledby="features-heading">
+          <div className="sec__head">
+            <h2 className="h2" id="features-heading">
+              {props.featuresHeading}
+            </h2>
+          </div>
+          <ul className="tiles">
+            {props.features.map((f, i) => (
+              <Reveal as="li" key={f.title} index={i} className="tile">
+                <h3>{f.title}</h3>
+                <p>{f.body}</p>
+              </Reveal>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {props.children}
 
-      <SuiteCarousel excludeId={props.themeId} />
+      <MoreApps excludeId={catalogId} />
 
-      <section className="section app-page__bottom-cta">
-        <img src={props.icon} alt="" className="app-page__bottom-icon" />
-        {/* "Add X to your menu bar." only when the app actually lives
-            in the menu bar; "Get X." everywhere else. */}
-        <h2>
-          {props.menuBarApp
-            ? format(t.appPage.bottomAddToMenuBar, { name: props.title })
-            : format(t.appPage.bottomGet, { name: props.title })}
+      <section className="closing stage" aria-labelledby="closing-heading">
+        <AppIcon src={props.icon} size="4.5rem" />
+        <h2 className="h2" id="closing-heading">
+          {props.closingTitle ??
+            (props.menuBarApp
+              ? format(t.appPage.bottomAddToMenuBar, { name: props.title })
+              : format(t.appPage.bottomGet, { name: props.title }))}
         </h2>
-        <div className="app-page__actions">
-          {props.platforms && props.platforms.length > 0 && props.cta.kind === "github" ? (
-            <PlatformDownloads repo={props.cta.repo} platforms={props.platforms} />
-          ) : (
-            <PrimaryCTA cta={props.cta} />
-          )}
-          <SecondaryCTA cta={props.cta} />
+        {props.closingNote ? <p className="body">{props.closingNote}</p> : null}
+        <div className="ap-hero__actions">
+          <Actions cta={props.cta} platforms={props.platforms} site={props.site} />
         </div>
-        {props.requirements ? (
-          <span className="app-page__req">{props.requirements}</span>
-        ) : null}
+        {props.requirements ? <p className="ap-hero__req">{props.requirements}</p> : null}
       </section>
-    </div>
+    </article>
   );
 }

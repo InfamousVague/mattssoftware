@@ -4,7 +4,7 @@ import type { Translation } from "../types";
 
 export const ja: Translation = {
   meta: {
-    siteTitle: "Matt's Software — 役に立つ小さなアプリたち",
+    siteTitle: "Matt's Software、役に立つ小さなアプリたち",
     siteDescription:
       "小さくて無料のオープンソースアプリのちょっとしたショップ。ひとつのランチャーで全部インストール、自動更新。",
     htmlLang: "ja",
@@ -44,7 +44,7 @@ export const ja: Translation = {
   },
 
   footer: {
-    mascotAlt: "設計図とコーヒーのマグの周りに丸まる白猫——音楽の中でなぜか眠っている",
+    mascotAlt: "設計図とコーヒーのマグの周りに丸まる白猫、音楽の中でなぜか眠っている",
     line: "エスプレッソと大音量の音楽で作りました。",
     sub: "Matt's Software は一人ショップ。すべてのアプリは署名済み、公証済み、そして無料です。",
     github: "GitHub",
@@ -80,7 +80,7 @@ export const ja: Translation = {
   home: {
     eyebrow: "MATT'S SOFTWARE",
     title: "役に立つ小さなアプリたち。",
-    sub: "厳選した {count} 以上の小さくて無料のアプリショップ。ひとつのランチャーで全部インストール、自動更新——もちろん個別にも入手できます。",
+    sub: "厳選した {count} 以上の小さくて無料のアプリショップ。ひとつのランチャーで全部インストール、自動更新、もちろん個別にも入手できます。",
     downloadLauncher: "ランチャーをダウンロード",
     browseSuite: "コレクションを見る",
     metaLine: "無料 · オープンソース · 今日は macOS、もっと近々",
@@ -100,7 +100,7 @@ export const ja: Translation = {
     featuresHeadingDefault: "できること",
     suiteEyebrow: "コレクション",
     suiteHeading: "ショップから他に",
-    suiteSub: "それぞれが一つのことだけをきちんとこなす——必要なものだけ入れて。",
+    suiteSub: "それぞれが一つのことだけをきちんとこなす、必要なものだけ入れて。",
     bottomAddToMenuBar: "{name} をメニューバーに追加。",
     bottomGet: "{name} を入手。",
   },
@@ -126,7 +126,7 @@ export const ja: Translation = {
         },
         {
           title: "ステータスインジケータを欺く",
-          body: "サブピクセル単位のマウス揺らし——目に見えないが、Slack、Teams、Zoom、その他アイドルを監視するあらゆるアプリのアイドル検出をかわすには十分。",
+          body: "サブピクセル単位のマウス揺らし、目に見えないが、Slack、Teams、Zoom、その他アイドルを監視するあらゆるアプリのアイドル検出をかわすには十分。",
         },
         {
           title: "パニックボタン付き",
@@ -138,12 +138,12 @@ export const ja: Translation = {
           badge: "起きていろ",
           title: "あなたのコンピュータは眠りたい。Espresso は同意しない。",
           description:
-            "メニューバーに陣取る小さなショット。スリープタイマーを阻み、ディスプレイを点けたまま（点けなくても — あなた次第）、マウスをサブピクセル単位で動かして、アイドル検出器を欺き続けます。",
+            "メニューバーに陣取る小さなショット。スリープタイマーを阻み、ディスプレイを点けたまま（点けなくても、あなた次第）、マウスをサブピクセル単位で動かして、アイドル検出器を欺き続けます。",
           bullets: [
-            "システムスリープ、ディスプレイスリープ、または両方を阻止 — セッション単位で切替",
+            "システムスリープ、ディスプレイスリープ、または両方を阻止、セッション単位で切替",
             "サブピクセルのマウスジグルが Slack、Teams、Zoom のアイドル検出を欺く",
             "蓋を閉じても動作を続けるオーバーライド",
-            "生涯使用統計 — あなたが奪った睡眠の量",
+            "生涯使用統計、あなたが奪った睡眠の量",
           ],
           imageAlt: "眠そうなノートパソコンを守る 3D エスプレッソカップ",
         },
@@ -151,10 +151,10 @@ export const ja: Translation = {
           badge: "時計のもとで",
           title: "タイマー付きのセッション、または自分が降参するまで",
           description:
-            "プリセット（5 分、30 分、2 時間、8 時間）を選ぶか無期限で走らせる。グローバルパニックホットキーが全てを瞬時に終わらせる — ディスプレイは眠り、ジグルは止まり、タイマーはキャンセル。",
+            "プリセット（5 分、30 分、2 時間、8 時間）を選ぶか無期限で走らせる。グローバルパニックホットキーが全てを瞬時に終わらせる、ディスプレイは眠り、ジグルは止まり、タイマーはキャンセル。",
           bullets: [
             "5 分から 8 時間までのプリセットタイマーと無期限モード",
-            "Ctrl+Shift+Escape のグローバルパニック — 全て瞬時に停止",
+            "Ctrl+Shift+Escape のグローバルパニック、全て瞬時に停止",
             "セッションカウントダウンはメニューバーに常時表示",
             "ロックや蓋閉じで自動終了（設定可能）",
           ],
@@ -175,7 +175,7 @@ export const ja: Translation = {
       features: [
         {
           title: "ワンクリックですべてをロック",
-          body: "アクティブなキーボードキャプチャがシステム全体のすべてのキー、修飾キー、メディアキーを飲み込む——ショートカットを 1 つも発火させずにキーを拭く。",
+          body: "アクティブなキーボードキャプチャがシステム全体のすべてのキー、修飾キー、メディアキーを飲み込む、ショートカットを 1 つも発火させずにキーを拭く。",
         },
         {
           title: "フロストのフルスクリーンオーバーレイ",
@@ -191,12 +191,12 @@ export const ja: Translation = {
           badge: "完全ロック",
           title: "ワンクリックで、キーボードは静寂に",
           description:
-            "システム全体のキーボードタップが、あらゆるキー、修飾キー、メディアキーを呑み込みます — そうすればクリーニングクロスがショートカットを発動したり、メールを送ったり、録音中の Logic を終了させたりしません。フロストオーバーレイがどのディスプレイも覆い、ロック中であることが一目瞭然です。",
+            "システム全体のキーボードタップが、あらゆるキー、修飾キー、メディアキーを呑み込みます、そうすればクリーニングクロスがショートカットを発動したり、メールを送ったり、録音中の Logic を終了させたりしません。フロストオーバーレイがどのディスプレイも覆い、ロック中であることが一目瞭然です。",
           bullets: [
-            "システム全体のキーボードタップ — 各キー、修飾キー、メディアキー",
+            "システム全体のキーボードタップ、各キー、修飾キー、メディアキー",
             "全モニターをフロストオーバーレイで覆い、ライブ解除カウントダウン付き",
             "マウスは生きたまま、終わったらすぐ解除できる",
-            "メニューバーに常駐 — 一クリックで入り、一クリックで出る",
+            "メニューバーに常駐、一クリックで入り、一クリックで出る",
           ],
           imageAlt: "南京錠のチャームを伴った、フロスト加工のラベンダーガラスドーム下の 3D ミニチュアキーボード",
         },
@@ -204,12 +204,12 @@ export const ja: Translation = {
           badge: "安全な出口",
           title: "閉じ込められることはありえない",
           description:
-            "セーフティオートアンロックが何があっても発動します — オーバーレイが誤作動しても、メニューバーがハングしても。解除面はマウス、メニューバー、そして硬いタイマーを聴いています。",
+            "セーフティオートアンロックが何があっても発動します、オーバーレイが誤作動しても、メニューバーがハングしても。解除面はマウス、メニューバー、そして硬いタイマーを聴いています。",
           bullets: [
             "オートアンロックタイマーで決して立ち往生しない",
             "三つの独立した解除経路：オーバーレイ、メニューバー、タイマー",
             "最大ロック時間は設定可能（デフォルト 1 分）",
-            "パラノイア設計 — 開いたまま失敗する、決して閉じたまま失敗しない",
+            "パラノイア設計、開いたまま失敗する、決して閉じたまま失敗しない",
           ],
           imageAlt: "ラベンダーの指針を持つ 3D クロームダイヤルと、開いた南京錠の上を浮かぶ鍵",
         },
@@ -219,16 +219,16 @@ export const ja: Translation = {
     stats: {
       tagline: "あらゆる信号。ひと目で。",
       description:
-        "ネイティブのメニューバーシステムモニタ。コア別のライブ CPU、メモリプレッシャー、ディスク読み書き、ネットワーク上り下り、センサー読み取り——加えてステータスバーに乗るオプションのコンパクトウィジェットと、すべての信号の履歴スパークラインで、アクティビティモニタを開かずにスパイクを発見できます。",
-      catalogTagline: "あらゆるシステム信号をひと目で——あなたのメニューバーで。",
+        "ネイティブのメニューバーシステムモニタ。コア別のライブ CPU、メモリプレッシャー、ディスク読み書き、ネットワーク上り下り、センサー読み取り、加えてステータスバーに乗るオプションのコンパクトウィジェットと、すべての信号の履歴スパークラインで、アクティビティモニタを開かずにスパイクを発見できます。",
+      catalogTagline: "あらゆるシステム信号をひと目で、あなたのメニューバーで。",
       catalogDescription:
-        "ネイティブのメニューバーシステムモニタ。コア別のライブ CPU、メモリプレッシャー、ディスク読み書き、ネットワーク上り下り、センサー読み取り——加えてコンパクトウィジェットと履歴スパークライン。",
+        "ネイティブのメニューバーシステムモニタ。コア別のライブ CPU、メモリプレッシャー、ディスク読み書き、ネットワーク上り下り、センサー読み取り、加えてコンパクトウィジェットと履歴スパークライン。",
       requirements: "macOS 14+  ·  Apple Silicon  ·  無料  ·  Developer ID 署名＆公証済み",
       featuresHeading: "マシン全体を見る。全画面なしで。",
       features: [
         {
           title: "あらゆるシステム信号をひと目で",
-          body: "コア別 CPU、メモリプレッシャー（有線/圧縮/アプリ/キャッシュの内訳付き）、ディスク読み書き、ネットワーク上り下り、センサー、ライブのトッププロセスリスト——すべてが 1 つのコンパクトなメニューバーパネルに。",
+          body: "コア別 CPU、メモリプレッシャー（有線/圧縮/アプリ/キャッシュの内訳付き）、ディスク読み書き、ネットワーク上り下り、センサー、ライブのトッププロセスリスト、すべてが 1 つのコンパクトなメニューバーパネルに。",
         },
         {
           title: "コンパクトなメニューバーウィジェット",
@@ -244,7 +244,7 @@ export const ja: Translation = {
           badge: "全シグナル",
           title: "あなたのマシンの全ゲージが、ひと目で",
           description:
-            "コア別 CPU、メモリプレッシャー（wired / 圧縮 / アプリ / キャッシュの内訳付き）、ディスク読み書き、ネットワーク上り下り、センサー値 — Stats は macOS が露出するすべてのシグナルを読み、メニューバーにピン留めします。",
+            "コア別 CPU、メモリプレッシャー（wired / 圧縮 / アプリ / キャッシュの内訳付き）、ディスク読み書き、ネットワーク上り下り、センサー値、Stats は macOS が露出するすべてのシグナルを読み、メニューバーにピン留めします。",
           bullets: [
             "コア別 CPU 使用率とトッププロセス一覧",
             "完全な常駐内訳付きのメモリプレッシャー",
@@ -257,10 +257,10 @@ export const ja: Translation = {
           badge: "振り返り",
           title: "スプレッドシートではなく、スパークライン",
           description:
-            "各シグナルの最近の履歴がグラフ化されるので、暴走したプロセスや熱のスパイクが一目で分かります — アクティビティモニタを開いて再発を待つ必要はありません。",
+            "各シグナルの最近の履歴がグラフ化されるので、暴走したプロセスや熱のスパイクが一目で分かります、アクティビティモニタを開いて再発を待つ必要はありません。",
           bullets: [
             "各ゲージのライブスパークライン履歴",
-            "履歴ウィンドウは設定可能 — 直近の 1 分、1 時間、または 1 日",
+            "履歴ウィンドウは設定可能、直近の 1 分、1 時間、または 1 日",
             "スパイクを後から発見し、ライブで追いかけ回さない",
             "スパークラインをタップして、その瞬間のトッププロセスを確認",
           ],
@@ -272,10 +272,10 @@ export const ja: Translation = {
     port: {
       tagline: "あらゆるポート、ワンクリック。",
       description:
-        "小さなネイティブのメニューバーポートマネージャ。何がリッスンしているか確認し、プロセスを終了または一時停止、転送または NAT-PMP マップ、ライブマップでアクティブな接続を観察——どれかをクリックすれば Blip で詳しく見られます。",
+        "小さなネイティブのメニューバーポートマネージャ。何がリッスンしているか確認し、プロセスを終了または一時停止、転送または NAT-PMP マップ、ライブマップでアクティブな接続を観察、どれかをクリックすれば Blip で詳しく見られます。",
       catalogTagline: "あなたの Mac の開いているポートすべて、ワンクリックで。",
       catalogDescription:
-        "ネイティブのメニューバーポートマネージャ：何がリッスンしているか確認、プロセスを終了または一時停止、転送または NAT-PMP マップ、ライブマップでアクティブな接続を観察——クリックして Blip で詳しく見る。",
+        "ネイティブのメニューバーポートマネージャ：何がリッスンしているか確認、プロセスを終了または一時停止、転送または NAT-PMP マップ、ライブマップでアクティブな接続を観察、クリックして Blip で詳しく見る。",
       requirements: "macOS 14+  ·  Apple Silicon  ·  無料  ·  Developer ID 署名済み",
       featuresHeading: "見る。止める。転送する。",
       features: [
@@ -285,7 +285,7 @@ export const ja: Translation = {
         },
         {
           title: "転送＆マップ",
-          body: "内蔵の TCP フォワーダで任意のローカルポートを別のポートにプロキシ、LAN に公開、ネイティブ NAT-PMP でルーターを貫通——設定不要。",
+          body: "内蔵の TCP フォワーダで任意のローカルポートを別のポートにプロキシ、LAN に公開、ネイティブ NAT-PMP でルーターを貫通、設定不要。",
         },
         {
           title: "マップ上の接続 → Blip",
@@ -297,9 +297,9 @@ export const ja: Translation = {
           badge: "港",
           title: "開いている各ポートが、ワンクリック先に",
           description:
-            "メニューバーに常駐する、待ち受け中のあらゆる TCP/UDP ポートのライブ目録 — 背後のプロセス、PID、プロトコル。殺す、停める（SIGSTOP/SIGCONT）、または眺める。",
+            "メニューバーに常駐する、待ち受け中のあらゆる TCP/UDP ポートのライブ目録、背後のプロセス、PID、プロトコル。殺す、停める（SIGSTOP/SIGCONT）、または眺める。",
           bullets: [
-            "毎秒リフレッシュ — 何が、今、待ち受けているか",
+            "毎秒リフレッシュ、何が、今、待ち受けているか",
             "メニューバーから離れずにプロセスを殺す、停める、再開する",
             "既知ポートライブラリが一般的なサービスを即座に命名",
             "新しいポートが開いた瞬間に通知",
@@ -312,7 +312,7 @@ export const ja: Translation = {
           description:
             "組み込みの TCP フォワーダーが任意のローカルポートを別のポートへプロキシ。ネイティブな NAT-PMP がルーターを自動でマッピング。アクティブな接続をマップで眺め、エンドポイントをクリックして Blip で詳細検査。",
           bullets: [
-            "Network.framework 上に構築された TCP フォワーダー — 依存ゼロ",
+            "Network.framework 上に構築された TCP フォワーダー、依存ゼロ",
             "ネイティブ NAT-PMP（RFC 6886）ルーターマッピング、設定不要",
             "ワントグルで LAN にポートを公開",
             "アクティブな接続をマップに描き、ワンクリックで Blip に渡す",
@@ -325,20 +325,20 @@ export const ja: Translation = {
     alfred: {
       tagline: "ディスクを取り戻す。",
       description:
-        "削除しても安全な開発者のゴミ——node_modules、Cargo target/、ビルドとテストキャッシュ、Xcode DerivedData、パッケージマネージャキャッシュ——を見つけて大きい順に並べ、ゴミ箱に移動するネイティブのメニューバー執事。ワンクリックで復元可能。",
+        "削除しても安全な開発者のゴミ、node_modules、Cargo target/、ビルドとテストキャッシュ、Xcode DerivedData、パッケージマネージャキャッシュ、を見つけて大きい順に並べ、ゴミ箱に移動するネイティブのメニューバー執事。ワンクリックで復元可能。",
       catalogTagline: "開発者のゴミに占拠されたディスクスペースを取り戻す。",
       catalogDescription:
-        "削除しても安全な開発者のゴミ——node_modules、Cargo target/、ビルドとテストキャッシュ、Xcode DerivedData、パッケージマネージャキャッシュ——を見つけて大きい順に並べ、ゴミ箱に移動する（復元可能）。",
+        "削除しても安全な開発者のゴミ、node_modules、Cargo target/、ビルドとテストキャッシュ、Xcode DerivedData、パッケージマネージャキャッシュ、を見つけて大きい順に並べ、ゴミ箱に移動する（復元可能）。",
       requirements: "macOS 14+  ·  Apple Silicon  ·  無料  ·  Developer ID 署名済み",
       featuresHeading: "見つける。捨てる。ディスクを取り戻す。",
       features: [
         {
           title: "ゴミを大きい順に発見",
-          body: "node_modules、Cargo target/、ビルドとテストキャッシュ、Xcode DerivedData、Homebrew/Yarn/npm キャッシュ——スキャンしてサイズを測り、大きい順にリストアップするので、何があなたのディスクを占拠しているか正確に分かります。",
+          body: "node_modules、Cargo target/、ビルドとテストキャッシュ、Xcode DerivedData、Homebrew/Yarn/npm キャッシュ、スキャンしてサイズを測り、大きい順にリストアップするので、何があなたのディスクを占拠しているか正確に分かります。",
         },
         {
           title: "設計上安全に削除",
-          body: "Alfred は再生成可能なフォルダ——キャッシュ、ビルド成果物、依存ツリー——のみに触れ、ソースには決して触れません。すべてゴミ箱に移動し、気が変わればワンクリックで復元可能。",
+          body: "Alfred は再生成可能なフォルダ、キャッシュ、ビルド成果物、依存ツリー、のみに触れ、ソースには決して触れません。すべてゴミ箱に移動し、気が変わればワンクリックで復元可能。",
         },
         {
           title: "メニューバーから",
@@ -350,12 +350,12 @@ export const ja: Translation = {
           badge: "お役に立ちます",
           title: "大きいものから、丁寧に、容赦なく",
           description:
-            "メニューバーの執事は、どのフォルダなら安心して手放せるかを正確に知っています。node_modules、Cargo target/、Xcode DerivedData、Homebrew キャッシュ、Yarn キャッシュ — Alfred はそれらを見つけ、計量し、銀の盆に載せて差し出します。",
+            "メニューバーの執事は、どのフォルダなら安心して手放せるかを正確に知っています。node_modules、Cargo target/、Xcode DerivedData、Homebrew キャッシュ、Yarn キャッシュ、Alfred はそれらを見つけ、計量し、銀の盆に載せて差し出します。",
           bullets: [
             "プロジェクト全体の一般的な開発ゴミフォルダをすべてスキャン",
             "大きい順に並ぶので、勝利が一目瞭然",
             "フォルダ単位のスキップルールで、お気に入りはそのまま",
-            "メニューバー常駐 — その気が向いた時にスキャン",
+            "メニューバー常駐、その気が向いた時にスキャン",
           ],
           imageAlt: "緑のたすきを掛けた 3D ミニチュア執事が開発ゴミの銀盆を差し出している",
         },
@@ -363,9 +363,9 @@ export const ja: Translation = {
           badge: "設計から安全",
           title: "ギガバイトは取り戻し、コードは残す",
           description:
-            "Alfred は再生可能なフォルダだけに触れます — キャッシュ、ビルド成果物、依存関係ツリー — あなたのソースコードには絶対に触れません。すべてゴミ箱に移動するので、誤りはワンクリックで取り消せます。",
+            "Alfred は再生可能なフォルダだけに触れます、キャッシュ、ビルド成果物、依存関係ツリー、あなたのソースコードには絶対に触れません。すべてゴミ箱に移動するので、誤りはワンクリックで取り消せます。",
           bullets: [
-            "再生可能なフォルダだけ — ソースは常に安全",
+            "再生可能なフォルダだけ、ソースは常に安全",
             "ファイルはゴミ箱へ、/dev/null へではなく",
             "気が変わったものはワンクリックで復元",
             "累計合計で、どれだけ取り戻したかを表示",
@@ -377,16 +377,16 @@ export const ja: Translation = {
     uninstaller: {
       tagline: "Apps + their crumbs, in one click.",
       description:
-        "Dragging an app to the Trash leaves behind preferences, caches, sandbox containers, login items, and crash logs. Uninstaller finds the whole pile for any installed app and moves it all to Trash in one click — with a clear list of what's about to go and a separate badge for system-owned files it can't touch.",
+        "Dragging an app to the Trash leaves behind preferences, caches, sandbox containers, login items, and crash logs. Uninstaller finds the whole pile for any installed app and moves it all to Trash in one click、with a clear list of what's about to go and a separate badge for system-owned files it can't touch.",
       catalogTagline: "Apps + their crumbs, in one click.",
       catalogDescription:
-        "Native menu-bar uninstaller. Finds every leftover an app keeps on disk — preferences, caches, sandbox containers, login items, crash logs — and moves the whole pile to Trash in one click.",
+        "Native menu-bar uninstaller. Finds every leftover an app keeps on disk、preferences, caches, sandbox containers, login items, crash logs、and moves the whole pile to Trash in one click.",
       requirements: "macOS 14+  ·  Apple Silicon  ·  Free  ·  Developer ID signed",
       featuresHeading: "Three reasons to use Uninstaller",
       features: [
         {
           title: "One click, whole pile",
-          body: "Pick an app, see every residue path with sizes, hit Uninstall. The bundle and every leftover go to Trash together — recoverable in one click, no separate cleanup pass.",
+          body: "Pick an app, see every residue path with sizes, hit Uninstall. The bundle and every leftover go to Trash together、recoverable in one click, no separate cleanup pass.",
         },
         {
           title: "Login items + LaunchAgents",
@@ -394,7 +394,7 @@ export const ja: Translation = {
         },
         {
           title: "Honest about admin",
-          body: "System paths under /Library and /private/var/db/receipts are listed but flagged — Uninstaller won't ask for your password to scrub things you probably don't care about.",
+          body: "System paths under /Library and /private/var/db/receipts are listed but flagged、Uninstaller won't ask for your password to scrub things you probably don't care about.",
         },
       ],
       showcase: [
@@ -402,11 +402,11 @@ export const ja: Translation = {
           badge: "One sweep, whole pile",
           title: "Apps and their crumbs, gone together",
           description:
-            "Pick an app and Uninstaller scans the dozen-plus standard residue locations — Preferences, Application Support, Caches, Saved State, Logs, Containers, Group Containers, HTTP Storages, WebKit data, Cookies, LaunchAgents, crash reports. The bundle and every leftover go to the Trash together, in a single batched Finder request.",
+            "Pick an app and Uninstaller scans the dozen-plus standard residue locations、Preferences, Application Support, Caches, Saved State, Logs, Containers, Group Containers, HTTP Storages, WebKit data, Cookies, LaunchAgents, crash reports. The bundle and every leftover go to the Trash together, in a single batched Finder request.",
           bullets: [
-            "Twelve+ residue locations probed per app — by bundle id AND display name so apps that store under either layout don't get missed",
+            "Twelve+ residue locations probed per app、by bundle id AND display name so apps that store under either layout don't get missed",
             "Sized biggest-first so you can see exactly what's about to be reclaimed",
-            "Trash by default — recoverable in one click if you change your mind",
+            "Trash by default、recoverable in one click if you change your mind",
             "Single batched recycle call so macOS shows one auth prompt for the whole pile, not one per file",
           ],
           imageAlt: "Cute 3D sanitation worker character in a red coverall and red hardhat sweeping a row of colourful app squircles into a chunky white trash bag",
@@ -415,12 +415,12 @@ export const ja: Translation = {
           badge: "Honest about admin",
           title: "App Management permission, asked once",
           description:
-            "macOS 13+ gates modifying apps in /Applications behind App Management TCC. Uninstaller routes the trash request through Finder so you get a single, clear permission prompt the first time — and a deep-link to System Settings → Privacy & Security → App Management if anything's still denied after.",
+            "macOS 13+ gates modifying apps in /Applications behind App Management TCC. Uninstaller routes the trash request through Finder so you get a single, clear permission prompt the first time、and a deep-link to System Settings → Privacy & Security → App Management if anything's still denied after.",
           bullets: [
             "Single Finder-mediated prompt the first time, not one per app removed",
-            "System-owned residue under /Library and /private/var/db/receipts is listed with an 'admin' badge but never silently fails — you see exactly what was skipped",
+            "System-owned residue under /Library and /private/var/db/receipts is listed with an 'admin' badge but never silently fails、you see exactly what was skipped",
             "Permission-shaped failures surface a one-line tip + a button that opens the right Privacy & Security pane directly",
-            "Apple's own apps (com.apple.*) are filtered out of the picker — never offered for removal",
+            "Apple's own apps (com.apple.*) are filtered out of the picker、never offered for removal",
           ],
           imageAlt: "Cute 3D sanitation worker character in red holding up a Privacy & Security clipboard with a green checkmark, three app icons fading into sparkles on his right",
         },
@@ -430,7 +430,7 @@ export const ja: Translation = {
     blip: {
       tagline: "出ていくものを見る。",
       description:
-        "あなたのデータがどこへ行くのか、誰が集めているのかを正確に見て、シャットダウンしましょう——すべて、とても綺麗な 3D マップで。",
+        "あなたのデータがどこへ行くのか、誰が集めているのかを正確に見て、シャットダウンしましょう、すべて、とても綺麗な 3D マップで。",
       catalogTagline: "あなたのコンピュータは陰であなたのことを話していました。",
       catalogDescription:
         "リアルタイムネットワークモニタリング、3D 接続マップ、スマートファイアウォール、DNS ブロック、海底ケーブルルーティング、帯域分析を備えています。あなたのデータがどこへ行くのか正確に確認。",
@@ -458,7 +458,7 @@ export const ja: Translation = {
             "あなたのコンピュータ上のすべてのアプリが、こっそり実家に電話をかけています。Blip はそれらを 3D マップに置き、その混乱をリアルタイムで眺めさせてくれます。",
           bullets: [
             "接続は実在する海底ケーブルを通って海を越える",
-            "サービス別の色分け弧——Google、Discord、Apple、その他何百を瞬時に識別",
+            "サービス別の色分け弧、Google、Discord、Apple、その他何百を瞬時に識別",
             "アニメーションパーティクルが両方向のデータフローを表示",
             "ホップごとの traceroute がパケットの実際の経路を表示",
           ],
@@ -472,7 +472,7 @@ export const ja: Translation = {
           bullets: [
             "厳格モード：無実が証明されるまで有罪",
             "アプリごとの帯域バーがデータ大食漢を暴く",
-            "範囲指定ルール——ポート 443 は許可、他はブロック",
+            "範囲指定ルール、ポート 443 は許可、他はブロック",
             "キルスイッチ：ワンクリック、インターネットゼロ、即時の静けさ",
           ],
           imageAlt: "Blip ファイアウォールがアプリレベルのネットワークアクセス制御を表示",
@@ -481,12 +481,12 @@ export const ja: Translation = {
           badge: "ガード",
           title: "20 万のトラッカーを接続を試みる前にブロック",
           description:
-            "あなたの DNS は告げ口屋。すべてのアプリ、すべての広告 SDK、すべての分析 ping——ガードは入口でそれらを捕まえます。誰が実家に電話しようとしているか見て、シャットダウン。",
+            "あなたの DNS は告げ口屋。すべてのアプリ、すべての広告 SDK、すべての分析 ping、ガードは入口でそれらを捕まえます。誰が実家に電話しようとしているか見て、シャットダウン。",
           bullets: [
             "DNS ブロックリストが 20 万以上のトラッカーと広告ドメインを瞬殺",
-            "リアルタイムクエリログ——すべての検索をライブで観察",
+            "リアルタイムクエリログ、すべての検索をライブで観察",
             "トラッカーランキングが最も執拗な犯人を表示",
-            "ファイアウォールと併用——壁が二重、慈悲ゼロ",
+            "ファイアウォールと併用、壁が二重、慈悲ゼロ",
           ],
           imageAlt: "Blip ガードが DNS ブロックとトラッカー検出を表示",
         },
@@ -494,12 +494,12 @@ export const ja: Translation = {
           badge: "ビジュアライゼーション",
           title: "インターネットはただの濡れたケーブル",
           description:
-            "あなたの YouTube 動画は、庭のホースより細いケーブルで 3 つの海を越えました。Blip はどのケーブルか正確に教えます——700 以上の実在する海底ケーブルルートが、あなたのデータが通る時に光ります。",
+            "あなたの YouTube 動画は、庭のホースより細いケーブルで 3 つの海を越えました。Blip はどのケーブルか正確に教えます、700 以上の実在する海底ケーブルルートが、あなたのデータが通る時に光ります。",
           bullets: [
             "TeleGeography の実在する海底ケーブルルートが海底に描かれる",
             "あなたのトラフィックが流れるとアクティブなケーブルが点灯",
             "進行するダッシュパーティクルがアップロード対ダウンロードの方向を表示",
-            "Ping ベースの速度——速い接続は速く、遅い接続は這う",
+            "Ping ベースの速度、速い接続は速く、遅い接続は這う",
           ],
           imageAlt: "Blip ビジュアライゼーションが海底ケーブルとデータフローを表示",
         },
@@ -507,7 +507,7 @@ export const ja: Translation = {
           badge: "Traceroute",
           title: "1 ページを読み込むのに 6 都市を通る 14 ホップ",
           description:
-            "すべてのパケットは到着前に十数台のルーターを跳ね回ります。Blip はその経路を辿り——ホップごと、都市ごと、ケーブルごと——マップに描きます。",
+            "すべてのパケットは到着前に十数台のルーターを跳ね回ります。Blip はその経路を辿り、ホップごと、都市ごと、ケーブルごと、マップに描きます。",
           bullets: [
             "ホップごとのマーカーが 3D マップに直接重ねられる",
             "レイテンシで色分け：緑は速い、琥珀色は普通、赤は痛み",
@@ -531,11 +531,11 @@ export const ja: Translation = {
       features: [
         {
           title: "スキューモーフィックなカセットレコーダ",
-          body: "フォトリアリスティックなレコーダの浮遊サイドバー：アニメーションするリール、VU メータ、物理ボタン。録音を押して話す——グローバルホットキーでどのアプリからでも録音できます。",
+          body: "フォトリアリスティックなレコーダの浮遊サイドバー：アニメーションするリール、VU メータ、物理ボタン。録音を押して話す、グローバルホットキーでどのアプリからでも録音できます。",
         },
         {
           title: "ライブのオンデバイス文字起こし",
-          body: "Apple の SFSpeechRecognizer があなたの話を即座に文字起こし——クラウドも API キーもなし。トランスクリプトの任意の単語をクリックして、録音のその瞬間にジャンプ。",
+          body: "Apple の SFSpeechRecognizer があなたの話を即座に文字起こし、クラウドも API キーもなし。トランスクリプトの任意の単語をクリックして、録音のその瞬間にジャンプ。",
         },
         {
           title: "カセットでいっぱいの靴箱",
@@ -588,7 +588,7 @@ export const ja: Translation = {
     peephole: {
       tagline: "誰が見ているかを見る。",
       description:
-        "あなたのカメラとマイクのためのメニューバー監視者。Peephole は今どのアプリがそれらを使っているかを表示し、アクセス履歴を保持し、何かが起動したときに通知します——特別な権限もカーネル拡張も不要。",
+        "あなたのカメラとマイクのためのメニューバー監視者。Peephole は今どのアプリがそれらを使っているかを表示し、アクセス履歴を保持し、何かが起動したときに通知します、特別な権限もカーネル拡張も不要。",
       catalogTagline: "誰が見ているかを見る。",
       catalogDescription:
         "あなたのカメラとマイクのためのメニューバー監視者：今どのアプリが使っているか、アクセス履歴、そして何かがそれらを起動した瞬間の通知。",
@@ -601,7 +601,7 @@ export const ja: Translation = {
         },
         {
           title: "アクセス履歴",
-          body: "どのアプリがいつカメラまたはマイクを使ったかの継続的なログ——その日の活動を遡れます。",
+          body: "どのアプリがいつカメラまたはマイクを使ったかの継続的なログ、その日の活動を遡れます。",
         },
         {
           title: "通知",
@@ -613,12 +613,12 @@ export const ja: Translation = {
           badge: "目と耳",
           title: "何かが見始めた瞬間に気づく",
           description:
-            "Peephole のメニューバーグリフは、カメラやマイクが熱を持った瞬間に切り替わります。タップすると、どのアプリが点けたのかが正確に分かります — そして、それが意図通りだったか、あなたが決めます。",
+            "Peephole のメニューバーグリフは、カメラやマイクが熱を持った瞬間に切り替わります。タップすると、どのアプリが点けたのかが正確に分かります、そして、それが意図通りだったか、あなたが決めます。",
           bullets: [
             "カメラとマイクの両方のライブステータスが常時表示",
             "アクセス開始や終了の瞬間にグリフが切り替わる",
             "タップして責任アプリと開いているデバイスを確認",
-            "特別な権限なし、カーネル拡張なし — 純粋なユーザー空間",
+            "特別な権限なし、カーネル拡張なし、純粋なユーザー空間",
           ],
           imageAlt: "光る青緑色のスリット状の瞳を持つ 3D クロームウェブカメラと、隣のクロームマイク",
         },
@@ -626,12 +626,12 @@ export const ja: Translation = {
           badge: "領収書",
           title: "全アクセスのログ、肝心な時には通知付き",
           description:
-            "その日のカメラとマイクの活動を遡る — 誰が、いつ、どれだけ使ったか。任意の通知がアクセス開始の瞬間に発火し、不意のアクティブ化が見過ごされることはありません。",
+            "その日のカメラとマイクの活動を遡る、誰が、いつ、どれだけ使ったか。任意の通知がアクセス開始の瞬間に発火し、不意のアクティブ化が見過ごされることはありません。",
           bullets: [
             "アプリ別の履歴、タイムスタンプと継続時間付き",
             "新規アクセス毎の通知（デバイス単位で切替）",
             "アプリ、デバイス、時間帯で絞り込み",
-            "履歴は再起動を跨いで保持される — 何も逃さない",
+            "履歴は再起動を跨いで保持される、何も逃さない",
           ],
           imageAlt: "光る青緑色の虹彩を持つ 3D クローム製のぞき穴円盤と、その後ろに重なる履歴カード",
         },
@@ -641,7 +641,7 @@ export const ja: Translation = {
     quarantine: {
       tagline: "すべてのダウンロードを精査。",
       description:
-        "~/Downloads のメニューバーインスペクタ。新しいファイルごとに、隔離元 URL、Gatekeeper/codesign ステータス、SHA-256、オプションの VirusTotal 判定を表示し——開く前に精査できるよう通知します。",
+        "~/Downloads のメニューバーインスペクタ。新しいファイルごとに、隔離元 URL、Gatekeeper/codesign ステータス、SHA-256、オプションの VirusTotal 判定を表示し、開く前に精査できるよう通知します。",
       catalogTagline: "信頼するが、すべてのダウンロードを検証せよ。",
       catalogDescription:
         "~/Downloads のメニューバーインスペクタ：隔離元、Gatekeeper/codesign ステータス、SHA-256、そして新しいファイルごとのオプションの VirusTotal 判定、精査するための通知。",
@@ -650,7 +650,7 @@ export const ja: Translation = {
       features: [
         {
           title: "出所と隔離",
-          body: "com.apple.quarantine 属性を通じてファイルが正確にどこから来たかを確認——ダウンロードしたエージェントと元の URL。",
+          body: "com.apple.quarantine 属性を通じてファイルが正確にどこから来たかを確認、ダウンロードしたエージェントと元の URL。",
         },
         {
           title: "Gatekeeper とハッシュ",
@@ -666,12 +666,12 @@ export const ja: Translation = {
           badge: "隔離室",
           title: "新しいダウンロードはすべて、あなたが許すまで隔離",
           description:
-            "ファイルが ~/Downloads に着いた瞬間、Quarantine がそれを検査台に運びます。どこから来たか — エージェント、ソース URL、隔離属性 — を、ダブルクリックする前に正確に確認できます。",
+            "ファイルが ~/Downloads に着いた瞬間、Quarantine がそれを検査台に運びます。どこから来たか、エージェント、ソース URL、隔離属性、を、ダブルクリックする前に正確に確認できます。",
           bullets: [
             "FSEvents 経由で ~/Downloads をリアルタイム監視",
             "com.apple.quarantine を読み取り：ダウンロード元アプリとソース URL",
             "新着のたびに通知",
-            "ファイル一つに一行 — キュー全体が一目で",
+            "ファイル一つに一行、キュー全体が一目で",
           ],
           imageAlt: "中に吊られたパッケージを抱えた 3D ガラスの隔離ポッドと、外側にある承認/拒否のパッケージ",
         },
@@ -679,10 +679,10 @@ export const ja: Translation = {
           badge: "検査",
           title: "署名、ハッシュ、そして裁定",
           description:
-            "Quarantine は各ファイルの Gatekeeper 評価、codesign 状態、SHA-256 を提示します。VirusTotal の API キーを入れれば、レピュテーションの裁定がインラインで表示 — 開く前に審査できます。",
+            "Quarantine は各ファイルの Gatekeeper 評価、codesign 状態、SHA-256 を提示します。VirusTotal の API キーを入れれば、レピュテーションの裁定がインラインで表示、開く前に審査できます。",
           bullets: [
             "spctl 評価 + codesign --display を一行で",
-            "着地時に SHA-256 を計算 — コピー＆ペースト可能",
+            "着地時に SHA-256 を計算、コピー＆ペースト可能",
             "任意の VirusTotal 裁定をインライン表示（API キーは自前）",
             "メニューから直接 Finder で表示、またはゴミ箱へ",
           ],
@@ -694,16 +694,16 @@ export const ja: Translation = {
     sentry: {
       tagline: "暗い隅を見張る。",
       description:
-        "macOS の永続化のためのメニューバー監査員。LaunchAgents とデーモン、ログイン項目、cron、シェル起動ファイルを列挙し、各ターゲットのコード署名と公証をチェックし、新しいまたは変更された項目が現れた瞬間にアラートを出します——そしてメニューバーから直接、検査、ブロック、復元できます。",
+        "macOS の永続化のためのメニューバー監査員。LaunchAgents とデーモン、ログイン項目、cron、シェル起動ファイルを列挙し、各ターゲットのコード署名と公証をチェックし、新しいまたは変更された項目が現れた瞬間にアラートを出します、そしてメニューバーから直接、検査、ブロック、復元できます。",
       catalogTagline: "何かが食い込んだ瞬間を知る。",
       catalogDescription:
-        "macOS の永続化のためのメニューバー監査員——LaunchAgents、ログイン項目、cron、シェル起動ファイル——署名チェック付きで、新しいまたは変更されたものが現れるとアラート。検査、ブロック、復元のいずれか。",
+        "macOS の永続化のためのメニューバー監査員、LaunchAgents、ログイン項目、cron、シェル起動ファイル、署名チェック付きで、新しいまたは変更されたものが現れるとアラート。検査、ブロック、復元のいずれか。",
       requirements: "macOS 14+  ·  Apple Silicon  ·  無料  ·  Developer ID 署名済み",
       featuresHeading: "マルウェアが隠れる場所を見張る。",
       features: [
         {
           title: "すべての永続化ベクトル",
-          body: "LaunchAgents とデーモン、ログイン項目、cron、シェル起動ファイル——再起動を生き延びるために何かが食い込める場所すべてを、ひとつのメニューバーリストに。",
+          body: "LaunchAgents とデーモン、ログイン項目、cron、シェル起動ファイル、再起動を生き延びるために何かが食い込める場所すべてを、ひとつのメニューバーリストに。",
         },
         {
           title: "署名認識",
@@ -711,7 +711,7 @@ export const ja: Translation = {
         },
         {
           title: "変更時アラート、そこにあるべきでないものをブロック",
-          body: "スナップショット差分が新しい永続化項目が現れたり変更されたりした瞬間に通知。plist またはスクリプトを検査して、ブロック——Sentry はそれをアンロードし .sentry-disabled として脇に置きます。ワンクリックで元に戻せます。",
+          body: "スナップショット差分が新しい永続化項目が現れたり変更されたりした瞬間に通知。plist またはスクリプトを検査して、ブロック、Sentry はそれをアンロードし .sentry-disabled として脇に置きます。ワンクリックで元に戻せます。",
         },
       ],
       showcase: [
@@ -719,12 +719,12 @@ export const ja: Translation = {
           badge: "見張り台",
           title: "あらゆる暗い隅、光を当てて",
           description:
-            "LaunchAgents と Daemons、ログイン項目、cron、シェル起動ファイル — 何かが静かに巣食う可能性のある場所すべての上に、Sentry はランタンを掲げます。署名チェック済みのメニューバーリストが、検査の準備を整えています。",
+            "LaunchAgents と Daemons、ログイン項目、cron、シェル起動ファイル、何かが静かに巣食う可能性のある場所すべての上に、Sentry はランタンを掲げます。署名チェック済みのメニューバーリストが、検査の準備を整えています。",
           bullets: [
             "macOS の各種永続化ベクトルをひとつのパネルに列挙",
             "spctl と codesign で各ターゲットを公証 / 署名 / 未署名に分類",
             "plist やスクリプトを行から直接開く",
-            "メニューバー常駐 — 前面に維持するウィンドウは不要",
+            "メニューバー常駐、前面に維持するウィンドウは不要",
           ],
           imageAlt: "光る紫の水晶と目のチャームを纏った 3D クロームランタン",
         },
@@ -732,11 +732,11 @@ export const ja: Translation = {
           badge: "目録",
           title: "新たな何かが現れた瞬間に気づく",
           description:
-            "Sentry は永続化状態のスナップショットを取り、差分を取ります。新しいエージェント、ログイン項目、rc ファイルの変化が着地した瞬間、通知が届きます — ワンクリックのブロックは完全に可逆です。",
+            "Sentry は永続化状態のスナップショットを取り、差分を取ります。新しいエージェント、ログイン項目、rc ファイルの変化が着地した瞬間、通知が届きます、ワンクリックのブロックは完全に可逆です。",
           bullets: [
             "スナップショット差分が新規・変更された永続化項目をすべて捕捉",
             "ブロックは項目をアンロードし、.sentry-disabled として脇に置く",
-            "ワンクリックで復元 — システムには破壊的なことは何も起こらない",
+            "ワンクリックで復元、システムには破壊的なことは何も起こらない",
             "通知が次の再起動の前に肩を叩いてくれる",
           ],
           imageAlt: "クロームの書見台の上に紫の蝋封の 3D 巻物と、クロームの警鐘",
@@ -760,7 +760,7 @@ export const ja: Translation = {
         },
         {
           title: "Sixteen languages, one editor",
-          body: "Python, TypeScript, Go, Rust, Swift, C++, Java, Kotlin, Ruby, Elixir, Zig, Lua, Bash, SQL, HTML/CSS, and Markdown. Built-in language servers, syntax highlighting, and per-language test runners — never leave the editor.",
+          body: "Python, TypeScript, Go, Rust, Swift, C++, Java, Kotlin, Ruby, Elixir, Zig, Lua, Bash, SQL, HTML/CSS, and Markdown. Built-in language servers, syntax highlighting, and per-language test runners、never leave the editor.",
         },
         {
           title: "A tutor on your laptop, not in the cloud",
@@ -772,12 +772,12 @@ export const ja: Translation = {
           badge: "Lessons that grade themselves",
           title: "Chapter → exercise → hidden test",
           description:
-            "Every chapter expands into a sequence: a short read, an exercise scaffold, and a hidden test suite that runs against your code in the background. The test only reveals itself when you ask — so you learn from the failure, not from a leaked answer.",
+            "Every chapter expands into a sequence: a short read, an exercise scaffold, and a hidden test suite that runs against your code in the background. The test only reveals itself when you ask、so you learn from the failure, not from a leaked answer.",
           bullets: [
-            "Hidden tests run in a sandboxed runner per supported language — no Docker, no shell access required",
+            "Hidden tests run in a sandboxed runner per supported language、no Docker, no shell access required",
             "Failures surface as a hint first, the full diff second, and only the test source on explicit request",
             "Exercises remember your in-progress code across sessions; re-opening picks up exactly where you left off",
-            "Chapters re-generate cleanly when you swap in a newer edition of the same book — your progress carries over by chapter title",
+            "Chapters re-generate cleanly when you swap in a newer edition of the same book、your progress carries over by chapter title",
           ],
           imageAlt: "Cute 3D white python coiled, holding three floating lesson cards labelled Chapter / Exercise / Quiz with its tail-tip ribbons",
         },
@@ -785,11 +785,11 @@ export const ja: Translation = {
           badge: "Habit, not homework",
           title: "Streak fire that survives weekends",
           description:
-            "A streak that's only kind on the days you forget. Two free \"weekend tokens\" a month let the fire keep burning when life shows up. The flame's there to nudge — never to shame.",
+            "A streak that's only kind on the days you forget. Two free \"weekend tokens\" a month let the fire keep burning when life shows up. The flame's there to nudge、never to shame.",
           bullets: [
             "Two skip-tokens regenerate monthly; a single failed day doesn't reset weeks of work",
             "Tiny daily target (one lesson) keeps the bar realistic; you can always do more on a good day",
-            "Streak history lives in a local SQLite file, exportable and inspectable — no cloud account required",
+            "Streak history lives in a local SQLite file, exportable and inspectable、no cloud account required",
             "Notifications respect Focus modes; \"don't bug me, just keep counting\" is one tap from the menu bar",
           ],
           imageAlt: "Cute 3D white python with a small flame balanced on its nose, four calendar squares with red checkmarks drifting in an arc around it",
@@ -805,11 +805,11 @@ export const ja: Translation = {
       catalogDescription:
         "Apple Watch からリモートサーバで事前設定された SSH コマンドを実行。セルラーで動作、Siri 対応、すべてエンドツーエンドで暗号化。",
       requirements: "watchOS  ·  iOS  ·  iPadOS  ·  macOS  ·  無料＆オープンソース",
-      featuresHeading: "サーバのためのリモコン——あなたの手首に。",
+      featuresHeading: "サーバのためのリモコン、あなたの手首に。",
       features: [
         {
           title: "本物の Watch アプリ、通知のシムではなく",
-          body: "ライブステータスドット付きのネイティブ watchOS サーバリスト、アクションボタンを通じたピン留めコマンド、危険なコマンドの確認、Digital Crown でスクロールできる出力。セルラー対応——電話不要。",
+          body: "ライブステータスドット付きのネイティブ watchOS サーバリスト、アクションボタンを通じたピン留めコマンド、危険なコマンドの確認、Digital Crown でスクロールできる出力。セルラー対応、電話不要。",
         },
         {
           title: "Companion と Mac、歩調を合わせて",
@@ -825,7 +825,7 @@ export const ja: Translation = {
           badge: "Watch アプリ",
           title: "手首から本番を再起動。",
           description:
-            "サーバリスト、コマンド実行、触覚フィードバックを備えたネイティブ watchOS アプリ。コマンドをタップ、確認、完了。実際の出力は Digital Crown でスクロール可能。セルラーで動作——電話不要。",
+            "サーバリスト、コマンド実行、触覚フィードバックを備えたネイティブ watchOS アプリ。コマンドをタップ、確認、完了。実際の出力は Digital Crown でスクロール可能。セルラーで動作、電話不要。",
           bullets: [
             "ライブステータスドット付きのサーバリスト（緑/赤）",
             "アクションボタンを通じた素早いアクセスのためのピン留めコマンド",
@@ -989,25 +989,25 @@ export const ja: Translation = {
     base: {
       tagline: "プリミティブ。トークン。完了。",
       description:
-        "70 のプリミティブ、8 つのデザイントークンカテゴリ、ダークモード、そしてあなたのスタックへのゼロの意見。クリーンで構成可能な React コンポーネントは、どこでも動きます——ランチャーを含めて。",
-      catalogTagline: "ユニバーサルデザインツールキット——モノクロ、プラットフォーム非依存。",
+        "70 のプリミティブ、8 つのデザイントークンカテゴリ、ダークモード、そしてあなたのスタックへのゼロの意見。クリーンで構成可能な React コンポーネントは、どこでも動きます、ランチャーを含めて。",
+      catalogTagline: "ユニバーサルデザインツールキット、モノクロ、プラットフォーム非依存。",
       catalogDescription:
-        "70 のプリミティブ、8 つのデザイントークンカテゴリ、ダークモード、そしてあなたのスタックへのゼロの意見。クリーンで構成可能な React コンポーネントは、どこでも動きます——ランチャーを含めて。",
+        "70 のプリミティブ、8 つのデザイントークンカテゴリ、ダークモード、そしてあなたのスタックへのゼロの意見。クリーンで構成可能な React コンポーネントは、どこでも動きます、ランチャーを含めて。",
       requirements: "無料＆オープンソース  ·  React  ·  TypeScript",
       featuresHeading: "プリミティブ。トークン。トグル。",
       ctaLabel: "ソースを見る",
       features: [
         {
           title: "70 の本番対応プリミティブ",
-          body: "フォーム、レイアウト、データ、フィードバック——必要なすべてのプリミティブ、不要なものは一切なし。入力、テーブル、カレンダー、スパークライン、ツリービュー、カラーピッカー、ダイアログなど。",
+          body: "フォーム、レイアウト、データ、フィードバック、必要なすべてのプリミティブ、不要なものは一切なし。入力、テーブル、カレンダー、スパークライン、ツリービュー、カラーピッカー、ダイアログなど。",
         },
         {
           title: "1 つのトークンシステム、すべてのプラットフォーム",
-          body: "色、タイポグラフィ、スペーシング、半径、エレベーション、アニメーション、グラスモルフィズム——すべて TypeScript トークンとして定義され、CSS 変数または React Native スタイルにエクスポート。",
+          body: "色、タイポグラフィ、スペーシング、半径、エレベーション、アニメーション、グラスモルフィズム、すべて TypeScript トークンとして定義され、CSS 変数または React Native スタイルにエクスポート。",
         },
         {
           title: "ライト＆ダークが最初から",
-          body: "すべてのコンポーネントが自動的にカラーモードを尊重——システム設定検出、localStorage 付きの手動トグル、両モードで適応するグラスモルフィズム。",
+          body: "すべてのコンポーネントが自動的にカラーモードを尊重、システム設定検出、localStorage 付きの手動トグル、両モードで適応するグラスモルフィズム。",
         },
       ],
       showcase: [
@@ -1015,7 +1015,7 @@ export const ja: Translation = {
           badge: "70 のプリミティブ",
           title: "必要なすべてのコンポーネント、不要なものは一切なし",
           description:
-            "ボタンと入力からツリービュー、カラーピッカー、スパークラインまで——TypeScript で構築され、React 以外の外部依存がゼロの 70 の本番対応プリミティブ。",
+            "ボタンと入力からツリービュー、カラーピッカー、スパークラインまで、TypeScript で構築され、React 以外の外部依存がゼロの 70 の本番対応プリミティブ。",
           bullets: [
             "フォーム：input、textarea、select、checkbox、radio、pin-input、number-input、color-picker",
             "レイアウト：grid、stack、container、center、spacer、separator",
@@ -1028,7 +1028,7 @@ export const ja: Translation = {
           badge: "デザイントークン",
           title: "1 つのトークンシステム、すべてのプラットフォーム",
           description:
-            "色、タイポグラフィ、スペーシング、半径、エレベーション、アニメーション、グラスモルフィズム——すべて TypeScript トークンとして定義され、CSS 変数または React Native スタイルにエクスポート。",
+            "色、タイポグラフィ、スペーシング、半径、エレベーション、アニメーション、グラスモルフィズム、すべて TypeScript トークンとして定義され、CSS 変数または React Native スタイルにエクスポート。",
           bullets: [
             "セマンティックエイリアス付きのモノクロ優先カラーパレット",
             "すりガラス効果のためのグラスモルフィズムトークン",
@@ -1041,7 +1041,7 @@ export const ja: Translation = {
           badge: "ダークモード",
           title: "ライトとダーク、初日から組み込み",
           description:
-            "すべてのコンポーネントは最初からカラーモードを尊重します。追加のセットアップなし、忘れるテーマラッパーなし——システム設定または手動トグルでただ動きます。",
+            "すべてのコンポーネントは最初からカラーモードを尊重します。追加のセットアップなし、忘れるテーマラッパーなし、システム設定または手動トグルでただ動きます。",
           bullets: [
             "自動システム設定検出",
             "localStorage 永続化付きの手動トグル",

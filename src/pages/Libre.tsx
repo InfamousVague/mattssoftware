@@ -30,6 +30,7 @@ export function LibrePage() {
   return (
     <AppPage
       themeId="libre"
+      catalogId="fishbones"
       title="Libre"
       tagline={a.tagline}
       description={a.description}
@@ -39,7 +40,7 @@ export function LibrePage() {
       features={a.features}
       featuresHeading={a.featuresHeading}
       cta={{ kind: "github", repo: "Libre" }}
-      menuBarApp
+      site="https://libre.academy"
     >
       <FeatureShowcase features={showcase} />
     </AppPage>

@@ -1,15 +1,17 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Matt's Software — Tiny apps that earn their keep</title>
+    <title>MattsSoftware: one person's software studio</title>
     <meta
       name="description"
-      content="A small shop of tiny, free, open-source apps you'll actually use. One launcher installs them all and keeps them up to date — or grab any of them on their own."
+      content="MattsSoftware is one person's software studio. Attack.fm, Libre, PrettyCardboard, Ghost.md, Espresso and a shelf of small Mac utilities."
     />
-    <meta name="theme-color" content="#0c0a12" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fcfcfd" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0b0d" media="(prefers-color-scheme: dark)" />
 
     <!-- Favicon — glossy 3D ">|M" mark from the launcher hero,
          swapped light/dark to stay legible on either tab bar:
@@ -30,11 +32,11 @@
          swapped to a dedicated /_brand/og-card.png once that asset
          is generated (see REBRAND-ASSET-PROMPTS.md, Tier 2). -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Matt's Software" />
-    <meta property="og:title" content="Matt's Software — Tiny apps that earn their keep" />
+    <meta property="og:site_name" content="MattsSoftware" />
+    <meta property="og:title" content="MattsSoftware: one person's software studio" />
     <meta
       property="og:description"
-      content="A small shop of tiny, free, open-source apps. One launcher installs them all and keeps them up to date."
+      content="One person's software studio. Attack.fm, Libre, PrettyCardboard, Ghost.md, Espresso and a shelf of small Mac utilities."
     />
     <meta property="og:url" content="https://mattssoftware.com" />
     <meta property="og:image" content="https://mattssoftware.com/_brand/home-hero-desk.png" />
@@ -42,10 +44,10 @@
     <meta property="og:image:height" content="630" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Matt's Software — Tiny apps that earn their keep" />
+    <meta name="twitter:title" content="MattsSoftware: one person's software studio" />
     <meta
       name="twitter:description"
-      content="A small shop of tiny, free, open-source apps. One launcher installs them all and keeps them up to date."
+      content="One person's software studio. Attack.fm, Libre, PrettyCardboard, Ghost.md, Espresso and a shelf of small Mac utilities."
     />
     <meta name="twitter:image" content="https://mattssoftware.com/_brand/home-hero-desk.png" />
 
@@ -78,6 +80,21 @@
         function () {
           (window.plausible.q = window.plausible.q || []).push(arguments);
         };
+    </script>
+    <!-- The theme, before first paint. No stored choice means the page
+         follows the system: the kit's tokens answer prefers-color-scheme on
+         their own, so the attribute is only set for an explicit pick. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("mattssoftware:theme");
+          if (saved === "light" || saved === "dark") {
+            document.documentElement.setAttribute("data-theme", saved);
+          }
+        } catch (e) {
+          /* private mode: follow the system */
+        }
+      })();
     </script>
   </head>
   <body>

@@ -2,7 +2,7 @@ import { AppPage } from "../components/AppPage";
 import { FeatureShowcase, type FeatureSection } from "../components/FeatureShowcase";
 
 /// Halo marketing page. Hardcoded English copy (like Worktree /
-/// Seasick / Espresso) rather than the i18n locale path — keeps it
+/// Seasick / Espresso) rather than the i18n locale path: keeps it
 /// shippable in one commit without adding a `halo` block to all 9
 /// locales. Uses the AppPage template so the champagne-gold hero
 /// illustration (`/halo/hero.png`) drives the page, with the two
@@ -20,7 +20,7 @@ const FEATURES = [
     title: "One pill, every app",
     body:
       "Volume + brightness HUDs, the now-playing track, AirPods battery, " +
-      "and every MattsSoftware suite app share a single slot — Espresso's " +
+      "and every MattsSoftware suite app share a single slot: Espresso's " +
       "countdown, Worktree's repo + branch, Port's listening count, " +
       "Peephole's camera/mic activity.",
   },
@@ -38,16 +38,16 @@ const SHOWCASE: FeatureSection[] = [
     badge: "Live Activities",
     title: "Every app's status, gathered into one pill.",
     description:
-      "Halo polls a shared on-disk store that any app — first-party or " +
-      "third-party — can publish to. It sorts by priority and renders the " +
+      "Halo polls a shared on-disk store that any app, first-party or " +
+      "third-party, can publish to. It sorts by priority and renders the " +
       "winner, so the volume HUD, the track you're playing, your AirPods " +
       "battery, and the rest of the suite all flow through the same " +
       "Dynamic Island instead of fighting for menu-bar space.",
     bullets: [
-      "System HUDs — volume + brightness on every change",
-      "Now Playing — artwork, scrubber, and transport controls from any app",
+      "System HUDs: volume + brightness on every change",
+      "Now Playing: artwork, scrubber, and transport controls from any app",
       "AirPods + Mac battery, charging state, connected accessories",
-      "Suite slots — Espresso, Worktree, Port, Peephole, and more",
+      "Suite slots: Espresso, Worktree, Port, Peephole, and more",
     ],
     image: "/halo/feature-aggregate.png",
     imageAlt:
@@ -58,16 +58,16 @@ const SHOWCASE: FeatureSection[] = [
     badge: "Context-aware focus",
     title: "Whatever just changed pulls to attention.",
     description:
-      "Each publisher pulls to the front the moment its state changes — a " +
-      "new track, a finished countdown, a branch switch — then settles back " +
+      "Each publisher pulls to the front the moment its state changes (a " +
+      "new track, a finished countdown, a branch switch), then settles back " +
       "to ambient priority. Hover for a second and the pill expands into a " +
       "full dropdown with controls; click it to cycle through everything " +
       "live right now.",
     bullets: [
-      "Context-aware focus — the active publisher wins the slot",
+      "Context-aware focus: the active publisher wins the slot",
       "Hover to expand a rich dropdown; click to cycle",
       "A champagne-gold accent traces the pill when a new activity arrives",
-      "Per-publisher toggles in Settings — keep only what you want",
+      "Per-publisher toggles in Settings: keep only what you want",
     ],
     image: "/halo/feature-focus.png",
     imageAlt:
@@ -86,7 +86,7 @@ export function HaloPage() {
         "A native macOS Dynamic Island that turns the notch into a live " +
         "status pill. It hangs from the screen edge and shows your system " +
         "HUDs, now-playing track, AirPods battery, and every MattsSoftware " +
-        "app that wants the slot — context-aware, quiet by default, and a " +
+        "app that wants the slot: context-aware, quiet by default, and a " +
         "click away from the rest."
       }
       heroImage="/halo/hero.png"

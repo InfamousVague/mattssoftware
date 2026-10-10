@@ -4,7 +4,7 @@ import type { Translation } from "../types";
 
 export const ko: Translation = {
   meta: {
-    siteTitle: "Matt's Software — 제 몫을 하는 작은 앱들",
+    siteTitle: "Matt's Software, 제 몫을 하는 작은 앱들",
     siteDescription:
       "작고 무료이며 오픈 소스인 앱들의 작은 가게. 런처 하나로 전부 설치하고 자동 업데이트합니다.",
     htmlLang: "ko",
@@ -45,7 +45,7 @@ export const ko: Translation = {
 
   footer: {
     mascotAlt:
-      "청사진과 커피잔 주위에 몸을 만 흰 고양이 — 음악 속에서도 어쩐지 잠들어 있다",
+      "청사진과 커피잔 주위에 몸을 만 흰 고양이, 음악 속에서도 어쩐지 잠들어 있다",
     line: "에스프레소와 시끄러운 음악으로 만들었습니다.",
     sub: "Matt's Software는 1인 가게입니다. 모든 앱은 서명되고 공증되었으며 무료입니다.",
     github: "GitHub",
@@ -81,7 +81,7 @@ export const ko: Translation = {
   home: {
     eyebrow: "MATT'S SOFTWARE",
     title: "제 몫을 하는 작은 앱들.",
-    sub: "엄선된 {count}개 이상의 작고 무료인 앱들의 작은 가게. 런처 하나로 전부 설치하고 자동 업데이트합니다 — 또는 개별로 받을 수도 있습니다.",
+    sub: "엄선된 {count}개 이상의 작고 무료인 앱들의 작은 가게. 런처 하나로 전부 설치하고 자동 업데이트합니다, 또는 개별로 받을 수도 있습니다.",
     downloadLauncher: "런처 다운로드",
     browseSuite: "모음집 둘러보기",
     metaLine: "무료 · 오픈 소스 · 오늘 macOS, 더 많은 플랫폼 곧 지원",
@@ -101,7 +101,7 @@ export const ko: Translation = {
     featuresHeadingDefault: "할 수 있는 것",
     suiteEyebrow: "모음집",
     suiteHeading: "가게에서 더 보기",
-    suiteSub: "각각이 하나의 일을 제대로 합니다 — 필요한 것만 설치하세요.",
+    suiteSub: "각각이 하나의 일을 제대로 합니다, 필요한 것만 설치하세요.",
     bottomAddToMenuBar: "{name}을(를) 메뉴 막대에 추가하세요.",
     bottomGet: "{name} 받기.",
   },
@@ -127,7 +127,7 @@ export const ko: Translation = {
         },
         {
           title: "상태 표시기를 속여라",
-          body: "서브픽셀 마우스 움직임 — 보이지 않지만 Slack, Teams, Zoom 및 유휴를 감시하는 모든 앱의 유휴 감지를 속이기에 충분합니다.",
+          body: "서브픽셀 마우스 움직임, 보이지 않지만 Slack, Teams, Zoom 및 유휴를 감시하는 모든 앱의 유휴 감지를 속이기에 충분합니다.",
         },
         {
           title: "비상 버튼 포함",
@@ -148,7 +148,7 @@ export const ko: Translation = {
       features: [
         {
           title: "한 번의 클릭으로 모두 잠금",
-          body: "활성 키보드 캡처가 시스템 전체의 모든 키, 수정 키, 미디어 키를 삼킵니다 — 단축키 하나도 발동시키지 않고 키를 닦으세요.",
+          body: "활성 키보드 캡처가 시스템 전체의 모든 키, 수정 키, 미디어 키를 삼킵니다, 단축키 하나도 발동시키지 않고 키를 닦으세요.",
         },
         {
           title: "서리 낀 전체 화면 오버레이",
@@ -164,16 +164,16 @@ export const ko: Translation = {
     stats: {
       tagline: "모든 신호. 한눈에.",
       description:
-        "네이티브 메뉴 막대 시스템 모니터. 코어별 실시간 CPU, 메모리 압력, 디스크 읽기/쓰기, 네트워크 업/다운, 센서 측정값 — 상태 표시줄에서 함께 다니는 선택적인 작은 위젯과 각 신호의 기록 스파크라인까지 포함하여, 활동 모니터를 열지 않고도 급증을 발견할 수 있습니다.",
-      catalogTagline: "모든 시스템 신호를 한눈에 — 당신의 메뉴 막대에서.",
+        "네이티브 메뉴 막대 시스템 모니터. 코어별 실시간 CPU, 메모리 압력, 디스크 읽기/쓰기, 네트워크 업/다운, 센서 측정값, 상태 표시줄에서 함께 다니는 선택적인 작은 위젯과 각 신호의 기록 스파크라인까지 포함하여, 활동 모니터를 열지 않고도 급증을 발견할 수 있습니다.",
+      catalogTagline: "모든 시스템 신호를 한눈에, 당신의 메뉴 막대에서.",
       catalogDescription:
-        "네이티브 메뉴 막대 시스템 모니터. 코어별 실시간 CPU, 메모리 압력, 디스크 읽기/쓰기, 네트워크 업/다운, 센서 측정값 — 작은 위젯과 기록 스파크라인까지.",
+        "네이티브 메뉴 막대 시스템 모니터. 코어별 실시간 CPU, 메모리 압력, 디스크 읽기/쓰기, 네트워크 업/다운, 센서 측정값, 작은 위젯과 기록 스파크라인까지.",
       requirements: "macOS 14+  ·  Apple Silicon  ·  무료  ·  Developer ID 서명 & 공증",
       featuresHeading: "전체 기계를 보세요. 전체 창 없이.",
       features: [
         {
           title: "모든 시스템 신호를 한눈에",
-          body: "코어별 CPU, 메모리 압력(유선/압축/앱/캐시 분해 포함), 디스크 읽기/쓰기, 네트워크 업/다운, 센서, 실시간 상위 프로세스 목록 — 모두 하나의 작은 메뉴 막대 패널에.",
+          body: "코어별 CPU, 메모리 압력(유선/압축/앱/캐시 분해 포함), 디스크 읽기/쓰기, 네트워크 업/다운, 센서, 실시간 상위 프로세스 목록, 모두 하나의 작은 메뉴 막대 패널에.",
         },
         {
           title: "작은 메뉴 막대 위젯",
@@ -189,10 +189,10 @@ export const ko: Translation = {
     port: {
       tagline: "모든 포트, 한 번의 클릭.",
       description:
-        "작은 네이티브 메뉴 막대 포트 관리자. 무엇이 듣고 있는지 보고, 프로세스를 종료하거나 일시 중지하고, 전달하거나 NAT-PMP 매핑하고, 실시간 지도에서 활성 연결을 관찰하세요 — 하나를 클릭하면 Blip에서 검사할 수 있습니다.",
+        "작은 네이티브 메뉴 막대 포트 관리자. 무엇이 듣고 있는지 보고, 프로세스를 종료하거나 일시 중지하고, 전달하거나 NAT-PMP 매핑하고, 실시간 지도에서 활성 연결을 관찰하세요, 하나를 클릭하면 Blip에서 검사할 수 있습니다.",
       catalogTagline: "Mac의 모든 열린 포트, 한 번의 클릭으로.",
       catalogDescription:
-        "네이티브 메뉴 막대 포트 관리자: 무엇이 듣고 있는지 보고, 프로세스를 종료하거나 일시 중지하고, 전달하거나 NAT-PMP 매핑하고, 실시간 지도에서 활성 연결을 관찰하세요 — 클릭하면 Blip에서 검사.",
+        "네이티브 메뉴 막대 포트 관리자: 무엇이 듣고 있는지 보고, 프로세스를 종료하거나 일시 중지하고, 전달하거나 NAT-PMP 매핑하고, 실시간 지도에서 활성 연결을 관찰하세요, 클릭하면 Blip에서 검사.",
       requirements: "macOS 14+  ·  Apple Silicon  ·  무료  ·  Developer ID 서명",
       featuresHeading: "보세요. 종료하세요. 전달하세요.",
       features: [
@@ -202,7 +202,7 @@ export const ko: Translation = {
         },
         {
           title: "전달 & 매핑",
-          body: "내장된 TCP 전달자로 로컬 포트를 다른 포트로 프록시하고, LAN에 노출하고, 네이티브 NAT-PMP로 라우터를 뚫으세요 — 설정 없이.",
+          body: "내장된 TCP 전달자로 로컬 포트를 다른 포트로 프록시하고, LAN에 노출하고, 네이티브 NAT-PMP로 라우터를 뚫으세요, 설정 없이.",
         },
         {
           title: "지도 위의 연결 → Blip",
@@ -214,20 +214,20 @@ export const ko: Translation = {
     alfred: {
       tagline: "디스크를 되찾자.",
       description:
-        "안전하게 삭제할 수 있는 개발자 쓰레기를 찾는 네이티브 메뉴 막대 발레 파킹 — node_modules, Cargo target/, 빌드 및 테스트 캐시, Xcode DerivedData, 패키지 관리자 캐시 — 크기 순으로 정렬하고 휴지통으로 옮깁니다. 한 번의 클릭으로 복구 가능.",
+        "안전하게 삭제할 수 있는 개발자 쓰레기를 찾는 네이티브 메뉴 막대 발레 파킹 (node_modules, Cargo target/, 빌드 및 테스트 캐시, Xcode DerivedData, 패키지 관리자 캐시), 크기 순으로 정렬하고 휴지통으로 옮깁니다. 한 번의 클릭으로 복구 가능.",
       catalogTagline: "개발 쓰레기가 차지한 디스크 공간을 되찾으세요.",
       catalogDescription:
-        "안전하게 삭제할 수 있는 개발자 쓰레기를 찾는 네이티브 메뉴 막대 발레 파킹 — node_modules, Cargo target/, 빌드 및 테스트 캐시, Xcode DerivedData, 패키지 관리자 캐시 — 크기 순으로 정렬하고 휴지통으로 옮깁니다(복구 가능).",
+        "안전하게 삭제할 수 있는 개발자 쓰레기를 찾는 네이티브 메뉴 막대 발레 파킹 (node_modules, Cargo target/, 빌드 및 테스트 캐시, Xcode DerivedData, 패키지 관리자 캐시), 크기 순으로 정렬하고 휴지통으로 옮깁니다(복구 가능).",
       requirements: "macOS 14+  ·  Apple Silicon  ·  무료  ·  Developer ID 서명",
       featuresHeading: "찾으세요. 버리세요. 디스크를 되찾으세요.",
       features: [
         {
           title: "쓰레기를 찾으세요, 큰 것부터",
-          body: "node_modules, Cargo target/, 빌드 및 테스트 캐시, Xcode DerivedData, Homebrew/Yarn/npm 캐시 — 스캔되고, 크기가 측정되고, 큰 것부터 나열되어 정확히 무엇이 디스크를 차지하고 있는지 알 수 있습니다.",
+          body: "node_modules, Cargo target/, 빌드 및 테스트 캐시, Xcode DerivedData, Homebrew/Yarn/npm 캐시, 스캔되고, 크기가 측정되고, 큰 것부터 나열되어 정확히 무엇이 디스크를 차지하고 있는지 알 수 있습니다.",
         },
         {
           title: "설계상 안전한 삭제",
-          body: "Alfred는 재생성 가능한 폴더 — 캐시, 빌드 산출물, 의존성 트리 — 만 건드리고, 소스 코드는 절대 건드리지 않습니다. 모든 것이 휴지통으로 가며, 마음이 바뀌면 한 번의 클릭으로 복구할 수 있습니다.",
+          body: "Alfred는 재생성 가능한 폴더 (캐시, 빌드 산출물, 의존성 트리), 만 건드리고, 소스 코드는 절대 건드리지 않습니다. 모든 것이 휴지통으로 가며, 마음이 바뀌면 한 번의 클릭으로 복구할 수 있습니다.",
         },
         {
           title: "메뉴 막대에서",
@@ -238,16 +238,16 @@ export const ko: Translation = {
     uninstaller: {
       tagline: "Apps + their crumbs, in one click.",
       description:
-        "Dragging an app to the Trash leaves behind preferences, caches, sandbox containers, login items, and crash logs. Uninstaller finds the whole pile for any installed app and moves it all to Trash in one click — with a clear list of what's about to go and a separate badge for system-owned files it can't touch.",
+        "Dragging an app to the Trash leaves behind preferences, caches, sandbox containers, login items, and crash logs. Uninstaller finds the whole pile for any installed app and moves it all to Trash in one click, with a clear list of what's about to go and a separate badge for system-owned files it can't touch.",
       catalogTagline: "Apps + their crumbs, in one click.",
       catalogDescription:
-        "Native menu-bar uninstaller. Finds every leftover an app keeps on disk — preferences, caches, sandbox containers, login items, crash logs — and moves the whole pile to Trash in one click.",
+        "Native menu-bar uninstaller. Finds every leftover an app keeps on disk (preferences, caches, sandbox containers, login items, crash logs), and moves the whole pile to Trash in one click.",
       requirements: "macOS 14+  ·  Apple Silicon  ·  Free  ·  Developer ID signed",
       featuresHeading: "Three reasons to use Uninstaller",
       features: [
         {
           title: "One click, whole pile",
-          body: "Pick an app, see every residue path with sizes, hit Uninstall. The bundle and every leftover go to Trash together — recoverable in one click, no separate cleanup pass.",
+          body: "Pick an app, see every residue path with sizes, hit Uninstall. The bundle and every leftover go to Trash together, recoverable in one click, no separate cleanup pass.",
         },
         {
           title: "Login items + LaunchAgents",
@@ -255,7 +255,7 @@ export const ko: Translation = {
         },
         {
           title: "Honest about admin",
-          body: "System paths under /Library and /private/var/db/receipts are listed but flagged — Uninstaller won't ask for your password to scrub things you probably don't care about.",
+          body: "System paths under /Library and /private/var/db/receipts are listed but flagged, Uninstaller won't ask for your password to scrub things you probably don't care about.",
         },
       ],
       showcase: [
@@ -263,11 +263,11 @@ export const ko: Translation = {
           badge: "One sweep, whole pile",
           title: "Apps and their crumbs, gone together",
           description:
-            "Pick an app and Uninstaller scans the dozen-plus standard residue locations — Preferences, Application Support, Caches, Saved State, Logs, Containers, Group Containers, HTTP Storages, WebKit data, Cookies, LaunchAgents, crash reports. The bundle and every leftover go to the Trash together, in a single batched Finder request.",
+            "Pick an app and Uninstaller scans the dozen-plus standard residue locations, Preferences, Application Support, Caches, Saved State, Logs, Containers, Group Containers, HTTP Storages, WebKit data, Cookies, LaunchAgents, crash reports. The bundle and every leftover go to the Trash together, in a single batched Finder request.",
           bullets: [
-            "Twelve+ residue locations probed per app — by bundle id AND display name so apps that store under either layout don't get missed",
+            "Twelve+ residue locations probed per app, by bundle id AND display name so apps that store under either layout don't get missed",
             "Sized biggest-first so you can see exactly what's about to be reclaimed",
-            "Trash by default — recoverable in one click if you change your mind",
+            "Trash by default, recoverable in one click if you change your mind",
             "Single batched recycle call so macOS shows one auth prompt for the whole pile, not one per file",
           ],
           imageAlt: "Cute 3D sanitation worker character in a red coverall and red hardhat sweeping a row of colourful app squircles into a chunky white trash bag",
@@ -276,12 +276,12 @@ export const ko: Translation = {
           badge: "Honest about admin",
           title: "App Management permission, asked once",
           description:
-            "macOS 13+ gates modifying apps in /Applications behind App Management TCC. Uninstaller routes the trash request through Finder so you get a single, clear permission prompt the first time — and a deep-link to System Settings → Privacy & Security → App Management if anything's still denied after.",
+            "macOS 13+ gates modifying apps in /Applications behind App Management TCC. Uninstaller routes the trash request through Finder so you get a single, clear permission prompt the first time, and a deep-link to System Settings → Privacy & Security → App Management if anything's still denied after.",
           bullets: [
             "Single Finder-mediated prompt the first time, not one per app removed",
-            "System-owned residue under /Library and /private/var/db/receipts is listed with an 'admin' badge but never silently fails — you see exactly what was skipped",
+            "System-owned residue under /Library and /private/var/db/receipts is listed with an 'admin' badge but never silently fails, you see exactly what was skipped",
             "Permission-shaped failures surface a one-line tip + a button that opens the right Privacy & Security pane directly",
-            "Apple's own apps (com.apple.*) are filtered out of the picker — never offered for removal",
+            "Apple's own apps (com.apple.*) are filtered out of the picker, never offered for removal",
           ],
           imageAlt: "Cute 3D sanitation worker character in red holding up a Privacy & Security clipboard with a green checkmark, three app icons fading into sparkles on his right",
         },
@@ -291,7 +291,7 @@ export const ko: Translation = {
     blip: {
       tagline: "떠나는 것을 보세요.",
       description:
-        "당신의 데이터가 어디로 가는지, 누가 수집하는지 정확히 보고 차단하세요 — 모두 매우 예쁜 3D 지도 위에서.",
+        "당신의 데이터가 어디로 가는지, 누가 수집하는지 정확히 보고 차단하세요, 모두 매우 예쁜 3D 지도 위에서.",
       catalogTagline: "당신의 컴퓨터는 뒤에서 이야기하고 있었습니다.",
       catalogDescription:
         "3D 연결 지도, 스마트 방화벽, DNS 차단, 해저 케이블 라우팅, 대역폭 분석을 갖춘 실시간 네트워크 모니터링. 당신의 데이터가 어디로 가는지 정확히 보세요.",
@@ -319,7 +319,7 @@ export const ko: Translation = {
             "당신 컴퓨터의 모든 앱이 조용히 집에 전화를 걸고 있습니다. Blip은 그것들을 모두 3D 지도에 놓아 실시간으로 혼란이 펼쳐지는 것을 볼 수 있게 합니다.",
           bullets: [
             "연결은 바다를 건너는 실제 해저 케이블을 통해 라우팅됩니다",
-            "서비스별로 색이 입혀진 호 — Google, Discord, Apple 및 수백 개를 즉시 식별",
+            "서비스별로 색이 입혀진 호, Google, Discord, Apple 및 수백 개를 즉시 식별",
             "애니메이션 입자가 양방향으로 흐르는 데이터를 표시",
             "홉별 traceroute가 패킷이 가는 실제 경로를 표시",
           ],
@@ -333,7 +333,7 @@ export const ko: Translation = {
           bullets: [
             "엄격 모드: 무죄가 입증될 때까지 유죄",
             "앱별 대역폭 바가 데이터 식충이를 폭로",
-            "범위 규칙 — 포트 443은 허용하지만 다른 모든 것은 차단",
+            "범위 규칙, 포트 443은 허용하지만 다른 모든 것은 차단",
             "킬 스위치: 한 번의 클릭, 인터넷 제로, 즉각적인 침묵",
           ],
           imageAlt: "Blip 방화벽이 앱 수준 네트워크 접근 제어를 표시",
@@ -342,12 +342,12 @@ export const ko: Translation = {
           badge: "가드",
           title: "연결을 시도하기도 전에 차단된 20만 개의 추적기",
           description:
-            "당신의 DNS는 고자질쟁이입니다. 모든 앱, 모든 광고 SDK, 모든 분석 핑 — 가드가 문 앞에서 잡습니다. 누가 집에 전화를 걸려고 하는지 보고 차단하세요.",
+            "당신의 DNS는 고자질쟁이입니다. 모든 앱, 모든 광고 SDK, 모든 분석 핑, 가드가 문 앞에서 잡습니다. 누가 집에 전화를 걸려고 하는지 보고 차단하세요.",
           bullets: [
             "DNS 차단 목록이 20만 개 이상의 추적기 및 광고 도메인을 즉시 파괴",
-            "실시간 쿼리 로그 — 모든 조회를 실시간으로 관찰",
+            "실시간 쿼리 로그, 모든 조회를 실시간으로 관찰",
             "추적기 순위가 가장 끈질긴 위반자를 표시",
-            "방화벽과 결합 — 두 개의 벽, 자비 제로",
+            "방화벽과 결합, 두 개의 벽, 자비 제로",
           ],
           imageAlt: "Blip 가드가 DNS 차단 및 추적기 감지를 표시",
         },
@@ -355,12 +355,12 @@ export const ko: Translation = {
           badge: "시각화",
           title: "인터넷은 그저 젖은 케이블들",
           description:
-            "당신의 YouTube 영상은 정원 호스보다 얇은 케이블로 세 개의 바다를 건넜습니다. Blip이 정확히 어느 것인지 보여줍니다 — 700개 이상의 실제 해저 케이블 경로가 당신의 데이터가 흐를 때 빛납니다.",
+            "당신의 YouTube 영상은 정원 호스보다 얇은 케이블로 세 개의 바다를 건넜습니다. Blip이 정확히 어느 것인지 보여줍니다, 700개 이상의 실제 해저 케이블 경로가 당신의 데이터가 흐를 때 빛납니다.",
           bullets: [
             "TeleGeography의 실제 해저 케이블 경로가 해저에 그려짐",
             "당신의 트래픽이 흐를 때 활성 케이블이 빛남",
             "행진하는 대시 입자가 업로드 대 다운로드 방향 표시",
-            "핑 기반 속도 — 빠른 연결은 빠르게, 느린 것은 기어감",
+            "핑 기반 속도, 빠른 연결은 빠르게, 느린 것은 기어감",
           ],
           imageAlt: "Blip 시각화가 해저 케이블과 데이터 흐름을 표시",
         },
@@ -368,7 +368,7 @@ export const ko: Translation = {
           badge: "Traceroute",
           title: "한 페이지를 로드하기 위해 6개 도시를 거치는 14홉",
           description:
-            "모든 패킷은 도착하기 전에 12개의 라우터를 튕깁니다. Blip은 그 경로를 추적합니다 — 홉별로, 도시별로, 케이블별로 — 그리고 지도에 그립니다.",
+            "모든 패킷은 도착하기 전에 12개의 라우터를 튕깁니다. Blip은 그 경로를 추적합니다 (홉별로, 도시별로, 케이블별로), 그리고 지도에 그립니다.",
           bullets: [
             "3D 지도에 직접 겹쳐진 홉별 마커",
             "지연 시간 색상: 녹색은 빠름, 호박색은 괜찮음, 빨강은 고통",
@@ -392,11 +392,11 @@ export const ko: Translation = {
       features: [
         {
           title: "스큐어모픽 카세트 녹음기",
-          body: "포토리얼리스틱한 녹음기가 있는 떠다니는 사이드바: 애니메이션 릴, VU 미터, 물리적 버튼 컨트롤. 녹음을 누르고 말하세요 — 전역 단축키로 어떤 앱에서도 녹음할 수 있습니다.",
+          body: "포토리얼리스틱한 녹음기가 있는 떠다니는 사이드바: 애니메이션 릴, VU 미터, 물리적 버튼 컨트롤. 녹음을 누르고 말하세요, 전역 단축키로 어떤 앱에서도 녹음할 수 있습니다.",
         },
         {
           title: "기기 내 실시간 전사",
-          body: "Apple의 SFSpeechRecognizer가 당신이 말하는 동안 전사합니다 — 클라우드 없이, API 키 없이. 전사의 어떤 단어든 클릭하여 녹음의 그 순간으로 이동하세요.",
+          body: "Apple의 SFSpeechRecognizer가 당신이 말하는 동안 전사합니다, 클라우드 없이, API 키 없이. 전사의 어떤 단어든 클릭하여 녹음의 그 순간으로 이동하세요.",
         },
         {
           title: "카세트로 가득 찬 신발 상자",
@@ -449,7 +449,7 @@ export const ko: Translation = {
     peephole: {
       tagline: "누가 보고 있는지 보세요.",
       description:
-        "카메라와 마이크를 위한 메뉴 막대 보초. Peephole은 지금 어떤 앱이 그것들을 사용하고 있는지 표시하고, 접근 기록을 유지하며, 무언가가 그것들을 켤 때 알립니다 — 특별한 권한 없이, 커널 확장 없이.",
+        "카메라와 마이크를 위한 메뉴 막대 보초. Peephole은 지금 어떤 앱이 그것들을 사용하고 있는지 표시하고, 접근 기록을 유지하며, 무언가가 그것들을 켤 때 알립니다, 특별한 권한 없이, 커널 확장 없이.",
       catalogTagline: "누가 보고 있는지 보세요.",
       catalogDescription:
         "카메라와 마이크를 위한 메뉴 막대 보초: 지금 어떤 앱이 사용하고 있는지, 접근 기록, 그리고 무언가가 그것들을 켜는 순간의 알림.",
@@ -462,7 +462,7 @@ export const ko: Translation = {
         },
         {
           title: "접근 기록",
-          body: "어떤 앱이 카메라나 마이크를 언제 사용했는지에 대한 지속적인 로그 — 하루의 활동을 거슬러 스크롤하세요.",
+          body: "어떤 앱이 카메라나 마이크를 언제 사용했는지에 대한 지속적인 로그, 하루의 활동을 거슬러 스크롤하세요.",
         },
         {
           title: "알림",
@@ -474,7 +474,7 @@ export const ko: Translation = {
     quarantine: {
       tagline: "모든 다운로드를 검토하세요.",
       description:
-        "~/Downloads용 메뉴 막대 검사기. 각 새 파일에 대해 격리 출처 URL, Gatekeeper/codesign 상태, SHA-256, 선택적 VirusTotal 판정을 표시합니다 — 그런 다음 당신이 열기 전에 검토할 수 있도록 알립니다.",
+        "~/Downloads용 메뉴 막대 검사기. 각 새 파일에 대해 격리 출처 URL, Gatekeeper/codesign 상태, SHA-256, 선택적 VirusTotal 판정을 표시합니다, 그런 다음 당신이 열기 전에 검토할 수 있도록 알립니다.",
       catalogTagline: "신뢰하되, 모든 다운로드를 확인하세요.",
       catalogDescription:
         "~/Downloads용 메뉴 막대 검사기: 격리 출처, Gatekeeper/codesign 상태, SHA-256, 각 새 파일에 대한 선택적 VirusTotal 판정, 검토 알림.",
@@ -483,7 +483,7 @@ export const ko: Translation = {
       features: [
         {
           title: "출처 & 격리",
-          body: "com.apple.quarantine 속성을 통해 파일이 정확히 어디서 왔는지 확인하세요 — 다운로드한 에이전트와 출처 URL.",
+          body: "com.apple.quarantine 속성을 통해 파일이 정확히 어디서 왔는지 확인하세요, 다운로드한 에이전트와 출처 URL.",
         },
         {
           title: "Gatekeeper & 해시",
@@ -499,16 +499,16 @@ export const ko: Translation = {
     sentry: {
       tagline: "어두운 구석을 지켜보세요.",
       description:
-        "macOS 지속성을 위한 메뉴 막대 감사관. LaunchAgents 및 Daemons, 로그인 항목, cron, 셸 시작 파일을 나열하고, 각 대상의 코드 서명과 공증을 확인하며, 새로 추가되거나 변경된 항목이 나타나는 순간 경고합니다 — 그런 다음 메뉴 막대에서 직접 검사, 차단 또는 복원할 수 있게 합니다.",
+        "macOS 지속성을 위한 메뉴 막대 감사관. LaunchAgents 및 Daemons, 로그인 항목, cron, 셸 시작 파일을 나열하고, 각 대상의 코드 서명과 공증을 확인하며, 새로 추가되거나 변경된 항목이 나타나는 순간 경고합니다, 그런 다음 메뉴 막대에서 직접 검사, 차단 또는 복원할 수 있게 합니다.",
       catalogTagline: "무언가가 자리 잡는 순간을 아세요.",
       catalogDescription:
-        "macOS 지속성을 위한 메뉴 막대 감사관 — LaunchAgents, 로그인 항목, cron, 셸 시작 파일 — 서명 확인과 새로 추가되거나 변경된 것이 나타날 때의 경고. 그것들 중 어느 것이든 검사, 차단 또는 복원.",
+        "macOS 지속성을 위한 메뉴 막대 감사관 (LaunchAgents, 로그인 항목, cron, 셸 시작 파일), 서명 확인과 새로 추가되거나 변경된 것이 나타날 때의 경고. 그것들 중 어느 것이든 검사, 차단 또는 복원.",
       requirements: "macOS 14+  ·  Apple Silicon  ·  무료  ·  Developer ID 서명",
       featuresHeading: "악성코드가 숨는 곳을 지켜보세요.",
       features: [
         {
           title: "모든 지속성 벡터",
-          body: "LaunchAgents 및 Daemons, 로그인 항목, cron, 셸 시작 파일 — 무언가가 재부팅을 살아남기 위해 자리 잡을 수 있는 모든 곳이 하나의 메뉴 막대 목록에.",
+          body: "LaunchAgents 및 Daemons, 로그인 항목, cron, 셸 시작 파일, 무언가가 재부팅을 살아남기 위해 자리 잡을 수 있는 모든 곳이 하나의 메뉴 막대 목록에.",
         },
         {
           title: "서명 인식",
@@ -516,7 +516,7 @@ export const ko: Translation = {
         },
         {
           title: "변경 시 경고, 거기 있어서는 안 되는 것을 차단",
-          body: "스냅샷 비교가 새 지속성 항목이 나타나거나 변경되는 순간 알립니다. plist 또는 스크립트를 검사한 다음 차단하세요 — Sentry가 언로드하고 .sentry-disabled로 옆에 둡니다. 한 번의 클릭으로 되돌릴 수 있습니다.",
+          body: "스냅샷 비교가 새 지속성 항목이 나타나거나 변경되는 순간 알립니다. plist 또는 스크립트를 검사한 다음 차단하세요, Sentry가 언로드하고 .sentry-disabled로 옆에 둡니다. 한 번의 클릭으로 되돌릴 수 있습니다.",
         },
       ],
     },
@@ -537,7 +537,7 @@ export const ko: Translation = {
         },
         {
           title: "Sixteen languages, one editor",
-          body: "Python, TypeScript, Go, Rust, Swift, C++, Java, Kotlin, Ruby, Elixir, Zig, Lua, Bash, SQL, HTML/CSS, and Markdown. Built-in language servers, syntax highlighting, and per-language test runners — never leave the editor.",
+          body: "Python, TypeScript, Go, Rust, Swift, C++, Java, Kotlin, Ruby, Elixir, Zig, Lua, Bash, SQL, HTML/CSS, and Markdown. Built-in language servers, syntax highlighting, and per-language test runners, never leave the editor.",
         },
         {
           title: "A tutor on your laptop, not in the cloud",
@@ -549,12 +549,12 @@ export const ko: Translation = {
           badge: "Lessons that grade themselves",
           title: "Chapter → exercise → hidden test",
           description:
-            "Every chapter expands into a sequence: a short read, an exercise scaffold, and a hidden test suite that runs against your code in the background. The test only reveals itself when you ask — so you learn from the failure, not from a leaked answer.",
+            "Every chapter expands into a sequence: a short read, an exercise scaffold, and a hidden test suite that runs against your code in the background. The test only reveals itself when you ask, so you learn from the failure, not from a leaked answer.",
           bullets: [
-            "Hidden tests run in a sandboxed runner per supported language — no Docker, no shell access required",
+            "Hidden tests run in a sandboxed runner per supported language, no Docker, no shell access required",
             "Failures surface as a hint first, the full diff second, and only the test source on explicit request",
             "Exercises remember your in-progress code across sessions; re-opening picks up exactly where you left off",
-            "Chapters re-generate cleanly when you swap in a newer edition of the same book — your progress carries over by chapter title",
+            "Chapters re-generate cleanly when you swap in a newer edition of the same book, your progress carries over by chapter title",
           ],
           imageAlt: "Cute 3D white python coiled, holding three floating lesson cards labelled Chapter / Exercise / Quiz with its tail-tip ribbons",
         },
@@ -562,11 +562,11 @@ export const ko: Translation = {
           badge: "Habit, not homework",
           title: "Streak fire that survives weekends",
           description:
-            "A streak that's only kind on the days you forget. Two free \"weekend tokens\" a month let the fire keep burning when life shows up. The flame's there to nudge — never to shame.",
+            "A streak that's only kind on the days you forget. Two free \"weekend tokens\" a month let the fire keep burning when life shows up. The flame's there to nudge, never to shame.",
           bullets: [
             "Two skip-tokens regenerate monthly; a single failed day doesn't reset weeks of work",
             "Tiny daily target (one lesson) keeps the bar realistic; you can always do more on a good day",
-            "Streak history lives in a local SQLite file, exportable and inspectable — no cloud account required",
+            "Streak history lives in a local SQLite file, exportable and inspectable, no cloud account required",
             "Notifications respect Focus modes; \"don't bug me, just keep counting\" is one tap from the menu bar",
           ],
           imageAlt: "Cute 3D white python with a small flame balanced on its nose, four calendar squares with red checkmarks drifting in an arc around it",
@@ -582,11 +582,11 @@ export const ko: Translation = {
       catalogDescription:
         "Apple Watch에서 원격 서버의 사전 구성된 SSH 명령을 실행하세요. 셀룰러로 작동, Siri 지원, 모든 것을 종단 간 암호화.",
       requirements: "watchOS  ·  iOS  ·  iPadOS  ·  macOS  ·  무료 & 오픈 소스",
-      featuresHeading: "당신 서버를 위한 리모컨 — 손목 위에.",
+      featuresHeading: "당신 서버를 위한 리모컨, 손목 위에.",
       features: [
         {
           title: "실제 워치 앱, 알림 심이 아닌",
-          body: "실시간 상태 점이 있는 네이티브 watchOS 서버 목록, 액션 버튼을 통한 고정 명령, 위험한 명령에 대한 확인, Digital Crown으로 스크롤 가능한 출력. 셀룰러 준비 — 전화 필요 없음.",
+          body: "실시간 상태 점이 있는 네이티브 watchOS 서버 목록, 액션 버튼을 통한 고정 명령, 위험한 명령에 대한 확인, Digital Crown으로 스크롤 가능한 출력. 셀룰러 준비, 전화 필요 없음.",
         },
         {
           title: "Companion + Mac, 발맞춰",
@@ -602,7 +602,7 @@ export const ko: Translation = {
           badge: "워치 앱",
           title: "손목에서 프로덕션 재시작.",
           description:
-            "서버 목록, 명령 실행, 햅틱 피드백을 갖춘 네이티브 watchOS 앱. 명령을 탭하고, 확인하고, 완료. 실제 출력이 Digital Crown으로 스크롤 가능. 셀룰러로 작동 — 전화 필요 없음.",
+            "서버 목록, 명령 실행, 햅틱 피드백을 갖춘 네이티브 watchOS 앱. 명령을 탭하고, 확인하고, 완료. 실제 출력이 Digital Crown으로 스크롤 가능. 셀룰러로 작동, 전화 필요 없음.",
           bullets: [
             "실시간 상태 점이 있는 서버 목록 (녹색/빨강)",
             "액션 버튼을 통한 빠른 접근을 위한 고정 명령",
@@ -766,25 +766,25 @@ export const ko: Translation = {
     base: {
       tagline: "프리미티브. 토큰. 완료.",
       description:
-        "70개의 프리미티브, 8개의 디자인 토큰 카테고리, 다크 모드, 그리고 당신의 스택에 대한 의견 제로. 모든 곳에서 작동하는 깔끔하고 조합 가능한 React 컴포넌트 — 런처를 포함하여.",
-      catalogTagline: "범용 디자인 툴킷 — 모노크롬, 플랫폼 독립.",
+        "70개의 프리미티브, 8개의 디자인 토큰 카테고리, 다크 모드, 그리고 당신의 스택에 대한 의견 제로. 모든 곳에서 작동하는 깔끔하고 조합 가능한 React 컴포넌트, 런처를 포함하여.",
+      catalogTagline: "범용 디자인 툴킷, 모노크롬, 플랫폼 독립.",
       catalogDescription:
-        "70개의 프리미티브, 8개의 디자인 토큰 카테고리, 다크 모드, 그리고 당신의 스택에 대한 의견 제로. 모든 곳에서 작동하는 깔끔하고 조합 가능한 React 컴포넌트 — 런처를 포함하여.",
+        "70개의 프리미티브, 8개의 디자인 토큰 카테고리, 다크 모드, 그리고 당신의 스택에 대한 의견 제로. 모든 곳에서 작동하는 깔끔하고 조합 가능한 React 컴포넌트, 런처를 포함하여.",
       requirements: "무료 & 오픈 소스  ·  React  ·  TypeScript",
       featuresHeading: "프리미티브. 토큰. 토글.",
       ctaLabel: "소스 보기",
       features: [
         {
           title: "70개의 프로덕션 준비된 프리미티브",
-          body: "폼, 레이아웃, 데이터, 피드백 — 당신이 필요한 모든 프리미티브, 필요 없는 것은 하나도 없음. 입력, 테이블, 캘린더, 스파크라인, 트리 뷰, 컬러 피커, 다이얼로그 등.",
+          body: "폼, 레이아웃, 데이터, 피드백, 당신이 필요한 모든 프리미티브, 필요 없는 것은 하나도 없음. 입력, 테이블, 캘린더, 스파크라인, 트리 뷰, 컬러 피커, 다이얼로그 등.",
         },
         {
           title: "하나의 토큰 시스템, 모든 플랫폼",
-          body: "색상, 타이포그래피, 간격, 반경, 고도, 애니메이션, 글래스모피즘 — 모두 CSS 변수나 React Native 스타일로 내보내는 TypeScript 토큰으로 정의됨.",
+          body: "색상, 타이포그래피, 간격, 반경, 고도, 애니메이션, 글래스모피즘, 모두 CSS 변수나 React Native 스타일로 내보내는 TypeScript 토큰으로 정의됨.",
         },
         {
           title: "기본 제공 라이트 & 다크",
-          body: "모든 컴포넌트가 자동으로 색상 모드를 존중합니다 — 시스템 환경 설정 감지, localStorage가 있는 수동 토글, 그리고 두 모드 모두에서 적응하는 글래스모피즘.",
+          body: "모든 컴포넌트가 자동으로 색상 모드를 존중합니다, 시스템 환경 설정 감지, localStorage가 있는 수동 토글, 그리고 두 모드 모두에서 적응하는 글래스모피즘.",
         },
       ],
       showcase: [
@@ -792,7 +792,7 @@ export const ko: Translation = {
           badge: "70개의 프리미티브",
           title: "당신이 필요한 모든 컴포넌트, 필요 없는 것은 하나도 없음",
           description:
-            "버튼과 입력에서 트리 뷰, 컬러 피커, 스파크라인까지 — TypeScript로 빌드되고 React 외에 외부 의존성 제로인 70개의 프로덕션 준비된 프리미티브.",
+            "버튼과 입력에서 트리 뷰, 컬러 피커, 스파크라인까지, TypeScript로 빌드되고 React 외에 외부 의존성 제로인 70개의 프로덕션 준비된 프리미티브.",
           bullets: [
             "폼: input, textarea, select, checkbox, radio, pin-input, number-input, color-picker",
             "레이아웃: grid, stack, container, center, spacer, separator",
@@ -805,7 +805,7 @@ export const ko: Translation = {
           badge: "디자인 토큰",
           title: "하나의 토큰 시스템, 모든 플랫폼",
           description:
-            "색상, 타이포그래피, 간격, 반경, 고도, 애니메이션, 글래스모피즘 — 모두 CSS 변수나 React Native 스타일로 내보내는 TypeScript 토큰으로 정의됨.",
+            "색상, 타이포그래피, 간격, 반경, 고도, 애니메이션, 글래스모피즘, 모두 CSS 변수나 React Native 스타일로 내보내는 TypeScript 토큰으로 정의됨.",
           bullets: [
             "시맨틱 별칭이 있는 모노크롬 우선 컬러 팔레트",
             "젖빛 유리 효과를 위한 글래스모피즘 토큰",
@@ -818,7 +818,7 @@ export const ko: Translation = {
           badge: "다크 모드",
           title: "라이트와 다크, 첫날부터 내장",
           description:
-            "모든 컴포넌트가 색상 모드를 기본으로 존중합니다. 추가 설정 없이, 잊어버릴 테마 래퍼 없이 — 그냥 시스템 환경 설정이나 수동 토글로 작동합니다.",
+            "모든 컴포넌트가 색상 모드를 기본으로 존중합니다. 추가 설정 없이, 잊어버릴 테마 래퍼 없이, 그냥 시스템 환경 설정이나 수동 토글로 작동합니다.",
           bullets: [
             "자동 시스템 환경 설정 감지",
             "localStorage 지속성이 있는 수동 토글",

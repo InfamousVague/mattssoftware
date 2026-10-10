@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { ToastProvider } from "@glacier/react";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { LanguageProvider } from "./i18n/context";
 import { trackPageview } from "./lib/analytics";
@@ -7,7 +8,6 @@ import { Footer } from "./components/Footer";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { Home } from "./pages/Home";
 import { BlipPage } from "./pages/Blip";
-import { VyvPage } from "./pages/Vyv";
 import { PortPage } from "./pages/Port";
 import { SentryPage } from "./pages/Sentry";
 import { PeepholePage } from "./pages/Peephole";
@@ -28,23 +28,11 @@ import { SeasickPage } from "./pages/Seasick";
 import { WorktreePage } from "./pages/Worktree";
 import { HaloPage } from "./pages/Halo";
 import { GhostWirePage } from "./pages/GhostWire";
+import { AttackFMPage } from "./pages/AttackFM";
+import { PrettyCardboardPage } from "./pages/PrettyCardboard";
+import { GhostPage } from "./pages/Ghost";
 import { NotFound } from "./pages/NotFound";
-import "./styles.css";
-
-/// Routes where the marketing chrome (Nav + Footer) should be hidden
-/// because the page is its own self-contained surface and the
-/// marketing chrome would compete with it.
-///
-/// Empty for now — the Libre app used to ship an embedded web build
-/// on this site, but that has graduated to its own host at
-/// libre.academy. If a future product wants to embed at a path on
-/// mattssoftware.com again, add that prefix here.
-/// The home ("/") is now the launcher replica — its own self-contained
-/// surface with its own titlebar, so the marketing Nav/Footer are
-/// hidden there. Every marketing sub-page keeps the Nav/Footer chrome.
-function shouldHideChrome(pathname: string): boolean {
-  return pathname === "/";
-}
+import { useLanguage } from "./i18n/context";
 
 /// Hard-redirect to libre.academy. The product formerly known as
 /// "Fishbones" graduated to libre.academy; any inbound links to
@@ -57,20 +45,20 @@ function LibreRedirect() {
   return null;
 }
 
-/// Splits the chrome decision out of <App> so we can call
-/// `useLocation` (which requires a Router ancestor — App itself
-/// IS the Router, so we need a child component).
+/// The page chrome (skip link, Nav, the main landmark, Footer) around
+/// every route, split out of <App> so it can call `useLocation`, which
+/// needs a Router ancestor.
 ///
 /// Also fires Plausible SPA pageviews on route change. The hosted
 /// script in `index.html` auto-fires the FIRST pageview when it
-/// loads, so we skip the initial mount with a `firstRouteRef`
-/// toggle and only fire on subsequent route changes. Without that
-/// guard, every entry visit would double-count (once from the
-/// script's auto-fire, once from this effect's first run). Same
-/// pattern as libre.academy's App.tsx.
+/// loads, so the initial mount is skipped with a `firstRouteRef`
+/// toggle and only later route changes fire. Without that guard,
+/// every entry visit would double-count (once from the script's
+/// auto-fire, once from this effect's first run). Same pattern as
+/// libre.academy's App.tsx.
 function ChromeShell({ children }: { children: React.ReactNode }) {
   const location = useLocation();
-  const hideChrome = shouldHideChrome(location.pathname);
+  const { site } = useLanguage();
 
   const firstRouteRef = useRef(true);
   useEffect(() => {
@@ -83,9 +71,14 @@ function ChromeShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {!hideChrome && <Nav />}
-      <main style={{ minHeight: "100vh" }}>{children}</main>
-      {!hideChrome && <Footer />}
+      <a className="skip" href="#main">
+        {site.skip}
+      </a>
+      <Nav />
+      <main id="main" tabIndex={-1} style={{ minHeight: "70vh", outline: "none" }}>
+        {children}
+      </main>
+      <Footer />
     </>
   );
 }
@@ -93,13 +86,15 @@ function ChromeShell({ children }: { children: React.ReactNode }) {
 export function App() {
   return (
     <LanguageProvider>
+      <ToastProvider>
       <BrowserRouter>
         <ScrollToTop />
         <ChromeShell>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blip" element={<BlipPage />} />
-            <Route path="/vyv" element={<VyvPage />} />
+            {/* /vyv is the address Espresso had under its first name. */}
+            <Route path="/vyv" element={<EspressoPage />} />
             <Route path="/port" element={<PortPage />} />
             <Route path="/sentry" element={<SentryPage />} />
             <Route path="/peephole" element={<PeepholePage />} />
@@ -125,14 +120,18 @@ export function App() {
             <Route path="/worktree" element={<WorktreePage />} />
             <Route path="/halo" element={<HaloPage />} />
             <Route path="/ghostwire" element={<GhostWirePage />} />
+            <Route path="/attackfm" element={<AttackFMPage />} />
+            <Route path="/prettycardboard" element={<PrettyCardboardPage />} />
+            <Route path="/ghost" element={<GhostPage />} />
             {/* Legacy path kept as a client-side redirect so any inbound
                 links still land on /ghostwire instead of a 404. */}
             <Route path="/blackpearl" element={<Navigate to="/ghostwire" replace />} />
-            {/* Catch-all 404 — playful ribbon-snake illustration. */}
+            {/* Catch-all 404: the lost ribbon snake. */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </ChromeShell>
       </BrowserRouter>
+      </ToastProvider>
     </LanguageProvider>
   );
 }

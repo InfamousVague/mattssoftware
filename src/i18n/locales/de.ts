@@ -4,7 +4,7 @@ import type { Translation } from "../types";
 
 export const de: Translation = {
   meta: {
-    siteTitle: "Matt's Software — Winzige Apps, die ihr Geld wert sind",
+    siteTitle: "Matt's Software, Winzige Apps, die ihr Geld wert sind",
     siteDescription:
       "Ein kleiner Laden mit winzigen, kostenlosen Open-Source-Apps. Ein Launcher installiert sie alle und hält sie aktuell.",
     htmlLang: "de",
@@ -45,7 +45,7 @@ export const de: Translation = {
 
   footer: {
     mascotAlt:
-      "Eine weiße Katze, eingerollt um eine Blaupause und eine Kaffeetasse — irgendwie eingeschlafen trotz der Musik",
+      "Eine weiße Katze, eingerollt um eine Blaupause und eine Kaffeetasse, irgendwie eingeschlafen trotz der Musik",
     line: "Gebaut mit Espresso und lauter Musik.",
     sub: "Matt's Software ist ein Ein-Personen-Laden. Jede App ist signiert, notariell beglaubigt und kostenlos.",
     github: "GitHub",
@@ -81,7 +81,7 @@ export const de: Translation = {
   home: {
     eyebrow: "MATT'S SOFTWARE",
     title: "Winzige Apps, die ihr Geld wert sind.",
-    sub: "Ein kleiner kuratierter Laden mit {count}+ winzigen, kostenlosen Apps. Ein Launcher installiert sie alle und hält sie aktuell — oder schnapp dir eine einzeln.",
+    sub: "Ein kleiner kuratierter Laden mit {count}+ winzigen, kostenlosen Apps. Ein Launcher installiert sie alle und hält sie aktuell, oder schnapp dir eine einzeln.",
     downloadLauncher: "Launcher herunterladen",
     browseSuite: "Sammlung durchstöbern",
     metaLine: "Kostenlos · Open Source · macOS heute, mehr in Kürze",
@@ -102,7 +102,7 @@ export const de: Translation = {
     suiteEyebrow: "Die Sammlung",
     suiteHeading: "Mehr aus dem Laden",
     suiteSub:
-      "Jede löst genau eine Sache richtig gut — installiere nur das, was du brauchst.",
+      "Jede löst genau eine Sache richtig gut, installiere nur das, was du brauchst.",
     bottomAddToMenuBar: "Füge {name} zu deiner Menüleiste hinzu.",
     bottomGet: "Hol dir {name}.",
   },
@@ -128,7 +128,7 @@ export const de: Translation = {
         },
         {
           title: "Täusche deinen Status-Indikator",
-          body: "Subpixel-Mauswackeln — unsichtbar, aber genug, um die Inaktivitätserkennung in Slack, Teams, Zoom und jeder App zu umgehen, die auf Inaktivität achtet.",
+          body: "Subpixel-Mauswackeln, unsichtbar, aber genug, um die Inaktivitätserkennung in Slack, Teams, Zoom und jeder App zu umgehen, die auf Inaktivität achtet.",
         },
         {
           title: "Panikknopf inklusive",
@@ -140,9 +140,9 @@ export const de: Translation = {
           badge: "Wach bleiben",
           title: "Dein Computer will schlafen. Espresso widerspricht.",
           description:
-            "Ein kleiner Shot in deiner Menüleiste, der den Schlaftimer blockiert, das Display anlässt (oder nicht — du entscheidest) und die Maus subpixelweise bewegt, damit Inaktivitäts-Detektoren auf dem falschen Fuß bleiben.",
+            "Ein kleiner Shot in deiner Menüleiste, der den Schlaftimer blockiert, das Display anlässt (oder nicht, du entscheidest) und die Maus subpixelweise bewegt, damit Inaktivitäts-Detektoren auf dem falschen Fuß bleiben.",
           bullets: [
-            "Blockiert Systemschlaf, Bildschirmschlaf oder beides — pro Session",
+            "Blockiert Systemschlaf, Bildschirmschlaf oder beides, pro Session",
             "Subpixel-Mauswackeln täuscht Slack, Teams, Zoom",
             "Override für geschlossenen Deckel hält alles am Laufen",
             "Lifetime-Statistik zeigt, wie viel Schlaf du gestohlen hast",
@@ -153,10 +153,10 @@ export const de: Translation = {
           badge: "Auf der Uhr",
           title: "Sessions auf Zeit, oder bis du aufgibst",
           description:
-            "Wähle ein Preset (5 min, 30 min, 2 h, 8 h) oder unbegrenzt. Der globale Panik-Hotkey schaltet sofort alles aus — Display schläft, Wackeln stoppt, Timer wird abgebrochen.",
+            "Wähle ein Preset (5 min, 30 min, 2 h, 8 h) oder unbegrenzt. Der globale Panik-Hotkey schaltet sofort alles aus, Display schläft, Wackeln stoppt, Timer wird abgebrochen.",
           bullets: [
             "Voreingestellte Timer von 5 Minuten bis 8 Stunden, plus unbegrenzt",
-            "Ctrl+Shift+Escape Panik global — alles aus, sofort",
+            "Ctrl+Shift+Escape Panik global, alles aus, sofort",
             "Countdown sichtbar in der Menüleiste",
             "Auto-Ende bei Sperren oder Schließen des Deckels (konfigurierbar)",
           ],
@@ -177,7 +177,7 @@ export const de: Translation = {
       features: [
         {
           title: "Alles mit einem Klick sperren",
-          body: "Eine aktive Tastaturerfassung schluckt jede Taste, jeden Modifikator und jede Medientaste systemweit — wische die Tasten ab, ohne einen einzigen Shortcut auszulösen.",
+          body: "Eine aktive Tastaturerfassung schluckt jede Taste, jeden Modifikator und jede Medientaste systemweit, wische die Tasten ab, ohne einen einzigen Shortcut auszulösen.",
         },
         {
           title: "Mattiertes Vollbild-Overlay",
@@ -193,12 +193,12 @@ export const de: Translation = {
           badge: "Verriegeln",
           title: "Ein Klick, die Tastatur verstummt",
           description:
-            "Ein systemweiter Keyboard-Tap verschluckt jede Taste, jeden Modifier, jede Media-Taste — damit ein Mikrofasertuch nicht versehentlich einen Shortcut auslöst, eine Mail versendet oder Logic mitten in der Aufnahme beendet. Ein mattes Overlay deckt jeden Monitor ab, damit klar ist: gesperrt.",
+            "Ein systemweiter Keyboard-Tap verschluckt jede Taste, jeden Modifier, jede Media-Taste, damit ein Mikrofasertuch nicht versehentlich einen Shortcut auslöst, eine Mail versendet oder Logic mitten in der Aufnahme beendet. Ein mattes Overlay deckt jeden Monitor ab, damit klar ist: gesperrt.",
           bullets: [
-            "System-Tastatur-Tap — jede Taste, jeder Modifier, jede Media-Taste",
+            "System-Tastatur-Tap, jede Taste, jeder Modifier, jede Media-Taste",
             "Matte Overlay über jeden Monitor mit Countdown",
             "Maus bleibt aktiv, damit du nach dem Putzen entsperren kannst",
-            "Lebt in der Menüleiste — ein Klick rein, ein Klick raus",
+            "Lebt in der Menüleiste, ein Klick rein, ein Klick raus",
           ],
           imageAlt: "3D-Tastatur unter einer matten Lavendel-Glaskuppel mit einem Vorhängeschloss",
         },
@@ -206,12 +206,12 @@ export const de: Translation = {
           badge: "Sicherer Ausgang",
           title: "Du kannst nicht gefangen sein",
           description:
-            "Eine Sicherheits-Auto-Entsperrung feuert komplett unabhängig — auch wenn das Overlay versagt, auch wenn die Menüleiste hängt. Die Entsperrfläche hört auf die Maus, die Menüleiste und einen harten Timer.",
+            "Eine Sicherheits-Auto-Entsperrung feuert komplett unabhängig, auch wenn das Overlay versagt, auch wenn die Menüleiste hängt. Die Entsperrfläche hört auf die Maus, die Menüleiste und einen harten Timer.",
           bullets: [
             "Auto-Unlock-Timer garantiert, dass du nie steckenbleibst",
             "Drei unabhängige Entsperrpfade: Overlay, Menüleiste, Timer",
             "Maximale Sperrdauer konfigurierbar (Standard: 1 min)",
-            "Paranoid entworfen — versagt offen, nie geschlossen",
+            "Paranoid entworfen, versagt offen, nie geschlossen",
           ],
           imageAlt: "3D-Drehknopf aus Chrom mit lavendelfarbenem Zeiger und einem schwebenden Schlüssel über einem offenen Schloss",
         },
@@ -221,16 +221,16 @@ export const de: Translation = {
     stats: {
       tagline: "Jedes Signal. Ein Blick.",
       description:
-        "Ein nativer Systemmonitor in der Menüleiste. Live-CPU pro Kern, Speicherdruck, Festplatte Lesen/Schreiben, Netzwerk Hoch/Runter und Sensorwerte — plus optionale kompakte Widgets, die in der Statusleiste mitfahren, und Verlaufs-Sparklines für jedes Signal, damit du einen Spike erkennst, ohne die Aktivitätsanzeige zu öffnen.",
-      catalogTagline: "Jedes System-Signal auf einen Blick — in deiner Menüleiste.",
+        "Ein nativer Systemmonitor in der Menüleiste. Live-CPU pro Kern, Speicherdruck, Festplatte Lesen/Schreiben, Netzwerk Hoch/Runter und Sensorwerte, plus optionale kompakte Widgets, die in der Statusleiste mitfahren, und Verlaufs-Sparklines für jedes Signal, damit du einen Spike erkennst, ohne die Aktivitätsanzeige zu öffnen.",
+      catalogTagline: "Jedes System-Signal auf einen Blick, in deiner Menüleiste.",
       catalogDescription:
-        "Ein nativer Systemmonitor in der Menüleiste. Live-CPU pro Kern, Speicherdruck, Festplatte Lesen/Schreiben, Netzwerk Hoch/Runter und Sensorwerte — plus optionale kompakte Widgets, die in der Statusleiste mitfahren, und Verlaufs-Sparklines für jedes Signal.",
+        "Ein nativer Systemmonitor in der Menüleiste. Live-CPU pro Kern, Speicherdruck, Festplatte Lesen/Schreiben, Netzwerk Hoch/Runter und Sensorwerte, plus optionale kompakte Widgets, die in der Statusleiste mitfahren, und Verlaufs-Sparklines für jedes Signal.",
       requirements: "macOS 14+  ·  Apple Silicon  ·  Kostenlos  ·  Developer ID signiert & notariell beglaubigt",
       featuresHeading: "Sieh die ganze Maschine. Ohne das ganze Fenster.",
       features: [
         {
           title: "Jedes System-Signal auf einen Blick",
-          body: "CPU pro Kern, Speicherdruck (mit der Aufschlüsselung verkabelt/komprimiert/App/Cache), Festplatte Lesen/Schreiben, Netzwerk Hoch/Runter, Sensoren und eine Live-Liste der Top-Prozesse — alles in einem kompakten Menüleisten-Panel.",
+          body: "CPU pro Kern, Speicherdruck (mit der Aufschlüsselung verkabelt/komprimiert/App/Cache), Festplatte Lesen/Schreiben, Netzwerk Hoch/Runter, Sensoren und eine Live-Liste der Top-Prozesse, alles in einem kompakten Menüleisten-Panel.",
         },
         {
           title: "Kompakte Menüleisten-Widgets",
@@ -246,7 +246,7 @@ export const de: Translation = {
           badge: "Alle Signale",
           title: "Jede Anzeige deiner Maschine auf einen Blick",
           description:
-            "CPU pro Kern, Memory-Pressure (mit dem Wired-/Komprimiert-/App-/Cache-Breakdown), Disk Read & Write, Netzwerk Up & Down, Sensorwerte — Stats liest jedes Signal, das macOS hergibt, und heftet sie alle an deine Menüleiste.",
+            "CPU pro Kern, Memory-Pressure (mit dem Wired-/Komprimiert-/App-/Cache-Breakdown), Disk Read & Write, Netzwerk Up & Down, Sensorwerte, Stats liest jedes Signal, das macOS hergibt, und heftet sie alle an deine Menüleiste.",
           bullets: [
             "CPU-Auslastung pro Kern und Top-Prozessliste",
             "Memory-Pressure mit vollem Residenz-Breakdown",
@@ -259,10 +259,10 @@ export const de: Translation = {
           badge: "Rückblick",
           title: "Sparklines, keine Tabellen",
           description:
-            "Die jüngste History wird für jedes Signal grafisch dargestellt, sodass ein durchgedrehter Prozess oder ein Hitzespitze auf einen Blick erkennbar ist — ohne den Activity Monitor zu öffnen und auf eine Wiederholung zu warten.",
+            "Die jüngste History wird für jedes Signal grafisch dargestellt, sodass ein durchgedrehter Prozess oder ein Hitzespitze auf einen Blick erkennbar ist, ohne den Activity Monitor zu öffnen und auf eine Wiederholung zu warten.",
           bullets: [
             "Live-Sparkline-History für jedes Messgerät",
-            "Konfigurierbares History-Fenster — letzte Minute, Stunde oder Tag",
+            "Konfigurierbares History-Fenster, letzte Minute, Stunde oder Tag",
             "Erkenne einen Spike nachträglich statt ihn live zu jagen",
             "Tippe auf eine Sparkline, um den Top-Prozess in dem Moment zu sehen",
           ],
@@ -274,10 +274,10 @@ export const de: Translation = {
     port: {
       tagline: "Jeder Port, ein Klick.",
       description:
-        "Ein winziger nativer Port-Manager in der Menüleiste. Sieh, was lauscht, töte oder pausiere den Prozess, leite ihn weiter oder mappe ihn via NAT-PMP und beobachte aktive Verbindungen auf einer Live-Karte — klicke eine an, um sie in Blip zu inspizieren.",
+        "Ein winziger nativer Port-Manager in der Menüleiste. Sieh, was lauscht, töte oder pausiere den Prozess, leite ihn weiter oder mappe ihn via NAT-PMP und beobachte aktive Verbindungen auf einer Live-Karte, klicke eine an, um sie in Blip zu inspizieren.",
       catalogTagline: "Jeder offene Port auf deinem Mac, einen Klick entfernt.",
       catalogDescription:
-        "Ein nativer Port-Manager in der Menüleiste: sieh, was lauscht, töte oder pausiere den Prozess, leite ihn weiter oder mappe ihn via NAT-PMP und beobachte aktive Verbindungen auf einer Live-Karte — klicke eine an, um sie in Blip zu inspizieren.",
+        "Ein nativer Port-Manager in der Menüleiste: sieh, was lauscht, töte oder pausiere den Prozess, leite ihn weiter oder mappe ihn via NAT-PMP und beobachte aktive Verbindungen auf einer Live-Karte, klicke eine an, um sie in Blip zu inspizieren.",
       requirements: "macOS 14+  ·  Apple Silicon  ·  Kostenlos  ·  Developer ID signiert",
       featuresHeading: "Sieh ihn. Töte ihn. Leite ihn weiter.",
       features: [
@@ -287,7 +287,7 @@ export const de: Translation = {
         },
         {
           title: "Weiterleitung & Mapping",
-          body: "Proxy jeden lokalen Port zu einem anderen mit einem eingebauten TCP-Weiterleiter, gib ihn in deinem LAN frei und schlage ihn mit nativem NAT-PMP durch deinen Router — keine Konfiguration.",
+          body: "Proxy jeden lokalen Port zu einem anderen mit einem eingebauten TCP-Weiterleiter, gib ihn in deinem LAN frei und schlage ihn mit nativem NAT-PMP durch deinen Router, keine Konfiguration.",
         },
         {
           title: "Verbindungen auf einer Karte → Blip",
@@ -299,9 +299,9 @@ export const de: Translation = {
           badge: "Hafen",
           title: "Jeder offene Port, einen Klick entfernt",
           description:
-            "Ein lebendiges Menüleisten-Manifest jedes lauschenden TCP/UDP-Ports — der Prozess dahinter, die PID, das Protokoll. Töten, pausieren (SIGSTOP/SIGCONT), oder einfach im Auge behalten.",
+            "Ein lebendiges Menüleisten-Manifest jedes lauschenden TCP/UDP-Ports, der Prozess dahinter, die PID, das Protokoll. Töten, pausieren (SIGSTOP/SIGCONT), oder einfach im Auge behalten.",
           bullets: [
-            "Aktualisiert sich jede Sekunde — was lauscht, jetzt gerade",
+            "Aktualisiert sich jede Sekunde, was lauscht, jetzt gerade",
             "Töte, pausiere oder setze den Prozess fort, ohne die Menüleiste zu verlassen",
             "Bekannte-Ports-Bibliothek benennt gängige Dienste auf den ersten Blick",
             "Benachrichtigt dich, sobald ein neuer Port aufgeht",
@@ -312,9 +312,9 @@ export const de: Translation = {
           badge: "Signal",
           title: "Weiterleiten, freigeben oder den Router durchstoßen",
           description:
-            "Der eingebaute TCP-Forwarder proxyt jeden lokalen Port auf einen anderen. Natives NAT-PMP mappt ihn automatisch durch deinen Router. Beobachte aktive Verbindungen auf einer Karte — klicke einen Endpoint, um ihn in Blip zu inspizieren.",
+            "Der eingebaute TCP-Forwarder proxyt jeden lokalen Port auf einen anderen. Natives NAT-PMP mappt ihn automatisch durch deinen Router. Beobachte aktive Verbindungen auf einer Karte, klicke einen Endpoint, um ihn in Blip zu inspizieren.",
           bullets: [
-            "TCP-Forwarder auf Network.framework gebaut — null Abhängigkeiten",
+            "TCP-Forwarder auf Network.framework gebaut, null Abhängigkeiten",
             "Natives NAT-PMP (RFC 6886) Router-Mapping ohne Config",
             "Gib einen Port mit einem Toggle in deinem LAN frei",
             "Aktive Verbindungen auf einer Karte; per Klick an Blip übergeben",
@@ -327,20 +327,20 @@ export const de: Translation = {
     alfred: {
       tagline: "Hol dir die Festplatte zurück.",
       description:
-        "Ein nativer Menüleisten-Page, der sicher zu löschenden Entwickler-Müll findet — node_modules, Cargo target/, Build- und Test-Caches, Xcode DerivedData, Paketmanager-Caches — sortiert ihn nach Größe absteigend und verschiebt ihn in den Papierkorb. Mit einem Klick wiederherstellbar.",
+        "Ein nativer Menüleisten-Page, der sicher zu löschenden Entwickler-Müll findet (node_modules, Cargo target/, Build- und Test-Caches, Xcode DerivedData, Paketmanager-Caches), sortiert ihn nach Größe absteigend und verschiebt ihn in den Papierkorb. Mit einem Klick wiederherstellbar.",
       catalogTagline: "Hol dir den Speicherplatz zurück, den Entwickler-Müll hortet.",
       catalogDescription:
-        "Ein nativer Menüleisten-Page, der sicher zu löschenden Entwickler-Müll findet — node_modules, Cargo target/, Build- und Test-Caches, Xcode DerivedData, Paketmanager-Caches — sortiert ihn nach Größe absteigend und verschiebt ihn in den Papierkorb (wiederherstellbar).",
+        "Ein nativer Menüleisten-Page, der sicher zu löschenden Entwickler-Müll findet (node_modules, Cargo target/, Build- und Test-Caches, Xcode DerivedData, Paketmanager-Caches), sortiert ihn nach Größe absteigend und verschiebt ihn in den Papierkorb (wiederherstellbar).",
       requirements: "macOS 14+  ·  Apple Silicon  ·  Kostenlos  ·  Developer ID signiert",
       featuresHeading: "Finde ihn. Wirf ihn raus. Hol die Festplatte zurück.",
       features: [
         {
           title: "Finde den Müll, das Größte zuerst",
-          body: "node_modules, Cargo target/, Build- und Test-Caches, Xcode DerivedData, Homebrew/Yarn/npm-Caches — gescannt, dimensioniert und nach Größe absteigend aufgelistet, damit du genau weißt, was deine Festplatte hortet.",
+          body: "node_modules, Cargo target/, Build- und Test-Caches, Xcode DerivedData, Homebrew/Yarn/npm-Caches, gescannt, dimensioniert und nach Größe absteigend aufgelistet, damit du genau weißt, was deine Festplatte hortet.",
         },
         {
           title: "Sicher zu löschen, von Design her",
-          body: "Alfred berührt nur regenerierbare Ordner — Caches, Build-Artefakte, Abhängigkeitsbäume — niemals den Quellcode. Alles geht in den Papierkorb, mit einem Klick wiederherstellbar, falls du es dir anders überlegst.",
+          body: "Alfred berührt nur regenerierbare Ordner (Caches, Build-Artefakte, Abhängigkeitsbäume), niemals den Quellcode. Alles geht in den Papierkorb, mit einem Klick wiederherstellbar, falls du es dir anders überlegst.",
         },
         {
           title: "Aus der Menüleiste",
@@ -352,12 +352,12 @@ export const de: Translation = {
           badge: "Zu Diensten",
           title: "Vom Größten zum Kleinsten, höflich, unerbittlich",
           description:
-            "Ein Diener in der Menüleiste, der genau weiß, welche Ordner sicher entbehrlich sind. node_modules, Cargo target/, Xcode DerivedData, Homebrew-Caches, Yarn-Caches — Alfred findet sie, wiegt sie und präsentiert sie auf einem silbernen Tablett.",
+            "Ein Diener in der Menüleiste, der genau weiß, welche Ordner sicher entbehrlich sind. node_modules, Cargo target/, Xcode DerivedData, Homebrew-Caches, Yarn-Caches, Alfred findet sie, wiegt sie und präsentiert sie auf einem silbernen Tablett.",
           bullets: [
             "Scannt jeden gängigen Dev-Cruft-Ordner deiner Projekte",
             "Nach Größe sortiert, damit die Gewinne offensichtlich sind",
             "Skip-Regeln pro Ordner, damit deine Lieblinge unangetastet bleiben",
-            "Lebt in der Menüleiste — scanne, wenn dir danach ist",
+            "Lebt in der Menüleiste, scanne, wenn dir danach ist",
           ],
           imageAlt: "3D-Miniaturdiener mit grüner Schärpe präsentiert ein silbernes Tablett mit Dev-Cruft",
         },
@@ -365,9 +365,9 @@ export const de: Translation = {
           badge: "Sicher by Design",
           title: "Hol die Gigabytes zurück, behalte den Code",
           description:
-            "Alfred berührt nur regenerierbare Ordner — Caches, Build-Artefakte, Abhängigkeitsbäume — niemals deinen Quellcode. Alles wandert in den Papierkorb, also ist ein Fehler einen Klick vom Rückgängigmachen entfernt.",
+            "Alfred berührt nur regenerierbare Ordner (Caches, Build-Artefakte, Abhängigkeitsbäume), niemals deinen Quellcode. Alles wandert in den Papierkorb, also ist ein Fehler einen Klick vom Rückgängigmachen entfernt.",
           bullets: [
-            "Berührt nur regenerierbare Ordner — Code ist immer sicher",
+            "Berührt nur regenerierbare Ordner, Code ist immer sicher",
             "Dateien gehen in den Papierkorb, nicht nach /dev/null",
             "Ein Klick stellt alles wieder her, wenn du es dir anders überlegst",
             "Laufende Summe zeigt, wie viel du zurückgewonnen hast",
@@ -379,16 +379,16 @@ export const de: Translation = {
     uninstaller: {
       tagline: "Apps + their crumbs, in one click.",
       description:
-        "Dragging an app to the Trash leaves behind preferences, caches, sandbox containers, login items, and crash logs. Uninstaller finds the whole pile for any installed app and moves it all to Trash in one click — with a clear list of what's about to go and a separate badge for system-owned files it can't touch.",
+        "Dragging an app to the Trash leaves behind preferences, caches, sandbox containers, login items, and crash logs. Uninstaller finds the whole pile for any installed app and moves it all to Trash in one click, with a clear list of what's about to go and a separate badge for system-owned files it can't touch.",
       catalogTagline: "Apps + their crumbs, in one click.",
       catalogDescription:
-        "Native menu-bar uninstaller. Finds every leftover an app keeps on disk — preferences, caches, sandbox containers, login items, crash logs — and moves the whole pile to Trash in one click.",
+        "Native menu-bar uninstaller. Finds every leftover an app keeps on disk (preferences, caches, sandbox containers, login items, crash logs), and moves the whole pile to Trash in one click.",
       requirements: "macOS 14+  ·  Apple Silicon  ·  Free  ·  Developer ID signed",
       featuresHeading: "Three reasons to use Uninstaller",
       features: [
         {
           title: "One click, whole pile",
-          body: "Pick an app, see every residue path with sizes, hit Uninstall. The bundle and every leftover go to Trash together — recoverable in one click, no separate cleanup pass.",
+          body: "Pick an app, see every residue path with sizes, hit Uninstall. The bundle and every leftover go to Trash together, recoverable in one click, no separate cleanup pass.",
         },
         {
           title: "Login items + LaunchAgents",
@@ -396,7 +396,7 @@ export const de: Translation = {
         },
         {
           title: "Honest about admin",
-          body: "System paths under /Library and /private/var/db/receipts are listed but flagged — Uninstaller won't ask for your password to scrub things you probably don't care about.",
+          body: "System paths under /Library and /private/var/db/receipts are listed but flagged, Uninstaller won't ask for your password to scrub things you probably don't care about.",
         },
       ],
       showcase: [
@@ -404,11 +404,11 @@ export const de: Translation = {
           badge: "One sweep, whole pile",
           title: "Apps and their crumbs, gone together",
           description:
-            "Pick an app and Uninstaller scans the dozen-plus standard residue locations — Preferences, Application Support, Caches, Saved State, Logs, Containers, Group Containers, HTTP Storages, WebKit data, Cookies, LaunchAgents, crash reports. The bundle and every leftover go to the Trash together, in a single batched Finder request.",
+            "Pick an app and Uninstaller scans the dozen-plus standard residue locations, Preferences, Application Support, Caches, Saved State, Logs, Containers, Group Containers, HTTP Storages, WebKit data, Cookies, LaunchAgents, crash reports. The bundle and every leftover go to the Trash together, in a single batched Finder request.",
           bullets: [
-            "Twelve+ residue locations probed per app — by bundle id AND display name so apps that store under either layout don't get missed",
+            "Twelve+ residue locations probed per app, by bundle id AND display name so apps that store under either layout don't get missed",
             "Sized biggest-first so you can see exactly what's about to be reclaimed",
-            "Trash by default — recoverable in one click if you change your mind",
+            "Trash by default, recoverable in one click if you change your mind",
             "Single batched recycle call so macOS shows one auth prompt for the whole pile, not one per file",
           ],
           imageAlt: "Cute 3D sanitation worker character in a red coverall and red hardhat sweeping a row of colourful app squircles into a chunky white trash bag",
@@ -417,12 +417,12 @@ export const de: Translation = {
           badge: "Honest about admin",
           title: "App Management permission, asked once",
           description:
-            "macOS 13+ gates modifying apps in /Applications behind App Management TCC. Uninstaller routes the trash request through Finder so you get a single, clear permission prompt the first time — and a deep-link to System Settings → Privacy & Security → App Management if anything's still denied after.",
+            "macOS 13+ gates modifying apps in /Applications behind App Management TCC. Uninstaller routes the trash request through Finder so you get a single, clear permission prompt the first time, and a deep-link to System Settings → Privacy & Security → App Management if anything's still denied after.",
           bullets: [
             "Single Finder-mediated prompt the first time, not one per app removed",
-            "System-owned residue under /Library and /private/var/db/receipts is listed with an 'admin' badge but never silently fails — you see exactly what was skipped",
+            "System-owned residue under /Library and /private/var/db/receipts is listed with an 'admin' badge but never silently fails, you see exactly what was skipped",
             "Permission-shaped failures surface a one-line tip + a button that opens the right Privacy & Security pane directly",
-            "Apple's own apps (com.apple.*) are filtered out of the picker — never offered for removal",
+            "Apple's own apps (com.apple.*) are filtered out of the picker, never offered for removal",
           ],
           imageAlt: "Cute 3D sanitation worker character in red holding up a Privacy & Security clipboard with a green checkmark, three app icons fading into sparkles on his right",
         },
@@ -432,7 +432,7 @@ export const de: Translation = {
     blip: {
       tagline: "Sieh, was rausgeht.",
       description:
-        "Sieh genau, wohin deine Daten gehen, wer sie sammelt und schalte sie ab — alles auf einer sehr hübschen 3D-Karte.",
+        "Sieh genau, wohin deine Daten gehen, wer sie sammelt und schalte sie ab, alles auf einer sehr hübschen 3D-Karte.",
       catalogTagline: "Dein Computer hat hinter deinem Rücken geredet.",
       catalogDescription:
         "Echtzeit-Netzwerküberwachung mit einer 3D-Verbindungskarte, intelligenter Firewall, DNS-Blockierung, Unterseekabel-Routing und Bandbreitenanalyse. Sieh genau, wohin deine Daten gehen.",
@@ -460,7 +460,7 @@ export const de: Translation = {
             "Jede App auf deinem Computer telefoniert heimlich nach Hause. Blip stellt sie alle auf eine 3D-Karte, damit du das Chaos in Echtzeit beobachten kannst.",
           bullets: [
             "Verbindungen verlaufen über echte Unterseekabel über Ozeane hinweg",
-            "Dienst-farbige Bögen — erkenne sofort Google, Discord, Apple und Hunderte mehr",
+            "Dienst-farbige Bögen, erkenne sofort Google, Discord, Apple und Hunderte mehr",
             "Animierte Partikel zeigen Daten, die in beide Richtungen fließen",
             "Hop-für-Hop-Traceroute zeigt den tatsächlichen Pfad deiner Pakete",
           ],
@@ -474,7 +474,7 @@ export const de: Translation = {
           bullets: [
             "Strenger Modus: schuldig bis das Gegenteil bewiesen ist",
             "Bandbreiten-Balken pro App entlarven die Datenfresser",
-            "Gezielte Regeln — erlaube Port 443, aber blockiere alles andere",
+            "Gezielte Regeln, erlaube Port 443, aber blockiere alles andere",
             "Killswitch: ein Klick, null Internet, sofortige Stille",
           ],
           imageAlt: "Blip-Firewall zeigt App-Level-Netzwerkzugriffskontrollen",
@@ -483,12 +483,12 @@ export const de: Translation = {
           badge: "Guard",
           title: "200.000 Tracker blockiert, bevor sie überhaupt verbinden",
           description:
-            "Dein DNS ist ein Petze. Jede App, jedes Werbe-SDK, jeder Analytik-Ping — Guard fängt sie an der Tür. Sieh, wer versucht, nach Hause zu telefonieren, und schalte sie ab.",
+            "Dein DNS ist ein Petze. Jede App, jedes Werbe-SDK, jeder Analytik-Ping, Guard fängt sie an der Tür. Sieh, wer versucht, nach Hause zu telefonieren, und schalte sie ab.",
           bullets: [
             "DNS-Blocklisten vernichten über 200.000 Tracker- und Werbedomains auf Sicht",
-            "Echtzeit-Anfrage-Log — beobachte jede Suche live",
+            "Echtzeit-Anfrage-Log, beobachte jede Suche live",
             "Tracker-Ranking zeigt die hartnäckigsten Übeltäter",
-            "Geschichtet mit der Firewall — zwei Mauern, null Gnade",
+            "Geschichtet mit der Firewall, zwei Mauern, null Gnade",
           ],
           imageAlt: "Blip Guard zeigt DNS-Blockierung und Tracker-Erkennung",
         },
@@ -496,12 +496,12 @@ export const de: Translation = {
           badge: "Visualisierung",
           title: "Das Internet sind einfach nasse Kabel",
           description:
-            "Dein YouTube-Video hat drei Ozeane auf einem Kabel dünner als ein Gartenschlauch überquert. Blip zeigt dir genau welches — über 700 echte Unterseekabel-Routen, leuchtend, wenn deine Daten durch sie fließen.",
+            "Dein YouTube-Video hat drei Ozeane auf einem Kabel dünner als ein Gartenschlauch überquert. Blip zeigt dir genau welches, über 700 echte Unterseekabel-Routen, leuchtend, wenn deine Daten durch sie fließen.",
           bullets: [
             "Echte Unterseekabel-Routen von TeleGeography auf dem Meeresgrund kartiert",
             "Aktive Kabel leuchten, wenn dein Traffic durch sie fließt",
             "Marschierende Strichpartikel zeigen Upload- vs. Download-Richtung",
-            "Ping-basierte Geschwindigkeit — schnelle Verbindungen fließen schnell, langsame kriechen",
+            "Ping-basierte Geschwindigkeit, schnelle Verbindungen fließen schnell, langsame kriechen",
           ],
           imageAlt: "Blip-Visualisierung zeigt Unterseekabel und Datenfluss",
         },
@@ -509,7 +509,7 @@ export const de: Translation = {
           badge: "Traceroute",
           title: "14 Hops durch 6 Städte, um eine Webseite zu laden",
           description:
-            "Jedes Paket springt durch ein Dutzend Router, bevor es ankommt. Blip verfolgt die Route — Hop für Hop, Stadt für Stadt, Kabel für Kabel — und malt sie auf die Karte.",
+            "Jedes Paket springt durch ein Dutzend Router, bevor es ankommt. Blip verfolgt die Route (Hop für Hop, Stadt für Stadt, Kabel für Kabel), und malt sie auf die Karte.",
           bullets: [
             "Hop-für-Hop-Markierungen direkt auf der 3D-Karte überlagert",
             "Latenz farbig: grün ist schnell, bernstein ist okay, rot ist Schmerz",
@@ -533,11 +533,11 @@ export const de: Translation = {
       features: [
         {
           title: "Ein skeuomorpher Kassettenrekorder",
-          body: "Eine schwebende Seitenleiste mit einem fotorealistischen Rekorder: animierte Spulen, VU-Meter und physische Tasten. Drück Aufnahme und sprich — globale Hotkeys lassen dich aus jeder App aufnehmen.",
+          body: "Eine schwebende Seitenleiste mit einem fotorealistischen Rekorder: animierte Spulen, VU-Meter und physische Tasten. Drück Aufnahme und sprich, globale Hotkeys lassen dich aus jeder App aufnehmen.",
         },
         {
           title: "Live-Transkription, auf dem Gerät",
-          body: "Apples SFSpeechRecognizer transkribiert, während du sprichst — keine Cloud, keine API-Schlüssel. Klicke ein beliebiges Wort im Transkript an, um zu diesem Moment in der Aufnahme zu springen.",
+          body: "Apples SFSpeechRecognizer transkribiert, während du sprichst, keine Cloud, keine API-Schlüssel. Klicke ein beliebiges Wort im Transkript an, um zu diesem Moment in der Aufnahme zu springen.",
         },
         {
           title: "Eine Schuhschachtel voller Kassetten",
@@ -590,7 +590,7 @@ export const de: Translation = {
     peephole: {
       tagline: "Sieh, wer zuschaut.",
       description:
-        "Ein Wachposten in der Menüleiste für deine Kamera und dein Mikrofon. Peephole zeigt, welche Apps sie gerade verwenden, hält einen Zugriffsverlauf und benachrichtigt dich, wenn etwas sie einschaltet — keine speziellen Berechtigungen, keine Kernel-Erweiterungen.",
+        "Ein Wachposten in der Menüleiste für deine Kamera und dein Mikrofon. Peephole zeigt, welche Apps sie gerade verwenden, hält einen Zugriffsverlauf und benachrichtigt dich, wenn etwas sie einschaltet, keine speziellen Berechtigungen, keine Kernel-Erweiterungen.",
       catalogTagline: "Sieh, wer zuschaut.",
       catalogDescription:
         "Ein Wachposten in der Menüleiste für deine Kamera und dein Mikrofon: welche Apps sie gerade verwenden, ein Zugriffsverlauf und eine Benachrichtigung in dem Moment, in dem etwas sie einschaltet.",
@@ -603,7 +603,7 @@ export const de: Translation = {
         },
         {
           title: "Zugriffsverlauf",
-          body: "Ein laufendes Protokoll, welche App die Kamera oder das Mikro wann verwendet hat — scroll durch die Aktivität des Tages zurück.",
+          body: "Ein laufendes Protokoll, welche App die Kamera oder das Mikro wann verwendet hat, scroll durch die Aktivität des Tages zurück.",
         },
         {
           title: "Benachrichtigungen",
@@ -615,12 +615,12 @@ export const de: Translation = {
           badge: "Augen & Ohren",
           title: "Wisse den Moment, in dem dich etwas beobachtet",
           description:
-            "Das Peephole-Glyph in der Menüleiste kippt in dem Moment, in dem Kamera oder Mikrofon aktiv werden. Tippe drauf und du siehst genau, welche App sie angeschaltet hat — und du entscheidest, ob das so sein sollte.",
+            "Das Peephole-Glyph in der Menüleiste kippt in dem Moment, in dem Kamera oder Mikrofon aktiv werden. Tippe drauf und du siehst genau, welche App sie angeschaltet hat, und du entscheidest, ob das so sein sollte.",
           bullets: [
             "Live-Status für Kamera und Mikrofon, immer sichtbar",
             "Glyph kippt in dem Moment, in dem der Zugriff beginnt oder endet",
             "Tippe, um die verantwortliche App und ihr geöffnetes Gerät zu sehen",
-            "Keine speziellen Rechte, keine Kernel-Extensions — reiner Userspace",
+            "Keine speziellen Rechte, keine Kernel-Extensions, reiner Userspace",
           ],
           imageAlt: "3D-Chrom-Webcam mit leuchtendem mintgrünen Schlitz-Auge und einem Chrom-Mikrofon daneben",
         },
@@ -628,12 +628,12 @@ export const de: Translation = {
           badge: "Belege",
           title: "Ein Log jedes Zugriffs, mit Benachrichtigung wenn's drauf ankommt",
           description:
-            "Scrolle durch die Tagesaktivität von Kamera und Mikrofon — wer sie benutzt hat, wann, wie lange. Optionale Benachrichtigungen feuern in dem Moment, in dem der Zugriff beginnt, damit eine Überraschungs-Aktivierung nie unbemerkt bleibt.",
+            "Scrolle durch die Tagesaktivität von Kamera und Mikrofon, wer sie benutzt hat, wann, wie lange. Optionale Benachrichtigungen feuern in dem Moment, in dem der Zugriff beginnt, damit eine Überraschungs-Aktivierung nie unbemerkt bleibt.",
           bullets: [
             "Per-App-History mit Zeitstempeln und Dauer",
             "Benachrichtigung bei jedem neuen Zugriff (Toggle pro Gerät)",
             "Filtere nach App, Gerät oder Zeitfenster",
-            "History überlebt Neustarts — nichts entwischt",
+            "History überlebt Neustarts, nichts entwischt",
           ],
           imageAlt: "3D-Chrom-Türspion-Scheibe mit leuchtender Mint-Iris und einem Stapel Verlaufskarten dahinter",
         },
@@ -643,7 +643,7 @@ export const de: Translation = {
     quarantine: {
       tagline: "Prüfe jeden Download.",
       description:
-        "Ein Inspektor in der Menüleiste für ~/Downloads. Für jede neue Datei bringt er die Quarantäne-Ursprungs-URL, den Gatekeeper/Codesign-Status, SHA-256 und ein optionales VirusTotal-Urteil ans Licht — dann benachrichtigt er dich, damit du sie prüfen kannst, bevor du sie öffnest.",
+        "Ein Inspektor in der Menüleiste für ~/Downloads. Für jede neue Datei bringt er die Quarantäne-Ursprungs-URL, den Gatekeeper/Codesign-Status, SHA-256 und ein optionales VirusTotal-Urteil ans Licht, dann benachrichtigt er dich, damit du sie prüfen kannst, bevor du sie öffnest.",
       catalogTagline: "Vertraue, aber überprüfe jeden Download.",
       catalogDescription:
         "Ein Inspektor in der Menüleiste für ~/Downloads: Quarantäne-Ursprung, Gatekeeper/Codesign-Status, SHA-256 und ein optionales VirusTotal-Urteil für jede neue Datei, mit einer Benachrichtigung zur Prüfung.",
@@ -652,7 +652,7 @@ export const de: Translation = {
       features: [
         {
           title: "Ursprung & Quarantäne",
-          body: "Sieh genau, woher eine Datei kam, über ihr com.apple.quarantine-Attribut — der Agent, der sie heruntergeladen hat, und die Quell-URL.",
+          body: "Sieh genau, woher eine Datei kam, über ihr com.apple.quarantine-Attribut, der Agent, der sie heruntergeladen hat, und die Quell-URL.",
         },
         {
           title: "Gatekeeper & Hash",
@@ -668,12 +668,12 @@ export const de: Translation = {
           badge: "Isolierkammer",
           title: "Jeder neue Download, isoliert bis du grünes Licht gibst",
           description:
-            "In dem Moment, in dem eine Datei in ~/Downloads landet, holt Quarantine sie auf den Inspektionstisch. Du siehst genau, woher sie kommt — Agent, Quell-URL, Quarantäne-Attribut — bevor du irgendwo doppelt geklickt hast.",
+            "In dem Moment, in dem eine Datei in ~/Downloads landet, holt Quarantine sie auf den Inspektionstisch. Du siehst genau, woher sie kommt (Agent, Quell-URL, Quarantäne-Attribut), bevor du irgendwo doppelt geklickt hast.",
           bullets: [
             "Beobachtet ~/Downloads in Echtzeit via FSEvents",
             "Liest com.apple.quarantine: die App, die geladen hat, und die Quell-URL",
             "Benachrichtigt dich bei jeder neuen Ankunft",
-            "Eine Zeile pro Datei — die ganze Warteschlange auf einen Blick",
+            "Eine Zeile pro Datei, die ganze Warteschlange auf einen Blick",
           ],
           imageAlt: "3D-Glas-Isolierkapsel mit einem schwebenden Paket darin und genehmigten/abgelehnten Paketen drumherum",
         },
@@ -681,10 +681,10 @@ export const de: Translation = {
           badge: "Inspizieren",
           title: "Signatur, Hash und ein Urteil",
           description:
-            "Für jede Datei zeigt Quarantine die Gatekeeper-Bewertung, den Codesign-Status und den SHA-256. Wirf einen VirusTotal-API-Key rein und das Reputations-Urteil erscheint inline — prüfe, bevor du öffnest.",
+            "Für jede Datei zeigt Quarantine die Gatekeeper-Bewertung, den Codesign-Status und den SHA-256. Wirf einen VirusTotal-API-Key rein und das Reputations-Urteil erscheint inline, prüfe, bevor du öffnest.",
           bullets: [
             "spctl-Bewertung + codesign --display in einer einzigen Zeile",
-            "SHA-256 bei der Ankunft berechnet — bereit zum Copy-Paste",
+            "SHA-256 bei der Ankunft berechnet, bereit zum Copy-Paste",
             "Optionales VirusTotal-Urteil inline (BYO API Key)",
             "Im Finder zeigen oder direkt aus dem Menü in den Papierkorb",
           ],
@@ -696,16 +696,16 @@ export const de: Translation = {
     sentry: {
       tagline: "Beobachte die dunklen Ecken.",
       description:
-        "Ein Menüleisten-Prüfer für macOS-Persistenz. Er zählt LaunchAgents & Daemons, Anmeldeobjekte, cron und Shell-Startdateien auf, prüft die Code-Signatur und Notarisierung jedes Ziels und alarmiert dich in dem Moment, in dem ein neues oder geändertes Element erscheint — und lässt dich dann inspizieren, blockieren oder wiederherstellen, direkt aus der Menüleiste.",
+        "Ein Menüleisten-Prüfer für macOS-Persistenz. Er zählt LaunchAgents & Daemons, Anmeldeobjekte, cron und Shell-Startdateien auf, prüft die Code-Signatur und Notarisierung jedes Ziels und alarmiert dich in dem Moment, in dem ein neues oder geändertes Element erscheint, und lässt dich dann inspizieren, blockieren oder wiederherstellen, direkt aus der Menüleiste.",
       catalogTagline: "Wisse den Moment, in dem sich etwas einnistet.",
       catalogDescription:
-        "Ein Menüleisten-Prüfer für macOS-Persistenz — LaunchAgents, Anmeldeobjekte, cron und Shell-Startdateien — mit Signaturprüfungen und Alarmen, wenn etwas Neues oder Geändertes erscheint. Inspiziere, blockiere oder stelle eines davon wieder her.",
+        "Ein Menüleisten-Prüfer für macOS-Persistenz (LaunchAgents, Anmeldeobjekte, cron und Shell-Startdateien), mit Signaturprüfungen und Alarmen, wenn etwas Neues oder Geändertes erscheint. Inspiziere, blockiere oder stelle eines davon wieder her.",
       requirements: "macOS 14+  ·  Apple Silicon  ·  Kostenlos  ·  Developer ID signiert",
       featuresHeading: "Beobachte die Orte, an denen sich Malware versteckt.",
       features: [
         {
           title: "Jeder Persistenzvektor",
-          body: "LaunchAgents & Daemons, Anmeldeobjekte, cron und Shell-Startdateien — jeder Ort, an dem sich etwas einnisten kann, um einen Neustart zu überleben, in einer einzigen Menüleisten-Liste.",
+          body: "LaunchAgents & Daemons, Anmeldeobjekte, cron und Shell-Startdateien, jeder Ort, an dem sich etwas einnisten kann, um einen Neustart zu überleben, in einer einzigen Menüleisten-Liste.",
         },
         {
           title: "Signaturbewusst",
@@ -713,7 +713,7 @@ export const de: Translation = {
         },
         {
           title: "Alarme bei Änderung, blockiere, was nicht da sein sollte",
-          body: "Snapshot-Vergleich benachrichtigt dich in dem Moment, in dem ein neues Persistenzelement erscheint oder sich ändert. Inspiziere die plist oder das Skript, dann blockiere es — Sentry entlädt es und legt es als .sentry-disabled beiseite. Mit einem Klick reversibel.",
+          body: "Snapshot-Vergleich benachrichtigt dich in dem Moment, in dem ein neues Persistenzelement erscheint oder sich ändert. Inspiziere die plist oder das Skript, dann blockiere es, Sentry entlädt es und legt es als .sentry-disabled beiseite. Mit einem Klick reversibel.",
         },
       ],
       showcase: [
@@ -721,12 +721,12 @@ export const de: Translation = {
           badge: "Wachturm",
           title: "Jede dunkle Ecke, beleuchtet",
           description:
-            "LaunchAgents & Daemons, Login-Items, cron und Shell-rc-Dateien — Sentry hält eine Laterne über jeden Ort, an dem sich etwas leise einnisten könnte. Eine Menüleisten-Liste, signaturgeprüft, bereit zur Inspektion.",
+            "LaunchAgents & Daemons, Login-Items, cron und Shell-rc-Dateien, Sentry hält eine Laterne über jeden Ort, an dem sich etwas leise einnisten könnte. Eine Menüleisten-Liste, signaturgeprüft, bereit zur Inspektion.",
           bullets: [
             "Listet jeden macOS-Persistenz-Vektor in einem Panel",
             "Jedes Ziel klassifiziert als notarisiert / signiert / unsigniert via spctl + codesign",
             "Öffne plist oder Script direkt aus der Zeile",
-            "Lebt in der Menüleiste — kein Fenster oben halten",
+            "Lebt in der Menüleiste, kein Fenster oben halten",
           ],
           imageAlt: "3D-Chromlaterne mit leuchtendem violettem Kristall und Auge-Anhängern",
         },
@@ -734,11 +734,11 @@ export const de: Translation = {
           badge: "Manifest",
           title: "Bemerke den Moment, in dem etwas Neues auftaucht",
           description:
-            "Sentry macht einen Snapshot deines Persistenz-Zustands und diff't ihn. In dem Moment, in dem ein neuer Agent, Login-Item oder rc-File-Change landet, wirst du benachrichtigt — mit einem Ein-Klick-Block, voll umkehrbar.",
+            "Sentry macht einen Snapshot deines Persistenz-Zustands und diff't ihn. In dem Moment, in dem ein neuer Agent, Login-Item oder rc-File-Change landet, wirst du benachrichtigt, mit einem Ein-Klick-Block, voll umkehrbar.",
           bullets: [
             "Snapshot-Diff fängt jedes neue oder veränderte Persistenz-Item",
             "Blockieren entlädt das Item und legt es als .sentry-disabled beiseite",
-            "Mit einem Klick wiederherstellen — nichts Destruktives passiert deinem System",
+            "Mit einem Klick wiederherstellen, nichts Destruktives passiert deinem System",
             "Benachrichtigung tippt dir vor dem nächsten Neustart auf die Schulter",
           ],
           imageAlt: "3D-Schriftrolle mit violetten Wachssiegeln auf einem Chrom-Pult, mit einer Chrom-Alarmglocke",
@@ -762,7 +762,7 @@ export const de: Translation = {
         },
         {
           title: "Sixteen languages, one editor",
-          body: "Python, TypeScript, Go, Rust, Swift, C++, Java, Kotlin, Ruby, Elixir, Zig, Lua, Bash, SQL, HTML/CSS, and Markdown. Built-in language servers, syntax highlighting, and per-language test runners — never leave the editor.",
+          body: "Python, TypeScript, Go, Rust, Swift, C++, Java, Kotlin, Ruby, Elixir, Zig, Lua, Bash, SQL, HTML/CSS, and Markdown. Built-in language servers, syntax highlighting, and per-language test runners, never leave the editor.",
         },
         {
           title: "A tutor on your laptop, not in the cloud",
@@ -774,12 +774,12 @@ export const de: Translation = {
           badge: "Lessons that grade themselves",
           title: "Chapter → exercise → hidden test",
           description:
-            "Every chapter expands into a sequence: a short read, an exercise scaffold, and a hidden test suite that runs against your code in the background. The test only reveals itself when you ask — so you learn from the failure, not from a leaked answer.",
+            "Every chapter expands into a sequence: a short read, an exercise scaffold, and a hidden test suite that runs against your code in the background. The test only reveals itself when you ask, so you learn from the failure, not from a leaked answer.",
           bullets: [
-            "Hidden tests run in a sandboxed runner per supported language — no Docker, no shell access required",
+            "Hidden tests run in a sandboxed runner per supported language, no Docker, no shell access required",
             "Failures surface as a hint first, the full diff second, and only the test source on explicit request",
             "Exercises remember your in-progress code across sessions; re-opening picks up exactly where you left off",
-            "Chapters re-generate cleanly when you swap in a newer edition of the same book — your progress carries over by chapter title",
+            "Chapters re-generate cleanly when you swap in a newer edition of the same book, your progress carries over by chapter title",
           ],
           imageAlt: "Cute 3D white python coiled, holding three floating lesson cards labelled Chapter / Exercise / Quiz with its tail-tip ribbons",
         },
@@ -787,11 +787,11 @@ export const de: Translation = {
           badge: "Habit, not homework",
           title: "Streak fire that survives weekends",
           description:
-            "A streak that's only kind on the days you forget. Two free \"weekend tokens\" a month let the fire keep burning when life shows up. The flame's there to nudge — never to shame.",
+            "A streak that's only kind on the days you forget. Two free \"weekend tokens\" a month let the fire keep burning when life shows up. The flame's there to nudge, never to shame.",
           bullets: [
             "Two skip-tokens regenerate monthly; a single failed day doesn't reset weeks of work",
             "Tiny daily target (one lesson) keeps the bar realistic; you can always do more on a good day",
-            "Streak history lives in a local SQLite file, exportable and inspectable — no cloud account required",
+            "Streak history lives in a local SQLite file, exportable and inspectable, no cloud account required",
             "Notifications respect Focus modes; \"don't bug me, just keep counting\" is one tap from the menu bar",
           ],
           imageAlt: "Cute 3D white python with a small flame balanced on its nose, four calendar squares with red checkmarks drifting in an arc around it",
@@ -807,11 +807,11 @@ export const de: Translation = {
       catalogDescription:
         "Führe vorkonfigurierte SSH-Befehle auf entfernten Servern von deiner Apple Watch aus. Funktioniert über Mobilfunk, unterstützt Siri und verschlüsselt alles Ende-zu-Ende.",
       requirements: "watchOS  ·  iOS  ·  iPadOS  ·  macOS  ·  Kostenlos & Open Source",
-      featuresHeading: "Eine Fernbedienung für deine Server — am Handgelenk.",
+      featuresHeading: "Eine Fernbedienung für deine Server, am Handgelenk.",
       features: [
         {
           title: "Eine echte Watch-App, kein Benachrichtigungs-Shim",
-          body: "Native watchOS-Serverliste mit Live-Status-Punkten, angeheftete Befehle über den Aktionsknopf, Bestätigung für gefährliche Befehle und mit der Digital Crown scrollbare Ausgabe. Mobilfunkfähig — kein Telefon erforderlich.",
+          body: "Native watchOS-Serverliste mit Live-Status-Punkten, angeheftete Befehle über den Aktionsknopf, Bestätigung für gefährliche Befehle und mit der Digital Crown scrollbare Ausgabe. Mobilfunkfähig, kein Telefon erforderlich.",
         },
         {
           title: "Companion + Mac, im Gleichschritt",
@@ -827,7 +827,7 @@ export const de: Translation = {
           badge: "Watch-App",
           title: "Starte Prod von deinem Handgelenk neu.",
           description:
-            "Native watchOS-App mit Serverliste, Befehlsausführung und haptischem Feedback. Tippe einen Befehl, bestätige, fertig. Echte Ausgabe mit der Digital Crown scrollbar. Funktioniert über Mobilfunk — kein Telefon nötig.",
+            "Native watchOS-App mit Serverliste, Befehlsausführung und haptischem Feedback. Tippe einen Befehl, bestätige, fertig. Echte Ausgabe mit der Digital Crown scrollbar. Funktioniert über Mobilfunk, kein Telefon nötig.",
           bullets: [
             "Serverliste mit Live-Status-Punkten (grün/rot)",
             "Angeheftete Befehle für schnellen Zugriff über Aktionsknopf",
@@ -991,25 +991,25 @@ export const de: Translation = {
     base: {
       tagline: "Primitiven. Tokens. Fertig.",
       description:
-        "70 Primitiven, 8 Design-Token-Kategorien, Dunkelmodus und null Meinungen zu deinem Stack. Saubere, komponierbare React-Komponenten, die überall funktionieren — auch im Launcher.",
-      catalogTagline: "Universal-Design-Toolkit — monochrom, plattformunabhängig.",
+        "70 Primitiven, 8 Design-Token-Kategorien, Dunkelmodus und null Meinungen zu deinem Stack. Saubere, komponierbare React-Komponenten, die überall funktionieren, auch im Launcher.",
+      catalogTagline: "Universal-Design-Toolkit, monochrom, plattformunabhängig.",
       catalogDescription:
-        "70 Primitiven, 8 Design-Token-Kategorien, Dunkelmodus und null Meinungen zu deinem Stack. Saubere, komponierbare React-Komponenten, die überall funktionieren — auch im Launcher.",
+        "70 Primitiven, 8 Design-Token-Kategorien, Dunkelmodus und null Meinungen zu deinem Stack. Saubere, komponierbare React-Komponenten, die überall funktionieren, auch im Launcher.",
       requirements: "Kostenlos & Open Source  ·  React  ·  TypeScript",
       featuresHeading: "Die Primitiven. Die Tokens. Der Schalter.",
       ctaLabel: "Quellcode ansehen",
       features: [
         {
           title: "70 produktionsreife Primitiven",
-          body: "Formulare, Layout, Daten, Feedback — jede Primitive, die du brauchst, keine, die du nicht brauchst. Eingaben, Tabellen, Kalender, Sparklines, Baumansichten, Farbwähler, Dialoge und mehr.",
+          body: "Formulare, Layout, Daten, Feedback, jede Primitive, die du brauchst, keine, die du nicht brauchst. Eingaben, Tabellen, Kalender, Sparklines, Baumansichten, Farbwähler, Dialoge und mehr.",
         },
         {
           title: "Ein Token-System, jede Plattform",
-          body: "Farbe, Typografie, Abstand, Radius, Elevation, Animation und Glassmorphism — alles als TypeScript-Tokens definiert, die zu CSS-Variablen oder React Native-Styles exportieren.",
+          body: "Farbe, Typografie, Abstand, Radius, Elevation, Animation und Glassmorphism, alles als TypeScript-Tokens definiert, die zu CSS-Variablen oder React Native-Styles exportieren.",
         },
         {
           title: "Hell und dunkel von Anfang an",
-          body: "Jede Komponente respektiert den Farbmodus automatisch — Systemeinstellungs-Erkennung, manueller Schalter mit localStorage und Glassmorphism, das sich in beiden Modi anpasst.",
+          body: "Jede Komponente respektiert den Farbmodus automatisch, Systemeinstellungs-Erkennung, manueller Schalter mit localStorage und Glassmorphism, das sich in beiden Modi anpasst.",
         },
       ],
       showcase: [
@@ -1017,7 +1017,7 @@ export const de: Translation = {
           badge: "70 Primitiven",
           title: "Jede Komponente, die du brauchst, keine, die du nicht brauchst",
           description:
-            "Von Buttons und Eingaben bis hin zu Baumansichten, Farbwählern und Sparklines — 70 produktionsreife Primitiven, gebaut mit TypeScript und null externen Abhängigkeiten außer React.",
+            "Von Buttons und Eingaben bis hin zu Baumansichten, Farbwählern und Sparklines, 70 produktionsreife Primitiven, gebaut mit TypeScript und null externen Abhängigkeiten außer React.",
           bullets: [
             "Formulare: input, textarea, select, checkbox, radio, pin-input, number-input, color-picker",
             "Layout: grid, stack, container, center, spacer, separator",
@@ -1030,7 +1030,7 @@ export const de: Translation = {
           badge: "Design-Tokens",
           title: "Ein Token-System, jede Plattform",
           description:
-            "Farbe, Typografie, Abstand, Radius, Elevation, Animation und Glassmorphism — alles als TypeScript-Tokens definiert, die zu CSS-Variablen oder React Native-Styles exportieren.",
+            "Farbe, Typografie, Abstand, Radius, Elevation, Animation und Glassmorphism, alles als TypeScript-Tokens definiert, die zu CSS-Variablen oder React Native-Styles exportieren.",
           bullets: [
             "Monochrom-First-Farbpalette mit semantischen Aliassen",
             "Glassmorphism-Tokens für Milchglaseffekte",
@@ -1043,7 +1043,7 @@ export const de: Translation = {
           badge: "Dunkelmodus",
           title: "Hell und dunkel, von Tag eins integriert",
           description:
-            "Jede Komponente respektiert den Farbmodus von Anfang an. Keine zusätzliche Einrichtung, keine Theme-Wrapper zum Vergessen — funktioniert einfach mit Systemeinstellungen oder manuellem Schalter.",
+            "Jede Komponente respektiert den Farbmodus von Anfang an. Keine zusätzliche Einrichtung, keine Theme-Wrapper zum Vergessen, funktioniert einfach mit Systemeinstellungen oder manuellem Schalter.",
           bullets: [
             "Automatische Systemeinstellungs-Erkennung",
             "Manueller Schalter mit localStorage-Persistenz",

@@ -6,6 +6,7 @@
 
 import { CATALOG, type CatalogApp } from "./catalog";
 import type { Translation } from "../i18n/types";
+import type { SiteCopy } from "../i18n/site";
 
 /// Map a catalog id to the matching key in `t.apps`. The catalog uses
 /// "fishbones" as the legacy id for the Libre app; the translation
@@ -66,54 +67,14 @@ export function localizedCatalogRow(app: CatalogApp, t: Translation) {
   };
 }
 
-/// Localized category label. The catalog's `category` field is an
-/// English literal ("Developer Tools", "Privacy & Security", etc.);
-/// this maps it to the active locale's `categories.*` string.
-export function localizedCategory(
-  englishCategory: string,
-  t: Translation,
-): string {
-  switch (englishCategory) {
-    case "Developer Tools":
-      return t.categories.developerTools;
-    case "Privacy & Security":
-      return t.categories.privacySecurity;
-    case "Utilities":
-      return t.categories.utilities;
-    case "Learning":
-      return t.categories.learning;
-    case "Design":
-      return t.categories.design;
-    default:
-      return englishCategory;
-  }
-}
-
-/// Localized platform label list for the catalog row's `platforms`
-/// array (defaults to ["macOS"] when omitted). Joins with " · ".
-export function localizedPlatforms(
-  platforms: string[] | undefined,
-  t: Translation,
-): string {
-  const list = platforms ?? ["macOS"];
-  return list
-    .map((p) => {
-      switch (p) {
-        case "macOS":
-          return t.platforms.macos;
-        case "Windows":
-          return t.platforms.windows;
-        case "Linux":
-          return t.platforms.linux;
-        case "watchOS":
-          return t.platforms.watchos;
-        case "iOS":
-          return t.platforms.ios;
-        case "iPadOS":
-          return t.platforms.ipados;
-        default:
-          return p;
-      }
-    })
-    .join(" · ");
+/// The one line shown beside an app's name, in the active language.
+/// Apps with a block in the locale files use its catalogue tagline; the
+/// featured apps without one (Attack.fm, PrettyCardboard, Ghost.md) use
+/// their featured sentence, which site.ts carries in every language; the
+/// rest fall back to the catalogue's English line.
+export function taglineFor(app: CatalogApp, t: Translation, site: SiteCopy): string {
+  const key = appKey(app.id);
+  if (key) return t.apps[key].catalogTagline;
+  const featured = site.featured as Record<string, string | undefined>;
+  return featured[app.id] ?? app.tagline;
 }
