@@ -20,7 +20,8 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
+    /* erasableSyntaxOnly is off: vendor/@glacier/motion ships as TypeScript
+       source and its vocabulary (Motion, Speed, Ease, Spring) is real enums. */
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
