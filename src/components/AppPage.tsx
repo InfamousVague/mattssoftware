@@ -81,10 +81,11 @@ function hostOf(url: string): string {
   return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
 
-const DESKTOP: Record<string, { label: string; key: "mac" | "windows" | "linux" }> = {
+const DESKTOP: Record<string, { label: string; key: "mac" | "windows" | "linux" | "android" }> = {
   macOS: { label: "Mac", key: "mac" },
   Windows: { label: "Windows", key: "windows" },
   Linux: { label: "Linux", key: "linux" },
+  Android: { label: "Android", key: "android" },
 };
 
 function Actions({ cta, platforms, site }: Pick<AppPageProps, "cta" | "platforms" | "site">) {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 /// The latest GitHub release of an InfamousVague repo, resolved to one
-/// download per desktop platform by file extension.
+/// download per platform by file extension.
 ///
 /// Every failure path leaves `releaseUrl` (the releases page), which is
 /// always a working destination: the unauthenticated API is rate-limited
@@ -14,6 +14,7 @@ export interface ReleaseAssets {
   mac?: string;
   windows?: string;
   linux?: string;
+  android?: string;
 }
 
 const cache = new Map<string, Promise<ReleaseAssets>>();
@@ -38,8 +39,9 @@ async function fetchAssets(repo: string): Promise<ReleaseAssets> {
       const linux = find(
         (n) => n.endsWith(".appimage") || n.endsWith(".deb") || n.endsWith(".rpm"),
       );
-      if (mac || windows || linux) {
-        return { version: rel.tag_name || "", releaseUrl, mac, windows, linux };
+      const android = find((n) => n.endsWith(".apk"));
+      if (mac || windows || linux || android) {
+        return { version: rel.tag_name || "", releaseUrl, mac, windows, linux, android };
       }
     }
     return empty;

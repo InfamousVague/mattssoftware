@@ -30,6 +30,7 @@ import { HaloPage } from "./pages/Halo";
 import { GhostWirePage } from "./pages/GhostWire";
 import { AttackFMPage } from "./pages/AttackFM";
 import { PrettyCardboardPage } from "./pages/PrettyCardboard";
+import { MattsToolsPage } from "./pages/MattsTools";
 import { GhostPage } from "./pages/Ghost";
 import { NotFound } from "./pages/NotFound";
 import { useLanguage } from "./i18n/context";
@@ -123,6 +124,7 @@ export function App() {
             <Route path="/attackfm" element={<AttackFMPage />} />
             <Route path="/prettycardboard" element={<PrettyCardboardPage />} />
             <Route path="/ghost" element={<GhostPage />} />
+            <Route path="/matts-tools" element={<MattsToolsPage />} />
             {/* Legacy path kept as a client-side redirect so any inbound
                 links still land on /ghostwire instead of a 404. */}
             <Route path="/blackpearl" element={<Navigate to="/ghostwire" replace />} />

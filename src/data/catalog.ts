@@ -245,6 +245,20 @@ export const CATALOG: readonly CatalogApp[] = [
     view: "/stats",
   },
   {
+    id: "matts-tools",
+    name: "Matt's Tools",
+    tagline: "Small tools for an Android phone, kept in one app.",
+    description:
+      "A floating dock with the phone's temperature and what your other tools are doing, a keep-awake tile, a frame rate profiler for any app, and a temperature readout. Four tools in one install.",
+    category: "Utilities",
+    icon: "/matts-tools/app-icon.png",
+    tags: ["Utility", "Developer Tools", "Performance", "Keep Awake", "Android"],
+    channel: "github",
+    platforms: ["Android"],
+    githubRepo: "matts-tools",
+    view: "/matts-tools",
+  },
+  {
     id: "port",
     name: "Port",
     tagline: "Every open port on your Mac, one click away.",
