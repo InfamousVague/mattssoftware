@@ -1500,3 +1500,109 @@ pre {
     margin-inline-start: 0;
   }
 }
+
+/* ─── home page ───────────────────────────────────────────── */
+
+.home {
+  padding-block: 0 var(--glacier-space-16);
+}
+
+.home-hero {
+  padding-block: clamp(2.5rem, 7vw, 5rem) var(--glacier-space-12);
+  display: grid;
+  gap: var(--glacier-space-3);
+  max-width: 44rem;
+}
+
+.home-hero .h1 {
+  margin: 0;
+}
+
+.home-list {
+  list-style: none;
+  margin: var(--glacier-space-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--glacier-space-px);
+  background: var(--glacier-border-subtle);
+  border-radius: var(--glacier-radius-lg);
+  overflow: hidden;
+  border: var(--glacier-hairline) solid var(--glacier-border-subtle);
+}
+
+.home-row {
+  background: var(--glacier-surface);
+  transition: background-color var(--glacier-duration-fast) var(--glacier-ease-out);
+}
+
+.home-row:hover {
+  background: var(--glacier-hover);
+}
+
+.home-row__link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--glacier-space-4);
+  padding: var(--glacier-space-5) var(--glacier-space-5);
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-row__text {
+  display: grid;
+  gap: var(--glacier-space-1);
+  min-width: 0;
+}
+
+.home-row__name {
+  font-size: var(--glacier-font-size-lg);
+  font-weight: var(--glacier-font-weight-semibold);
+  color: var(--glacier-text);
+  margin: 0;
+}
+
+.home-row__tag {
+  color: var(--glacier-text-muted);
+  margin: 0;
+}
+
+.home-row__meta {
+  color: var(--glacier-text-subtle, var(--glacier-text-muted));
+  margin: 0;
+}
+
+.home-row__end {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--glacier-space-1);
+  white-space: nowrap;
+  color: var(--glacier-text-muted);
+  opacity: 0.85;
+  transition: opacity var(--glacier-duration-fast) var(--glacier-ease-out);
+}
+
+.home-row:hover .home-row__end {
+  opacity: 1;
+}
+
+.home-row--quiet .home-row__link {
+  padding-block: var(--glacier-space-4);
+}
+
+.home-sign {
+  padding-top: var(--glacier-space-12);
+  text-align: left;
+}
+
+@media (max-width: 36rem) {
+  .home-row__link {
+    grid-template-columns: auto minmax(0, 1fr);
+    row-gap: var(--glacier-space-2);
+  }
+  .home-row__end {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
