@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, IconButton, Menu, MenuItem, Popover } from "@glacier/react";
-import { Check, ChevronDown, Globe, Monitor, Moon, Sun } from "@glacier/icons";
+import { Check, ChevronDown, Monitor, Moon, Sun } from "@glacier/icons";
 import { CATALOG } from "../data/catalog";
-import { taglineFor } from "../data/i18nCatalog";
-import { useLanguage } from "../i18n/context";
-import { LANGUAGE_CODES } from "../i18n/types";
 import { useTheme, type ThemeChoice } from "../lib/theme";
 import { AppIcon } from "./AppIcon";
 import TipPopover from "./TipPopover";
@@ -18,28 +15,32 @@ const THEME_ICON: Record<ThemeChoice, typeof Sun> = {
   dark: Moon,
 };
 
+const THEME_LABEL: Record<ThemeChoice, string> = {
+  system: "System",
+  light: "Light",
+  dark: "Dark",
+};
+
 /// The site's top bar, on every page.
 ///
-///   [ >|M MattsSoftware ]            [ Apps v ] [ globe ] [ theme ] [gh] [discord] [ tip ]
+///   [ >|M MattsSoftware ]            [ Apps v ] [ theme ] [gh] [discord] [ tip ]
 ///
-/// Apps is the kit's Popover holding real links to every app's page, so
-/// each one can be opened in a new tab. Language and theme are the kit's
-/// Menu. GitHub and Discord drop out below 720px (the footer has both).
+/// Apps is the kit's Popover holding real links to each highlighted
+/// product's page. GitHub and Discord drop out below 720px (the footer
+/// has both).
 export function Nav() {
-  const { t, site, lang, setLang } = useLanguage();
   const { choice, setChoice } = useTheme();
   const [appsOpen, setAppsOpen] = useState(false);
   const ThemeIcon = THEME_ICON[choice];
 
-  const themeItems: { value: ThemeChoice; label: string; icon: typeof Sun }[] = [
-    { value: "system", label: site.nav.themeSystem, icon: Monitor },
-    { value: "light", label: site.nav.themeLight, icon: Sun },
-    { value: "dark", label: site.nav.themeDark, icon: Moon },
-  ];
+  // Apps menu lists the highlighted set only — the retired products
+  // were loud dropdowns for pages that redirect to home now, which
+  // was a dead end.
+  const highlighted = CATALOG.filter((app) => app.featured);
 
   return (
     <header className="nav">
-      <nav className="wrap nav__inner" aria-label={site.nav.primary}>
+      <nav className="wrap nav__inner" aria-label="Primary">
         <Link to="/" className="nav__brand" onClick={() => setAppsOpen(false)}>
           <img src="/brandmark-dark.png" alt="" className="nav__mark only-light" width={36} height={36} />
           <img src="/brandmark.png" alt="" className="nav__mark only-dark" width={36} height={36} />
@@ -51,23 +52,23 @@ export function Nav() {
             open={appsOpen}
             onOpenChange={setAppsOpen}
             placement="bottom-end"
-            aria-label={site.nav.allApps}
+            aria-label="All apps"
             className="apps-popover"
             trigger={
               <Button variant="ghost" size="sm">
-                {site.nav.apps} <ChevronDown size={14} aria-hidden />
+                Apps <ChevronDown size={14} aria-hidden />
               </Button>
             }
           >
             <div className="apps-panel">
               <ul className="apps-panel__grid">
-                {CATALOG.map((app) => (
+                {highlighted.map((app) => (
                   <li key={app.id}>
                     <Link to={app.view} className="apps-panel__item" onClick={() => setAppsOpen(false)}>
                       <AppIcon src={app.icon} size="2.25rem" />
                       <span className="apps-panel__meta">
                         <span className="apps-panel__name">{app.name}</span>
-                        <span className="apps-panel__tag">{taglineFor(app, t, site)}</span>
+                        <span className="apps-panel__tag">{app.tagline}</span>
                       </span>
                     </Link>
                   </li>
@@ -78,46 +79,27 @@ export function Nav() {
 
           <Menu
             placement="bottom-end"
-            aria-label={site.nav.language}
+            aria-label="Theme"
             trigger={
-              <IconButton variant="ghost" size="sm" aria-label={site.nav.language}>
-                <Globe size={16} aria-hidden />
-              </IconButton>
-            }
-          >
-            {LANGUAGE_CODES.map((code) => (
-              <MenuItem
-                key={code}
-                lang={code}
-                icon={code === lang ? <Check size={14} aria-hidden /> : <span style={{ width: 14 }} />}
-                aria-current={code === lang ? "true" : undefined}
-                onSelect={() => setLang(code)}
-              >
-                {t.languageNames[code]}
-              </MenuItem>
-            ))}
-          </Menu>
-
-          <Menu
-            placement="bottom-end"
-            aria-label={site.nav.theme}
-            trigger={
-              <IconButton variant="ghost" size="sm" aria-label={site.nav.theme}>
+              <IconButton variant="ghost" size="sm" aria-label="Theme">
                 <ThemeIcon size={16} aria-hidden />
               </IconButton>
             }
           >
-            {themeItems.map((item) => (
-              <MenuItem
-                key={item.value}
-                icon={<item.icon size={14} aria-hidden />}
-                shortcut={item.value === choice ? <Check size={14} aria-hidden /> : undefined}
-                aria-current={item.value === choice ? "true" : undefined}
-                onSelect={() => setChoice(item.value)}
-              >
-                {item.label}
-              </MenuItem>
-            ))}
+            {(["system", "light", "dark"] as ThemeChoice[]).map((value) => {
+              const Icon = THEME_ICON[value];
+              return (
+                <MenuItem
+                  key={value}
+                  icon={<Icon size={14} aria-hidden />}
+                  shortcut={value === choice ? <Check size={14} aria-hidden /> : undefined}
+                  aria-current={value === choice ? "true" : undefined}
+                  onSelect={() => setChoice(value)}
+                >
+                  {THEME_LABEL[value]}
+                </MenuItem>
+              );
+            })}
           </Menu>
 
           <a
@@ -125,7 +107,7 @@ export function Nav() {
             href={GITHUB_PROFILE}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={t.nav.githubAria}
+            aria-label="GitHub"
           >
             <GithubMark />
           </a>
@@ -134,12 +116,12 @@ export function Nav() {
             href={DISCORD_INVITE}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={t.nav.discordAria}
+            aria-label="Discord"
           >
             <DiscordMark />
           </a>
 
-          <TipPopover label={t.nav.tipLabel} />
+          <TipPopover label="Tip" />
         </div>
       </nav>
     </header>

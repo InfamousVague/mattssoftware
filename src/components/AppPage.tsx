@@ -2,20 +2,19 @@ import type { CSSProperties, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Download, ExternalLink } from "@glacier/icons";
 import { CATALOG } from "../data/catalog";
-import { taglineFor } from "../data/i18nCatalog";
 import { themeVars } from "../data/themes";
-import { useLanguage } from "../i18n/context";
 import { useRelease } from "../lib/releases";
 import { AppIcon } from "./AppIcon";
 import { ButtonLink } from "./ButtonLink";
 import { PlatformPills } from "./PlatformPills";
 import { Reveal } from "./Reveal";
 
-/// The page every app has. A page passes its identity, hero art, copy and
-/// three "what it does" features; the template draws the hero (the art on a
-/// stage washed in the app's own hue), the platforms, the downloads, the
-/// feature tiles, whatever sections the page adds as children, a shelf of
-/// other apps, and a closing call to action.
+/// The page every highlighted product has. A page passes its identity,
+/// hero art, copy and three "what it does" features; the template draws
+/// the hero (the art on a stage washed in the app's own hue), the
+/// platforms, the downloads, the feature tiles, whatever sections the
+/// page adds as children, a shelf of the other highlighted products,
+/// and a closing call to action.
 
 export interface AppPageFeature {
   title: string;
@@ -34,7 +33,7 @@ type SiteCTA = { kind: "site"; url: string };
 type AppPageCTA = GithubCTA | AppstoreCTA | LibraryCTA | SiteCTA;
 
 interface AppPageProps {
-  /// Theme key: matches APP_THEMES (e.g. "blip", "port", "sentry").
+  /// Theme key: matches APP_THEMES.
   themeId: string;
   /// The app's id in the catalogue, when it differs from `themeId`.
   catalogId?: string;
@@ -44,7 +43,7 @@ interface AppPageProps {
   tagline: string;
   /// Two to four sentences, shown under the headline.
   description: string;
-  /// Public hero art path, e.g. "/blip/hero.png".
+  /// Public hero art path, e.g. "/libre/hero.png".
   heroImage: string;
   /// How the art sits on its stage: floating (transparent art), filling it
   /// (a screenshot or a banner), or as a large icon.
@@ -60,7 +59,7 @@ interface AppPageProps {
   features?: AppPageFeature[];
   featuresHeading?: string;
   /// The closing line and a note under it, where the page has its own;
-  /// otherwise the closing line is "Get <name>." in the active language.
+  /// otherwise the closing line is "Get <name>.".
   closingTitle?: string;
   closingNote?: string;
   cta: AppPageCTA;
@@ -89,19 +88,18 @@ const DESKTOP: Record<string, { label: string; key: "mac" | "windows" | "linux" 
 };
 
 function Actions({ cta, platforms, site }: Pick<AppPageProps, "cta" | "platforms" | "site">) {
-  const { t, site: copy, format } = useLanguage();
   const release = useRelease(cta.kind === "github" ? cta.repo : undefined);
 
   const siteLink = site ? (
     <ButtonLink href={site} variant="outline" size="lg" external>
-      {format(copy.appPage.visitSite, { site: hostOf(site) })} <ArrowUpRight size={16} aria-hidden />
+      Visit {hostOf(site)} <ArrowUpRight size={16} aria-hidden />
     </ButtonLink>
   ) : null;
 
   if (cta.kind === "site") {
     return (
       <ButtonLink href={cta.url} size="lg" external>
-        {format(copy.appPage.visitSite, { site: hostOf(cta.url) })} <ArrowUpRight size={16} aria-hidden />
+        Visit {hostOf(cta.url)} <ArrowUpRight size={16} aria-hidden />
       </ButtonLink>
     );
   }
@@ -120,7 +118,7 @@ function Actions({ cta, platforms, site }: Pick<AppPageProps, "cta" | "platforms
 
   const repoLink = (
     <ButtonLink href={`https://github.com/InfamousVague/${cta.repo}`} variant="ghost" size="lg" external>
-      <ExternalLink size={16} aria-hidden /> {t.appPage.viewGithub}
+      <ExternalLink size={16} aria-hidden /> View on GitHub
     </ButtonLink>
   );
 
@@ -137,7 +135,7 @@ function Actions({ cta, platforms, site }: Pick<AppPageProps, "cta" | "platforms
             </ButtonLink>
           ) : (
             <span key={p} className="lbtn lbtn--outline lbtn--lg" aria-disabled="true">
-              {format(copy.status.soon, { platform: meta.label })}
+              {meta.label} soon
             </span>
           );
         })}
@@ -150,7 +148,7 @@ function Actions({ cta, platforms, site }: Pick<AppPageProps, "cta" | "platforms
   return (
     <>
       <ButtonLink href={release.mac ?? release.releaseUrl} size="lg">
-        <Download size={16} aria-hidden /> {t.appPage.downloadBtn}
+        <Download size={16} aria-hidden /> Download
         {release.version ? ` ${release.version}` : ""}
       </ButtonLink>
       {siteLink}
@@ -160,14 +158,15 @@ function Actions({ cta, platforms, site }: Pick<AppPageProps, "cta" | "platforms
 }
 
 function MoreApps({ excludeId }: { excludeId: string }) {
-  const { t, site } = useLanguage();
-  const others = CATALOG.filter((a) => a.id !== excludeId).slice(0, 8);
+  // Only the other highlighted products — the retired ones aren't a
+  // place to send readers mid-flow.
+  const others = CATALOG.filter((a) => a.featured && a.id !== excludeId);
   return (
     <section className="sec sec--ruled" aria-labelledby="more-heading">
       <div className="sec__head">
-        <p className="eyebrow">MattsSoftware</p>
+        <p className="eyebrow">Also by MattsSoftware</p>
         <h2 className="h2" id="more-heading">
-          {t.appPage.suiteHeading}
+          The rest of the lineup
         </h2>
       </div>
       <ul className="more">
@@ -177,7 +176,7 @@ function MoreApps({ excludeId }: { excludeId: string }) {
               <AppIcon src={a.icon} size="2.5rem" />
               <span className="apps-panel__meta">
                 <span className="apps-panel__name">{a.name}</span>
-                <span className="apps-panel__tag">{taglineFor(a, t, site)}</span>
+                <span className="apps-panel__tag">{a.tagline}</span>
               </span>
             </Link>
           </li>
@@ -188,16 +187,19 @@ function MoreApps({ excludeId }: { excludeId: string }) {
 }
 
 export function AppPage(props: AppPageProps) {
-  const { t, site, format } = useLanguage();
   const style = themeVars(props.themeId) as CSSProperties;
   const catalogId = props.catalogId ?? props.themeId;
   const app = CATALOG.find((a) => a.id === catalogId);
   const fit = props.heroFit ?? "contain";
 
+  const closingLine =
+    props.closingTitle ??
+    (props.menuBarApp ? `Add ${props.title} to your menu bar.` : `Get ${props.title}.`);
+
   return (
     <article className="wrap" style={style}>
       <Link to="/" className="ap-back">
-        <ArrowLeft size={14} aria-hidden /> {site.appPage.back}
+        <ArrowLeft size={14} aria-hidden /> Back to the home page
       </Link>
 
       <header className="ap-hero">
@@ -244,10 +246,7 @@ export function AppPage(props: AppPageProps) {
       <section className="closing stage" aria-labelledby="closing-heading">
         <AppIcon src={props.icon} size="4.5rem" />
         <h2 className="h2" id="closing-heading">
-          {props.closingTitle ??
-            (props.menuBarApp
-              ? format(t.appPage.bottomAddToMenuBar, { name: props.title })
-              : format(t.appPage.bottomGet, { name: props.title }))}
+          {closingLine}
         </h2>
         {props.closingNote ? <p className="body">{props.closingNote}</p> : null}
         <div className="ap-hero__actions">

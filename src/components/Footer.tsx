@@ -1,30 +1,26 @@
 import { Link } from "react-router-dom";
-import { Button, SegmentedControl, Select, useToast } from "@glacier/react";
+import { Button, SegmentedControl, useToast } from "@glacier/react";
 import { Copy } from "@glacier/icons";
-import { useLanguage } from "../i18n/context";
-import { LANGUAGE_CODES, type LanguageCode } from "../i18n/types";
 import { useTheme, type ThemeChoice } from "../lib/theme";
 import { DISCORD_INVITE } from "./icons/DiscordMark";
 import { GITHUB_PROFILE } from "./icons/GithubMark";
 
 const EMAIL = "infamousvaguerat@gmail.com";
-const LAUNCHER_RELEASE =
-  "https://github.com/InfamousVague/MattsSoftware-Launcher/releases/latest";
 
-/// Site-wide footer: the office cat, who the studio is, the theme and the
-/// language (the kit's SegmentedControl and Select), and the plain links.
+/// Site-wide footer: the office cat, who the studio is, the theme
+/// control, and plain links. English-only; drop i18n entirely so the
+/// footer can drift with the rest of the site in step.
 export function Footer() {
-  const { t, site, lang, setLang } = useLanguage();
   const { choice, setChoice } = useTheme();
   const { toast } = useToast();
 
   async function copyEmail() {
     try {
       await navigator.clipboard.writeText(EMAIL);
-      toast({ tone: "success", message: site.footer.emailCopied });
+      toast({ tone: "success", message: "Email copied" });
     } catch {
-      // No clipboard (an insecure context, a denied permission): the
-      // mail link beside this button still works.
+      // No clipboard (insecure context, denied permission): the mail
+      // link beside this button still works.
       window.location.href = `mailto:${EMAIL}`;
     }
   }
@@ -37,54 +33,44 @@ export function Footer() {
             <img
               className="footer__mascot"
               src="/_brand/cat-mascot.png"
-              alt={t.footer.mascotAlt}
+              alt="A sleepy office cat curled around a mug and a houseplant"
               loading="lazy"
               width={88}
               height={88}
             />
             <div>
-              <p className="footer__line">{t.footer.line}</p>
-              <p className="small">{site.footer.sub}</p>
+              <p className="footer__line">Built with espresso and loud music.</p>
+              <p className="small">
+                MattsSoftware is a one-person shop. Every app is free and most
+                of them are open source.
+              </p>
             </div>
           </div>
           <div className="footer__tools">
             <SegmentedControl
               size="sm"
-              aria-label={site.nav.theme}
+              aria-label="Theme"
               value={choice}
               onValueChange={(v) => setChoice(v as ThemeChoice)}
               options={[
-                { value: "system", label: site.nav.themeSystem },
-                { value: "light", label: site.nav.themeLight },
-                { value: "dark", label: site.nav.themeDark },
+                { value: "system", label: "System" },
+                { value: "light", label: "Light" },
+                { value: "dark", label: "Dark" },
               ]}
-            />
-            <Select
-              size="sm"
-              aria-label={site.nav.language}
-              value={lang}
-              onValueChange={(v) => setLang(v as LanguageCode)}
-              options={LANGUAGE_CODES.map((code) => ({
-                value: code,
-                label: t.languageNames[code],
-              }))}
             />
           </div>
         </div>
         <div className="footer__links">
-          <Link to="/">{t.footer.allApps}</Link>
+          <Link to="/">Home</Link>
           <a href={GITHUB_PROFILE} target="_blank" rel="noopener noreferrer">
-            {t.footer.github}
+            GitHub
           </a>
           <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer">
-            {site.footer.discord}
+            Discord
           </a>
-          <a href={LAUNCHER_RELEASE} target="_blank" rel="noopener noreferrer">
-            {site.footer.launcher}
-          </a>
-          <a href={`mailto:${EMAIL}`}>{t.footer.contact}</a>
+          <a href={`mailto:${EMAIL}`}>Email</a>
           <Button variant="ghost" size="sm" onClick={copyEmail}>
-            <Copy size={14} aria-hidden /> {site.footer.copyEmail}
+            <Copy size={14} aria-hidden /> Copy email
           </Button>
           <span className="small footer__copy">© MattsSoftware</span>
         </div>

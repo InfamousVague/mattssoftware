@@ -1,7 +1,7 @@
-/// Per-app theme worlds — accent gradients used by AppPage.
+/// Per-app theme — accent gradients used by AppPage.
 ///
-/// Each app picks a saturated 2-color gradient that matches its hero
-/// illustration's palette. The gradient drives:
+/// The six highlighted products each pick a 2-color gradient that
+/// matches their own brand. It drives:
 ///   - the primary button background
 ///   - the eyebrow tag chip
 ///   - the page's ambient body glow (via --app-from / --app-to)
@@ -14,33 +14,17 @@
 export interface AppTheme {
   from: string;
   to: string;
-  glow: string;        // rgba string for shadows / outer-glow
-  spotlight: string;   // soft wash placed behind the hero illustration
+  glow: string;
+  spotlight: string;
 }
 
 export const APP_THEMES: Record<string, AppTheme> = {
-  blip:       { from: "#ff4d8d", to: "#a020f0", glow: "rgba(160, 32, 240, 0.36)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,77,141,0.22), transparent 65%)" },
-  port:       { from: "#5cb8ff", to: "#0099ff", glow: "rgba(0, 153, 255, 0.34)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(92,184,255,0.24), transparent 65%)" },
-  vyv:        { from: "#ffb27a", to: "#e09060", glow: "rgba(224, 144, 96, 0.32)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,178,122,0.24), transparent 65%)" }, // Espresso (route is /vyv)
-  espresso:   { from: "#ffb27a", to: "#e09060", glow: "rgba(224, 144, 96, 0.32)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,178,122,0.24), transparent 65%)" },
-  sentry:     { from: "#9d8bff", to: "#5b48e6", glow: "rgba(91, 72, 230, 0.36)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(157,139,255,0.22), transparent 65%)" },
-  peephole:   { from: "#7fdbb6", to: "#3aa685", glow: "rgba(58, 166, 133, 0.32)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(127,219,182,0.22), transparent 65%)" },
-  stats:      { from: "#ff7eb3", to: "#ff4d8d", glow: "rgba(255, 77, 141, 0.34)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,126,179,0.22), transparent 65%)" },
-  stickykeys: { from: "#c0a0ff", to: "#9070e0", glow: "rgba(144, 112, 224, 0.34)",spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(192,160,255,0.24), transparent 65%)" },
-  diane:      { from: "#e8c598", to: "#b58853", glow: "rgba(181, 136, 83, 0.32)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(232,197,152,0.24), transparent 65%)" },
-  tap:        { from: "#b48cff", to: "#7a4dff", glow: "rgba(122, 77, 255, 0.36)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(180,140,255,0.22), transparent 65%)" },
-  libre:      { from: "#ff6a8a", to: "#c2275d", glow: "rgba(194, 39, 93, 0.34)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,106,138,0.22), transparent 65%)" },
-  base:       { from: "#c8c8d4", to: "#6b6b80", glow: "rgba(107, 107, 128, 0.30)",spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(200,200,212,0.18), transparent 65%)" },
-  alfred:     { from: "#7bc585", to: "#2f8b48", glow: "rgba(47, 139, 72, 0.32)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(123,197,133,0.22), transparent 65%)" },
-  quarantine: { from: "#f7d05c", to: "#c89212", glow: "rgba(200, 146, 18, 0.32)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(247,208,92,0.22), transparent 65%)" },
-  uninstaller:{ from: "#ff8a8a", to: "#a02828", glow: "rgba(160, 40, 40, 0.34)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,138,138,0.24), transparent 65%)" },
-  worktree:   { from: "#98c97d", to: "#4d8a3e", glow: "rgba(77, 138, 62, 0.32)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(152,201,125,0.22), transparent 65%)" },
-  halo:       { from: "#ffd988", to: "#dda84a", glow: "rgba(221, 168, 74, 0.34)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,217,136,0.24), transparent 65%)" },
-  attackfm:   { from: "#fc427b", to: "#7a1f4a", glow: "rgba(252, 66, 123, 0.34)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(252,66,123,0.22), transparent 65%)" }, // the product's own brand pink
-  prettycardboard: { from: "#c89b6a", to: "#8f5fd6", glow: "rgba(143, 95, 214, 0.32)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(200,155,106,0.22), transparent 65%)" }, // cardboard and foil, from its icon
-  ghost:      { from: "#b8b8c0", to: "#6f6f78", glow: "rgba(111, 111, 120, 0.30)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(184,184,192,0.18), transparent 65%)" }, // ink and paper: no hue
-  "matts-tools": { from: "#c8c8d0", to: "#6f6f78", glow: "rgba(111, 111, 120, 0.30)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(200,200,208,0.18), transparent 65%)" }, // ink and paper, as the app is
-  ghostwire:  { from: "#34D9C6", to: "#0C6E66", glow: "rgba(25, 195, 177, 0.34)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(52,217,198,0.22), transparent 65%)" }, // electric wire-teal squircle (icon-prompts.md §18)
+  ghost:           { from: "#b8b8c0", to: "#6f6f78", glow: "rgba(111, 111, 120, 0.30)", spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(184,184,192,0.18), transparent 65%)" },
+  ghostkbd:        { from: "#8b9eff", to: "#3f4fb6", glow: "rgba(63, 79, 182, 0.32)",   spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(139,158,255,0.20), transparent 65%)" },
+  libre:           { from: "#ff6a8a", to: "#c2275d", glow: "rgba(194, 39, 93, 0.34)",   spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,106,138,0.22), transparent 65%)" },
+  espresso:        { from: "#ffb27a", to: "#e09060", glow: "rgba(224, 144, 96, 0.32)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(255,178,122,0.24), transparent 65%)" },
+  attackfm:        { from: "#fc427b", to: "#7a1f4a", glow: "rgba(252, 66, 123, 0.34)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(252,66,123,0.22), transparent 65%)" },
+  prettycardboard: { from: "#c89b6a", to: "#8f5fd6", glow: "rgba(143, 95, 214, 0.32)",  spotlight: "radial-gradient(60% 60% at 50% 40%, rgba(200,155,106,0.22), transparent 65%)" },
 };
 
 /// Fallback gradient (matches the :root default in styles.css).
@@ -56,7 +40,7 @@ export function getTheme(id: string): AppTheme {
 }
 
 /// Build the inline style object that scopes a per-app theme to a
-/// page's root element. Tagged `as React.CSSProperties` upstream.
+/// page's root element. Tag with `as React.CSSProperties` upstream.
 export function themeVars(id: string): Record<string, string> {
   const t = getTheme(id);
   return {
